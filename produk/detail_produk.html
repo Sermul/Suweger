@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
+ <head>
   <meta charset="UTF-8">
-  <title>ZupaZips - Detail Produk</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZupaZips - Minuman Unik</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <header>
-    <div class="left-header">
-      <div class="logo">
-        <img src="../image/logo2.png" alt="Logo">
-      </div>
-      <nav>
-        <a href="../index.html">Home</a>
-        <a href="../artikel/artike.html">Artikel</a>
-        <a href="../produk/katalog_produk.html">Product</a>
-        <a href="../about.html">About</a>
-      </nav>
+<header>
+  <div class="left-header">
+    <div class="logo">
+      <img src="../image/logo2.png" alt="Logo">
     </div>
-    <div class="profile-container">
-      <a href="../historytransaksi.html" class="history-icon" title="Riwayat Transaksi">
-        <i class="fas fa-history"></i>
-      </a>
-      <a href="keranjang.html" class="cart-icon">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
-      </a>
-      <img src="../image/profile.jpg" alt="Profile" class="profile-img" id="profileBtn">
-      <div class="dropdown-content" id="dropdownMenu">
-        <a href="../profile.html">Profile</a>
-        <a href="../register.html">Keluar</a>
-      </div>
+    <button class="hamburger md:hidden" id="hamburger">
+      <i class="fas fa-bars text-xl"></i>
+    </button>
+    <nav class="nav-menu md:flex hidden" id="nav-menu">
+      <a href="../index.html">Home</a>
+      <a href="/artikel/artike.html">Artikel</a>
+      <a href="/produk/katalog_produk.html">Product</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+  <div class="profile-container">
+    <a href="../Histrorytransaksi.html" class="history-icon" title="Riwayat Transaksi">
+      <i class="fas fa-history"></i>
+    </a>
+    <a href="../keranjang.html" class="cart-icon">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-count">0</span>
+    </a>
+    <img src="../image/profile.jpg" alt="Profile" class="profile-img" id="profileBtn">
+    <div class="dropdown-content" id="dropdownMenu">
+      <a href="../profile.html">Profile</a>
+      <a href="../register.html">Keluar</a>
     </div>
-  </header>
+  </div>
+</header>
 
   <main class="max-w-7xl mx-auto px-6 py-16">
     <div class="flex flex-col md:flex-row items-center md:items-start gap-12">
@@ -50,13 +53,13 @@
           <!-- Deskripsi akan diisi oleh JavaScript -->
         </p>
         <div class="flex flex-wrap gap-4 mt-8">
-          <button onclick="showOptions('add-to-cart')" class="flex items-center gap-2 px-6 py-3 bg-white text-green-600 border border-green-600 rounded-full text-lg font-semibold shadow-md hover:bg-green-600 hover:text-white transition">
-            <i class="fas fa-shopping-cart"></i> Tambah ke Keranjang
-          </button>
-          <button onclick="showOptions('buy-now')" class="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-full text-lg font-semibold shadow-md hover:bg-green-700 transition">
-            <i class="fas fa-bolt"></i> Beli Sekarang
-          </button>
-        </div>
+  <a href="../keranjang.html" class="flex items-center gap-2 px-6 py-3 bg-white text-green-600 border border-green-600 rounded-full text-lg font-semibold shadow-md hover:bg-green-600 hover:text-white transition">
+    <i class="fas fa-shopping-cart"></i> Tambah ke Keranjang
+  </a>
+  <a href="../pembayaran.html" class="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-full text-lg font-semibold shadow-md hover:bg-green-700 transition">
+    <i class="fas fa-bolt"></i> Beli Sekarang
+  </a>
+</div>
       </div>
     </div>
   </main>
