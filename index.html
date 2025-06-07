@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+  <meta charset="UTF-8">
+  <title>ZupaZips - Minuman Unik</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="left-header">
+      <div class="logo">
+        <img src="image/logo2.png" alt="Logo">
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="artikel/artike.html">Artikel</a>
+        <a href="produk/katalog_produk.html">Product</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+       <div class="profile-container">
+  <!-- Transaction History Icon -->
+  <a href="Histrorytransaksi.html" class="history-icon" title="Riwayat Transaksi">
+    <i class="fas fa-history"></i>
+  </a>
+  
+  <!-- Shopping Cart Icon -->
+  <a href="keranjang.html" class="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count">0</span>
+  </a>
+  
+  <img src="image/profile.jpg" alt="Profile" class="profile-img" id="profileBtn">
+  <div class="dropdown-content" id="dropdownMenu">
+    <a href="profile.html">Profile</a>
+    <a href="register.html">Keluar</a>
+  </div>
+</div>
+  </header>
+
+  <!-- Hero Video Section -->
+  <section class="relative h-screen w-full overflow-hidden">
+    <video autoplay muted loop class="absolute top-0 left-0 w-full h-full object-cover">
+      <source src="image/vidio1.mp4" type="video/mp4">
+      Browser Anda tidak mendukung video HTML5.
+    </video>
+    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white text-center px-6">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Minuman yang Menginspirasi</h1>
+      <p class="text-lg md:text-xl mb-6 max-w-2xl">Dibuat dengan cinta, disajikan dengan keunikan yang membekas di hati.</p>
+      <a href="about.html" class="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">Jelajahi Cerita Kami</a>
+    </div>
+  </section>
+
+  
+  <section class="products-section fade-in-right">
+    <h2 class="section-title">Jenis Minuman Kami</h2>
+   <p class="text-gray-700 text-base max-w-2xl mx-auto mb-8 text-center leading-relaxed">
+  Nikmati sensasi kesegaran dalam setiap tegukan! Kami menghadirkan berbagai varian minuman pilihan, mulai dari rasa klasik yang tak lekang oleh waktu hingga kreasi unik yang hanya bisa kamu temukan di sini. Dibuat dari bahan berkualitas dan racikan rasa yang pas, setiap minuman kami siap menemani harimu jadi lebih istimewa. Yuk, temukan favoritmu sekarang!
+</p>
+
+
+    <div class="relative">
+      <!-- Tombol Navigasi -->
+      <button id="prevBtn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-75 text-gray-800 p-2 rounded-full hover:bg-opacity-100 z-10">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button id="nextBtn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-75 text-gray-800 p-2 rounded-full hover:bg-opacity-100 z-10">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+      <div class="products-grid">
+        <!-- Kopyor -->
+        <div class="product-card" data-category="kopyor">
+          <img src="image/kopyor1.webp" alt="Kopyor Drink" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">Kopyor</h3>
+            <div class="hover-action">
+              <a href="produk/katalog_produk.html?category=kopyor" class="view-variants">Lihat Varian</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Fruitea -->
+        <div class="product-card" data-category="fruitea">
+          <img src="image/fruit tea3.webp" alt="Fruit Tea" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">Fruitea</h3>
+            <div class="hover-action">
+              <a href="produk/katalog_produk.html?category=Fruitea" class="view-variants">Lihat Varian</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Coklat -->
+        <div class="product-card" data-category="coklat">
+          <img src="image/coklat1.webp" alt="Minuman Coklat" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">Coklat</h3>
+            <div class="hover-action">
+              <a href="produk/katalog_produk.html?category=coklat" class="view-variants">Lihat Varian</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Milk Tea -->
+        <div class="product-card" data-category="milktea">
+          <img src="image/milktea1.webp" alt="Milk Tea" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">Milk Tea</h3>
+            <div class="hover-action">
+              <a href="produk/katalog_produk.html?category=Milk-Tea" class="view-variants">Lihat Varian</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Coffee and Latte -->
+        <div class="product-card" data-category="coffeeandlatte">
+          <img src="image/kopijelly2.webp" alt="Coffee and Latte" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">Coffee & Latte</h3>
+            <div class="hover-action">
+              <a href="produk/katalog_produk.html?category=Coffee and Latte" class="view-variants">Lihat Varian</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tea Presso -->
+        <div class="product-card" data-category="teapresso">
+          <img src="image/kopijelly.webp" alt="Tea Presso" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">Coffee & jelly</h3>
+            <div class="hover-action">
+              <a href="produk/katalog_produk.html?category=kopi n jelly" class="view-variants">Lihat Varian</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Smoothies -->
+        <div class="product-card" data-category="smoothies">
+          <img src="image/cookiesncream.webp" alt="Smoothies" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">Chookies N Cream</h3>
+            <div class="hover-action">
+              <a href="produk/katalog_produk.html?category=cookiesncream" class="view-variants">Lihat Varian</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Es Teh -->
+        <div class="product-card" data-category="esteh">
+          <img src="image/esteh.webp" alt="Tearrific" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">Es Teh</h3>
+            <div class="hover-action">
+              <a href="produk/katalog_produk.html?category=esteh" class="view-variants">Lihat Varian</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- News Section -->
+ 
+    <h2 class="section-title">kenapa Harus Seweger?</h2>
+    <div class="news-container flex justify-center gap-8 mt-8">
+      <div class="news-item">
+  <img src="image/logohalal.jpg" alt="Halal Certification" class="mx-auto mb-4">
+  <div class="news-content">
+    <p>Halal Certification<br>Suweger telah mendapatkan sertifikasi Halal dari MUI...</p>
+  </div>
+</div>
+      <div class="news-item">
+        <img src="image/logo2.png" alt="Best Brand Winner 2025" class="mx-auto mb-4">
+        <p>Best Brand Winner 2025<br>Suweger dinobatkan sebagai Best Brand of the Year dalam kategori minuman oleh The World Branding Awards.</p>
+      </div>
+      <div class="news-item">
+        <img src="image/bes.jpeg" alt="Coffee Journey" class="mx-auto mb-4">
+        <p>Coffee Journey<br>Di Suweger, kami memastikan Anda mendapatkan pengalaman minum terbaik dengan rasa yang  membuat lidah tidak bosan untuk mencoba dan terus mencoba.</p>
+      </div>
+    </div>
+   
+  </section>
+
+  <section class="articles-section fade-in-down">
+    <h2 class="section-title">Artikel Terbaru</h2>
+    
+    <div class="articles-container">
+      <!-- Article 1 -->
+      <div class="article-card">
+        <img src="image/artikel1.jpeg" alt="Artikel 1" class="article-image">
+        <div class="article-content">
+          <h3 class="article-title">5 Minuman Unik dari Asia</h3>
+          <p class="article-excerpt">Minuman unik yang bikin penasaran. Mana yang sudah kamu coba?</p>
+          <a href="artikel1.html" class="read-more">Baca Selengkapnya</a>
+        </div>
+      </div>
+      
+      <!-- Article 2 -->
+      <div class="article-card">
+        <img src="image/artikel1.jpg" alt="Artikel 2" class="article-image">
+        <div class="article-content">
+          <h3 class="article-title">Trend Topping 2025</h3>
+          <p class="article-excerpt">Dari boba lava hingga jelly gold — tren topping tahun ini!</p>
+          <a href="artikel1.html" class="read-more">Baca Selengkapnya</a>
+        </div>
+      </div>
+      
+      <!-- Article 4 -->
+      <div class="article-card">
+        <img src="image/artikel1.jpeg" alt="Artikel 4" class="article-image">
+        <div class="article-content">
+          <h3 class="article-title">Kopi Kekinian di Indonesia</h3>
+          <p class="article-excerpt">Eksplorasi ragam kopi kekinian yang sedang hits di Indonesia.</p>
+          <a href="artikel1.html" class="read-more">Baca Selengkapnya</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="see-more-container">
+      <button class="see-more-btn" onclick="window.location.href='artikel/artike.html'">
+        Lihat Artikel Lainnya
+      </button>
+    </div>
+  </section>
+
+ <!-- HTML Structure -->
+<section class="smartphone-section">
+  <h2 class="section-title">App Suweger</h2>
+  <div class="smartphone-container">
+    <div class="smartphone-wrapper">
+      <div class="smartphone">
+        <video autoplay muted loop class="smartphone-video">
+          <source src="image/vidioapp.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <div class="content-wrapper">
+      <p class="smartphone-text">
+        Temukan cara mendapatkan voucher gratis, akses prioritas, dan manfaat tambahan lainnya. Pesan langsung melalui aplikasi Suweger, pilih pengambilan atau pengiriman untuk melewati antrean!
+      </p>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fas fa-gift"></i>
+          <span>Voucher Gratis</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-crown"></i>
+          <span>Akses Prioritas</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-bolt"></i>
+          <span>Pesan Cepat</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-store"></i>
+          <span>Ambil di Tempat</span>
+        </div>
+      </div>
+      <div class="download-buttons">
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+      </div>
+      <!-- Tambahan gambar baru di bawah tombol download -->
+      <div class="additional-image mt-6">
+        <img src="image/tutor.png" alt="Gambar Tambahan" class="w-full max-w-xs rounded-lg shadow-md">
+      </div>
+    </div>
+  </div>
+</section>
+
+ <!-- Locations Section with Image -->
+<!-- Locations Section with Integrated Search -->
+<section class="bg-[#f5f5f0] py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    
+     <h2 class="section-title">Lokasi Suweger</h2>
+      <div class="w-20 h-0.5 bg-[#2a5c45] mx-auto mb-8"></div> <!-- Garis pembatas judul -->
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Left Column (50% - Image) -->
+      <div class="lg:w-1/2">
+        <!-- Image with Zoom -->
+        <div class="relative group h-full">
+          <img src="image/peta.png" 
+               alt="Peta Lokasi Kebun Esteh Indonesia" 
+               class="w-full h-full object-cover rounded-lg shadow-sm">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition duration-300 rounded-lg flex items-center justify-center">
+            <button onclick="openFullscreen(this.parentElement.parentElement)" class="cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white opacity-0 group-hover:opacity-100 transition duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column (50% - Search + Locations) -->
+      <div class="lg:w-1/2">
+        <!-- Search Bar -->
+        <div class="mb-6 bg-white p-4 rounded-lg shadow-sm">
+          <div class="relative">
+            <input type="text" id="locationSearch" placeholder="Cari lokasi (contoh: Bangkok, Bandung)..." 
+                   class="w-full px-4 py-2 border border-[#e0e0d8] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2a5c45] focus:border-transparent">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute right-3 top-2.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Location Lists -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="locationContainer">
+          <!-- International Locations -->
+          <div class="bg-white p-6 shadow-sm rounded-lg location-card">
+            <h3 class="text-xl font-medium text-[#2a5c45] mb-4 pb-2 border-b border-[#e0e0d8]">Internasional</h3>
+            <div class="space-y-3">
+              <div>
+                <h4 class="font-medium">Luar Negeri</h4>
+                <ul class="text-gray-600 ml-4 list-disc">
+                  <li class="location-item">Bangkok, 1st Yleiman</li>
+                  <li class="location-item">Kamboja</li>
+                  <li class="location-item">Kada Ho</li>
+                  <li class="location-item">Chi Minh</li>
+                  <li class="location-item">Kamboja</li>
+                  <li class="location-item">Kada Ho</li>
+                  <li class="location-item">Chi Minh</li>
+                </ul>
+              </div>
+             
+            </div>
+          </div>
+
+          <!-- Indonesia Locations -->
+          <div class="bg-white p-6 shadow-sm rounded-lg location-card">
+            <h3 class="text-xl font-medium text-[#2a5c45] mb-4 pb-2 border-b border-[#e0e0d8]">Indonesia</h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-medium">Malang</h4>
+                <p class="text-gray-600 location-item">JL. Pandu Raya No.5, Kec. Linggabayu, Surabaya, Jawa Timur</p>
+              </div>
+              <div>
+                <h4 class="font-medium">Surabaya</h4>
+                <p class="text-gray-600 location-item">JL. Srikana, Kec. Gubeng, Surarabaya, Jawa Timur</p>
+              </div>
+      
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+ 
+
+  // Fullscreen image function
+  function openFullscreen(element) {
+    const img = element.querySelector('img');
+    if (img.requestFullscreen) {
+      img.requestFullscreen();
+    } else if (img.webkitRequestFullscreen) { /* Safari */
+      img.webkitRequestFullscreen();
+    } else if (img.msRequestFullscreen) { /* IE11 */
+      img.msRequestFullscreen();
+    }
+  }
+</script>
+<section class="review-section">
+  <div class="review-header">
+    <h2>Apa Kata Mereka Tentang <span class="brand">Suweger</span>?</h2>
+  </div>
+
+  <!-- Review Scrollable Container -->
+  <div class="review-slider-container">
+    <div class="review-slider">
+      <!-- Ulangi elemen ini untuk tiap review -->
+      <div class="review-card">
+        <img src="image/profile3.jpg" alt="Foto user">
+        <p>"Minuman segarnya luar biasa! Tempatnya juga nyaman banget 😍"</p>
+        <span>- Dinda, Jakarta</span>
+      </div>
+      <div class="review-card">
+        <img src="image/profile4.jpg" alt="Foto user">
+        <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
+        <span>- Yoga, Bandung</span>
+      </div>
+     <div class="review-card">
+        <img src="image/profile5.jpg" alt="Foto user">
+        <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
+        <span>- Yoga, Bandung</span>
+      </div>
+      <div class="review-card">
+        <img src="image/profile.jpg" alt="Foto user">
+        <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
+        <span>- Yoga, Bandung</span>
+      </div>
+      <div class="review-card">
+        <img src="image/profile3.jpg" alt="Foto user">
+        <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
+        <span>- Yoga, Bandung</span>
+      </div>
+      <div class="review-card">
+        <img src="image/profile4.jpg" alt="Foto user">
+        <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
+        <span>- Yoga, Bandung</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Komentar (Tidak Scroll) -->
+  <div class="review-form">
+    <h3>Tulis Review Kamu</h3>
+    <form action="#" method="POST" enctype="multipart/form-data">
+      <textarea name="komentar" placeholder="Tulis komentar kamu di sini..." required></textarea>
+  
+      <button type="submit" class="submit-btn">Kirim Review</button>
+    </form>
+  </div>
+</section>
+<!-- Chatbot Widget -->
+<div id="chatbot" class="chatbot">
+  <div class="chat-header">🤖 Tanya Produk (Chatbot)</div>
+  <div class="chat-body" id="chat-body">
+    <div class="bot-message">Halo! Ada yang bisa kami bantu?</div>
+  </div>
+  <div class="chat-options">
+    <button onclick="respond('promo')">Lihat Promo</button>
+    <button onclick="respond('pengiriman')">Info Pengiriman</button>
+    <button onclick="respond('hubungi')">Hubungi Admin</button>
+  </div>
+</div>
+
+<!-- Toggle Chat Button -->
+<button id="chat-toggle" onclick="toggleChat()">💬</button>
+
+<!-- Link ke CSS dan JS -->
+<link rel="stylesheet" href="css/chatbot.css">
+<script src="js/chatbot.js" defer></script>
+
+
+
+  <footer class="footer-wave">
+   
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Layanan Konsumen</h4>
+        <p><i class="fas fa-building"></i> Direktorat Jenderal PKTN - Kementerian Perdagangan RI</p>
+        <p><i class="fab fa-whatsapp"></i> 0853-1111-1010</p>
+        <p><i class="fas fa-envelope"></i> customercare@zupazips.com</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak Kami</h4>
+        <p><i class="fas fa-map-marker-alt"></i> Gedung Graha Ganesha<br>Lantai 1 Suite 120 & 130</p>
+        <p>Jl. Hayam Wuruk No. 28, Gambir, Jakarta Pusat</p>
+        <p><i class="fas fa-phone"></i> (021) 1234567</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ikuti Kami</h4>
+        <p>Dapatkan update terbaru dan promo menarik</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-line" />
+    <div class="footer-bottom">
+      <img src="image/logo2.png" alt="Footer Logo" class="footer-logo">
+      <p>© 2025 MinumanKita. All Rights Reserved.</p>
+      <p>
+        <a href="#">Kebijakan Privasi</a> |
+        <a href="#">Syarat & Ketentuan</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    
+    // Profile dropdown functionality
+    document.getElementById('profileBtn').addEventListener('click', function() {
+      document.getElementById('dropdownMenu').style.display = 
+        document.getElementById('dropdownMenu').style.display === 'block' ? 'none' : 'block';
+    });
+    
+    // Close dropdown when clicking outside
+    window.addEventListener('click', function(e) {
+      if (!e.target.matches('#profileBtn') && !e.target.matches('.dropdown-content a')) {
+        document.getElementById('dropdownMenu').style.display = 'none';
+      }
+    });
+    
+    // See more articles functionality
+    const seeMoreBtn = document.querySelector('.see-more-btn');
+    const articlesContainer = document.querySelector('.articles-container');
+    
+    seeMoreBtn.addEventListener('click', () => {
+      alert('Loading more articles...');
+    });
+
+    // Carousel navigation for products
+    const productsGrid = document.querySelector('.products-grid');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const cardWidth = 200; // Lebar kartu (sesuaikan jika diubah)
+    let scrollPosition = 0;
+    const maxScroll = productsGrid.scrollWidth - productsGrid.clientWidth;
+
+    function updateButtons() {
+      prevBtn.disabled = scrollPosition <= 0;
+      nextBtn.disabled = scrollPosition >= maxScroll;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      scrollPosition -= cardWidth + 16; // Jarak termasuk gap (1rem = 16px)
+      if (scrollPosition < 0) scrollPosition = 0;
+      productsGrid.scrollLeft = scrollPosition;
+      updateButtons();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      scrollPosition += cardWidth + 16; // Jarak termasuk gap
+      if (scrollPosition > maxScroll) scrollPosition = maxScroll;
+      productsGrid.scrollLeft = scrollPosition;
+      updateButtons();
+    });
+
+    // Perbarui status tombol saat halaman dimuat atau di-resize
+    window.addEventListener('load', updateButtons);
+    window.addEventListener('resize', updateButtons);
+
+    // Functionality for view variants
+    const viewVariantLinks = document.querySelectorAll('.view-variants');
+    viewVariantLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const category = link.closest('.product-card').getAttribute('data-category');
+        window.location.href = `produk/katalog_produk.html?category=${category}`;
+      });
+    });
+
+    // Intersection Observer untuk animasi scroll
+    const sectionsRight = document.querySelectorAll('.fade-in-right');
+    const sectionsDown = document.querySelectorAll('.fade-in-down');
+
+    const observerOptions = {
+      threshold: 0.2 // 20% dari elemen harus terlihat untuk memicu animasi
+    };
+
+    const observerRight = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // Hentikan pengamatan setelah animasi dipicu
+        }
+      });
+    }, observerOptions);
+
+    const observerDown = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    sectionsRight.forEach(section => observerRight.observe(section));
+    sectionsDown.forEach(section => observerDown.observe(section));
+
+    // JavaScript untuk menandai menu aktif
+document.addEventListener('DOMContentLoaded', function() {
+  const currentPage = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('nav a');
+  
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute('href').split('/').pop();
+    if (currentPage === linkPage || 
+        (currentPage === '' && linkPage === 'index.html')) {
+      link.classList.add('active');
+    }
+  });
+});
+  </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>ZupaZips - Detail Produk</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header>
+    <div class="left-header">
+      <div class="logo">
+        <img src="../image/logo2.png" alt="Logo">
+      </div>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../artikel/artike.html">Artikel</a>
+        <a href="../produk/katalog_produk.html">Product</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+    <div class="profile-container">
+      <a href="../historytransaksi.html" class="history-icon" title="Riwayat Transaksi">
+        <i class="fas fa-history"></i>
+      </a>
+      <a href="keranjang.html" class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+      </a>
+      <img src="../image/profile.jpg" alt="Profile" class="profile-img" id="profileBtn">
+      <div class="dropdown-content" id="dropdownMenu">
+        <a href="../profile.html">Profile</a>
+        <a href="../register.html">Keluar</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-16">
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-12">
+      <div class="flex-1">
+        <img id="product-image" src="" alt="Product Image" class="rounded-2xl shadow-lg w-full object-cover">
+      </div>
+      <div class="flex-1 space-y-6">
+        <h2 id="product-name" class="text-3xl md:text-4xl font-bold text-gray-800"></h2>
+        <p id="product-price" class="text-orange-500 font-extrabold text-2xl"></p>
+        <p id="product-description" class="text-gray-700 text-lg leading-relaxed">
+          <!-- Deskripsi akan diisi oleh JavaScript -->
+        </p>
+        <div class="flex flex-wrap gap-4 mt-8">
+          <button onclick="showOptions('add-to-cart')" class="flex items-center gap-2 px-6 py-3 bg-white text-green-600 border border-green-600 rounded-full text-lg font-semibold shadow-md hover:bg-green-600 hover:text-white transition">
+            <i class="fas fa-shopping-cart"></i> Tambah ke Keranjang
+          </button>
+          <button onclick="showOptions('buy-now')" class="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-full text-lg font-semibold shadow-md hover:bg-green-700 transition">
+            <i class="fas fa-bolt"></i> Beli Sekarang
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="options-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div class="bg-white p-8 rounded-lg w-96">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Pilih Opsi</h3>
+      <div class="space-y-4">
+        <div>
+          <label class="text-lg font-medium text-gray-800">Tingkat Gula</label>
+          <select id="sugar-level" class="block w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <option value="normal">Normal Sugar</option>
+            <option value="less">Less Sugar</option>
+            <option value="none">No Sugar</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-lg font-medium text-gray-800">Tingkat Es</label>
+          <select id="ice-level" class="block w-full mt-2 p-2 border border-gray-300 rounded-md">
+            <option value="normal">Normal Ice</option>
+            <option value="less">Less Ice</option>
+            <option value="none">No Ice</option>
+          </select>
+        </div>
+        <div class="mt-6 flex justify-between">
+          <button onclick="closeModal()" class="px-6 py-2 bg-gray-500 text-white rounded-full">Batal</button>
+          <button id="action-button" onclick="proceedAction()" class="px-6 py-2 bg-green-600 text-white rounded-full" data-action="">Lanjutkan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-wave">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Layanan Konsumen</h4>
+        <p><i class="fas fa-building"></i> Direktorat Jenderal PKTN - Kementerian Perdagangan RI</p>
+        <p><i class="fab fa-whatsapp"></i> 0853-1111-1010</p>
+        <p><i class="fas fa-envelope"></i> customercare@zupazips.com</p>
+      </div>
+      <div class="footer-col">
+        <h4>Kontak Kami</h4>
+        <p><i class="fas fa-map-marker-alt"></i> Gedung Graha Ganesha<br>Lantai 1 Suite 120 & 130</p>
+        <p>Jl. Hayam Wuruk No. 28, Gambir, Jakarta Pusat</p>
+        <p><i class="fas fa-phone"></i> (021) 1234567</p>
+      </div>
+      <div class="footer-col">
+        <h4>Ikuti Kami</h4>
+        <p>Dapatkan update terbaru dan promo menarik</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-line" />
+    <div class="footer-bottom">
+      <img src="../image/logo2.png" alt="Footer Logo" class="footer-logo">
+      <p>© 2025 MinumanKita. All Rights Reserved.</p>
+      <p>
+        <a href="#">Kebijakan Privasi</a> |
+        <a href="#">Syarat & Ketentuan</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Load product details from URL parameters
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const name = decodeURIComponent(urlParams.get('name') || 'Produk Tidak Diketahui');
+      const price = decodeURIComponent(urlParams.get('price') || 'Rp 0');
+      const image = decodeURIComponent(urlParams.get('image') || '../image/kopyor1.webp');
+
+      document.getElementById('product-name').textContent = name;
+      document.getElementById('product-price').textContent = price;
+      document.getElementById('product-image').src = image;
+
+      // Set default description (can be customized based on product)
+      let description = '';
+      if (name.toLowerCase().includes('kopyor')) {
+        description = 'Nikmati kenikmatan kopyor yang lembut dengan rasa manis yang pas. Cocok untuk menemani waktu santai atau berkumpul bersama teman-teman tercinta.';
+      } else if (name.toLowerCase().includes('choco')) {
+        description = 'Rasakan kelezatan cokelat yang kaya dengan tekstur lembut. Pilihan sempurna untuk pecinta cokelat!';
+      } else {
+        description = 'Minuman segar dan unik yang siap memanjakan lidah Anda.';
+      }
+      document.getElementById('product-description').textContent = description;
+    });
+
+    // Modal functionality
+    function showOptions(action) {
+      document.getElementById("options-modal").classList.remove("hidden");
+      document.getElementById("action-button").setAttribute("data-action", action);
+    }
+
+    function closeModal() {
+      document.getElementById("options-modal").classList.add("hidden");
+    }
+
+    function proceedAction() {
+      const action = document.getElementById("action-button").getAttribute("data-action");
+      const sugarLevel = document.getElementById("sugar-level").value;
+      const iceLevel = document.getElementById("ice-level").value;
+      const productName = document.getElementById("product-name").textContent;
+      const productPrice = document.getElementById("product-price").textContent;
+
+      if (action === "add-to-cart") {
+        let cart = JSON.parse(localStorage.getItem('keranjang')) || [];
+        cart.push({ nama: productName, harga: productPrice, sugar: sugarLevel, ice: iceLevel });
+        localStorage.setItem('keranjang', JSON.stringify(cart));
+        window.location.href = "../keranjang.html";
+      } else if (action === "buy-now") {
+        sessionStorage.setItem('produkBeli', JSON.stringify({ nama: productName, harga: productPrice, sugar: sugarLevel, ice: iceLevel }));
+        window.location.href = "../pembayaran.html";
+      }
+      closeModal();
+    }
+
+    // Profile dropdown functionality
+    document.getElementById('profileBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      const dropdownMenu = document.getElementById('dropdownMenu');
+      dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', function(e) {
+      if (!e.target.matches('#profileBtn') && !e.target.closest('.dropdown-content')) {
+        document.getElementById('dropdownMenu').style.display = 'none';
+      }
+    });
+
+    // Active nav link
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPage = window.location.pathname.split('/').pop();
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href').split('/').pop();
+        if (currentPage === linkPage || (currentPage === '' && linkPage === 'index.html')) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>

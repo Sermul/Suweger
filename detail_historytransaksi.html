@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>ZupaZips - Minuman Unik</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="left-header">
+      <div class="logo">
+        <img src="image/logo2.png" alt="Logo">
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="artikel/artike.html">Artikel</a>
+        <a href="produk/katalog_produk.html">Product</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+       <div class="profile-container">
+  <!-- Transaction History Icon -->
+  <a href="Histrorytransaksi.html" class="history-icon" title="Riwayat Transaksi">
+    <i class="fas fa-history"></i>
+  </a>
+  
+  <!-- Shopping Cart Icon -->
+  <a href="keranjang.html" class="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count">0</span>
+  </a>
+  
+  <img src="image/profile.jpg" alt="Profile" class="profile-img" id="profileBtn">
+  <div class="dropdown-content" id="dropdownMenu">
+    <a href="profile.html">Profile</a>
+    <a href="register.html">Keluar</a>
+  </div>
+</div>
+  </header>
+
+  <!-- Page Title -->
+  <section class="bg-gradient-to-r from-green-800 to-green-600 text-white py-10 text-center">
+    <h1 class="text-3xl font-bold">Detail Transaksi</h1>
+    <p class="text-sm mt-2">#ZP-20230615-001 • 15 Juni 2023 • 10:25 WIB</p>
+  </section>
+
+  <!-- Transaction Detail -->
+  <main class="max-w-4xl mx-auto bg-white shadow-md rounded-lg my-8 p-6">
+    <!-- Status & Total -->
+    <div class="flex justify-between items-center border-b pb-4 mb-4">
+      <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">Selesai</span>
+      <div class="text-right">
+        <p class="text-gray-500 text-sm">Total Belanja</p>
+        <p class="text-xl font-bold text-green-700">Rp 125.000</p>
+      </div>
+    </div>
+
+    <!-- Produk List -->
+    <div class="space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="font-semibold">Es Teh Manis Jumbo</p>
+          <p class="text-sm text-gray-500">Qty: 1</p>
+        </div>
+        <p class="font-semibold">Rp 15.000</p>
+      </div>
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="font-semibold">Choco Float</p>
+          <p class="text-sm text-gray-500">Qty: 1</p>
+        </div>
+        <p class="font-semibold">Rp 45.000</p>
+      </div>
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="font-semibold">Thai Tea Large</p>
+          <p class="text-sm text-gray-500">Qty: 1</p>
+        </div>
+        <p class="font-semibold">Rp 65.000</p>
+      </div>
+    </div>
+
+    <!-- Ringkasan -->
+    <div class="border-t mt-6 pt-4">
+      <div class="flex justify-between text-sm text-gray-500">
+        <span>Subtotal</span>
+        <span>Rp 125.000</span>
+      </div>
+      <div class="flex justify-between text-sm text-gray-500">
+        <span>Ongkos Kirim</span>
+        <span>Rp 0</span>
+      </div>
+      <div class="flex justify-between text-base font-bold mt-2">
+        <span>Total</span>
+        <span class="text-green-700">Rp 125.000</span>
+      </div>
+    </div>
+
+    <!-- Info Pengiriman -->
+    <div class="mt-6 border-t pt-4 text-sm">
+      <h3 class="font-semibold text-gray-700 mb-2">Info Pengiriman</h3>
+      <p><strong>Nama:</strong> Andi Saputra</p>
+      <p><strong>Alamat:</strong> Jl. Merdeka No.123, Jakarta</p>
+      <p><strong>Metode Pembayaran:</strong> Transfer Bank (BCA)</p>
+    </div>
+
+    <!-- Aksi -->
+    <div class="mt-6 text-center">
+      <a href="produk/katalog_produk.html" class="inline-block px-6 py-2 bg-green-700 text-white rounded-full hover:bg-green-800 transition">
+        Pesan Lagi
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-6 text-center text-sm text-gray-500">
+    &copy; 2025 ZupaZips. Semua Hak Dilindungi.
+  </footer>
+
+</body>
+</html>

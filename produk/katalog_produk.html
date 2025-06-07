@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>ZupaZips - Minuman Unik</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  
+  <header>
+    <div class="left-header">
+      <div class="logo">
+        <img src="../image/logo2.png" alt="Logo">
+      </div>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../artikel/artike.html">Artikel</a>
+        <a href="katalog_produk.html">Product</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+       <div class="profile-container">
+  <!-- Transaction History Icon -->
+  <a href="../Histrorytransaksi.html" class="history-icon" title="Riwayat Transaksi">
+    <i class="fas fa-history"></i>
+  </a>
+  
+  <!-- Shopping Cart Icon -->
+  <a href="../keranjang.html" class="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count">0</span>
+  </a>
+  
+  <img src="../image/profile.jpg" alt="Profile" class="profile-img" id="profileBtn">
+  <div class="dropdown-content" id="dropdownMenu">
+    <a href="../profile.html">Profile</a>
+    <a href="../register.html">Keluar</a>
+  </div>
+</div>
+  </header>
+  
+
+  <!-- Banner Promo -->
+  <div class="banner-promo">
+    <img src="../image/banner1.jpg" alt="Promo Banner">
+  </div>
+
+  <!-- Section Judul -->
+  <section class="title-section">
+    <h1>Katalog Minuman Kami</h1>
+    <p>Temukan minuman favoritmu di sini!</p>
+    <hr>
+  </section>
+
+  <!-- Filter Kategori -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-category="all">All</button>
+    <button class="filter-btn" data-category="Fruitea">Fruitea</button>
+    <button class="filter-btn" data-category="coklat">Coklat</button>
+    <button class="filter-btn" data-category="Milk-Tea">Milk Tea</button>
+    <button class="filter-btn" data-category="kopyor">Kopyor</button>
+    <button class="filter-btn" data-category="Coffee and Latte">Coffee and Latte</button>
+    <button class="filter-btn" data-category="kopi n jelly">Coffee N jelly</button>
+    <button class="filter-btn" data-category="cookiesncream">Chookies N Cream</button>
+    <button class="filter-btn" data-category="esteh">Es Teh</button>
+  </div>
+
+  <!-- Produk Grid -->
+  <section class="product-grid">
+    <div class="product-card" data-category="coklat">
+      <img src="../image/coklat1.webp" alt="Choco Lava Ice Cream" onclick="goToDetail('Choco Lava Ice Cream', 'Rp 25.000', '../image/coklat1.webp')">
+      <div class="product-card-content">
+        <h3>Choco Lava Ice Cream</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="coklat">
+      <img src="../image/coklat1.webp" alt="Choco Lava Huzelnut" onclick="goToDetail('Choco Lava Huzelnut', 'Rp 25.000', '../image/coklat1.webp')">
+      <div class="product-card-content">
+        <h3>Choco Lava Huzelnut</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="coklat">
+      <img src="../image/coklat1.webp" alt="Choco Lava Ice Cream" onclick="goToDetail('Choco Lava Ice Cream', 'Rp 25.000', '../image/coklat1.webp')">
+      <div class="product-card-content">
+        <h3>Choco Lava Ice Cream</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="coklat">
+      <img src="../image/coklat2.webp" alt="Choco Lava Classic" onclick="goToDetail('Choco Lava Classic', 'Rp 25.000', '../image/coklat2.webp')">
+      <div class="product-card-content">
+        <h3>Choco Lava Classic</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="coklat">
+      <img src="../image/coklat2.webp" alt="Choco Huzelnut" onclick="goToDetail('Choco Huzelnut', 'Rp 25.000', '../image/coklat2.webp')">
+      <div class="product-card-content">
+        <h3>Choco Huzelnut</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- kopyor -->
+    <div class="product-card" data-category="kopyor">
+      <img src="../image/kopyor1.webp" alt="Ice Kopyor original" onclick="goToDetail('Ice Kopyor original', 'Rp 28.000', '../image/kopyor1.webp')">
+      <div class="product-card-content">
+        <h3>Ice Kopyor original</h3>
+        <div class="product-price">Rp 28.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="kopyor">
+      <img src="../image/kopyor3.webp" alt="Matcha Mousse" onclick="goToDetail('Matcha Mousse', 'Rp 28.000', '../image/kopyor3.webp')">
+      <div class="product-card-content">
+        <h3>Matcha Mousse</h3>
+        <div class="product-price">Rp 28.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="kopyor">
+      <img src="../image/kopyor1.webp" alt="Ice Kopyor original" onclick="goToDetail('Ice Kopyor original', 'Rp 28.000', '../image/kopyor1.webp')">
+      <div class="product-card-content">
+        <h3>Ice Kopyor original</h3>
+        <div class="product-price">Rp 28.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="kopyor">
+      <img src="../image/kopyor2.webp" alt="Ice Kopyor Melon" onclick="goToDetail('Ice Kopyor Melon', 'Rp 25.000', '../image/kopyor2.webp')">
+      <div class="product-card-content">
+        <h3>Ice Kopyor Melon</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="kopyor">
+      <img src="../image/kopyor3.webp" alt="Ice Kopyor Orange" onclick="goToDetail('Ice Kopyor Orange', 'Rp 25.000', '../image/kopyor3.webp')">
+      <div class="product-card-content">
+        <h3>Ice Kopyor Orange</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- fruitea -->
+    <div class="product-card" data-category="Fruitea">
+      <img src="../image/fruit tea1.webp" alt="Ice Apple Tea" onclick="goToDetail('Ice Apple Tea', 'Rp 25.000', '../image/fruit tea1.webp')">
+      <div class="product-card-content">
+        <h3>Ice Apple Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-category="Fruitea">
+      <img src="../image/fruit tea2.webp" alt="Ice Peach Tea" onclick="goToDetail('Ice Peach Tea', 'Rp 25.000', '../image/fruit tea2.webp')">
+      <div class="product-card-content">
+        <h3>Ice Peach Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="Fruitea">
+      <img src="../image/fruit tea3.webp" alt="Ice Blackcurrant Tea" onclick="goToDetail('Ice Blackcurrant Tea', 'Rp 25.000', '../image/fruit tea3.webp')">
+      <div class="product-card-content">
+        <h3>Ice Blackcurrant Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="Fruitea">
+      <img src="../image/fruit tea1.webp" alt="Ice Apple Tea" onclick="goToDetail('Ice Apple Tea', 'Rp 25.000', '../image/fruit tea1.webp')">
+      <div class="product-card-content">
+        <h3>Ice Apple Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="Fruitea">
+      <img src="../image/fruit tea2.webp" alt="Ice Peach Tea" onclick="goToDetail('Ice Peach Tea', 'Rp 25.000', '../image/fruit tea2.webp')">
+      <div class="product-card-content">
+        <h3>Ice Peach Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="Fruitea">
+      <img src="../image/fruit tea3.webp" alt="Ice Blackcurrant Tea" onclick="goToDetail('Ice Blackcurrant Tea', 'Rp 25.000', '../image/fruit tea3.webp')">
+      <div class="product-card-content">
+        <h3>Ice Blackcurrant Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="Fruitea">
+      <img src="../image/fruit tea3.webp" alt="Ice Peach Tea" onclick="goToDetail('Ice Peach Tea', 'Rp 25.000', '../image/fruit tea3.webp')">
+      <div class="product-card-content">
+        <h3>Ice Peach Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Milk Tea -->
+    <div class="product-card" data-category="Milk-Tea">
+      <img src="../image/milktea1.webp" alt="Original Thai Tea" onclick="goToDetail('Original Thai Tea', 'Rp 25.000', '../image/milktea1.webp')">
+      <div class="product-card-content">
+        <h3>Original Thai Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-category="Milk-Tea">
+      <img src="../image/milktea2.webp" alt="Original Green Tea" onclick="goToDetail('Original Green Tea', 'Rp 25.000', '../image/milktea2.webp')">
+      <div class="product-card-content">
+        <h3>Original Green Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="Milk-Tea">
+      <img src="../image/milktea1.webp" alt="Original Green Tea" onclick="goToDetail('Original Green Tea', 'Rp 25.000', '../image/milktea1.webp')">
+      <div class="product-card-content">
+        <h3>Original Green Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="Milk-Tea">
+      <img src="../image/milktea2.webp" alt="Original Thai Tea" onclick="goToDetail('Original Thai Tea', 'Rp 25.000', '../image/milktea2.webp')">
+      <div class="product-card-content">
+        <h3>Original Thai Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="Milk-Tea">
+      <img src="../image/milktea1.webp" alt="Original Green Tea" onclick="goToDetail('Original Green Tea', 'Rp 25.000', '../image/milktea1.webp')">
+      <div class="product-card-content">
+        <h3>Original Green Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="Milk-Tea">
+      <img src="../image/milktea2.webp" alt="Original Thai Tea" onclick="goToDetail('Original Thai Tea', 'Rp 25.000', '../image/milktea2.webp')">
+      <div class="product-card-content">
+        <h3>Original Thai Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="Milk-Tea">
+      <img src="../image/milktea1.webp" alt="Original Green Tea" onclick="goToDetail('Original Green Tea', 'Rp 25.000', '../image/milktea1.webp')">
+      <div class="product-card-content">
+        <h3>Original Green Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="Milk-Tea">
+      <img src="../image/milktea2.webp" alt="Original Green Tea" onclick="goToDetail('Original Green Tea', 'Rp 25.000', '../image/milktea2.webp')">
+      <div class="product-card-content">
+        <h3>Original Green Tea</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cookies N Cream -->
+    <div class="product-card" data-category="cookiesncream">
+      <img src="../image/cookiesncream2.webp" alt="Cookies N Cream" onclick="goToDetail('Cookies N Cream', 'Rp 25.000', '../image/cookiesncream2.webp')">
+      <div class="product-card-content">
+        <h3>Cookies N Cream</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="cookiesncream">
+      <img src="../image/cookiesncream.webp" alt="Cookies N Cream Spesial" onclick="goToDetail('Cookies N Cream Spesial', 'Rp 25.000', '../image/cookiesncream.webp')">
+      <div class="product-card-content">
+        <h3>Cookies N Cream Spesial</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="cookiesncream">
+      <img src="../image/cookiesncream2.webp" alt="Cookies N Cream" onclick="goToDetail('Cookies N Cream', 'Rp 25.000', '../image/cookiesncream2.webp')">
+      <div class="product-card-content">
+        <h3>Cookies N Cream</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="cookiesncream">
+      <img src="../image/cookiesncream.webp" alt="Cookies N Cream Spesial" onclick="goToDetail('Cookies N Cream Spesial', 'Rp 25.000', '../image/cookiesncream.webp')">
+      <div class="product-card-content">
+        <h3>Cookies N Cream Spesial</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="cookiesncream">
+      <img src="../image/cookiesncream2.webp" alt="Cookies N Cream" onclick="goToDetail('Cookies N Cream', 'Rp 25.000', '../image/cookiesncream2.webp')">
+      <div class="product-card-content">
+        <h3>Cookies N Cream</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Es Teh -->
+    <div class="product-card" data-category="esteh">
+      <img src="../image/esteh2.webp" alt="Es Teh Leci" onclick="goToDetail('Es Teh Leci', 'Rp 25.000', '../image/esteh2.webp')">
+      <div class="product-card-content">
+        <h3>Es Teh Leci</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="esteh">
+      <img src="../image/esteh2.webp" alt="Es Teh Leci" onclick="goToDetail('Es Teh Leci', 'Rp 25.000', '../image/esteh2.webp')">
+      <div class="product-card-content">
+        <h3>Es Teh Leci</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="esteh">
+      <img src="../image/esteh.webp" alt="Es Teh Pahlawan" onclick="goToDetail('Es Teh Pahlawan', 'Rp 25.000', '../image/esteh.webp')">
+      <div class="product-card-content">
+        <h3>Es Teh Pahlawan</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="esteh">
+      <img src="../image/esteh2.webp" alt="Es Teh Pahlawan" onclick="goToDetail('Es Teh Pahlawan', 'Rp 25.000', '../image/esteh2.webp')">
+      <div class="product-card-content">
+        <h3>Es Teh Pahlawan</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- kopi N Jelly -->
+    <div class="product-card" data-category="kopi n jelly">
+      <img src="../image/kopijelly.webp" alt="Kopi Coklat Jelly" onclick="goToDetail('Kopi Coklat Jelly', 'Rp 25.000', '../image/kopijelly.webp')">
+      <div class="product-card-content">
+        <h3>Kopi Coklat Jelly</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="kopi n jelly">
+      <img src="../image/kopijelly2.webp" alt="Kopi Aren Jelly" onclick="goToDetail('Kopi Aren Jelly', 'Rp 25.000', '../image/kopijelly2.webp')">
+      <div class="product-card-content">
+        <h3>Kopi Aren Jelly</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="kopi n jelly">
+      <img src="../image/kopijelly.webp" alt="Kopi Coklat Jelly" onclick="goToDetail('Kopi Coklat Jelly', 'Rp 25.000', '../image/kopijelly.webp')">
+      <div class="product-card-content">
+        <h3>Kopi Coklat Jelly</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-category="kopi n jelly">
+      <img src="../image/kopijelly2.webp" alt="Kopi Aren Jelly" onclick="goToDetail('Kopi Aren Jelly', 'Rp 25.000', '../image/kopijelly2.webp')">
+      <div class="product-card-content">
+        <h3>Kopi Aren Jelly</h3>
+        <div class="product-price">Rp 25.000</div>
+        <div class="product-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="product-actions">
+          <button class="action-btn add-to-cart" onclick="showOptions('add-to-cart', this)">
+            <i class="fas fa-shopping-cart"></i> Tambah
+          </button>
+          <button class="action-btn buy-now" onclick="showOptions('buy-now', this)">
+            <i class="fas fa-bolt"></i> Beli
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Pilihan -->
+  <div id="options-modal">
+    <div class="modal-content">
+      <h3>Pilih Opsi Minuman</h3>
+      <div class="space-y-4">
+        <div>
+          <label>Tingkat Gula</label>
+          <select id="sugar-level">
+            <option value="normal">Normal Sugar</option>
+            <option value="less">Less Sugar</option>
+            <option value="none">No Sugar</option>
+          </select>
+        </div>
+        <div>
+          <label>Tingkat Es</label>
+          <select id="ice-level">
+            <option value="normal">Normal Ice</option>
+            <option value="less">Less Ice</option>
+            <option value="none">No Ice</option>
+          </select>
+        </div>
+        <div class="button-group">
+          <button class="cancel" onclick="closeModal()">Batal</button>
+          <button id="action-button" class="action" onclick="proceedAction()" data-action="">Lanjutkan</button>
+        </div>
+      </div>
+    </div>
+  </div>git init
+  
+
+  <!-- Promo Section -->
+  <section class="promo-section">
+    <div class="container">
+      <h2 class="section-title">Promo Spesial</h2>
+      <div class="promo-gallery-wrapper">
+        
+        <div class="promo-gallery" id="promoGallery">
+          <!-- Promo 1 -->
+          <div class="promo-card">
+            <div class="promo-badge">BUY 1 GET 1</div>
+            <img src="../image/promo.jpeg" alt="Promo 1">
+            <div class="promo-content">
+              <h3 class="promo-title">MINUMAN SEGAR</h3>
+              <p class="promo-price">Hanya Rp 47.000</p>
+            </div>
+          </div>
+          
+          <!-- Promo 2 -->
+          <div class="promo-card">
+            <div class="promo-badge">DISKON 30%</div>
+            <img src="../image/promo2.jpeg" alt="Promo 2">
+            <div class="promo-content">
+              <h3 class="promo-title">MINUMAN FAVORIT</h3>
+              <p class="promo-price">Mulai Rp 30.000</p>
+            </div>
+          </div>
+          
+          <!-- Promo 3 -->
+          <div class="promo-card">
+            <div class="promo-badge">SPESIAL</div>
+            <img src="../image/promo3.jpeg" alt="Promo 3">
+            <div class="promo-content">
+              <h3 class="promo-title">PAKET KELUARGA</h3>
+              <p class="promo-price">Hanya Rp 75.000</p>
+            </div>
+          </div>
+          
+          <!-- Promo 4 -->
+          <div class="promo-card">
+            <div class="promo-badge">BUY 1 GET 1</div>
+            <img src="../image/promo4.jpeg" alt="Promo 4">
+            <div class="promo-content">
+              <h3 class="promo-title">MINUMAN SEGAR</h3>
+              <p class="promo-price">Hanya Rp 47.000</p>
+            </div>
+          </div>
+          
+          <!-- Promo 5 -->
+          <div class="promo-card">
+            <div class="promo-badge">DISKON 30%</div>
+            <img src="../image/promo5.jpeg" alt="Promo 5">
+            <div class="promo-content">
+              <h3 class="promo-title">MINUMAN FAVORIT</h3>
+              <p class="promo-price">Mulai Rp 30.000</p>
+            </div>
+          </div>
+          
+          <!-- Promo 6 -->
+          <div class="promo-card">
+            <div class="promo-badge">SPESIAL</div>
+            <img src="../image/promo6.jpeg" alt="Promo 6">
+            <div class="promo-content">
+              <h3 class="promo-title">PAKET KELUARGA</h3>
+              <p class="promo-price">Hanya Rp 75.000</p>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </section>
+  <!-- Chatbot Widget -->
+<div id="chatbot" class="chatbot">
+  <div class="chat-header">🤖 Tanya Produk (Chatbot)</div>
+
+  <div class="chat-body" id="chat-body">
+    <div class="bot-message">Halo! Ada yang bisa kami bantu?</div>
+  </div>
+  <div class="chat-options">
+    <button onclick="respond('promo')">Lihat Promo</button>
+    <button onclick="respond('pengiriman')">Info Pengiriman</button>
+    <button onclick="respond('hubungi')">Hubungi Admin</button>
+  </div>
+</div>
+
+<!-- Toggle Chat Button -->
+<button id="chat-toggle" onclick="toggleChat()">💬</button>
+
+<!-- Link ke CSS dan JS -->
+<link rel="stylesheet" href="css/chatbot.css">
+<script src="js/chatbot.js" defer></script>
+
+
+  <footer class="footer-wave">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Layanan Konsumen</h4>
+        <p><i class="fas fa-building"></i> Direktorat Jenderal PKTN - Kementerian Perdagangan RI</p>
+        <p><i class="fab fa-whatsapp"></i> 0853-1111-1010</p>
+        <p><i class="fas fa-envelope"></i> customercare@zupazips.com</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak Kami</h4>
+        <p><i class="fas fa-map-marker-alt"></i> Gedung Graha Ganesha<br>Lantai 1 Suite 120 & 130</p>
+        <p>Jl. Hayam Wuruk No. 28, Gambir, Jakarta Pusat</p>
+        <p><i class="fas fa-phone"></i> (021) 1234567</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ikuti Kami</h4>
+        <p>Dapatkan update terbaru dan promo menarik</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-line" />
+    <div class="footer-bottom">
+      <img src="../image/logo2.png" alt="Footer Logo" class="footer-logo">
+      <p>© 2025 MinumanKita. All Rights Reserved.</p>
+      <p>
+        <a href="#">Kebijakan Privasi</a> |
+        <a href="#">Syarat & Ketentuan</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+
+
+function toggleChat() {
+  const chat = document.getElementById('chatbot');
+  chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+}
+
+function respond(type) {
+  const body = document.getElementById('chat-body');
+  let message = '';
+  if (type === 'promo') {
+    message = 'Promo hari ini: Diskon 20% untuk produk tertentu. Cek banner utama ya!';
+  } else if (type === 'pengiriman') {
+    message = 'Kami kirim dalam 1–3 hari kerja, tergantung lokasi kamu.';
+  } else if (type === 'hubungi') {
+    message =
+    'Hubungi admin via WhatsApp: 0812-XXXX-XXXX';
+
+  }
+
+  const reply = document.createElement('div');
+  reply.className = 'bot-message';
+  reply.innerText = message;
+  body.appendChild(reply);
+  body.scrollTop = body.scrollHeight;
+}
+
+    // Filter Produk
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.getAttribute('data-category');
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        document.querySelectorAll('.product-card').forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Fungsi untuk scroll promo
+    function scrollPromo(scrollOffset) {
+      const gallery = document.getElementById('promoGallery');
+      const currentScroll = gallery.scrollLeft;
+      const newScroll = currentScroll + scrollOffset;
+      
+      // Batasi scroll agar tidak melebihi panjang gallery
+      const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+      const finalScroll = Math.max(0, Math.min(newScroll, maxScroll));
+      
+      gallery.scrollTo({
+        left: finalScroll,
+        behavior: 'smooth'
+      });
+    }
+
+    
+
+    function stopAutoScroll() {
+      clearInterval(autoScrollInterval);
+    }
+
+    // Inisialisasi saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mulai auto-scroll
+      startAutoScroll();
+      
+      
+      
+     
+      
+      
+      // Filter produk
+      document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          const category = button.getAttribute('data-category');
+          document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+
+          document.querySelectorAll('.product-card').forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Dropdown profile
+      const profileBtn = document.getElementById('profileBtn');
+      const dropdownMenu = document.getElementById('dropdownMenu');
+      
+      profileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+      });
+
+      window.addEventListener('click', () => {
+        dropdownMenu.style.display = 'none';
+      });
+    });
+
+    // Fungsi untuk membaca parameter URL
+    function getUrlParameter(name) {
+      name = name.replace(/[\[\]]/g, '\\$&');
+      const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+      const results = regex.exec(window.location.search);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    // Fungsi untuk mengaktifkan filter berdasarkan parameter URL
+    function applyCategoryFilterFromUrl() {
+      const category = getUrlParameter('category');
+      if (category) {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+          if (button.getAttribute('data-category').toLowerCase() === category.toLowerCase()) {
+            button.click();
+            button.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      }
+    }
+
+    // Panggil fungsi saat halaman dimuat
+    window.addEventListener('DOMContentLoaded', () => {
+      applyCategoryFilterFromUrl();
+    });
+
+    // Modal dan Keranjang
+    let currentProduct = null;
+
+    function showOptions(action, button) {
+      currentProduct = button.closest('.product-card');
+      document.getElementById('options-modal').classList.add('active');
+      const actionButton = document.getElementById('action-button');
+      actionButton.setAttribute('data-action', action);
+      actionButton.textContent = action === 'add-to-cart' ? 'Tambah Keranjang' : 'Beli Sekarang';
+    }
+
+    function closeModal() {
+      document.getElementById('options-modal').classList.remove('active');
+    }
+
+    function proceedAction() {
+      const action = document.getElementById('action-button').getAttribute('data-action');
+      const sugarLevel = document.getElementById('sugar-level').value;
+      const iceLevel = document.getElementById('ice-level').value;
+      const productName = currentProduct.querySelector('h3').textContent;
+      const productPrice = currentProduct.querySelector('.product-price').textContent;
+
+      if (action === 'add-to-cart') {
+        let cart = JSON.parse(localStorage.getItem('keranjang')) || [];
+        cart.push({ nama: productName, harga: productPrice, sugar: sugarLevel, ice: iceLevel });
+        localStorage.setItem('keranjang', JSON.stringify(cart));
+        closeModal();
+        window.location.href = '../keranjang.html';
+      } else if (action === 'buy-now') {
+        sessionStorage.setItem('produkBeli', JSON.stringify({ nama: productName, harga: productPrice, sugar: sugarLevel, ice: iceLevel }));
+        closeModal();
+        window.location.href = '../pembayaran.html';
+      }
+    }
+
+    // Fungsi untuk mengarahkan ke halaman detail produk
+    function goToDetail(name, price, imageUrl) {
+      const encodedName = encodeURIComponent(name);
+      const encodedPrice = encodeURIComponent(price);
+      const encodedImageUrl = encodeURIComponent(imageUrl);
+      window.location.href = `detail_produk.html?name=${encodedName}&price=${encodedPrice}&image=${encodedImageUrl}`;
+    }
+
+    // JavaScript untuk menandai menu aktif
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPage = window.location.pathname.split('/').pop();
+      const navLinks = document.querySelectorAll('nav a');
+      
+      navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href').split('/').pop();
+        if (currentPage === linkPage || 
+            (currentPage === '' && linkPage === 'index.html')) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

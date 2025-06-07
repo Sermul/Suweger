@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login/Register</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e6d8b3, #1b5e20); /* Cream to Dark Green Gradient */
+    }
+    .page-container {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+    .page {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+      background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for gradient effect */
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-container, .invite-container {
+      text-align: center;
+      padding: 20px;
+      max-width: 300px;
+    }
+    .form-container h2, .invite-container h2 {
+      margin-bottom: 20px;
+      color: #1b5e20; /* Dark green for headings */
+      font-size: 24px;
+    }
+    .form-container input {
+      display: block;
+      width: 100%;
+      margin: 10px auto;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #1b5e20;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .form-container button, .invite-container button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background: linear-gradient(45deg, #4a7047, #1b5e20); /* Darker green gradient for buttons */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .form-container button:hover, .invite-container button:hover {
+      background: linear-gradient(45deg, #375a34, #143d17); /* Even darker gradient on hover */
+    }
+    .switch {
+      margin-top: 20px;
+      color: #555;
+    }
+    .slide-right .page-container {
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <div class="page">
+      <div class="invite-container">
+        <h2>Hello Friend!</h2>
+        <p>Don't have an account? <button onclick="switchPage('register')">SIGN UP</button></p>
+      </div>
+    </div>
+    <div class="page">
+      <div class="form-container">
+        <h2>Sign in to Website</h2>
+        <input type="text" placeholder="Email" id="login-email">
+        <input type="password" placeholder="Password" id="login-password">
+        <button onclick="redirectToIndex()">SIGN IN</button>
+      </div>
+    </div>
+    <div class="page">
+      <div class="form-container">
+        <h2>Sign up to Website</h2>
+        <input type="text" placeholder="Email" id="register-email">
+        <input type="password" placeholder="Password" id="register-password">
+        <input type="password" placeholder="Confirm Password" id="register-confirm-password">
+        <button onclick="switchPage('login')">SIGN UP</button>
+      </div>
+    </div>
+    <div class="page">
+      <div class="invite-container">
+        <h2>Welcome Back!</h2>
+        <p>Already have an account? <button onclick="switchPage('login')">SIGN IN</button></p>
+      </div>
+    </div>
+  </div>
+  <script>
+    function switchPage(type) {
+      const body = document.body;
+      if (type === 'register' && !body.classList.contains('slide-right')) {
+        body.classList.add('slide-right');
+      } else if (type === 'login' && body.classList.contains('slide-right')) {
+        body.classList.remove('slide-right');
+      }
+    }
+
+    function redirectToIndex() {
+      window.location.href = "index.html"; // Ganti dengan URL halaman tujuan jika berbeda
+    }
+  </script>
+</body>
+</html>
