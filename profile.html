@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html lang="id">
- <head>
+<head>
   <meta charset="UTF-8">
   <title>ZupaZips - Minuman Unik</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<header>
-  <div class="left-header">
+<header class="bg-white shadow-md p-4 flex justify-between items-center">
+  <div class="left-header flex items-center gap-4">
     <div class="logo">
-      <img src="image/logo2.png" alt="Logo">
+      <img src="image/logo2.png" alt="Logo" class="h-16">
     </div>
     <button class="hamburger md:hidden" id="hamburger">
       <i class="fas fa-bars text-xl"></i>
     </button>
-    <nav class="nav-menu md:flex hidden" id="nav-menu">
+    <nav class="nav-menu hidden md:flex md:gap-6" id="nav-menu">
       <a href="index.html">Home</a>
       <a href="artikel/artike.html">Artikel</a>
       <a href="produk/katalog_produk.html">Product</a>
       <a href="about.html">About</a>
     </nav>
   </div>
-  <div class="profile-container">
-    <a href="Histrorytransaksi.html" class="history-icon" title="Riwayat Transaksi">
+  <div class="profile-container flex items-center gap-4">
+    <a href="Historytransaksi.html" class="history-icon" title="Riwayat Transaksi">
       <i class="fas fa-history"></i>
     </a>
     <a href="keranjang.html" class="cart-icon">
@@ -34,7 +33,7 @@
       <span class="cart-count">0</span>
     </a>
     <img src="image/profile.jpg" alt="Profile" class="profile-img" id="profileBtn">
-    <div class="dropdown-content" id="dropdownMenu">
+    <div class="dropdown-content hidden" id="dropdownMenu">
       <a href="profile.html">Profile</a>
       <a href="register.html">Keluar</a>
     </div>
@@ -149,90 +148,83 @@
 
   <script>
     // Modal functionality
-    const editProfileBtn = document.getElementById('editProfileBtn');
-    const editProfileModal = document.getElementById('editProfileModal');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const cancelEditBtn = document.getElementById('cancelEditBtn');
-    
-    editProfileBtn.addEventListener('click', () => {
-      editProfileModal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    });
-    
-    closeModalBtn.addEventListener('click', closeModal);
-    cancelEditBtn.addEventListener('click', closeModal);
-    
-    function closeModal() {
-      editProfileModal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-    
-    // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-      if (e.target === editProfileModal) {
-        closeModal();
-      }
-    });
-    
-    // Save profile changes
-    const saveProfileBtn = document.getElementById('saveProfileBtn');
-    saveProfileBtn.addEventListener('click', () => {
-      const form = document.getElementById('profileForm');
-      const formData = new FormData(form);
-      const updatedData = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        address: formData.get('address'),
-        city: formData.get('city'),
-        postalCode: formData.get('postalCode')
-      };
-      alert('Perubahan profil berhasil disimpan!\n' + JSON.stringify(updatedData, null, 2));
-      closeModal();
-    });
+   // Modal functionality
+// Modal functionality
+const editProfileBtn = document.getElementById('editProfileBtn');
+const editProfileModal = document.getElementById('editProfileModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const cancelEditBtn = document.getElementById('cancelEditBtn');
 
-    // Edit photo functionality (placeholder)
-    const editPhotoBtn = document.getElementById('editPhotoBtn');
-    editPhotoBtn.addEventListener('click', () => {
-      alert('Fitur edit foto akan segera tersedia!');
-    });
+editProfileBtn.addEventListener('click', () => {
+  editProfileModal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+});
 
-    // JavaScript untuk menandai menu aktif
-    document.addEventListener('DOMContentLoaded', function() {
-      const currentPage = window.location.pathname.split('/').pop();
-      const navLinks = document.querySelectorAll('nav a');
-      
-      navLinks.forEach(link => {
-        const linkPage = link.getAttribute('href').split('/').pop();
-        if (currentPage === linkPage || (currentPage === '' && linkPage === 'index.html')) {
-          link.classList.add('active');
-        }
-      });
-    });
+closeModalBtn.addEventListener('click', closeModal);
+cancelEditBtn.addEventListener('click', closeModal);
 
-    // Hamburger Menu
+function closeModal() {
+  editProfileModal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+window.addEventListener('click', (e) => {
+  if (e.target === editProfileModal) {
+    closeModal();
+  }
+});
+
+const saveProfileBtn = document.getElementById('saveProfileBtn');
+saveProfileBtn.addEventListener('click', () => {
+  const form = document.getElementById('profileForm');
+  const formData = new FormData(form);
+  const updatedData = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    phone: formData.get('phone'),
+    address: formData.get('address'),
+    city: formData.get('city'),
+    postalCode: formData.get('postalCode')
+  };
+  alert('Perubahan profil berhasil disimpan!\n' + JSON.stringify(updatedData, null, 2));
+  closeModal();
+});
+
+const editPhotoBtn = document.getElementById('editPhotoBtn');
+editPhotoBtn.addEventListener('click', () => {
+  alert('Fitur edit foto akan segera tersedia!');
+});
+
+// All DOM-related functionality
 document.addEventListener('DOMContentLoaded', function () {
+  // Hamburger Menu
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('nav-menu');
 
   if (hamburger && navMenu) {
     hamburger.addEventListener('click', function () {
+      console.log('Hamburger clicked');
+      console.log('NavMenu classes before toggle:', navMenu.classList.toString());
+      navMenu.classList.toggle('active');
       navMenu.classList.toggle('hidden');
+      console.log('NavMenu classes after toggle:', navMenu.classList.toString());
     });
 
-    // Tutup menu saat link diklik
     document.querySelectorAll('.nav-menu a').forEach(link => {
       link.addEventListener('click', function () {
+        navMenu.classList.remove('active');
         navMenu.classList.add('hidden');
       });
     });
 
-    // Tutup menu saat klik di luar
     document.addEventListener('click', function (event) {
       if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+        navMenu.classList.remove('active');
         navMenu.classList.add('hidden');
       }
     });
+  } else {
+    console.error('Hamburger or NavMenu not found:', { hamburger, navMenu });
   }
 
   // Dropdown Profile
@@ -244,13 +236,22 @@ document.addEventListener('DOMContentLoaded', function () {
       dropdownMenu.classList.toggle('hidden');
     });
 
-    // Tutup dropdown saat klik di luar
     document.addEventListener('click', function (event) {
       if (!dropdownMenu.contains(event.target) && !profileBtn.contains(event.target)) {
         dropdownMenu.classList.add('hidden');
       }
     });
   }
+
+  // Menandai menu aktif
+  const currentPage = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('.nav-menu a');
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute('href').split('/').pop();
+    if (currentPage === linkPage || (currentPage === '' && linkPage === 'index.html')) {
+      link.classList.add('active');
+    }
+  });
 });
   </script>
 </body>
