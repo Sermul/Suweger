@@ -687,3 +687,32 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+
+
+
+//chatbot
+function toggleChat() {
+  const chat = document.getElementById('chatbot');
+  chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+}
+
+function respond(type) {
+  const body = document.getElementById('chat-body');
+  let message = '';
+  if (type === 'promo') {
+    message = 'Promo hari ini: Diskon 20% untuk produk tertentu. Cek banner utama ya!';
+  } else if (type === 'pengiriman') {
+    message = 'Kami kirim dalam 1–3 hari kerja, tergantung lokasi kamu.';
+  } else if (type === 'hubungi') {
+    message =
+    'Hubungi admin via WhatsApp: 0812-XXXX-XXXX';
+
+  }
+
+  const reply = document.createElement('div');
+  reply.className = 'bot-message';
+  reply.innerText = message;
+  body.appendChild(reply);
+  body.scrollTop = body.scrollHeight;
+}

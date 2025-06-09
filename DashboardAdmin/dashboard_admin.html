@@ -61,10 +61,28 @@
       font-family: 'Poppins', sans-serif;
       background-color: #f8fafc;
     }
-    .active-menu {
-      background-color: #1F6F47;
-      color: white !important;
-    }
+    a[data-target] {
+  color: #64748b;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+a[data-target]:hover {
+  background-color: #1F6F47;
+  color: #ffffff;
+}
+
+.active-menu {
+  background-color: #1F6F47;
+  color: #ffffff !important;
+}
+
+a[data-target], .active-menu {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
     .sidebar {
       background: white;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -109,7 +127,7 @@
       width: 100%;
     }
     .btn-primary {
-      background-color: #0ea5e9;
+      background-color: #1F6F47;
       color: white;
       padding: 0.5rem 1rem;
       border: none;
@@ -118,7 +136,7 @@
       transition: background-color 0.3s;
     }
     .btn-primary:hover {
-      background-color: #0284c7;
+      background-color: #1F6F47;
     }
     /* Modal Styles */
     .modal {

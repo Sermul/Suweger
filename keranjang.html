@@ -7,21 +7,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css"> <!-- Ganti dengan hamburger.css -->
+  <script src="script.js"></script>
 </head>
 <body>
 <header>
-  <div class="left-header flex items-center">
+  <div class="left-header">
     <div class="logo">
-      <img src="image/logo2.png" alt="Logo" class="h-12">
+      <img src="image/logo2.png" alt="Logo">
     </div>
-    <button class="hamburger md:hidden p-2 text-gray-700 focus:outline-none" id="hamburger">
+    <button class="hamburger md:hidden" id="hamburger">
       <i class="fas fa-bars text-xl"></i>
     </button>
-    <nav class="nav-menu md:flex hidden flex-col md:flex-row md:space-x-4 ml-6" id="nav-menu">
-      <a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-md md:inline-block md:p-0 md:hover:text-green-600">Home</a>
-      <a href="artikel/artike.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-md md:inline-block md:p-0 md:hover:text-green-600">Artikel</a>
-      <a href="produk/katalog_produk.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-md md:inline-block md:p-0 md:hover:text-green-600">Product</a>
-      <a href="about.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-md md:inline-block md:p-0 md:hover:text-green-600">About</a>
+    <nav class="nav-menu md:flex hidden" id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="artikel/artike.html">Artikel</a>
+      <a href="produk/katalog_produk.html">Product</a>
+      <a href="about.html">About</a>
     </nav>
   </div>
   <div class="profile-container flex items-center space-x-4">
@@ -40,12 +41,14 @@
   </div>
 </header>
 
-<section class="bg-gradient-to-r from-green-600 to-green-700 py-16 text-center">
+<section class="py-16 text-center" style="background-color: #2D634A;">
   <div class="container mx-auto px-6">
-    <h1 class="text-4xl md:text-5xl font-semibold text-white mb-4">Keranjang Belanja</h1>
-    <p class="text-lg text-green-100 max-w-2xl mx-auto">Periksa dan kelola pesanan Anda sebelum melanjutkan ke pembayaran</p>
+    <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Keranjang Belanja</h1>
+    <p class="text-lg text-white max-w-2xl mx-auto">Periksa dan kelola pesanan Anda sebelum melanjutkan ke pembayaran</p>
   </div>
 </section>
+
+
 
 <main class="container mx-auto px-6 py-12">
   <div id="cart-container" class="space-y-6">
@@ -90,7 +93,22 @@
     </div>
   </div>
 </main>
+<!-- Chatbot Widget -->
+<div id="chatbot" class="chatbot">
+  <div class="chat-header">🤖 Tanya Produk (Chatbot)</div>
 
+  <div class="chat-body" id="chat-body">
+    <div class="bot-message">Halo! Ada yang bisa kami bantu?</div>
+  </div>
+  <div class="chat-options">
+    <button onclick="respond('promo')">Lihat Promo</button>
+    <button onclick="respond('pengiriman')">Info Pengiriman</button>
+    <button onclick="respond('hubungi')">Hubungi Admin</button>
+  </div>
+</div>
+
+<!-- Toggle Chat Button -->
+<button id="chat-toggle" onclick="toggleChat()">💬</button>
 <footer class="footer-wave">
   <div class="footer-container">
     <div class="footer-col">
@@ -295,6 +313,19 @@
         link.classList.add('active');
       }
     });
+  });
+
+  // Profile dropdown functionality
+  document.getElementById('profileBtn').addEventListener('click', function() {
+    document.getElementById('dropdownMenu').style.display = 
+      document.getElementById('dropdownMenu').style.display === 'block' ? 'none' : 'block';
+  });
+  
+  // Close dropdown when clicking outside
+  window.addEventListener('click', function(e) {
+    if (!e.target.matches('#profileBtn') && !e.target.matches('.dropdown-content a')) {
+      document.getElementById('dropdownMenu').style.display = 'none';
+    }
   });
 </script>
 </body>

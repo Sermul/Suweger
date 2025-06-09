@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -137,7 +138,22 @@
       <p class="subtitle">Pesanan Anda sedang diproses.</p>
     </div>
   </main>
+<!-- Chatbot Widget -->
+<div id="chatbot" class="chatbot">
+  <div class="chat-header">🤖 Tanya Produk (Chatbot)</div>
 
+  <div class="chat-body" id="chat-body">
+    <div class="bot-message">Halo! Ada yang bisa kami bantu?</div>
+  </div>
+  <div class="chat-options">
+    <button onclick="respond('promo')">Lihat Promo</button>
+    <button onclick="respond('pengiriman')">Info Pengiriman</button>
+    <button onclick="respond('hubungi')">Hubungi Admin</button>
+  </div>
+</div>
+
+<!-- Toggle Chat Button -->
+<button id="chat-toggle" onclick="toggleChat()">💬</button>
   <!-- Footer -->
   <footer class="footer-wave">
     <div class="footer-container">
