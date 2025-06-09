@@ -53,7 +53,7 @@
   <div class="container mx-auto px-4 py-8">
     <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
       <div class="flex flex-wrap gap-2">
-        <button class="filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="all">
+        <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="all">
           Semua
         </button>
         <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="completed">
@@ -334,6 +334,42 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+// Saat DOM sudah dimuat
+  document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const transactionCards = document.querySelectorAll(".transaction-card");
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        // Hapus kelas aktif dari semua tombol
+        filterButtons.forEach((b) => b.classList.remove("bg-green-700", "text-white"));
+        // Tambahkan kelas aktif ke tombol yang diklik
+        btn.classList.add("bg-green-700", "text-white");
+
+        const filter = btn.getAttribute("data-filter");
+
+        transactionCards.forEach((card) => {
+          const statusSpan = card.querySelector("span[class*='status-']");
+          if (!statusSpan) return;
+
+          const statusText = statusSpan.textContent.trim().toLowerCase();
+
+          // Logika filter
+          if (
+            filter === "all" ||
+            (filter === "completed" && statusText === "selesai") ||
+            (filter === "pending" && statusText === "proses") ||
+            (filter === "cancelled" && statusText === "dibatalkan")
+          ) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  });
   </script>
 </body>
 </html>
