@@ -1,167 +1,224 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login/Register</title>
+  <title>Login & Register</title>
   <style>
+    /* Styling body untuk latar belakang dan tata letak */
     body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(135deg, #e6d8b3, #1b5e20);
-}
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e6d8b3, #1b5e20);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.page-container {
-  display: flex;
-  width: 200%;
-  height: 100%;
-  transition: transform 0.5s ease-in-out;
-}
+    /* Kontainer utama untuk panel */
+    .container {
+      width: 100%;
+      max-width: 800px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
 
-.page {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    /* Panel untuk login dan registrasi */
+    .panel {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.5s ease-in-out;
+      opacity: 0;
+      pointer-events: none;
+    }
 
-.form-container {
-  text-align: center;
-  padding: 20px;
-  max-width: 300px;
-  width: 100%;
-}
+    /* Panel yang aktif */
+    .panel.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
 
-.form-container h2 {
-  margin-bottom: 20px;
-  color: #1b5e20;
-  font-size: 24px;
-}
+    /* Konten dalam panel, termasuk form dan ajakan */
+    .content {
+      display: flex;
+      width: 100%;
+      max-width: 600px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
 
-.form-container input {
-  display: block;
-  width: 100%;
-  margin: 10px auto;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #1b5e20;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
+    /* Bagian form */
+    .form-section {
+      flex: 1;
+      padding: 40px;
+      text-align: center;
+    }
 
-.form-container button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background: linear-gradient(45deg, #4a7047, #1b5e20);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
+    /* Bagian ajakan untuk beralih */
+    .switch-section {
+      flex: 1;
+      padding: 40px;
+      background: linear-gradient(45deg, #4a7047, #1b5e20);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-.form-container button:hover {
-  background: linear-gradient(45deg, #375a34, #143d17);
-}
+    .switch-section:hover {
+      background: linear-gradient(45deg, #375a34, #143d17);
+    }
 
-.switch {
-  margin-top: 20px;
-  color: #555;
-}
+    /* Judul form */
+    .form-section h2 {
+      margin-bottom: 20px;
+      color: #1b5e20;
+      font-size: 28px;
+    }
 
-.slide-right .page-container {
-  transform: translateX(-50%);
-}
+    /* Input form */
+    .form-section input {
+      display: block;
+      width: 100%;
+      margin: 10px auto;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #1b5e20;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
 
-/* RESPONSIVE MOBILE STYLES */
-@media (max-width: 768px) {
-  body {
-    height: auto;
-    overflow-x: hidden; /* Mencegah scroll horizontal */
-    padding: 10px 0;
-  }
+    /* Tombol submit */
+    .form-section button {
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      background: linear-gradient(45deg, #4a7047, #1b5e20);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
 
-  .page-container {
-    width: 200%;
-    height: 70vh; /* Tinggi tetap proporsional */
-    flex-direction: row; /* Tetap horizontal */
-    position: relative; /* Mengatur posisi untuk transform */
-  }
+    .form-section button:hover {
+      background: linear-gradient(45deg, #375a34, #143d17);
+    }
 
-  .slide-right .page-container {
-    transform: translateX(-50%); /* Efek slide tetap aktif */
-  }
+    /* Teks ajakan */
+    .switch-section p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
 
-  .page {
-    width: 50vw; /* Lebar berdasarkan viewport width */
-    height: 100%;
-    border-radius: 10px; /* Sedikit dikurangi untuk mobile */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan lebih ringan */
-    margin: 0 2px; /* Jarak antar panel lebih kecil */
-  }
+    /* Media query untuk mobile */
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+        max-width: 90%;
+      }
 
-  .form-container {
-    max-width: 90%; /* Lebar maksimum lebih fleksibel */
-    padding: 15px;
-  }
+      .form-section, .switch-section {
+        padding: 20px;
+      }
 
-  .form-container input {
-    font-size: 14px; /* Ukuran font sedikit dikurangi */
-    padding: 8px;
-  }
+      .form-section input {
+        padding: 10px;
+        font-size: 14px;
+      }
 
-  .form-container button {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-}
+      .form-section button {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+
+      .switch-section p {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="page-container">
-    <div class="page">
-      <div class="form-container">
-        <h2>Sign in to Website</h2>
-        <input type="text" placeholder="Email" id="login-email">
-        <input type="password" placeholder="Password" id="login-password">
-        <button onclick="redirectToIndex()">SIGN IN</button>
-        <div class="switch">
-          <p>Don't have an account? <button onclick="switchPage('register')">SIGN UP</button></p>
+  <div class="container">
+    <!-- Panel Login (aktif secara default) -->
+    <div class="panel active" id="login-panel">
+      <div class="content">
+        <div class="form-section">
+          <h2>Login</h2>
+          <input type="text" placeholder="Username" required>
+          <input type="password" placeholder="Password" required>
+          <!-- Bagian tombol Login -->
+<button onclick="redirectToIndex()">Login</button>
+
+        </div>
+        <div class="switch-section" onclick="showRegister()">
+          <h2>Belum Punya Akun?</h2>
+          <p>Sign Up di sini!</p>
         </div>
       </div>
     </div>
-    <div class="page">
-      <div class="form-container">
-        <h2>Sign up to Website</h2>
-        <input type="text" placeholder="Email" id="register-email">
-        <input type="password" placeholder="Password" id="register-password">
-        <input type="password" placeholder="Confirm Password" id="register-confirm-password">
-        <button onclick="switchPage('login')">SIGN UP</button>
-        <div class="switch">
-          <p>Already have an account? <button onclick="switchPage('login')">SIGN IN</button></p>
+    <!-- Panel Registrasi -->
+    <div class="panel" id="register-panel">
+      <div class="content">
+        <div class="form-section">
+          <h2>Sign Up</h2>
+          <input type="text" placeholder="Username" required>
+          <input type="email" placeholder="Email" required>
+          <input type="password" placeholder="Password" required>
+         <!-- Bagian tombol Sign Up -->
+<button onclick="handleRegister()">Sign Up</button>
+
+        </div>
+        <div class="switch-section" onclick="showLogin()">
+          <h2>Sudah Punya Akun?</h2>
+          <p>Login di sini!</p>
         </div>
       </div>
     </div>
   </div>
-  <script>
-    function switchPage(type) {
-      const body = document.body;
-      if (type === 'register' && !body.classList.contains('slide-right')) {
-        body.classList.add('slide-right');
-      } else if (type === 'login' && body.classList.contains('slide-right')) {
-        body.classList.remove('slide-right');
-      }
-    }
 
-    function redirectToIndex() {
-      window.location.href = "index.html";
-    }
-  </script>
+  <script>
+  const loginPanel = document.getElementById('login-panel');
+  const registerPanel = document.getElementById('register-panel');
+
+  // Fungsi untuk menampilkan panel registrasi
+  function showRegister() {
+    loginPanel.classList.remove('active');
+    registerPanel.classList.add('active');
+  }
+
+  // Fungsi untuk menampilkan panel login
+  function showLogin() {
+    registerPanel.classList.remove('active');
+    loginPanel.classList.add('active');
+  }
+
+  // Fungsi untuk redirect ke halaman index.html setelah login
+  function redirectToIndex() {
+    // Validasi bisa ditambahkan di sini sebelum redirect
+    window.location.href = "index.html";
+  }
+
+  // Fungsi untuk menangani registrasi dan kembali ke login panel
+  function handleRegister() {
+    // Misal: validasi berhasil, lalu kembali ke panel login
+    alert("Registrasi berhasil! Silakan login.");
+    showLogin();
+  }
+</script>
+
 </body>
 </html>
