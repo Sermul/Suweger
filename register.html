@@ -31,14 +31,14 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.form-container, .invite-container {
+.form-container {
   text-align: center;
   padding: 20px;
   max-width: 300px;
   width: 100%;
 }
 
-.form-container h2, .invite-container h2 {
+.form-container h2 {
   margin-bottom: 20px;
   color: #1b5e20;
   font-size: 24px;
@@ -55,7 +55,7 @@
   box-sizing: border-box;
 }
 
-.form-container button, .invite-container button {
+.form-container button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
@@ -66,7 +66,7 @@
   transition: background 0.3s;
 }
 
-.form-container button:hover, .invite-container button:hover {
+.form-container button:hover {
   background: linear-gradient(45deg, #375a34, #143d17);
 }
 
@@ -83,31 +83,42 @@
 @media (max-width: 768px) {
   body {
     height: auto;
-    overflow: auto;
-    padding: 20px 0;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+    padding: 10px 0;
   }
 
   .page-container {
     width: 200%;
-    height: 70vh; /* Mengurangi tinggi agar muat di layar mobile */
-    flex-direction: row; /* Tetap horizontal untuk slide */
-    transform: none !important; /* Hapus ini agar transform bekerja */
+    height: 70vh; /* Tinggi tetap proporsional */
+    flex-direction: row; /* Tetap horizontal */
+    position: relative; /* Mengatur posisi untuk transform */
   }
 
   .slide-right .page-container {
-    transform: translateX(-50%); /* Aktifkan slide di mobile */
+    transform: translateX(-50%); /* Efek slide tetap aktif */
   }
 
   .page {
-    width: 50%;
+    width: 50vw; /* Lebar berdasarkan viewport width */
     height: 100%;
-    border-radius: 15px; /* Tetap ada sudut melengkung */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tetap ada bayangan */
-    margin: 0 5px; /* Jarak antar panel */
+    border-radius: 10px; /* Sedikit dikurangi untuk mobile */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan lebih ringan */
+    margin: 0 2px; /* Jarak antar panel lebih kecil */
   }
 
-  .form-container, .invite-container {
-    max-width: 80%; /* Mengurangi lebar agar muat */
+  .form-container {
+    max-width: 90%; /* Lebar maksimum lebih fleksibel */
+    padding: 15px;
+  }
+
+  .form-container input {
+    font-size: 14px; /* Ukuran font sedikit dikurangi */
+    padding: 8px;
+  }
+
+  .form-container button {
+    padding: 8px 16px;
+    font-size: 14px;
   }
 }
   </style>
