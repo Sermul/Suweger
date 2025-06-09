@@ -68,6 +68,7 @@
     .sidebar {
       background: white;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
     }
     .card-shadow {
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -108,14 +109,16 @@
       width: 100%;
     }
     .btn-primary {
-      background-color: #1F6F47;
-      transition: all 0.3s;
-      box-shadow: 0 4px 15px rgba(31, 111, 71, 0.3);
+      background-color: #0ea5e9;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
     .btn-primary:hover {
-      background-color: #166534;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(31, 111, 71, 0.4);
+      background-color: #0284c7;
     }
     /* Modal Styles */
     .modal {
@@ -143,6 +146,100 @@
       font-size: 24px;
       cursor: pointer;
     }
+    /* Mobile Menu */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100%;
+        z-index: 1001;
+        padding-top: 4rem;
+      }
+      .sidebar.active {
+        left: 0;
+      }
+      .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1002;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #1F6F47;
+      }
+      .content-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+      }
+      .content-overlay.active {
+        display: block;
+      }
+      .grid-cols-1.sm\\:grid-cols-2.md\\:grid-cols-3.lg\\:grid-cols-4 {
+        grid-template-columns: 1fr;
+      }
+      .btn-primary {
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+      .responsive-table table {
+        display: none;
+      }
+      .responsive-table .block {
+        display: block;
+      }
+      #artikelAccordion button,
+      #produkAccordion button,
+      #penggunaAccordion button,
+      #transaksiAccordion button {
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        transition: background-color 0.2s;
+      }
+      #artikelAccordion button i,
+      #produkAccordion button i,
+      #penggunaAccordion button i,
+      #transaksiAccordion button i {
+        transition: transform 0.2s;
+      }
+      #artikelAccordion button.active i,
+      #produkAccordion button.active i,
+      #penggunaAccordion button.active i,
+      #transaksiAccordion button.active i {
+        transform: rotate(180deg);
+      }
+      #artikelAccordion .hidden,
+      #produkAccordion .hidden,
+      #penggunaAccordion .hidden,
+      #transaksiAccordion .hidden {
+        display: none;
+      }
+      #artikelAccordion .hidden.active,
+      #produkAccordion .hidden.active,
+      #penggunaAccordion .hidden.active,
+      #transaksiAccordion .hidden.active {
+        display: block;
+      }
+    }
+    .responsive-table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .responsive-table table {
+      min-width: 600px;
+      width: 100%;
+      border-collapse: collapse;
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -151,7 +248,7 @@
   <!-- Modal for Edit Form -->
   <div id="editModal" class="modal">
     <div class="modal-content">
-      <span class="modal-close">&times;</span>
+      <span class="modal-close">×</span>
       <h2 class="text-xl font-bold mb-4" id="modalTitle"></h2>
       <form id="editForm" class="space-y-4">
         <!-- Form fields will be dynamically populated -->
@@ -160,9 +257,9 @@
   </div>
 
   <!-- Main Layout -->
-  <div class="flex flex-1">
+  <div class="flex flex-1 relative">
     <!-- Sidebar -->
-    <section class="w-64 sidebar p-6 flex-shrink-0 border-r border-gray-200">
+    <section class="w-64 sidebar p-6 flex-shrink-0 border-r border-gray-200 h-screen transition-transform duration-300 ease-in-out" id="sidebar">
       <div class="text-center sticky top-0">
         <img src="../image/logo2.png" alt="Logo" class="h-10 mx-auto mb-8">
         <div class="flex flex-col space-y-2">
@@ -188,72 +285,80 @@
       </div>
     </section>
 
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle md:hidden p-2 z-50" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Content Overlay -->
+    <div class="content-overlay" id="contentOverlay"></div>
+
     <!-- Dynamic Content Area -->
-    <main class="flex-1 p-8" id="contentArea">
+    <main class="flex-1 p-4 md:p-8" id="contentArea">
       <!-- Dashboard Content -->
       <div id="dashboard-content">
-        <div class="flex justify-between items-center mb-8">
-          <h1 class="text-3xl font-bold text-gray-800">Dashboard Overview</h1>
-          <div class="text-sm text-gray-500">Selamat datang kembali, Admin!</div>
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+          <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Dashboard Overview</h1>
+          <div class="text-sm text-gray-500 mt-2 md:mt-0">Selamat datang kembali, Admin!</div>
         </div>
         
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
-          <div class="bg-white p-6 rounded-lg card-shadow text-center border border-gray-100">
+          <div class="bg-white p-4 md:p-6 rounded-lg card-shadow text-center border border-gray-100">
             <div class="stats-icon">
               <i class="fas fa-box-open text-xl"></i>
             </div>
-            <h2 class="text-lg font-semibold text-gray-700 mb-2">Total Produk</h2>
-            <p class="text-3xl font-bold text-green-700">120</p>
+            <h2 class="text-base md:text-lg font-semibold text-gray-700 mb-2">Total Produk</h2>
+            <p class="text-2xl md:text-3xl font-bold text-green-700">120</p>
             <p class="text-sm text-green-600 mt-1"><i class="fas fa-arrow-up mr-1"></i> 12% dari bulan lalu</p>
           </div>
           
-          <div class="bg-white p-6 rounded-lg card-shadow text-center border border-gray-100">
+          <div class="bg-white p-4 md:p-6 rounded-lg card-shadow text-center border border-gray-100">
             <div class="stats-icon">
               <i class="fas fa-newspaper text-xl"></i>
             </div>
-            <h2 class="text-lg font-semibold text-gray-700 mb-2">Total Artikel</h2>
-            <p class="text-3xl font-bold text-green-700">45</p>
+            <h2 class="text-base md:text-lg font-semibold text-gray-700 mb-2">Total Artikel</h2>
+            <p class="text-2xl md:text-3xl font-bold text-green-700">45</p>
             <p class="text-sm text-green-600 mt-1"><i class="fas fa-arrow-up mr-1"></i> 5% dari bulan lalu</p>
           </div>
           
-          <div class="bg-white p-6 rounded-lg card-shadow text-center border border-gray-100">
+          <div class="bg-white p-4 md:p-6 rounded-lg card-shadow text-center border border-gray-100">
             <div class="stats-icon">
               <i class="fas fa-users text-xl"></i>
             </div>
-            <h2 class="text-lg font-semibold text-gray-700 mb-2">Total Pengguna</h2>
-            <p class="text-3xl font-bold text-green-700">150</p>
+            <h2 class="text-base md:text-lg font-semibold text-gray-700 mb-2">Total Pengguna</h2>
+            <p class="text-2xl md:text-3xl font-bold text-green-700">150</p>
             <p class="text-sm text-green-600 mt-1"><i class="fas fa-arrow-up mr-1"></i> 8% dari bulan lalu</p>
           </div>
           
-          <div class="bg-white p-6 rounded-lg card-shadow text-center border border-gray-100">
+          <div class="bg-white p-4 md:p-6 rounded-lg card-shadow text-center border border-gray-100">
             <div class="stats-icon">
               <i class="fas fa-receipt text-xl"></i>
             </div>
-            <h2 class="text-lg font-semibold text-gray-700 mb-2">Total Transaksi</h2>
-            <p class="text-3xl font-bold text-green-700">75</p>
+            <h2 class="text-base md:text-lg font-semibold text-gray-700 mb-2">Total Transaksi</h2>
+            <p class="text-2xl md:text-3xl font-bold text-green-700">75</p>
             <p class="text-sm text-green-600 mt-1"><i class="fas fa-arrow-up mr-1"></i> 15% dari bulan lalu</p>
           </div>
         </div>
 
         <!-- Quick Actions -->
-        <div class="bg-white p-6 rounded-lg card-shadow border border-gray-100 mb-8">
+        <div class="bg-white p-4 md:p-6 rounded-lg card-shadow border border-gray-100 mb-8">
           <h2 class="text-xl font-semibold text-gray-800 mb-4">Quick Actions</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <button data-target="artikel" class="quick-action btn-primary text-white py-3 px-6 rounded-lg flex items-center justify-center">
+            <button data-target="artikel" class="quick-action btn-primary text-white py-2 px-4 rounded-lg flex items-center justify-center">
               <i class="fas fa-plus mr-2"></i> Artikel Baru
             </button>
-            <button data-target="produk" class="quick-action btn-primary text-white py-3 px-6 rounded-lg flex items-center justify-center">
+            <button data-target="produk" class="quick-action btn-primary text-white py-2 px-4 rounded-lg flex items-center justify-center">
               <i class="fas fa-plus mr-2"></i> Produk Baru
             </button>
-            <button data-target="pengguna" class="quick-action btn-primary text-white py-3 px-6 rounded-lg flex items-center justify-center">
+            <button data-target="pengguna" class="quick-action btn-primary text-white py-2 px-4 rounded-lg flex items-center justify-center">
               <i class="fas fa-user-plus mr-2"></i> Pengguna Baru
             </button>
           </div>
         </div>
 
         <!-- Recent Activity -->
-        <div class="bg-white p-6 rounded-lg card-shadow border border-gray-100">
+        <div class="bg-white p-4 md:p-6 rounded-lg card-shadow border border-gray-100">
           <h2 class="text-xl font-semibold text-gray-800 mb-4">Aktivitas Terkini</h2>
           <div class="space-y-4">
             <div class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition">
@@ -280,7 +385,7 @@
               <div class="bg-purple-100 text-purple-700 p-2 rounded-full mr-4">
                 <i class="fas fa-receipt"></i>
               </div>
-              <div class="flex-1">
+              <div class="flex-1 :">
                 <p class="font-medium">Transaksi baru</p>
                 <p class="text-sm text-gray-500">Transaksi #TX12345 telah selesai dengan total Rp 85.000</p>
                 <p class="text-xs text-gray-400 mt-1">1 hari yang lalu</p>
@@ -292,520 +397,895 @@
 
       <!-- Artikel -->
       <div id="artikel-content" class="hidden">
-        <div class="flex justify-between items-center mb-6">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6">
           <h1 class="text-2xl font-bold text-gray-800">Kelola Artikel</h1>
-          <button class="btn-primary text-white py-2 px-4 rounded-lg">
+          <button class="btn-primary text-white py-2 px-4 rounded-lg mt-4 md:mt-0">
             <i class="fas fa-plus mr-2"></i> Tambah Artikel
           </button>
         </div>
         
         <div class="bg-white rounded-lg card-shadow overflow-hidden border border-gray-100">
-          <table class="w-full text-left">
-            <thead class="bg-gray-50">
-              <tr class="text-gray-700">
-                <th class="p-4 font-medium">Judul</th>
-                <th class="p-4 font-medium">Penulis</th>
-                <th class="p-4 font-medium">Tanggal</th>
-                <th class="p-4 font-medium">Status</th>
-                <th class="p-4 font-medium text-right">Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="artikelTable">
-              <tr class="table-row border-t border-gray-100" data-id="1">
-                <td class="p-4">Manfaat Teh Hijau untuk Kesehatan</td>
-                <td class="p-4">Admin</td>
-                <td class="p-4">01 Mei 2025</td>
-                <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Published</span></td>
-                <td class="p-4 text-right">
-                  <button data-action="edit" data-id="1" data-type="artikel" class="text-blue-500 hover:text-blue-700 mr-3">
-                    <i class="fas fa-edit"></i>
+          <div class="responsive-table">
+            <table class="w-full text-left hidden md:table">
+              <thead class="bg-gray-50">
+                <tr class="text-gray-700">
+                  <th class="p-4 font-medium">Judul</th>
+                  <th class="p-4 font-medium">Penulis</th>
+                  <th class="p-4 font-medium">Tanggal</th>
+                  <th class="p-4 font-medium">Status</th>
+                  <th class="p-4 font-medium text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="artikelTable">
+                <tr class="table-row border-t border-gray-100" data-id="1">
+                  <td class="p-4">Manfaat Teh Hijau untuk Kesehatan</td>
+                  <td class="p-4">Admin</td>
+                  <td class="p-4">01 Mei 2025</td>
+                  <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Published</span></td>
+                  <td class="p-4 text-right">
+                    <button data-action="edit" data-id="1" data-type="artikel" class="text-blue-500 hover:text-blue-700 mr-3">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button data-action="delete" data-id="1" data-type="artikel" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="table-row border-t border-gray-100" data-id="2">
+                  <td class="p-4">Resep Minuman Segar untuk Musim Panas</td>
+                  <td class="p-4">Admin</td>
+                  <td class="p-4">28 Apr 2025</td>
+                  <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Published</span></td>
+                  <td class="p-4 text-right">
+                    <button data-action="edit" data-id="2" data-type="artikel" class="text-blue-500 hover:text-blue-700 mr-3">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button data-action="delete" data-id="2" data-type="artikel" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="table-row border-t border-gray-100" data-id="3">
+                  <td class="p-4">Sejarah Kopi di Indonesia</td>
+                  <td class="p-4">Admin</td>
+                  <td class="p-4">25 Apr 2025</td>
+                  <td class="p-4"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">Draft</span></td>
+                  <td class="p-4 text-right">
+                    <button data-action="edit" data-id="3" data-type="artikel" class="text-blue-500 hover:text-blue-700 mr-3">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button data-action="delete" data-id="3" data-type="artikel" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Accordion untuk Mobile -->
+            <div class="block md:hidden">
+              <div id="artikelAccordion" class="space-y-4">
+                <div class="border-b border-gray-200">
+                  <button class="w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50" data-id="1">
+                    <span>Manfaat Teh Hijau untuk Kesehatan</span>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
-                  <button data-action="delete" data-id="1" data-type="artikel" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
+                  <div id="artikel-details-1" class="hidden pl-14 pr-4 py-2 bg-gray-50 space-y-2">
+                    <p><strong>Penulis:</strong> Admin</p>
+                    <p><strong>Tanggal:</strong> 01 Mei 2025</p>
+                    <p><strong>Status:</strong> <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Published</span></p>
+                    <div class="text-right mt-2">
+                      <button data-action="edit" data-id="1" data-type="artikel" class="text-blue-500 hover:text-blue-700 mr-3">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button data-action="delete" data-id="1" data-type="artikel" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="border-b border-gray-200">
+                  <button class="w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50" data-id="2">
+                    <span>Resep Minuman Segar untuk Musim Panas</span>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
-                </td>
-              </tr>
-              <tr class="table-row border-t border-gray-100" data-id="2">
-                <td class="p-4">Resep Minuman Segar untuk Musim Panas</td>
-                <td class="p-4">Admin</td>
-                <td class="p-4">28 Apr 2025</td>
-                <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Published</span></td>
-                <td class="p-4 text-right">
-                  <button data-action="edit" data-id="2" data-type="artikel" class="text-blue-500 hover:text-blue-700 mr-3">
-                    <i class="fas fa-edit"></i>
+                  <div id="artikel-details-2" class="hidden pl-14 pr-4 py-2 bg-gray-50 space-y-2">
+                    <p><strong>Penulis:</strong> Admin</p>
+                    <p><strong>Tanggal:</strong> 28 Apr 2025</p>
+                    <p><strong>Status:</strong> <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Published</span></p>
+                    <div class="text-right mt-2">
+                      <button data-action="edit" data-id="2" data-type="artikel" class="text-blue-500 hover:text-blue-700 mr-3">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button data-action="delete" data-id="2" data-type="artikel" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="border-b border-gray-200">
+                  <button class="w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50" data-id="3">
+                    <span>Sejarah Kopi di Indonesia</span>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
-                  <button data-action="delete" data-id="2" data-type="artikel" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr class="table-row border-t border-gray-100" data-id="3">
-                <td class="p-4">Sejarah Kopi di Indonesia</td>
-                <td class="p-4">Admin</td>
-                <td class="p-4">25 Apr 2025</td>
-                <td class="p-4"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">Draft</span></td>
-                <td class="p-4 text-right">
-                  <button data-action="edit" data-id="3" data-type="artikel" class="text-blue-500 hover:text-blue-700 mr-3">
-                    <i class="fas fa-edit"></i>
-                  </button>
-                  <button data-action="delete" data-id="3" data-type="artikel" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  <div id="artikel-details-3" class="hidden pl-14 pr-4 py-2 bg-gray-50 space-y-2">
+                    <p><strong>Penulis:</strong> Admin</p>
+                    <p><strong>Tanggal:</strong> 25 Apr 2025</p>
+                    <p><strong>Status:</strong> <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">Draft</span></p>
+                    <div class="text-right mt-2">
+                      <button data-action="edit" data-id="3" data-type="artikel" class="text-blue-500 hover:text-blue-700 mr-3">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button data-action="delete" data-id="3" data-type="artikel" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Produk -->
       <div id="produk-content" class="hidden">
-        <div class="flex justify-between items-center mb-6">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6">
           <h1 class="text-2xl font-bold text-gray-800">Kelola Produk</h1>
-          <button class="btn-primary text-white py-2 px-4 rounded-lg">
+          <button class="btn-primary text-white py-2 px-4 rounded-lg mt-4 md:mt-0">
             <i class="fas fa-plus mr-2"></i> Tambah Produk
           </button>
         </div>
         
         <div class="bg-white rounded-lg card-shadow overflow-hidden border border-gray-100">
-          <table class="w-full text-left">
-            <thead class="bg-gray-50">
-              <tr class="text-gray-700">
-                <th class="p-4 font-medium">Produk</th>
-                <th class="p-4 font-medium">Kategori</th>
-                <th class="p-4 font-medium">Harga</th>
-                <th class="p-4 font-medium">Stok</th>
-                <th class="p-4 font-medium text-right">Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="produkTable">
-              <tr class="table-row border-t border-gray-100" data-id="1">
-                <td class="p-4 flex items-center">
-                  <img src="../image/coklat2.webp" alt="Boba Classic" class="w-10 h-10 rounded-full object-cover mr-3">
-                  <span>Boba Classic</span>
-                </td>
-                <td class="p-4">Minuman</td>
-                <td class="p-4">Rp 22.000</td>
-                <td class="p-4">45</td>
-                <td class="p-4 text-right">
-                  <button data-action="edit" data-id="1" data-type="produk" class="text-blue-500 hover:text-blue-700 mr-3">
-                    <i class="fas fa-edit"></i>
+          <div class="responsive-table">
+            <table class="w-full text-left hidden md:table">
+              <thead class="bg-gray-50">
+                <tr class="text-gray-700">
+                  <th class="p-4 font-medium">Produk</th>
+                  <th class="p-4 font-medium">Kategori</th>
+                  <th class="p-4 font-medium">Harga</th>
+                  <th class="p-4 font-medium">Stok</th>
+                  <th class="p-4 font-medium text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="produkTable">
+                <tr class="table-row border-t border-gray-100" data-id="1">
+                  <td class="p-4 flex items-center">
+                    <img src="../image/coklat2.webp" alt="Boba Classic" class="w-10 h-10 rounded-full object-cover mr-3">
+                    <span>Boba Classic</span>
+                  </td>
+                  <td class="p-4">Minuman</td>
+                  <td class="p-4">Rp 22.000</td>
+                  <td class="p-4">45</td>
+                  <td class="p-4 text-right">
+                    <button data-action="edit" data-id="1" data-type="produk" class="text-blue-500 hover:text-blue-700 mr-3">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button data-action="delete" data-id="1" data-type="produk" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="table-row border-t border-gray-100" data-id="2">
+                  <td class="p-4 flex items-center">
+                    <img src="../image/fruit tea2.webp.webp" alt="Boba Matcha" class="w-10 h-10 rounded-full object-cover mr-3">
+                    <span>Boba Matcha</span>
+                  </td>
+                  <td class="p-4">Minuman</td>
+                  <td class="p-4">Rp 24.000</td>
+                  <td class="p-4">32</td>
+                  <td class="p-4 text-right">
+                    <button data-action="edit" data-id="2" data-type="produk" class="text-blue-500 hover:text-blue-700 mr-3">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button data-action="delete" data-id="2" data-type="produk" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="table-row border-t border-gray-100" data-id="3">
+                  <td class="p-4 flex items-center">
+                    <img src="../image/fruit tea1.webp" alt="Es Kopi Susu" class="w-10 h-10 rounded-full object-cover mr-3">
+                    <span>Es Kopi Susu</span>
+                  </td>
+                  <td class="p-4">Kopi</td>
+                  <td class="p-4">Rp 18.000</td>
+                  <td class="p-4">28</td>
+                  <td class="p-4 text-right">
+                    <button data-action="edit" data-id="3" data-type="produk" class="text-blue-500 hover:text-blue-700 mr-3">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button data-action="delete" data-id="3" data-type="produk" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Accordion untuk Mobile -->
+            <div class="block md:hidden">
+              <div id="produkAccordion" class="space-y-4">
+                <div class="border-b border-gray-200">
+                  <button class="w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50" data-id="1">
+                    <span class="flex items-center">
+                      <img src="../image/coklat2.webp" alt="Boba Classic" class="w-10 h-10 rounded-full object-cover mr-3">
+                      <span>Boba Classic</span>
+                    </span>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
-                  <button data-action="delete" data-id="1" data-type="produk" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
+                  <div id="produk-details-1" class="hidden pl-14 pr-4 py-2 bg-gray-50 space-y-2">
+                    <p><strong>Kategori:</strong> Minuman</p>
+                    <p><strong>Harga:</strong> Rp 22.000</p>
+                    <p><strong>Stok:</strong> 45</p>
+                    <div class="text-right mt-2">
+                      <button data-action="edit" data-id="1" data-type="produk" class="text-blue-500 hover:text-blue-700 mr-3">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button data-action="delete" data-id="1" data-type="produk" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="border-b border-gray-200">
+                  <button class="w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50" data-id="2">
+                    <span class="flex items-center">
+                      <img src="../image/fruit tea2.webp.webp" alt="Boba Matcha" class="w-10 h-10 rounded-full object-cover mr-3">
+                      <span>Boba Matcha</span>
+                    </span>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
-                </td>
-              </tr>
-              <tr class="table-row border-t border-gray-100" data-id="2">
-                <td class="p-4 flex items-center">
-                  <img src="../image/fruit tea2.webp.webp" alt="Boba Matcha" class="w-10 h-10 rounded-full object-cover mr-3">
-                  <span>Boba Matcha</span>
-                </td>
-                <td class="p-4">Minuman</td>
-                <td class="p-4">Rp 24.000</td>
-                <td class="p-4">32</td>
-                <td class="p-4 text-right">
-                  <button data-action="edit" data-id="2" data-type="produk" class="text-blue-500 hover:text-blue-700 mr-3">
-                    <i class="fas fa-edit"></i>
+                  <div id="produk-details-2" class="hidden pl-14 pr-4 py-2 bg-gray-50 space-y-2">
+                    <p><strong>Kategori:</strong> Minuman</p>
+                    <p><strong>Harga:</strong> Rp 24.000</p>
+                    <p><strong>Stok:</strong> 32</p>
+                    <div class="text-right mt-2">
+                      <button data-action="edit" data-id="2" data-type="produk" class="text-blue-500 hover:text-blue-700 mr-3">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button data-action="delete" data-id="2" data-type="produk" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="border-b border-gray-200">
+                  <button class="w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50" data-id="3">
+                    <span class="flex items-center">
+                      <img src="../image/fruit tea1.webp" alt="Es Kopi Susu" class="w-10 h-10 rounded-full object-cover mr-3">
+                      <span>Es Kopi Susu</span>
+                    </span>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
-                  <button data-action="delete" data-id="2" data-type="produk" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr class="table-row border-t border-gray-100" data-id="3">
-                <td class="p-4 flex items-center">
-                  <img src="../image/fruit tea1.webp" alt="Es Kopi Susu" class="w-10 h-10 rounded-full object-cover mr-3">
-                  <span>Es Kopi Susu</span>
-                </td>
-                <td class="p-4">Kopi</td>
-                <td class="p-4">Rp 18.000</td>
-                <td class="p-4">28</td>
-                <td class="p-4 text-right">
-                  <button data-action="edit" data-id="3" data-type="produk" class="text-blue-500 hover:text-blue-700 mr-3">
-                    <i class="fas fa-edit"></i>
-                  </button>
-                  <button data-action="delete" data-id="3" data-type="produk" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  <div id="produk-details-3" class="hidden pl-14 pr-4 py-2 bg-gray-50 space-y-2">
+                    <p><strong>Kategori:</strong> Kopi</p>
+                    <p><strong>Harga:</strong> Rp 18.000</p>
+                    <p><strong>Stok:</strong> 28</p>
+                    <div class="text-right mt-2">
+                      <button data-action="edit" data-id="3" data-type="produk" class="text-blue-500 hover:text-blue-700 mr-3">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button data-action="delete" data-id="3" data-type="produk" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Pengguna -->
       <div id="pengguna-content" class="hidden">
-        <div class="flex justify-between items-center mb-6">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6">
           <h1 class="text-2xl font-bold text-gray-800">Kelola Pengguna</h1>
-          <button class="btn-primary text-white py-2 px-4 rounded-lg">
+          <button class="btn-primary text-white py-2 px-4 rounded-lg mt-4 md:mt-0">
             <i class="fas fa-user-plus mr-2"></i> Tambah Pengguna
           </button>
         </div>
         
         <div class="bg-white rounded-lg card-shadow overflow-hidden border border-gray-100">
-          <table class="w-full text-left">
-            <thead class="bg-gray-50">
-              <tr class="text-green-700">
-                <th class="p-4 font-medium">Nama</th>
-                <th class="p-4 font-medium">Email</th>
-                <th class="p-4 font-medium">Role</th>
-                <th class="p-4 font-medium">Bergabung</th>
-                <th class="p-4 font-medium"></th>
-              </tr>
-            </thead>
-            <tbody id="penggunaTable">
-              <tr class="table-row border-t border-gray-100" data-id="1">
-                <td class="p-4 flex items-center">
-                  <img src="../image/profile2.jpg" alt="Seri Muliani" class="w-10 h-10 rounded-full object-cover mr-3">
-                  <span>Seri Muliani</span>
-                </td>
-                <td class="p-4">seri@example.com</td>
-                <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Admin</span>
-                </td>
-                <td class="p-4">15 Jan 2025</td>
-                <td class="p-4 text-right">
-                  <button class="action edit" data-id="1" data-action="pengguna" class="edit-blue-500 text-white hover:text-blue-700 mr-3">
-                    <i class="fas fa-edit"></i>
+          <div class="responsive-table">
+            <table class="w-full text-left hidden md:table">
+              <thead class="bg-gray-50">
+                <tr class="text-gray-700">
+                  <th class="p-4 font-medium">Nama</th>
+                  <th class="p-4 font-medium">Email</th>
+                  <th class="p-4 font-medium">Role</th>
+                  <th class="p-4 font-medium">Bergabung</th>
+                  <th class="p-4 font-medium"></th>
+                </tr>
+              </thead>
+              <tbody id="penggunaTable">
+                <tr class="table-row border-t border-gray-100" data-id="1">
+                  <td class="p-4 flex items-center">
+                    <img src="../image/profile2.jpg" alt="Seri Muliani" class="w-10 h-10 rounded-full object-cover mr-3">
+                    <span>Seri Muliani</span>
+                  </td>
+                  <td class="p-4">seri@example.com</td>
+                  <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Admin</span></td>
+                  <td class="p-4">15 Jan 2025</td>
+                  <td class="p-4 text-right">
+                    <button data-action="edit" data-id="1" data-type="pengguna" class="text-blue-500 hover:text-blue-700 mr-3">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button data-action="delete" data-id="1" data-type="pengguna" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="table-row border-t border-gray-100" data-id="2">
+                  <td class="p-4 flex items-center">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dewi Lestari" class="w-10 h-10 rounded-full object-cover mr-3">
+                    <span>Dewi Lestari</span>
+                  </td>
+                  <td class="p-4">dewi@example.com</td>
+                  <td class="p-4"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">Editor</span></td>
+                  <td class="p-4">20 Feb 2025</td>
+                  <td class="p-4 text-right">
+                    <button data-action="edit" data-id="2" data-type="pengguna" class="text-blue-500 hover:text-blue-700 mr-3">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button data-action="delete" data-id="2" data-type="pengguna" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="table-row border-t border-gray-100" data-id="3">
+                  <td class="p-4 flex items-center">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Budi Santoso" class="w-10 h-10 rounded-full object-cover mr-3">
+                    <span>Budi Santoso</span>
+                  </td>
+                  <td class="p-4">budi@example.com</td>
+                  <td class="p-4"><span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">Customer</span></td>
+                  <td class="p-4">05 Mar 2025</td>
+                  <td class="p-4 text-right">
+                    <button data-action="edit" data-id="3" data-type="pengguna" class="text-blue-500 hover:text-blue-700 mr-3">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button data-action="delete" data-id="3" data-type="pengguna" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Accordion untuk Mobile -->
+            <div class="block md:hidden">
+              <div id="penggunaAccordion" class="space-y-4">
+                <div class="border-b border-gray-200">
+                  <button class="w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50" data-id="1">
+                    <span class="flex items-center">
+                      <img src="../image/profile2.jpg" alt="Seri Muliani" class="w-10 h-10 rounded-full object-cover mr-3">
+                      <span>Seri Muliani</span>
+                    </span>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
-                  <button data-action="delete" data-id="1" data-type="pengguna" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
+                  <div id="pengguna-details-1" class="hidden pl-14 pr-4 py-2 bg-gray-50 space-y-2">
+                    <p><strong>Email:</strong> seri@example.com</p>
+                    <p><strong>Role:</strong> <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Admin</span></p>
+                    <p><strong>Bergabung:</strong> 15 Jan 2025</p>
+                    <div class="text-right mt-2">
+                      <button data-action="edit" data-id="1" data-type="pengguna" class="text-blue-500 hover:text-blue-700 mr-3">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button data-action="delete" data-id="1" data-type="pengguna" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="border-b border-gray-200">
+                  <button class="w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50" data-id="2">
+                    <span class="flex items-center">
+                      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dewi Lestari" class="w-10 h-10 rounded-full object-cover mr-3">
+                      <span>Dewi Lestari</span>
+                    </span>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
-                </td>
-              </tr>
-              <tr class="table-row border-t border-gray-100" data-id="2">
-                <td class="p-4 flex items-center">
-                  <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dewi Lestari" class="w-10 h-10 rounded-full object-cover mr-3">
-                  <span>Dewi Lestari</span>
-                </td>
-                <td class="p-4">dewi@example.com</td>
-                <td class="p-4"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">Editor</span></td>
-                <td class="p-4">20 Feb 2025</td>
-                <td class="p-4 text-right">
-                  <button data-action="edit" data-id="2" data-type="pengguna" class="text-blue-500 hover:text-blue-700 mr-3">
-                    <i class="fas fa-edit"></i>
+                  <div id="pengguna-details-2" class="hidden pl-14 pr-4 py-2 bg-gray-50 space-y-2">
+                    <p><strong>Email:</strong> dewi@example.com</p>
+                    <p><strong>Role:</strong> <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">Editor</span></p>
+                    <p><strong>Bergabung:</strong> 20 Feb 2025</p>
+                    <div class="text-right mt-2">
+                      <button data-action="edit" data-id="2" data-type="pengguna" class="text-blue-500 hover:text-blue-700 mr-3">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button data-action="delete" data-id="2" data-type="pengguna" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="border-b border-gray-200">
+                  <button class="w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50" data-id="3">
+                    <span class="flex items-center">
+                      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Budi Santoso" class="w-10 h-10 rounded-full object-cover mr-3">
+                      <span>Budi Santoso</span>
+                    </span>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
-                  <button data-action="delete" data-id="2" data-type="pengguna" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr class="table-row border-t border-gray-100" data-id="3">
-                <td class="p-4 flex items-center">
-                  <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Budi Santoso" class="w-10 h-10 rounded-full object-cover mr-3">
-                  <span>Budi Santoso</span>
-                </td>
-                <td class="p-4">budi@example.com</td>
-                <td class="p-4"><span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">Customer</span></td>
-                <td class="p-4">05 Mar 2025</td>
-                <td class="p-4 text-right">
-                  <button data-action="edit" data-id="3" data-type="pengguna" class="text-blue-500 hover:text-blue-700 mr-3">
-                    <i class="fas fa-edit"></i>
-                  </button>
-                  <button data-action="delete" data-id="3" data-type="pengguna" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  <div id="pengguna-details-3" class="hidden pl-14 pr-4 py-2 bg-gray-50 space-y-2">
+                    <p><strong>Email:</strong> budi@example.com</p>
+                    <p><strong>Role:</strong> <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">Customer</span></p>
+                    <p><strong>Bergabung:</strong> 05 Mar 2025</p>
+                    <div class="text-right mt-2">
+                      <button data-action="edit" data-id="3" data-type="pengguna" class="text-blue-500 hover:text-blue-700 mr-3">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button data-action="delete" data-id="3" data-type="pengguna" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Transaksi -->
       <div id="transaksi-content" class="hidden">
-        <div class="flex justify-between items-center mb-6">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6">
           <h1 class="text-2xl font-bold text-gray-800">Kelola Transaksi</h1>
-          <div class="flex space-x-2">
-            <button class="bg-white border border-gray-200 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50">
-              <i class="fas fa-filter mr-2"></i> Filter
-            </button>
-            <button class="bg-white border border-gray-200 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50">
-              <i class="fas fa-download mr-2"></i> Export
-            </button>
-          </div>
+          <button class="btn-primary text-white py-2 px-4 rounded-lg mt-4 md:mt-0">
+            <i class="fas fa-plus mr-2"></i> CREATE NEW
+          </button>
         </div>
         
         <div class="bg-white rounded-lg card-shadow overflow-hidden border border-gray-100">
-          <table class="w-full text-left">
-            <thead class="bg-gray-50">
-              <tr class="text-gray-700">
-                <th class="p-4 font-medium">ID Transaksi</th>
-                <th class="p-4 font-medium">Pengguna</th>
-                <th class="p-4 font-medium">Total</th>
-                <th class="p-4 font-medium">Tanggal</th>
-                <th class="p-4 font-medium">Status</th>
-                <th class="p-4 font-medium text-right">Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="transaksiTable">
-              <tr class="table-row border-t border-gray-100" data-id="1">
-                <td class="p-4">#TX12345</td>
-                <td class="p-4">Seri Muliani</td>
-                <td class="p-4">Rp 85.000</td>
-                <td class="p-4">01 Mei 2025</td>
-                <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Selesai</span></td>
-                <td class="p-4 text-right">
-                  <button data-action="view" data-id="1" data-type="transaksi" class="text-blue-500 hover:text-blue-700 mr-3">
-                    <i class="fas fa-eye"></i>
+          <div class="responsive-table">
+            <table class="w-full text-left hidden md:table">
+              <thead class="bg-gray-50">
+                <tr class="text-gray-700">
+                  <th class="p-4 font-medium">ID Transaksi</th>
+                  <th class="p-4 font-medium">Pengguna</th>
+                  <th class="p-4 font-medium">Total</th>
+                  <th class="p-4 font-medium">Tanggal</th>
+                  <th class="p-4 font-medium">Status</th>
+                  <th class="p-4 font-medium text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="transaksiTable">
+                <tr class="table-row border-t border-gray-100" data-id="1">
+                  <td class="p-4">#TX12345</td>
+                  <td class="p-4">Seri Muliani</td>
+                  <td class="p-4">Rp 85.000</td>
+                  <td class="p-4">01 Mei 2025</td>
+                  <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Selesai</span></td>
+                  <td class="p-4 text-right">
+                    <button data-action="view" data-id="1" data-type="transaksi" class="text-blue-500 hover:text-blue-700 mr-3">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button data-action="delete" data-id="1" data-type="transaksi" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="table-row border-t border-gray-100" data-id="2">
+                  <td class="p-4">#TX12344</td>
+                  <td class="p-4">Dewi Lestari</td>
+                  <td class="p-4">Rp 64.000</td>
+                  <td class="p-4">30 Apr 2025</td>
+                  <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Selesai</span></td>
+                  <td class="p-4 text-right">
+                    <button data-action="view" data-id="2" data-type="transaksi" class="text-blue-500 hover:text-blue-700 mr-3">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button data-action="delete" data-id="2" data-type="transaksi" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="table-row border-t border-gray-100" data-id="3">
+                  <td class="p-4">#TX12343</td>
+                  <td class="p-4">Budi Santoso</td>
+                  <td class="p-4">Rp 48.000</td>
+                  <td class="p-4">29 Apr 2025</td>
+                  <td class="p-4"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">Proses</span></td>
+                  <td class="p-4 text-right">
+                    <button data-action="view" data-id="3" data-type="transaksi" class="text-blue-500 hover:text-blue-700 mr-3">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button data-action="delete" data-id="3" data-type="transaksi" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Accordion untuk Mobile -->
+            <div class="block md:hidden">
+              <div id="transaksiAccordion" class="space-y-4">
+                <div class="border-b border-gray-200">
+                  <button class="w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50" data-id="1">
+                    <span>#TX12345</span>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
-                  <button data-action="delete" data-id="1" data-type="transaksi" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
+                  <div id="transaksi-details-1" class="hidden pl-14 pr-4 py-2 bg-gray-50 space-y-2">
+                    <p><strong>Pengguna:</strong> Seri Muliani</p>
+                    <p><strong>Total:</strong> Rp 85.000</p>
+                    <p><strong>Tanggal:</strong> 01 Mei 2025</p>
+                    <p><strong>Status:</strong> <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Selesai</span></p>
+                    <div class="text-right mt-2">
+                      <button data-action="view" data-id="1" data-type="transaksi" class="text-blue-500 hover:text-blue-700 mr-3">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button data-action="delete" data-id="1" data-type="transaksi" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="border-b border-gray-200">
+                  <button class="w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50" data-id="2">
+                    <span>#TX12344</span>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
-                </td>
-              </tr>
-              <tr class="table-row border-t border-gray-100" data-id="2">
-                <td class="p-4">#TX12344</td>
-                <td class="p-4">Dewi Lestari</td>
-                <td class="p-4">Rp 64.000</td>
-                <td class="p-4">30 Apr 2025</td>
-                <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Selesai</span></td>
-                <td class="p-4 text-right">
-                  <button data-action="view" data-id="2" data-type="transaksi" class="text-blue-500 hover:text-blue-700 mr-3">
-                    <i class="fas fa-eye"></i>
+                  <div id="transaksi-details-2" class="hidden pl-14 pr-4 py-2 bg-gray-50 space-y-2">
+                    <p><strong>Pengguna:</strong> Dewi Lestari</p>
+                    <p><strong>Total:</strong> Rp 64.000</p>
+                    <p><strong>Tanggal:</strong> 30 Apr 2025</p>
+                    <p><strong>Status:</strong> <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Selesai</span></p>
+                    <div class="text-right mt-2">
+                      <button data-action="view" data-id="2" data-type="transaksi" class="text-blue-500 hover:text-blue-700 mr-3">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button data-action="delete" data-id="2" data-type="transaksi" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="border-b border-gray-200">
+                  <button class="w-full text-left p-4 flex justify-between items-center bg-white hover:bg-gray-50" data-id="3">
+                    <span>#TX12343</span>
+                    <i class="fas fa-chevron-down"></i>
                   </button>
-                  <button data-action="delete" data-id="2" data-type="transaksi" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr class="table-row border-t border-gray-100" data-id="3">
-                <td class="p-4">#TX12343</td>
-                <td class="p-4">Budi Santoso</td>
-                <td class="p-4">Rp 48.000</td>
-                <td class="p-4">29 Apr 2025</td>
-                <td class="p-4"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">Proses</span></td>
-                <td class="p-4 text-right">
-                  <button data-action="view" data-id="3" data-type="transaksi" class="text-blue-500 hover:text-blue-700 mr-3">
-                    <i class="fas fa-eye"></i>
-                  </button>
-                  <button data-action="delete" data-id="3" data-type="transaksi" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  <div id="transaksi-details-3" class="hidden pl-14 pr-4 py-2 bg-gray-50 space-y-2">
+                    <p><strong>Pengguna:</strong> Budi Santoso</p>
+                    <p><strong>Total:</strong> Rp 48.000</p>
+                    <p><strong>Tanggal:</strong> 29 Apr 2025</p>
+                    <p><strong>Status:</strong> <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">Proses</span></p>
+                    <div class="text-right mt-2">
+                      <button data-action="view" data-id="3" data-type="transaksi" class="text-blue-500 hover:text-blue-700 mr-3">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button data-action="delete" data-id="3" data-type="transaksi" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
   </div>
 
   <!-- Footer -->
-  <footer class="bg-white border-t border-gray-200 py-6">
-    <div class="container mx-auto px-6">
+  <footer class="bg-white border-t border-gray-200 py-4 md:py-6">
+    <div class="container mx-auto px-4 md:px-6">
       <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-4 md:mb-0">
-          <img src="../image/logo2.png" alt="Logo" class="h-8">
-          <p class="text-gray-500 text-sm mt-2">© 2025 MinumanKita. All rights reserved.</p>
+        <div class="mb-4 md:mb-0 text-center md:text-left">
+          <img src="../image/logo2.png" alt="Logo" class="h-6 md:h-8 mx-auto md:mx-0">
+          <p class="text-gray-500 text-xs md:text-sm mt-1">© 2025 MinumanKita. All rights reserved.</p>
         </div>
-        <div class="flex space-x-6">
-          <a href="#" class="text-gray-500 hover:text-green-700"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="text-gray-500 hover:text-green-700"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="text-gray-500 hover:text-green-700"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="text-gray-500 hover:text-green-700"><i class="fab fa-tiktok"></i></a>
+        <div class="flex justify-center space-x-4 md:space-x-6">
+          <a href="#" class="text-gray-500 hover:text-green-700 text-xl"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-500 hover:text-green-700 text-xl"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-gray-500 hover:text-green-700 text-xl"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-gray-500 hover:text-green-700 text-xl"><i class="fab fa-tiktok"></i></a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Set dashboard as active by default
-      document.querySelector('[data-target="dashboard"]').classList.add('active-menu');
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set dashboard as active by default
+    document.querySelector('[data-target="dashboard"]').classList.add('active-menu');
 
-      const modal = document.getElementById('editModal');
-      const modalClose = document.querySelector('.modal-close');
-      const editForm = document.getElementById('editForm');
-      const modalTitle = document.getElementById('modalTitle');
+    const modal = document.getElementById('editModal');
+    const modalClose = document.querySelector('.modal-close');
+    const editForm = document.getElementById('editForm');
+    const modalTitle = document.getElementById('modalTitle');
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menuToggle');
+    const contentOverlay = document.getElementById('contentOverlay');
 
-      // Menu click handler
-      document.querySelectorAll('.menu-item, .quick-action').forEach(item => {
-        item.addEventListener('click', function(e) {
-          e.preventDefault();
-          const target = this.getAttribute('data-target');
+    // Mobile Menu Toggle
+    menuToggle.addEventListener('click', function() {
+      sidebar.classList.toggle('active');
+      contentOverlay.classList.toggle('active');
+    });
 
-          // Update active menu
-          document.querySelectorAll('.menu-item').forEach(menu => {
-            menu.classList.remove('active-menu');
-          });
-          if(this.classList.contains('menu-item')) {
-            this.classList.add('active-menu');
-          }
+    contentOverlay.addEventListener('click', function() {
+      sidebar.classList.remove('active');
+      contentOverlay.classList.remove('active');
+    });
 
-          // Hide all contents
-          document.querySelectorAll('#contentArea > div').forEach(content => {
-            content.classList.add('hidden');
-          });
+    // Menu click handler
+    document.querySelectorAll('.menu-item, .quick-action').forEach(item => {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = this.getAttribute('data-target');
 
-          // Show target content
-          document.getElementById(`${target}-content`).classList.remove('hidden');
+        // Update active menu
+        document.querySelectorAll('.menu-item').forEach(menu => {
+          menu.classList.remove('active-menu');
         });
-      });
+        if(this.classList.contains('menu-item')) {
+          this.classList.add('active-menu');
+        }
 
-      // Handle action buttons (edit, delete, view)
-      document.querySelectorAll('[data-action]').forEach(button => {
-        button.addEventListener('click', function(e) {
-          e.preventDefault();
-          const action = this.getAttribute('data-action');
-          const id = this.getAttribute('data-id');
-          const type = this.getAttribute('data-type');
-          const row = this.closest('tr');
-
-          if (action === 'edit') {
-            // Populate form based on type
-            let formContent = '';
-            const cells = row.getElementsByTagName('td');
-
-            if (type === 'artikel') {
-              const title = cells[0].textContent;
-              const author = cells[1].textContent;
-              const date = cells[2].textContent;
-              const status = cells[3].querySelector('span').textContent;
-
-              modalTitle.textContent = 'Edit Artikel';
-              formContent = `
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Judul</label>
-                  <input type="text" name="title" value="${title}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
- </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Penulis</label>
-                  <input type="text" name="author" value="${author}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Tanggal</label>
-                  <input type="text" name="date" value="${date}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Status</label>
-                  <select name="status" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
-                    <option value="Published" ${status === 'Published' ? 'selected' : ''}>Published</option>
-                    <option value="Draft" ${status === 'Draft' ? 'selected' : ''}>Draft</option>
-                  </select>
-                </div>
-                <button type="submit" class="btn-primary text-white py-2 px-4 rounded-lg">Simpan</button>
-              `;
-            } else if (type === 'produk') {
-              const name = cells[0].querySelector('span').textContent;
-              const category = cells[1].textContent;
-              const price = cells[2].textContent;
-              const stock = cells[3].textContent;
-
-              modalTitle.textContent = 'Edit Produk';
-              formContent = `
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Nama Produk</label>
-                  <input type="text" name="name" value="${name}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Kategori</label>
-                  <input type="text" name="category" value="${category}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Harga</label>
-                  <input type="text" name="price" value="${price}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Stok</label>
-                  <input type="number" name="stock" value="${stock}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
-                </div>
-                <button type="submit" class="btn-primary text-white py-2 px-4 rounded-lg">Simpan</button>
-              `;
-            } else if (type === 'pengguna') {
-              const name = cells[0].querySelector('span').textContent;
-              const email = cells[1].textContent;
-              const role = cells[2].querySelector('span').textContent;
-              const joinDate = cells[3].textContent;
-
-              modalTitle.textContent = 'Edit Pengguna';
-              formContent = `
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Nama</label>
-                  <input type="text" name="name" value="${name}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Email</label>
-                  <input type="email" name="email" value="${email}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Role</label>
-                  <select name="role" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
-                    <option value="Admin" ${role === 'Admin' ? 'selected' : ''}>Admin</option>
-                    <option value="Editor" ${role === 'Editor' ? 'selected' : ''}>Editor</option>
-                    <option value="Customer" ${role === 'Customer' ? 'selected' : ''}>Customer</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Tanggal Bergabung</label>
-                  <input type="text" name="joinDate" value="${joinDate}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
-                </div>
-                <button type="submit" class="btn-primary text-white py-2 px-4 rounded-lg">Simpan</button>
-              `;
-            }
-
-            editForm.innerHTML = formContent;
-            modal.style.display = 'flex';
-
-            // Handle form submission
-            editForm.onsubmit = function(e) {
-              e.preventDefault();
-              const formData = new FormData(editForm);
-              const updatedData = {};
-
-              formData.forEach((value, key) => {
-                updatedData[key] = value;
-              });
-
-              // Update table row
-              if (type === 'artikel') {
-                cells[0].textContent = updatedData.title;
-                cells[1].textContent = updatedData.author;
-                cells[2].textContent = updatedData.date;
-                cells[3].querySelector('span').textContent = updatedData.status;
-                cells[3].querySelector('span').className = `px-3 py-1 rounded-full text-sm ${updatedData.status === 'Published' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`;
-              } else if (type === 'produk') {
-                cells[0].querySelector('span').textContent = updatedData.name;
-                cells[1].textContent = updatedData.category;
-                cells[2].textContent = updatedData.price;
-                cells[3].textContent = updatedData.stock;
-              } else if (type === 'pengguna') {
-                cells[0].querySelector('span').textContent = updatedData.name;
-                cells[1].textContent = updatedData.email;
-                cells[2].querySelector('span').textContent = updatedData.role;
-                cells[2].querySelector('span').className = `px-3 py-1 rounded-full text-sm ${updatedData.role === 'Admin' ? 'bg-green-100 text-green-700' : updatedData.role === 'Editor' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}`;
-                cells[3].textContent = updatedData.joinDate;
-              }
-
-              modal.style.display = 'none';
-              alert(`${type} dengan ID: ${id} telah diperbarui`);
-            };
-          } else if (action === 'delete') {
-            if (confirm(`Apakah Anda yakin ingin menghapus ${type} ini?`)) {
-              row.remove();
-              alert(`${type} dengan ID: ${id} telah dihapus`);
-            }
-          } else if (action === 'view') {
-            alert(`${type} dengan ID: ${id} telah dihapus`);
-            // Di sini Anda bisa menambahkan AJAX request untuk menghapus data dari server
-            // Setelah berhasil, bisa di-refresh halaman atau hapus baris dari tabel
-          }
+        // Hide all contents
+        document.querySelectorAll('#contentArea > div').forEach(content => {
+          content.classList.add('hidden');
         });
-      });
 
-      // Close modal
-      modalClose.addEventListener('click', function() {
-        modal.style.display = 'none';
-      });
+        // Show target content
+        document.getElementById(`${target}-content`).classList.remove('hidden');
 
-      // Close modal when clicking outside
-      window.addEventListener('click', function(e) {
-        if (e.target === modal) {
-          modal.style.display = 'none';
+        // Close mobile menu if open
+        if (window.innerWidth <= 768) {
+          sidebar.classList.remove('active');
+          contentOverlay.classList.remove('active');
         }
       });
     });
+
+    // Handle action buttons (edit, delete, view)
+    document.querySelectorAll('[data-action]').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const action = this.getAttribute('data-action');
+        const id = this.getAttribute('data-id');
+        const type = this.getAttribute('data-type');
+        const row = this.closest('tr');
+
+        if (action === 'edit') {
+          // Populate form based on type
+          let formContent = '';
+          const cells = row.getElementsByTagName('td');
+
+          if (type === 'artikel') {
+            const title = cells[0].textContent;
+            const author = cells[1].textContent;
+            const date = cells[2].textContent;
+            const status = cells[3].querySelector('span').textContent;
+
+            modalTitle.textContent = 'Edit Artikel';
+            formContent = `
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Judul</label>
+                <input type="text" name="title" value="${title}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Penulis</label>
+                <input type="text" name="author" value="${author}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Tanggal</label>
+                <input type="text" name="date" value="${date}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Status</label>
+                <select name="status" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+                  <option value="Published" ${status === 'Published' ? 'selected' : ''}>Published</option>
+                  <option value="Draft" ${status === 'Draft' ? 'selected' : ''}>Draft</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-primary text-white py-2 px-4 rounded-lg mt-4">Simpan</button>
+            `;
+          } else if (type === 'produk') {
+            const name = cells[0].querySelector('span').textContent;
+            const category = cells[1].textContent;
+            const price = cells[2].textContent;
+            const stock = cells[3].textContent;
+
+            modalTitle.textContent = 'Edit Produk';
+            formContent = `
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Nama Produk</label>
+                <input type="text" name="name" value="${name}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Kategori</label>
+                <input type="text" name="category" value="${category}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Harga</label>
+                <input type="text" name="price" value="${price}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Stok</label>
+                <input type="number" name="stock" value="${stock}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <button type="submit" class="btn-primary text-white py-2 px-4 rounded-lg mt-4">Simpan</button>
+            `;
+          } else if (type === 'pengguna') {
+            const name = cells[0].querySelector('span').textContent;
+            const email = cells[1].textContent;
+            const role = cells[2].querySelector('span').textContent;
+            const joinDate = cells[3].textContent;
+
+            modalTitle.textContent = 'Edit Pengguna';
+            formContent = `
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Nama</label>
+                <input type="text" name="name" value="${name}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" name="email" value="${email}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Role</label>
+                <select name="role" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+                  <option value="Admin" ${role === 'Admin' ? 'selected' : ''}>Admin</option>
+                  <option value="Editor" ${role === 'Editor' ? 'selected' : ''}>Editor</option>
+                  <option value="Customer" ${role === 'Customer' ? 'selected' : ''}>Customer</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Tanggal Bergabung</label>
+                <input type="text" name="joinDate" value="${joinDate}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <button type="submit" class="btn-primary text-white py-2 px-4 rounded-lg mt-4">Simpan</button>
+            `;
+          } else if (type === 'transaksi') {
+            const id = cells[0].textContent;
+            const user = cells[1].textContent;
+            const total = cells[2].textContent;
+            const date = cells[3].textContent;
+            const status = cells[4].querySelector('span').textContent;
+
+            modalTitle.textContent = 'Edit Transaksi';
+            formContent = `
+              <div>
+                <label class="block text-sm font-medium text-gray-700">ID Transaksi</label>
+                <input type="text" name="id" value="${id}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Pengguna</label>
+                <input type="text" name="user" value="${user}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Total</label>
+                <input type="text" name="total" value="${total}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Tanggal</label>
+                <input type="text" name="date" value="${date}" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Status</label>
+                <select name="status" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm">
+                  <option value="Selesai" ${status === 'Selesai' ? 'selected' : ''}>Selesai</option>
+                  <option value="Proses" ${status === 'Proses' ? 'selected' : ''}>Proses</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-primary text-white py-2 px-4 rounded-lg mt-4">Simpan</button>
+            `;
+          }
+
+          editForm.innerHTML = formContent;
+          modal.style.display = 'flex';
+
+          // Handle form submission
+          editForm.onsubmit = function(e) {
+            e.preventDefault();
+            const formData = new FormData(editForm);
+            const updatedData = {};
+
+            formData.forEach((value, key) => {
+              updatedData[key] = value;
+            });
+
+            // Update table row
+            if (type === 'artikel') {
+              cells[0].textContent = updatedData.title;
+              cells[1].textContent = updatedData.author;
+              cells[2].textContent = updatedData.date;
+              cells[3].querySelector('span').textContent = updatedData.status;
+              cells[3].querySelector('span').className = `px-3 py-1 rounded-full text-sm ${updatedData.status === 'Published' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`;
+            } else if (type === 'produk') {
+              cells[0].querySelector('span').textContent = updatedData.name;
+              cells[1].textContent = updatedData.category;
+              cells[2].textContent = updatedData.price;
+              cells[3].textContent = updatedData.stock;
+            } else if (type === 'pengguna') {
+              cells[0].querySelector('span').textContent = updatedData.name;
+              cells[1].textContent = updatedData.email;
+              cells[2].querySelector('span').textContent = updatedData.role;
+              cells[2].querySelector('span').className = `px-3 py-1 rounded-full text-sm ${updatedData.role === 'Admin' ? 'bg-green-100 text-green-700' : updatedData.role === 'Editor' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}`;
+              cells[3].textContent = updatedData.joinDate;
+            } else if (type === 'transaksi') {
+              cells[0].textContent = updatedData.id;
+              cells[1].textContent = updatedData.user;
+              cells[2].textContent = updatedData.total;
+              cells[3].textContent = updatedData.date;
+              cells[4].querySelector('span').textContent = updatedData.status;
+              cells[4].querySelector('span').className = `px-3 py-1 rounded-full text-sm ${updatedData.status === 'Selesai' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`;
+            }
+
+            modal.style.display = 'none';
+            alert(`${type} dengan ID: ${id} telah diperbarui`);
+          };
+        } else if (action === 'delete') {
+          if (confirm(`Apakah Anda yakin ingin menghapus ${type} ini?`)) {
+            row.remove();
+            alert(`${type} dengan ID: ${id} telah dihapus`);
+          }
+        } else if (action === 'view') {
+          alert(`Melihat detail ${type} dengan ID: ${id}`);
+        }
+      });
+    });
+
+    // Accordion untuk mobile
+    function initializeAccordion(sectionId) {
+      if (window.innerWidth <= 768) {
+        const accordionButtons = document.querySelectorAll(`#${sectionId}Accordion button`);
+        accordionButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            const details = document.getElementById(`${sectionId}-details-${id}`);
+            const isActive = this.classList.contains('active');
+
+            // Tutup semua accordion di section ini
+            accordionButtons.forEach(btn => {
+              btn.classList.remove('active');
+              const relatedDetails = document.getElementById(`${sectionId}-details-${btn.getAttribute('data-id')}`);
+              if (relatedDetails) relatedDetails.classList.remove('active');
+            });
+
+            // Buka accordion yang diklik jika belum aktif
+            if (!isActive && details) {
+              this.classList.add('active');
+              details.classList.add('active');
+            }
+          });
+        });
+      }
+    }
+
+    // Inisialisasi accordion untuk semua section saat halaman dimuat
+    ['artikel', 'produk', 'pengguna', 'transaksi'].forEach(section => {
+      initializeAccordion(section);
+    });
+
+    // Perbarui accordion saat ukuran layar berubah
+    window.addEventListener('resize', function() {
+      if (window.innerWidth <= 768) {
+        ['artikel', 'produk', 'pengguna', 'transaksi'].forEach(section => {
+          initializeAccordion(section);
+        });
+      }
+    });
+
+    // Close modal
+    modalClose.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
   </script>
 </body>
 </html>

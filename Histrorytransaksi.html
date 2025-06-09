@@ -1,375 +1,376 @@
 <!DOCTYPE html>
 <html lang="id">
- <head>
+<head>
   <meta charset="UTF-8">
   <title>ZupaZips - Minuman Unik</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css"> <!-- Ganti dengan hamburger.css -->
 </head>
 <body>
 <header>
-  <div class="left-header">
+  <div class="left-header flex items-center">
     <div class="logo">
-      <img src="image/logo2.png" alt="Logo">
+      <img src="image/logo2.png" alt="Logo" class="h-12">
     </div>
-    <button class="hamburger md:hidden" id="hamburger">
+    <button class="hamburger md:hidden p-2 text-gray-700 focus:outline-none" id="hamburger">
       <i class="fas fa-bars text-xl"></i>
     </button>
-    <nav class="nav-menu md:flex hidden" id="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="artikel/artike.html">Artikel</a>
-      <a href="produk/katalog_produk.html">Product</a>
-      <a href="about.html">About</a>
+    <nav class="nav-menu md:flex hidden flex-col md:flex-row md:space-x-4 ml-6" id="nav-menu">
+      <a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-md md:inline-block md:p-0 md:hover:text-green-600">Home</a>
+      <a href="artikel/artike.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-md md:inline-block md:p-0 md:hover:text-green-600">Artikel</a>
+      <a href="produk/katalog_produk.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-md md:inline-block md:p-0 md:hover:text-green-600">Product</a>
+      <a href="about.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-md md:inline-block md:p-0 md:hover:text-green-600">About</a>
     </nav>
   </div>
-  <div class="profile-container">
-    <a href="Histrorytransaksi.html" class="history-icon" title="Riwayat Transaksi">
+  <div class="profile-container flex items-center space-x-4">
+    <a href="Histrorytransaksi.html" class="history-icon text-gray-700 hover:text-green-600" title="Riwayat Transaksi">
       <i class="fas fa-history"></i>
     </a>
-    <a href="keranjang.html" class="cart-icon">
+    <a href="keranjang.html" class="cart-icon relative text-gray-700 hover:text-green-600">
       <i class="fas fa-shopping-cart"></i>
-      <span class="cart-count">0</span>
+      <span class="cart-count absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
     </a>
-    <img src="image/profile.jpg" alt="Profile" class="profile-img" id="profileBtn">
-    <div class="dropdown-content" id="dropdownMenu">
-      <a href="profile.html">Profile</a>
-      <a href="register.html">Keluar</a>
+    <img src="image/profile.jpg" alt="Profile" class="profile-img w-10 h-10 rounded-full cursor-pointer" id="profileBtn">
+    <div class="dropdown-content absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden" id="dropdownMenu">
+      <a href="profile.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Profile</a>
+      <a href="register.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Keluar</a>
     </div>
   </div>
 </header>
 
-  <!-- PAGE HEADER -->
-  <section class="page-header bg-gradient-to-r from-green-800 to-green-600 py-16 text-white text-center">
-    <div class="container mx-auto px-4">
-      <h1 class="text-3xl md:text-4xl font-bold mb-2">Riwayat Transaksi</h1>
-      <p class="text-lg opacity-90 max-w-2xl mx-auto">Lihat semua transaksi pembelian Anda di ZupaZips</p>
-    </div>
-  </section>
+<!-- PAGE HEADER -->
+<section class="page-header bg-gradient-to-r from-green-800 to-green-600 py-16 text-white text-center">
+  <div class="container mx-auto px-4">
+    <h1 class="text-3xl md:text-4xl font-bold mb-2">Riwayat Transaksi</h1>
+    <p class="text-lg opacity-90 max-w-2xl mx-auto">Lihat semua transaksi pembelian Anda di ZupaZips</p>
+  </div>
+</section>
 
-  <!-- TRANSACTION FILTER -->
-  <div class="container mx-auto px-4 py-8">
-    <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
-      <div class="flex flex-wrap gap-2">
-        <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="all">
-          Semua
+<!-- TRANSACTION FILTER -->
+<div class="container mx-auto px-4 py-8">
+  <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+      <!-- Filter Dropdown -->
+      <div class="relative">
+        <button id="filterButton" class="filter-btn px-4 py-2 rounded-full text-sm font-medium flex items-center space-x-2 focus:outline-none">
+          <i class="fas fa-filter"></i>
+          <span>Filter</span>
         </button>
-        <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="completed">
-          Selesai
-        </button>
-        <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="pending">
-          Proses
-        </button>
-        <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all" data-filter="cancelled">
-          Dibatalkan
-        </button>
-        <div class="ml-auto relative">
-          <input type="text" placeholder="Cari transaksi..." class="pl-10 pr-4 py-2 border rounded-full text-sm w-full md:w-64">
-          <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-        </div>
-      </div>
-    </div>
-
-    <!-- TRANSACTION LIST -->
-    <div class="space-y-4">
-      <!-- Transaction 1 -->
-      <div class="transaction-card bg-white rounded-lg shadow-sm overflow-hidden">
-        <div class="p-5">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-            <div class="mb-4 md:mb-0">
-              <div class="flex items-center space-x-3">
-                <span class="status-completed px-3 py-1 rounded-full text-xs font-medium">Selesai</span>
-                <span class="text-gray-500 text-sm">#ZP-20230615-001</span>
-              </div>
-              <h3 class="text-lg font-semibold mt-2">Paket Minuman Segar</h3>
-              <p class="text-gray-600 text-sm mt-1">15 Juni 2023 • 10:25 WIB</p>
-            </div>
-            <div class="text-right">
-              <p class="text-gray-600 text-sm">Total Belanja</p>
-              <p class="text-lg font-bold text-green-700">Rp 125.000</p>
-               <a href="detail_historytransaksi.html" class="inline-block mt-2 text-sm font-medium text-green-600 hover:text-green-800 transition">
-    Lihat Detail <i class="fas fa-chevron-right ml-1"></i>
-  </a>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-50 px-5 py-3 border-t flex justify-between items-center">
-          <div class="flex items-center space-x-2">
-            <i class="fas fa-box-open text-gray-400"></i>
-            <span class="text-sm text-gray-600">3 Items</span>
-          </div>
-          <button class="text-sm font-medium text-green-600 hover:text-green-800 transition">
-           <a href="keranjang.html">Pesan Lagi</a>
-          </button>
+        <div id="filterDropdown" class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-10">
+          <button class="filter-option block w-full text-left px-4 py-2 text-sm font-medium hover:bg-gray-200 active:bg-green-100" data-filter="all">Semua</button>
+          <button class="filter-option block w-full text-left px-4 py-2 text-sm font-medium hover:bg-gray-200" data-filter="completed">Selesai</button>
+          <button class="filter-option block w-full text-left px-4 py-2 text-sm font-medium hover:bg-gray-200" data-filter="pending">Proses</button>
+          <button class="filter-option block w-full text-left px-4 py-2 text-sm font-medium hover:bg-gray-200" data-filter="cancelled">Dibatalkan</button>
         </div>
       </div>
 
-      <!-- Transaction 2 -->
-      <div class="transaction-card bg-white rounded-lg shadow-sm overflow-hidden">
-        <div class="p-5">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-            <div class="mb-4 md:mb-0">
-              <div class="flex items-center space-x-3">
-                <span class="status-pending px-3 py-1 rounded-full text-xs font-medium">Proses</span>
-                <span class="text-gray-500 text-sm">#ZP-20230610-045</span>
-              </div>
-              <h3 class="text-lg font-semibold mt-2">Choco Lava + Thai Tea</h3>
-              <p class="text-gray-600 text-sm mt-1">10 Juni 2023 • 14:45 WIB</p>
-            </div>
-            <div class="text-right">
-              <p class="text-gray-600 text-sm">Total Belanja</p>
-              <p class="text-lg font-bold text-green-700">Rp 68.000</p>
-               <a href="detail_historytransaksi.html" class="inline-block mt-2 text-sm font-medium text-green-600 hover:text-green-800 transition">
-                Lihat Detail <i class="fas fa-chevron-right ml-1"></i>
-            </a>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-50 px-5 py-3 border-t flex justify-between items-center">
-          <div class="flex items-center space-x-2">
-            <i class="fas fa-box-open text-gray-400"></i>
-            <span class="text-sm text-gray-600">2 Items</span>
-          </div>
-          <button class="text-sm font-medium text-green-600 hover:text-green-800 transition">
-           <a href="keranjang.html">Pesan Lagi</a>
-          </button>
-        </div>
+      <!-- Search Input -->
+      <div class="relative w-full md:w-1/2">
+        <input type="text" placeholder="Cari transaksi..." class="pl-10 pr-4 py-2 border rounded-full text-sm w-full focus:outline-none focus:ring-2 focus:ring-green-500">
+        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
       </div>
-
-      <!-- Transaction 3 -->
-      <div class="transaction-card bg-white rounded-lg shadow-sm overflow-hidden">
-        <div class="p-5">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-            <div class="mb-4 md:mb-0">
-              <div class="flex items-center space-x-3">
-                <span class="status-completed px-3 py-1 rounded-full text-xs font-medium">Selesai</span>
-                <span class="text-gray-500 text-sm">#ZP-20230528-112</span>
-              </div>
-              <h3 class="text-lg font-semibold mt-2">Minuman Keluarga</h3>
-              <p class="text-gray-600 text-sm mt-1">28 Mei 2023 • 09:30 WIB</p>
-            </div>
-            <div class="text-right">
-              <p class="text-gray-600 text-sm">Total Belanja</p>
-              <p class="text-lg font-bold text-green-700">Rp 185.000</p>
-               <a href="detail_historytransaksi.html" class="inline-block mt-2 text-sm font-medium text-green-600 hover:text-green-800 transition">
-                 Lihat Detail <i class="fas fa-chevron-right ml-1"></i>
-                </a>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-50 px-5 py-3 border-t flex justify-between items-center">
-          <div class="flex items-center space-x-2">
-            <i class="fas fa-box-open text-gray-400"></i>
-            <span class="text-sm text-gray-600">5 Items</span>
-          </div>
-          <button class="text-sm font-medium text-green-600 hover:text-green-800 transition">
-           <a href="keranjang.html">Pesan Lagi</a>
-          </button>
-        </div>
-      </div>
-
-      <!-- Transaction 4 -->
-      <div class="transaction-card bg-white rounded-lg shadow-sm overflow-hidden">
-        <div class="p-5">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-            <div class="mb-4 md:mb-0">
-              <div class="flex items-center space-x-3">
-                <span class="status-cancelled px-3 py-1 rounded-full text-xs font-medium">Dibatalkan</span>
-                <span class="text-gray-500 text-sm">#ZP-20230515-078</span>
-              </div>
-              <h3 class="text-lg font-semibold mt-2">Ice Kopyor Special</h3>
-              <p class="text-gray-600 text-sm mt-1">15 Mei 2023 • 16:20 WIB</p>
-            </div>
-            <div class="text-right">
-              <p class="text-gray-600 text-sm">Total Belanja</p>
-              <p class="text-lg font-bold text-green-700">Rp 42.000</p>
-              <a href="detail_historytransaksi.html" class="inline-block mt-2 text-sm font-medium text-green-600 hover:text-green-800 transition">
-              Lihat Detail <i class="fas fa-chevron-right ml-1"></i>
-            </a>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-50 px-5 py-3 border-t flex justify-between items-center">
-          <div class="flex items-center space-x-2">
-            <i class="fas fa-box-open text-gray-400"></i>
-            <span class="text-sm text-gray-600">1 Item</span>
-          </div>
-          <button class="text-sm font-medium text-green-600 hover:text-green-800 transition">
-            <a href="keranjang.html">Pesan Lagi</a>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAGINATION -->
-    <div class="flex justify-center mt-8">
-      <nav class="inline-flex rounded-md shadow-sm">
-        <a href="#" class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
-          <i class="fas fa-chevron-left"></i>
-        </a>
-        <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-green-600 font-medium">
-          1
-        </a>
-        <a href="#" class="px-4 py-2 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
-          2
-        </a>
-        <a href="#" class="px-4 py-2 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
-          3
-        </a>
-        <a href="#" class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
-          <i class="fas fa-chevron-right"></i>
-        </a>
-      </nav>
     </div>
   </div>
 
-  <footer class="footer-wave">
-    <div class="footer-container">
-      <div class="footer-col">
-        <h4>Layanan Konsumen</h4>
-        <p><i class="fas fa-building"></i> Direktorat Jenderal PKTN - Kementerian Perdagangan RI</p>
-        <p><i class="fab fa-whatsapp"></i> 0853-1111-1010</p>
-        <p><i class="fas fa-envelope"></i> customercare@zupazips.com</p>
-      </div>
-
-      <div class="footer-col">
-        <h4>Kontak Kami</h4>
-        <p><i class="fas fa-map-marker-alt"></i> Gedung Graha Ganesha<br>Lantai 1 Suite 120 & 130</p>
-        <p>Jl. Hayam Wuruk No. 28, Gambir, Jakarta Pusat</p>
-        <p><i class="fas fa-phone"></i> (021) 1234567</p>
-      </div>
-
-      <div class="footer-col">
-        <h4>Ikuti Kami</h4>
-        <p>Dapatkan update terbaru dan promo menarik</p>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-tiktok"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
+  <!-- TRANSACTION LIST -->
+  <div class="space-y-4">
+    <!-- Transaction 1 -->
+    <div class="transaction-card bg-white rounded-lg shadow-sm overflow-hidden">
+      <div class="p-5">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+          <div class="mb-4 md:mb-0">
+            <div class="flex items-center space-x-3">
+              <span class="status-completed px-3 py-1 rounded-full text-xs font-medium">Selesai</span>
+              <span class="text-gray-500 text-sm">#ZP-20230615-001</span>
+            </div>
+            <h3 class="text-lg font-semibold mt-2">Paket Minuman Segar</h3>
+            <p class="text-gray-600 text-sm mt-1">15 Juni 2023 • 10:25 WIB</p>
+          </div>
+          <div class="text-right">
+            <p class="text-gray-600 text-sm">Total Belanja</p>
+            <p class="text-lg font-bold text-green-700">Rp 125.000</p>
+            <a href="detail_historytransaksi.html" class="inline-block mt-2 text-sm font-medium text-green-600 hover:text-green-800 transition">
+              Lihat Detail <i class="fas fa-chevron-right ml-1"></i>
+            </a>
+          </div>
         </div>
       </div>
+      <div class="bg-gray-50 px-5 py-3 border-t flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-box-open text-gray-400"></i>
+          <span class="text-sm text-gray-600">3 Items</span>
+        </div>
+        <button class="text-sm font-medium text-green-600 hover:text-green-800 transition">
+          <a href="keranjang.html">Pesan Lagi</a>
+        </button>
+      </div>
     </div>
-    <hr class="footer-line" />
-    <div class="footer-bottom">
-      <img src="image/logo2.png" alt="Footer Logo" class="footer-logo">
-      <p>© 2025 MinumanKita. All Rights Reserved.</p>
-      <p>
-        <a href="#">Kebijakan Privasi</a> |
-        <a href="#">Syarat & Ketentuan</a>
-      </p>
-    </div>
-  </footer>
 
-  <script>
-    // Filter functionality
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        
-        const filter = this.dataset.filter;
-        document.querySelectorAll('.transaction-card').forEach(card => {
-          if (filter === 'all') {
-            card.style.display = 'block';
-          } else {
-            const status = card.querySelector('.status-completed, .status-pending, .status-cancelled').classList.contains(`status-${filter}`);
-            card.style.display = status ? 'block' : 'none';
-          }
+    <!-- Transaction 2 -->
+    <div class="transaction-card bg-white rounded-lg shadow-sm overflow-hidden">
+      <div class="p-5">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+          <div class="mb-4 md:mb-0">
+            <div class="flex items-center space-x-3">
+              <span class="status-pending px-3 py-1 rounded-full text-xs font-medium">Proses</span>
+              <span class="text-gray-500 text-sm">#ZP-20230610-045</span>
+            </div>
+            <h3 class="text-lg font-semibold mt-2">Choco Lava + Thai Tea</h3>
+            <p class="text-gray-600 text-sm mt-1">10 Juni 2023 • 14:45 WIB</p>
+          </div>
+          <div class="text-right">
+            <p class="text-gray-600 text-sm">Total Belanja</p>
+            <p class="text-lg font-bold text-green-700">Rp 68.000</p>
+            <a href="detail_historytransaksi.html" class="inline-block mt-2 text-sm font-medium text-green-600 hover:text-green-800 transition">
+              Lihat Detail <i class="fas fa-chevron-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-50 px-5 py-3 border-t flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-box-open text-gray-400"></i>
+          <span class="text-sm text-gray-600">2 Items</span>
+        </div>
+        <button class="text-sm font-medium text-green-600 hover:text-green-800 transition">
+          <a href="keranjang.html">Pesan Lagi</a>
+        </button>
+      </div>
+    </div>
+
+    <!-- Transaction 3 -->
+    <div class="transaction-card bg-white rounded-lg shadow-sm overflow-hidden">
+      <div class="p-5">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+          <div class="mb-4 md:mb-0">
+            <div class="flex items-center space-x-3">
+              <span class="status-completed px-3 py-1 rounded-full text-xs font-medium">Selesai</span>
+              <span class="text-gray-500 text-sm">#ZP-20230528-112</span>
+            </div>
+            <h3 class="text-lg font-semibold mt-2">Minuman Keluarga</h3>
+            <p class="text-gray-600 text-sm mt-1">28 Mei 2023 • 09:30 WIB</p>
+          </div>
+          <div class="text-right">
+            <p class="text-gray-600 text-sm">Total Belanja</p>
+            <p class="text-lg font-bold text-green-700">Rp 185.000</p>
+            <a href="detail_historytransaksi.html" class="inline-block mt-2 text-sm font-medium text-green-600 hover:text-green-800 transition">
+              Lihat Detail <i class="fas fa-chevron-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-50 px-5 py-3 border-t flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-box-open text-gray-400"></i>
+          <span class="text-sm text-gray-600">5 Items</span>
+        </div>
+        <button class="text-sm font-medium text-green-600 hover:text-green-800 transition">
+          <a href="keranjang.html">Pesan Lagi</a>
+        </button>
+      </div>
+    </div>
+
+    <!-- Transaction 4 -->
+    <div class="transaction-card bg-white rounded-lg shadow-sm overflow-hidden">
+      <div class="p-5">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+          <div class="mb-4 md:mb-0">
+            <div class="flex items-center space-x-3">
+              <span class="status-cancelled px-3 py-1 rounded-full text-xs font-medium">Dibatalkan</span>
+              <span class="text-gray-500 text-sm">#ZP-20230515-078</span>
+            </div>
+            <h3 class="text-lg font-semibold mt-2">Ice Kopyor Special</h3>
+            <p class="text-gray-600 text-sm mt-1">15 Mei 2023 • 16:20 WIB</p>
+          </div>
+          <div class="text-right">
+            <p class="text-gray-600 text-sm">Total Belanja</p>
+            <p class="text-lg font-bold text-green-700">Rp 42.000</p>
+            <a href="detail_historytransaksi.html" class="inline-block mt-2 text-sm font-medium text-green-600 hover:text-green-800 transition">
+              Lihat Detail <i class="fas fa-chevron-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-50 px-5 py-3 border-t flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-box-open text-gray-400"></i>
+          <span class="text-sm text-gray-600">1 Item</span>
+        </div>
+        <button class="text-sm font-medium text-green-600 hover:text-green-800 transition">
+          <a href="keranjang.html">Pesan Lagi</a>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="flex justify-center mt-8">
+    <nav class="inline-flex rounded-md shadow-sm">
+      <a href="#" class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+        <i class="fas fa-chevron-left"></i>
+      </a>
+      <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-green-600 font-medium">
+        1
+      </a>
+      <a href="#" class="px-4 py-2 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+        2
+      </a>
+      <a href="#" class="px-4 py-2 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+        3
+      </a>
+      <a href="#" class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+        <i class="fas fa-chevron-right"></i>
+      </a>
+    </nav>
+  </div>
+</div>
+
+<footer class="footer-wave">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h4>Layanan Konsumen</h4>
+      <p><i class="fas fa-building"></i> Direktorat Jenderal PKTN - Kementerian Perdagangan RI</p>
+      <p><i class="fab fa-whatsapp"></i> 0853-1111-1010</p>
+      <p><i class="fas fa-envelope"></i> customercare@zupazips.com</p>
+    </div>
+    <div class="footer-col">
+      <h4>Kontak Kami</h4>
+      <p><i class="fas fa-map-marker-alt"></i> Gedung Graha Ganesha<br>Lantai 1 Suite 120 & 130</p>
+      <p>Jl. Hayam Wuruk No. 28, Gambir, Jakarta Pusat</p>
+      <p><i class="fas fa-phone"></i> (021) 1234567</p>
+    </div>
+    <div class="footer-col">
+      <h4>Ikuti Kami</h4>
+      <p>Dapatkan update terbaru dan promo menarik</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+  <hr class="footer-line" />
+  <div class="footer-bottom">
+    <img src="image/logo2.png" alt="Footer Logo" class="footer-logo">
+    <p>© 2025 MinumanKita. All Rights Reserved.</p>
+    <p>
+      <a href="#">Kebijakan Privasi</a> |
+      <a href="#">Syarat & Ketentuan</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Filter functionality
+  document.addEventListener('DOMContentLoaded', function () {
+    const filterButton = document.getElementById('filterButton');
+    const filterDropdown = document.getElementById('filterDropdown');
+    const filterOptions = document.querySelectorAll('.filter-option');
+
+    if (filterButton && filterDropdown) {
+      filterButton.addEventListener('click', function (e) {
+        e.preventDefault(); // Mencegah aksi default jika ada
+        filterDropdown.classList.toggle('hidden');
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function (event) {
+        if (!filterButton.contains(event.target) && !filterDropdown.contains(event.target)) {
+          filterDropdown.classList.add('hidden');
+        }
+      });
+
+      filterOptions.forEach(option => {
+        option.addEventListener('click', function () {
+          const filter = this.dataset.filter;
+          filterButton.querySelector('span').textContent = this.textContent;
+          filterDropdown.classList.add('hidden');
+
+          document.querySelectorAll('.transaction-card').forEach(card => {
+            if (filter === 'all') {
+              card.style.display = 'block';
+            } else {
+              const status = card.querySelector('.status-completed, .status-pending, .status-cancelled').classList.contains(`status-${filter}`);
+              card.style.display = status ? 'block' : 'none';
+            }
+          });
         });
       });
-    });
-
-    // Update cart count
-    function updateCartCount() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      document.querySelector('.cart-count').textContent = cart.length;
     }
-    
-    document.addEventListener('DOMContentLoaded', updateCartCount);
+  });
 
+  // Update cart count
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = document.querySelector('.cart-count');
+    if (cartCount) {
+      cartCount.textContent = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', updateCartCount);
 
-    // Hamburger Menu
-document.addEventListener('DOMContentLoaded', function () {
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
+  // Hamburger Menu
+  document.addEventListener('DOMContentLoaded', function () {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
 
-  if (hamburger && navMenu) {
-    hamburger.addEventListener('click', function () {
-      navMenu.classList.toggle('hidden');
-    });
-
-    // Tutup menu saat link diklik
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', function () {
-        navMenu.classList.add('hidden');
+    if (hamburger && navMenu) {
+      hamburger.addEventListener('click', function () {
+        navMenu.classList.toggle('active');
       });
-    });
 
-    // Tutup menu saat klik di luar
-    document.addEventListener('click', function (event) {
-      if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
-        navMenu.classList.add('hidden');
-      }
-    });
-  }
+      // Tutup menu saat link diklik
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', function () {
+          navMenu.classList.remove('active');
+        });
+      });
 
-  // Dropdown Profile
-  const profileBtn = document.getElementById('profileBtn');
-  const dropdownMenu = document.getElementById('dropdownMenu');
+      // Tutup menu saat klik di luar
+      document.addEventListener('click', function (event) {
+        if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+          navMenu.classList.remove('active');
+        }
+      });
+    }
 
-  if (profileBtn && dropdownMenu) {
-    profileBtn.addEventListener('click', function () {
-      dropdownMenu.classList.toggle('hidden');
-    });
+    // Dropdown Profile
+    const profileBtn = document.getElementById('profileBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
 
-    // Tutup dropdown saat klik di luar
-    document.addEventListener('click', function (event) {
-      if (!dropdownMenu.contains(event.target) && !profileBtn.contains(event.target)) {
-        dropdownMenu.classList.add('hidden');
-      }
-    });
-  }
+    if (profileBtn && dropdownMenu) {
+      profileBtn.addEventListener('click', function () {
+        dropdownMenu.classList.toggle('hidden');
+      });
+
+      // Tutup dropdown saat klik di luar
+      document.addEventListener('click', function (event) {
+        if (!dropdownMenu.contains(event.target) && !profileBtn.contains(event.target)) {
+          dropdownMenu.classList.add('hidden');
+        }
+      });
+    }
+  });
+   // JavaScript untuk menandai menu aktif
+document.addEventListener('DOMContentLoaded', function() {
+  const currentPage = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('nav a');
+  
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute('href').split('/').pop();
+    if (currentPage === linkPage || 
+        (currentPage === '' && linkPage === 'index.html')) {
+      link.classList.add('active');
+    }
+  });
+
 });
 
-// Saat DOM sudah dimuat
-  document.addEventListener("DOMContentLoaded", function () {
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const transactionCards = document.querySelectorAll(".transaction-card");
-
-    filterButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        // Hapus kelas aktif dari semua tombol
-        filterButtons.forEach((b) => b.classList.remove("bg-green-700", "text-white"));
-        // Tambahkan kelas aktif ke tombol yang diklik
-        btn.classList.add("bg-green-700", "text-white");
-
-        const filter = btn.getAttribute("data-filter");
-
-        transactionCards.forEach((card) => {
-          const statusSpan = card.querySelector("span[class*='status-']");
-          if (!statusSpan) return;
-
-          const statusText = statusSpan.textContent.trim().toLowerCase();
-
-          // Logika filter
-          if (
-            filter === "all" ||
-            (filter === "completed" && statusText === "selesai") ||
-            (filter === "pending" && statusText === "proses") ||
-            (filter === "cancelled" && statusText === "dibatalkan")
-          ) {
-            card.style.display = "block";
-          } else {
-            card.style.display = "none";
-          }
-        });
-      });
-    });
-  });
-  </script>
+</script>
 </body>
 </html>

@@ -1,13 +1,383 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
+<head>
   <meta charset="UTF-8">
   <title>ZupaZips - Minuman Unik</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/chatbot.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* CSS tambahan hanya untuk responsivitas, tidak mengubah desain asli */
+    @media (max-width: 768px) {
+      /* Header */
+      header {
+        padding: 1rem;
+      }
+
+      .left-header {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: #fff;
+        padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-menu a {
+        padding: 0.5rem 0;
+        text-align: center;
+        width: 100%;
+      }
+
+      .profile-container {
+        gap: 0.5rem;
+      }
+
+      .dropdown-content {
+        right: 1rem;
+        min-width: 100px;
+      }
+
+      /* Hero Section */
+      .relative.h-screen {
+        height: 50vh;
+      }
+
+      .relative.h-screen h1 {
+        font-size: 2.5rem;
+      }
+
+      .relative.h-screen p {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+
+      .relative.h-screen a {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      /* Products Section */
+      .products-section {
+        padding: 2rem 1rem;
+      }
+
+      .products-grid {
+        gap: 0.75rem;
+        padding: 0.5rem;
+      }
+
+      .product-card {
+        flex: 0 0 150px;
+      }
+
+      .product-image {
+        height: 120px;
+      }
+
+      .product-name {
+        font-size: 0.9rem;
+      }
+
+      #prevBtn, #nextBtn {
+        padding: 0.5rem;
+      }
+
+      /* News Section */
+      .news-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .news-item {
+        flex: 1 1 100%;
+      }
+
+      /* Articles Section */
+      .articles-section {
+        padding: 2rem 1rem;
+      }
+
+      .articles-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .article-card {
+        flex: 1 1 100%;
+      }
+
+      .article-image {
+        height: 150px;
+      }
+
+      .see-more-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+
+        /* Smartphone Section */
+      .smartphone-section {
+        padding: 2rem 1rem;/* Smartphone Section */
+      .smartphone-section {
+        padding: 2rem 1rem;
+      }
+
+      .smartphone-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .smartphone-wrapper {
+        max-width: 250px;
+        width: 100%;
+        position: relative;
+      }
+
+      .smartphone {
+        width: 100%;
+        height: 0;
+        padding-bottom: 177.78%; /* Rasio 9:16 untuk handphone (standar vertikal) */
+        position: relative;
+        overflow: hidden;
+      }
+
+      .smartphone-video {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover; /* Memastikan video mengisi seluruh area */
+      }
+
+      .smartphone-text {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        justify-items: center;
+      }
+
+      .download-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      .download-buttons img {
+        max-width: 150px;
+        width: 100%;
+      }
+
+      .additional-image {
+        text-align: center;
+      }
+
+      .additional-image img {
+        max-width: 300px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      }
+
+      .smartphone-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center; /* Memusatkan konten */
+      }
+
+      .smartphone-wrapper {
+        max-width: 250px;
+        width: 100%;
+      }
+
+      .smartphone-video {
+        width: 100%;
+        height: auto;
+        object-fit: cover; /* Memastikan video mengisi seluruh area */
+      }
+
+      .smartphone-text {
+        text-align: center; /* Rata tengah teks */
+        margin-bottom: 1rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        justify-items: center; /* Memusatkan item fitur */
+      }
+
+      .download-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center; /* Memusatkan tombol download */
+      }
+
+      .download-buttons img {
+        max-width: 150px;
+        width: 100%;
+      }
+
+      .additional-image {
+        text-align: center; /* Memusatkan gambar tambahan */
+      }
+
+      .additional-image img {
+        max-width: 300px; /* Meningkatkan ukuran gambar */
+        width: 100%;
+        margin: 0 auto; /* Memastikan gambar terpusat */
+      }
+
+      /* Review Section */
+      .review-card {
+        flex: 0 0 200px;
+      }
+
+      .review-card img {
+        max-width: 70px; /* Meningkatkan ukuran gambar profil di layar sangat kecil */
+        height: auto;
+      }
+
+      .review-card p {
+        font-size: 0.8rem;
+      }
+
+
+      /* Chatbot */
+      #chatbot {
+        width: 90%;
+        right: 5%;
+        bottom: 70px;
+      }
+
+      .chat-options button {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+      }
+
+      #chat-toggle {
+        bottom: 20px;
+        right: 20px;
+        padding: 0.5rem;
+      }
+
+      /* Footer */
+      .footer-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .footer-col {
+        flex: 1 1 100%;
+      }
+
+      .social-icons {
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .footer-logo {
+        max-width: 100px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Header */
+      .logo img {
+        height: 30px;
+      }
+
+      /* Hero Section */
+      .relative.h-screen h1 {
+        font-size: 2rem;
+      }
+
+      .relative.h-screen p {
+        font-size: 0.9rem;
+      }
+
+      /* Products Section */
+      .product-card {
+        flex: 0 0 120px;
+      }
+
+      .product-image {
+        height: 100px;
+      }
+
+      .product-name {
+        font-size: 0.8rem;
+      }
+
+      /* Articles Section */
+      .article-image {
+        height: 120px;
+      }
+
+      .article-title {
+        font-size: 1rem;
+      }
+
+      .article-excerpt {
+        font-size: 0.8rem;
+      }
+
+      /* Smartphone Section */
+      .smartphone-wrapper {
+        max-width: 200px;
+      }
+
+      .download-buttons img {
+        max-width: 120px;
+      }
+
+      /* Review Section */
+      .review-card {
+        flex: 0 0 200px;
+      }
+
+      .review-card img {
+        max-width: 50px;
+      }
+
+      .review-card p {
+        font-size: 0.8rem;
+      }
+
+      /* Chatbot */
+      .chat-header {
+        font-size: 0.9rem;
+      }
+
+      .bot-message {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
 </head>
 <body>
 <header>
@@ -28,10 +398,6 @@
   <div class="profile-container">
     <a href="Histrorytransaksi.html" class="history-icon" title="Riwayat Transaksi">
       <i class="fas fa-history"></i>
-    </a>
-    <a href="keranjang.html" class="cart-icon">
-      <i class="fas fa-shopping-cart"></i>
-      <span class="cart-count">0</span>
     </a>
     <img src="image/profile.jpg" alt="Profile" class="profile-img" id="profileBtn">
     <div class="dropdown-content" id="dropdownMenu">
@@ -163,25 +529,24 @@
     </div>
   </section>
   <!-- News Section -->
- 
+  <section class="news-section fade-in-right">
     <h2 class="section-title">kenapa Harus Seweger?</h2>
     <div class="news-container flex justify-center gap-8 mt-8">
       <div class="news-item">
-  <img src="image/logohalal.jpg" alt="Halal Certification" class="mx-auto mb-4">
-  <div class="news-content">
-    <p>Halal Certification<br>Suweger telah mendapatkan sertifikasi Halal dari MUI...</p>
-  </div>
-</div>
+        <img src="image/logohalal.jpg" alt="Halal Certification" class="mx-auto mb-4">
+        <div class="news-content">
+          <p>Halal Certification<br>Suweger telah mendapatkan sertifikasi Halal dari MUI...</p>
+        </div>
+      </div>
       <div class="news-item">
         <img src="image/logo2.png" alt="Best Brand Winner 2025" class="mx-auto mb-4">
         <p>Best Brand Winner 2025<br>Suweger dinobatkan sebagai Best Brand of the Year dalam kategori minuman oleh The World Branding Awards.</p>
       </div>
       <div class="news-item">
         <img src="image/bes.jpeg" alt="Coffee Journey" class="mx-auto mb-4">
-        <p>Coffee Journey<br>Di Suweger, kami memastikan Anda mendapatkan pengalaman minum terbaik dengan rasa yang  membuat lidah tidak bosan untuk mencoba dan terus mencoba.</p>
+        <p>Coffee Journey<br>Di Suweger, kami memastikan Anda mendapatkan pengalaman minum terbaik dengan rasa yang membuat lidah tidak bosan untuk mencoba dan terus mencoba.</p>
       </div>
     </div>
-   
   </section>
 
   <section class="articles-section fade-in-down">
@@ -226,50 +591,49 @@
     </div>
   </section>
 
- <!-- HTML Structure -->
-<section class="smartphone-section">
-  <h2 class="section-title">App Suweger</h2>
-  <div class="smartphone-container">
-    <div class="smartphone-wrapper">
-      <div class="smartphone">
-        <video autoplay muted loop class="smartphone-video">
-          <source src="image/vidioapp.mp4" type="video/mp4">
-        </video>
+ <!-- Smartphone Section -->
+  <section class="smartphone-section">
+    <h2 class="section-title">App Suweger</h2>
+    <div class="smartphone-container">
+      <div class="smartphone-wrapper">
+        <div class="smartphone">
+          <video autoplay muted loop class="smartphone-video">
+            <source src="image/vidioapp.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="content-wrapper">
+        <p class="smartphone-text">
+          Temukan cara mendapatkan voucher gratis, akses prioritas, dan manfaat tambahan lainnya. Pesan langsung melalui aplikasi Suweger, pilih pengambilan atau pengiriman untuk melewati antrean!
+        </p>
+        <div class="features-grid">
+          <div class="feature-item">
+            <i class="fas fa-gift"></i>
+            <span>Voucher Gratis</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-crown"></i>
+            <span>Akses Prioritas</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-bolt"></i>
+            <span>Pesan Cepat</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-store"></i>
+            <span>Ambil di Tempat</span>
+          </div>
+        </div>
+        <div class="download-buttons">
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+        </div>
+        <div class="additional-image mt-6">
+          <img src="image/tutor.png" alt="Gambar Tambahan" class="w-full max-w-xs rounded-lg shadow-md">
+        </div>
       </div>
     </div>
-    <div class="content-wrapper">
-      <p class="smartphone-text">
-        Temukan cara mendapatkan voucher gratis, akses prioritas, dan manfaat tambahan lainnya. Pesan langsung melalui aplikasi Suweger, pilih pengambilan atau pengiriman untuk melewati antrean!
-      </p>
-      <div class="features-grid">
-        <div class="feature-item">
-          <i class="fas fa-gift"></i>
-          <span>Voucher Gratis</span>
-        </div>
-        <div class="feature-item">
-          <i class="fas fa-crown"></i>
-          <span>Akses Prioritas</span>
-        </div>
-        <div class="feature-item">
-          <i class="fas fa-bolt"></i>
-          <span>Pesan Cepat</span>
-        </div>
-        <div class="feature-item">
-          <i class="fas fa-store"></i>
-          <span>Ambil di Tempat</span>
-        </div>
-      </div>
-      <div class="download-buttons">
-        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play">
-        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
-      </div>
-      <!-- Tambahan gambar baru di bawah tombol download -->
-      <div class="additional-image mt-6">
-        <img src="image/tutor.png" alt="Gambar Tambahan" class="w-full max-w-xs rounded-lg shadow-md">
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
  <!-- Locations Section with Image -->
 <!-- Locations Section with Integrated Search -->
@@ -369,58 +733,55 @@
     }
   }
 </script>
-<section class="review-section">
-  <div class="review-header">
-    <h2>Apa Kata Mereka Tentang <span class="brand">Suweger</span>?</h2>
-  </div>
-
-  <!-- Review Scrollable Container -->
-  <div class="review-slider-container">
-    <div class="review-slider">
-      <!-- Ulangi elemen ini untuk tiap review -->
-      <div class="review-card">
-        <img src="image/profile3.jpg" alt="Foto user">
-        <p>"Minuman segarnya luar biasa! Tempatnya juga nyaman banget 😍"</p>
-        <span>- Dinda, Jakarta</span>
-      </div>
-      <div class="review-card">
-        <img src="image/profile4.jpg" alt="Foto user">
-        <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
-        <span>- Yoga, Bandung</span>
-      </div>
-     <div class="review-card">
-        <img src="image/profile5.jpg" alt="Foto user">
-        <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
-        <span>- Yoga, Bandung</span>
-      </div>
-      <div class="review-card">
-        <img src="image/profile.jpg" alt="Foto user">
-        <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
-        <span>- Yoga, Bandung</span>
-      </div>
-      <div class="review-card">
-        <img src="image/profile3.jpg" alt="Foto user">
-        <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
-        <span>- Yoga, Bandung</span>
-      </div>
-      <div class="review-card">
-        <img src="image/profile4.jpg" alt="Foto user">
-        <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
-        <span>- Yoga, Bandung</span>
+ <!-- Review Section -->
+  <section class="review-section">
+    <div class="review-header">
+      <h2>Apa Kata Mereka Tentang <span class="brand">Suweger</span>?</h2>
+    </div>
+    <div class="review-slider-container">
+      <div class="review-slider">
+        <div class="review-card">
+          <img src="image/profile3.jpg" alt="Foto user">
+          <p>"Minuman segarnya luar biasa! Tempatnya juga nyaman banget 😍"</p>
+          <span>- Dinda, Jakarta</span>
+        </div>
+        <div class="review-card">
+          <img src="image/profile4.jpg" alt="Foto user">
+          <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
+          <span>- Yoga, Bandung</span>
+        </div>
+        <div class="review-card">
+          <img src="image/profile5.jpg" alt="Foto user">
+          <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
+          <span>- Yoga, Bandung</span>
+        </div>
+        <div class="review-card">
+          <img src="image/profile.jpg" alt="Foto user">
+          <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
+          <span>- Yoga, Bandung</span>
+        </div>
+        <div class="review-card">
+          <img src="image/profile3.jpg" alt="Foto user">
+          <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
+          <span>- Yoga, Bandung</span>
+        </div>
+        <div class="review-card">
+          <img src="image/profile4.jpg" alt="Foto user">
+          <p>"Rasa buahnya berasa banget, dan tempatnya bersih. Recommended!"</p>
+          <span>- Yoga, Bandung</span>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="review-form">
+      <h3>Tulis Review Kamu</h3>
+      <form action="#" method="POST" enctype="multipart/form-data">
+        <textarea name="komentar" placeholder="Tulis komentar kamu di sini..." required></textarea>
+        <button type="submit" class="submit-btn">Kirim Review</button>
+      </form>
+    </div>
+  </section>
 
-  <!-- Form Komentar (Tidak Scroll) -->
-  <div class="review-form">
-    <h3>Tulis Review Kamu</h3>
-    <form action="#" method="POST" enctype="multipart/form-data">
-      <textarea name="komentar" placeholder="Tulis komentar kamu di sini..." required></textarea>
-  
-      <button type="submit" class="submit-btn">Kirim Review</button>
-    </form>
-  </div>
-</section>
+
 <!-- Chatbot Widget -->
 <div id="chatbot" class="chatbot">
   <div class="chat-header">🤖 Tanya Produk (Chatbot)</div>
@@ -482,7 +843,7 @@
       </p>
     </div>
   </footer>
-
+<script src="hamburger.js"></script> <!-- Tambahkan ini -->
   <script>
     
     // Profile dropdown functionality
