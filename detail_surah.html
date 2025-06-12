@@ -3,899 +3,1204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-  <title>Al-Qur'an Online</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surah Al-Fatihah - Terjemahan</title>
+    <title>Al-Quran dengan Tajwid - Surah Al-Fatihah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --cream: #f9f8f5;
+            --cream: #f8f5f0;
+            --cream-light: #faf7f2;
+            --cream-dark: #f0ece3;
             --navy: #0a1f3d;
-            --navy-gradient: linear-gradient(135deg, #0a1f3d 0%, #1a3a6a 100%);
+            --navy-light: #1a3a6a;
+            --navy-medium: #2c4c7c;
+            --navy-dark: #0a1f3d;
             --gold: #c5a245;
-            --light-gold: rgba(197, 162, 69, 0.15);
-            --soft-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            --gold-light: #e6d7b0;
+            --gold-dark: #a38535;
+            
+            /* Tajwid Colors */
+            --ghunnah: #4CAF50;
+            --ikhfa: #FF9800;
+            --idgham: #2196F3;
+            --iqlab: #9C27B0;
+            --izhar: #F44336;
+            --madd: #00BCD4;
+            --qalqalah: #795548;
+            --ra: #E91E63;
+            --lam: #607D8B;
+            --waqf: #FF5722;
         }
-        
-        body {
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
-            background-color: var(--cream);
-            color: #333;
+
+        * {
             margin: 0;
             padding: 0;
-            line-height: 1.7;
+            box-sizing: border-box;
         }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-        
-        .surah-title {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        h1 {
-            color: var(--navy);
-            font-size: 2.4rem;
-            margin: 0;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-        
-        .surah-info {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 0.8rem;
-            color: var(--navy);
-            font-size: 0.95rem;
-        }
-        
-        .surah-info span {
-            background-color: rgba(10, 31, 61, 0.1);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-weight: 500;
-        }
-        
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(10, 31, 61, 0.2), transparent);
-            margin: 1.5rem auto;
-            width: 70%;
-            border: none;
-        }
-        
-        .verse-container {
-            background: white;
-            border-radius: 14px;
-            box-shadow: var(--soft-shadow);
-            padding: 1.8rem;
-            margin-bottom: 1.8rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .verse-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--navy-gradient);
-        }
-        
-        .verse-container:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        }
-        
-        .arabic {
-            font-size: 2.1rem;
-            text-align: right;
-            line-height: 3.5rem;
-            margin-bottom: 1.2rem;
-            color: var(--navy);
-            font-weight: bold;
-            font-family: 'Traditional Arabic', 'Amiri', serif;
-            padding: 0 1rem;
-        }
-        
-        .translation-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            padding: 0 0.5rem;
-        }
-        
-        .translation {
-            font-size: 1.05rem;
-            padding: 1rem;
-            background-color: rgba(250, 250, 250, 0.8);
-            border-radius: 8px;
-            border-left: 2px solid var(--gold);
-        }
-        
-        .translation-id {
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
             color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
         }
-        
-        .translation-en {
-            color: #555;
-            font-style: italic;
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
+            width: 100%;
+            box-sizing: border-box;
         }
-        
-        .word-by-word {
-            display: none;
-            margin-top: 1.2rem;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            padding: 1rem 0.5rem;
-            background-color: var(--light-gold);
-            border-radius: 10px;
-        }
-        
-        .word-item {
+
+        .header-content {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            padding: 0.6rem 0.9rem;
-            background-color: white;
-            border-radius: 8px;
-            min-width: 70px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.2s ease;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
-        .word-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-        }
-        
-        .arabic-word {
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-            font-family: 'Traditional Arabic', 'Amiri', serif;
-            color: var(--navy);
-        }
-        
-        .word-meaning {
-            font-size: 0.85rem;
-            text-align: center;
-            color: #555;
-        }
-        
-        .controls {
+
+        .logo {
             display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            margin-bottom: 2.5rem;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            background: var(--navy-gradient);
             color: white;
-            border: none;
-            padding: 0.8rem 1.8rem;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            font-size: 22px;
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1e3a5f;
+        }
+
+        .logo-subtitle {
+            font-size: 12px;
+            color: #4a5568;
+            font-weight: normal;
+        }
+
+        .nav-menu {
             display: flex;
+            gap: 35px;
             align-items: center;
-            gap: 0.6rem;
+        }
+
+        .nav-item {
+            color: #4a5568;
+            text-decoration: none;
             font-weight: 500;
-            box-shadow: 0 4px 8px rgba(10, 31, 61, 0.2);
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(10, 31, 61, 0.25);
-        }
-        
-        .btn:active {
-            transform: translateY(0);
-        }
-        
-        .btn svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-        
-        .verse-number {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 30px;
-            height: 30px;
-            background: var(--navy-gradient);
-            color: white;
-            border-radius: 50%;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-left: 0.6rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(10, 31, 61, 0.1);
-            color: var(--navy);
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        /* Search styles */
-        .search-container {
-            width: 100%;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 0.9rem 1.2rem;
-            border: 1px solid rgba(10, 31, 61, 0.2);
-            border-radius: 30px;
-            font-size: 1rem;
+            padding: 10px 18px;
+            border-radius: 25px;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            font-size: 15px;
         }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 4px 12px rgba(10, 31, 61, 0.15);
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: #1e3a5f;
+            background: rgba(30, 58, 95, 0.1);
+            transform: translateY(-1px);
         }
-        
-        .search-results {
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4a5568;
+            font-size: 14px;
+            padding: 8px 15px;
+            background: rgba(30, 58, 95, 0.05);
+            border-radius: 20px;
+        }
+
+        .time-now {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e3a5f;
+            padding: 8px 15px;
+            background: rgba(30, 58, 95, 0.1);
+            border-radius: 20px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #1e3a5f;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu {
+            display: none;
             position: absolute;
             top: 100%;
             left: 0;
             right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(30, 58, 95, 0.1);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* Surah Title Styles */
+        .surah-title-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .main-title {
+            font-family: 'Amiri', serif;
+            font-size: 3rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: var(--navy-light);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .surah-info {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: var(--navy);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Search Styles */
+        .search-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--gold-light);
+            border-radius: 50px;
+            font-size: 1.1rem;
             background: white;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-            max-height: 300px;
-            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(197, 162, 69, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: var(--navy);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--navy-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+        }
+
+        .btn-outline:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        /* Tajwid Legend */
+        .tajwid-legend {
+            background: var(--cream-light);
+            border: 2px solid var(--gold-light);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tajwid-legend.hidden {
             display: none;
         }
-        
-        .search-result-item {
-            padding: 0.8rem 1.2rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .search-result-item:hover {
-            background-color: rgba(10, 31, 61, 0.05);
-        }
-        
-        .search-result-item:last-child {
-            border-bottom: none;
-        }
-        
-        .search-highlight {
-            background-color: rgba(197, 162, 69, 0.3);
-            padding: 0 2px;
-            border-radius: 2px;
-        }
-        
-        .no-results {
-            padding: 1rem;
+
+        .legend-title {
             text-align: center;
-            color: #666;
-            font-style: italic;
-        }
-        
-        /* Quick jump to verse */
-        .verse-jump {
-            display: flex;
-            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--navy);
             margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
         }
-        
-        .verse-jump-btn {
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .legend-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            flex-shrink: 0;
+        }
+
+        .legend-text {
+            flex: 1;
+        }
+
+        .legend-name {
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.2rem;
+        }
+
+        .legend-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Verse Styles */
+        .verse-container {
+            background: var(--cream-light);
+            border: 2px solid var(--gold-light);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .verse-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .verse-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .verse-number-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .verse-number {
             width: 40px;
             height: 40px;
+            background: var(--navy);
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: white;
-            border: 1px solid rgba(10, 31, 61, 0.1);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 500;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .verse-label {
+            font-size: 1.1rem;
+            font-weight: 600;
             color: var(--navy);
         }
-        
-        .verse-jump-btn:hover {
-            background: var(--navy-gradient);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(10, 31, 61, 0.2);
+
+        .audio-btn {
+            background: transparent;
+            border: 2px solid var(--navy);
+            color: var(--navy);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
         }
-        
-        .verse-jump-btn.active {
-            background: var(--navy-gradient);
+
+        .audio-btn:hover {
+            background: var(--navy);
             color: white;
         }
-        
-        /* Hidden verse */
-        .verse-container.hidden {
+
+        .audio-btn.playing {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: white;
+        }
+
+        /* Arabic Text */
+        .arabic-container {
+            background: linear-gradient(135deg, var(--cream-light) 0%, var(--cream) 100%);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: right;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 2.5rem;
+            line-height: 4rem;
+            color: var(--navy);
+            font-weight: 400;
+        }
+
+        .arabic-word {
+            margin: 0 0.3rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .arabic-word:hover {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tajwid Colors */
+        .tajwid-ghunnah { color: var(--ghunnah) !important; font-weight: 700; }
+        .tajwid-ikhfa { color: var(--ikhfa) !important; font-weight: 700; }
+        .tajwid-idgham { color: var(--idgham) !important; font-weight: 700; }
+        .tajwid-iqlab { color: var(--iqlab) !important; font-weight: 700; }
+        .tajwid-izhar { color: var(--izhar) !important; font-weight: 700; }
+        .tajwid-madd { color: var(--madd) !important; font-weight: 700; }
+        .tajwid-qalqalah { color: var(--qalqalah) !important; font-weight: 700; }
+        .tajwid-ra { color: var(--ra) !important; font-weight: 700; }
+        .tajwid-lam { color: var(--lam) !important; font-weight: 700; }
+        .tajwid-waqf { color: var(--waqf) !important; font-weight: 700; }
+
+        /* Translation Styles */
+        .translations {
+            margin-bottom: 1.5rem;
+        }
+
+        .translation {
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid;
+        }
+
+        .translation-id {
+            background: #eff6ff;
+            border-left-color: #3b82f6;
+            color: #1e40af;
+        }
+
+        .translation-en {
+            background: #f0fdf4;
+            border-left-color: #22c55e;
+            color: #166534;
+            font-style: italic;
+        }
+
+        /* Word by Word */
+        .word-by-word {
+            background: var(--cream);
+            border: 1px solid var(--gold-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .word-by-word.hidden {
             display: none;
         }
-        
-        /* Scroll to verse animation */
-        .verse-container.highlight {
-            animation: highlight 2s ease;
+
+        .word-by-word-title {
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
-        
-        @keyframes highlight {
-            0% { background-color: rgba(197, 162, 69, 0.1); }
-            100% { background-color: white; }
+
+        .word-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
-        
+
+        .word-item {
+            background: var(--cream-light);
+            border: 1px solid var(--gold-light);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            min-width: 100px;
+            transition: all 0.3s ease;
+        }
+
+        .word-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .word-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .word-meaning {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gold-light);
+            color: #666;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .container {
-                padding: 1.5rem 1rem;
+                padding: 1rem 0.5rem;
             }
-            
-            h1 {
+
+            .main-title {
                 font-size: 2rem;
             }
-            
-            .arabic {
-                font-size: 1.8rem;
+
+            .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .arabic-text {
+                font-size: 2rem;
                 line-height: 3rem;
-                padding: 0 0.5rem;
             }
-            
-            .verse-container {
-                padding: 1.5rem 1.2rem;
+
+            .surah-info {
+                flex-direction: column;
+                align-items: center;
             }
-            
+
             .controls {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .btn {
                 width: 100%;
                 max-width: 300px;
                 justify-content: center;
-                padding: 0.8rem 1.5rem;
+            }
+
+            .verse-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .legend-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .word-grid {
+                justify-content: center;
             }
             
-            .search-input {
-                padding: 0.8rem 1rem;
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .user-info {
+                gap: 10px;
+            }
+            
+            .location,
+            .time-now {
+                font-size: 12px;
+                padding: 6px 10px;
             }
         }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Highlight Animation */
+        @keyframes highlight {
+            0% {
+                background-color: rgba(10, 31, 61, 0.1);
+                transform: scale(1.02);
+            }
+            100% {
+                background-color: var(--cream-light);
+                transform: scale(1);
+            }
+        }
+
+        .verse-highlight {
+            animation: highlight 2s ease-in-out;
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Portal - Website Islam Terlengkap</title>
-     <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="background-overlay"></div>
-    
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon">🕌</div>
-                    <div>
-                        <div class="logo-text">IslamicCalm</div>
-                    </div>
-                </a>
-                
-                <nav class="nav-menu">
-                    <a href="index.html" class="nav-item active">Beranda</a>
-                    <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
-                    <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
-                    <a href="artikel.html" class="nav-item">Artikel</a>
-                    <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
-                </nav>
-                
-                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-                
-                <div class="user-info">
-                    <div class="location">
-                        <span>📍</span>
-                        <span id="userLocation">Jakarta, Indonesia</span>
-                    </div>
-                    <div class="time-now" id="currentTime">12:34:56</div>
+    <!-- Header dengan style dari halaman list surah -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🕌</div>
+                <div>
+                    <div class="logo-text">IslamicCalm</div>
                 </div>
-            </div>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item active">Al-Quran</a>
+                <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
+                <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
             
-            <div class="mobile-menu" id="mobileMenu">
-                <nav class="mobile-nav">
-                    <a href="index.html" class="nav-item active">Beranda</a>
-                    <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
-                    <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
-                    <a href="artikel.html" class="nav-item">Artikel</a>
-                    <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
-                </nav>
-            </div>
-        </header>
-    <div class="container">
-        <header>
-            <div class="surah-title">
-                <h1>Al-Fatihah <span class="verse-number">1</span></h1>
-                <div class="surah-info">
-                    <span>Makkiyah - 7 Ayat</span>
-                    <span>Pembukaan</span>
+            <div class="user-info">
+                <div class="location">
+                    <span>📍</span>
+                    <span id="userLocation">Jakarta, Indonesia</span>
                 </div>
+                <div class="time-now" id="currentTime">12:34:56</div>
             </div>
-            <hr class="divider">
-        </header>
+        </div>
         
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="mobile-nav">
+                <a href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item active">Al-Quran</a>
+                <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
+                <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Surah Title -->
+        <div class="surah-title-container">
+            <h1 class="main-title">سُورَةُ الْفَاتِحَة</h1>
+            <h2 class="subtitle">Al-Fatihah (Pembukaan)</h2>
+            <div class="surah-info">
+                <span class="badge">Makkiyah</span>
+                <span class="badge">7 Ayat</span>
+            </div>
+        </div>
+
+        <!-- Search -->
         <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
             <input type="text" id="searchInput" class="search-input" placeholder="Cari ayat atau terjemahan...">
-            <div class="search-results" id="searchResults"></div>
         </div>
-        
-        <div class="verse-jump" id="verseJump">
-            <!-- Verse jump buttons will be added by JavaScript -->
-        </div>
-        
+
+        <!-- Controls -->
         <div class="controls">
-            <button id="toggleBtn" class="btn">
-                <svg viewBox="0 0 24 24"><path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,20c-4.42,0-8-3.58-8-8s3.58-8,8-8 s8,3.58,8,8S16.42,20,12,20z"/><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7z M12,15c-1.65,0-3-1.35-3-3s1.35-3,3-3s3,1.35,3,3 S13.65,15,12,15z"/></svg>
-                Terjemahan Perkata
+            <button id="toggleWordBtn" class="btn">
+                <i class="fas fa-book"></i>
+                <span>Tampilkan Perkata</span>
+            </button>
+            <button id="toggleLegendBtn" class="btn btn-outline">
+                <i class="fas fa-palette"></i>
+                <span>Keterangan Tajwid</span>
             </button>
         </div>
-        
-        <!-- Ayat 1 -->
-        <div class="verse-container" data-verse="1">
-            <div class="arabic">
-                بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-            </div>
-            
-            <div class="translation-container">
-                <div class="translation translation-id">
-                    <strong>1.</strong> Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.
+
+        <!-- Tajwid Legend -->
+        <div id="tajwidLegend" class="tajwid-legend">
+            <h3 class="legend-title">Keterangan Warna Tajwid</h3>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--ghunnah)"></div>
+                    <div class="legend-text">
+                        <div class="legend-name">Ghunnah</div>
+                        <div class="legend-desc">Dengung pada huruf Nun dan Mim</div>
+                    </div>
                 </div>
-                <div class="translation translation-en">
-                    <strong>1.</strong> In the name of Allah, the Entirely Merciful, the Especially Merciful.
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--ikhfa)"></div>
+                    <div class="legend-text">
+                        <div class="legend-name">Ikhfa</div>
+                        <div class="legend-desc">Menyembunyikan bunyi Nun Sukun/Tanwin</div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="word-by-word">
-                <div class="word-item">
-                    <span class="arabic-word">بِسْمِ</span>
-                    <span class="word-meaning">Dengan nama</span>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--idgham)"></div>
+                    <div class="legend-text">
+                        <div class="legend-name">Idgham</div>
+                        <div class="legend-desc">Memasukkan huruf ke huruf lain</div>
+                    </div>
                 </div>
-                <div class="word-item">
-                    <span class="arabic-word">ٱللَّٰهِ</span>
-                    <span class="word-meaning">Allah</span>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--iqlab)"></div>
+                    <div class="legend-text">
+                        <div class="legend-name">Iqlab</div>
+                        <div class="legend-desc">Mengubah Nun Sukun/Tanwin menjadi Mim</div>
+                    </div>
                 </div>
-                <div class="word-item">
-                    <span class="arabic-word">ٱلرَّحْمَٰنِ</span>
-                    <span class="word-meaning">Yang Maha Pengasih</span>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--izhar)"></div>
+                    <div class="legend-text">
+                        <div class="legend-name">Izhar</div>
+                        <div class="legend-desc">Menjelaskan bacaan Nun Sukun/Tanwin</div>
+                    </div>
                 </div>
-                <div class="word-item">
-                    <span class="arabic-word">ٱلرَّحِيمِ</span>
-                    <span class="word-meaning">Maha Penyayang</span>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--madd)"></div>
+                    <div class="legend-text">
+                        <div class="legend-name">Madd</div>
+                        <div class="legend-desc">Memanjangkan bacaan huruf Mad</div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        
-        <!-- Ayat 2 -->
-        <div class="verse-container" data-verse="2">
-            <div class="arabic">
-                ٱلْحَمْدُ لِلَّٰهِ رَبِّ ٱلْعَٰلَمِينَ
-            </div>
-            
-            <div class="translation-container">
-                <div class="translation translation-id">
-                    <strong>2.</strong> Segala puji bagi Allah, Tuhan seluruh alam,
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--qalqalah)"></div>
+                    <div class="legend-text">
+                        <div class="legend-name">Qalqalah</div>
+                        <div class="legend-desc">Memantulkan huruf Qaf, Tho, Ba, Jim, Dal</div>
+                    </div>
                 </div>
-                <div class="translation translation-en">
-                    <strong>2.</strong> [All] praise is [due] to Allah, Lord of the worlds -
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--ra)"></div>
+                    <div class="legend-text">
+                        <div class="legend-name">Ra (Tafkhim/Tarqiq)</div>
+                        <div class="legend-desc">Tebal/tipis pada huruf Ra</div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="word-by-word">
-                <div class="word-item">
-                    <span class="arabic-word">ٱلْحَمْدُ</span>
-                    <span class="word-meaning">Segala puji</span>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--lam)"></div>
+                    <div class="legend-text">
+                        <div class="legend-name">Lam</div>
+                        <div class="legend-desc">Bacaan Lam pada Lafzhul Jalalah</div>
+                    </div>
                 </div>
-                <div class="word-item">
-                    <span class="arabic-word">لِلَّٰهِ</span>
-                    <span class="word-meaning">bagi Allah</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">رَبِّ</span>
-                    <span class="word-meaning">Tuhan</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">ٱلْعَٰلَمِينَ</span>
-                    <span class="word-meaning">seluruh alam</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Ayat 3 -->
-        <div class="verse-container" data-verse="3">
-            <div class="arabic">
-                ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-            </div>
-            
-            <div class="translation-container">
-                <div class="translation translation-id">
-                    <strong>3.</strong> Yang Maha Pengasih, Maha Penyayang,
-                </div>
-                <div class="translation translation-en">
-                    <strong>3.</strong> The Entirely Merciful, the Especially Merciful,
-                </div>
-            </div>
-            
-            <div class="word-by-word">
-                <div class="word-item">
-                    <span class="arabic-word">ٱلرَّحْمَٰنِ</span>
-                    <span class="word-meaning">Yang Maha Pengasih</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">ٱلرَّحِيمِ</span>
-                    <span class="word-meaning">Maha Penyayang</span>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--waqf)"></div>
+                    <div class="legend-text">
+                        <div class="legend-name">Waqf</div>
+                        <div class="legend-desc">Tanda berhenti dalam bacaan</div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Ayat 4 -->
-        <div class="verse-container" data-verse="4">
-            <div class="arabic">
-                مَٰلِكِ يَوْمِ ٱلدِّينِ
-            </div>
-            
-            <div class="translation-container">
-                <div class="translation translation-id">
-                    <strong>4.</strong> Pemilik hari pembalasan.
-                </div>
-                <div class="translation translation-en">
-                    <strong>4.</strong> Sovereign of the Day of Recompense.
-                </div>
-            </div>
-            
-            <div class="word-by-word">
-                <div class="word-item">
-                    <span class="arabic-word">مَٰلِكِ</span>
-                    <span class="word-meaning">Pemilik</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">يَوْمِ</span>
-                    <span class="word-meaning">hari</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">ٱلدِّينِ</span>
-                    <span class="word-meaning">pembalasan</span>
-                </div>
-            </div>
+
+        <!-- Verses Container -->
+        <div id="versesContainer">
+            <!-- Verses will be generated by JavaScript -->
         </div>
-        
-        <!-- Ayat 5 -->
-        <div class="verse-container" data-verse="5">
-            <div class="arabic">
-                إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ
-            </div>
-            
-            <div class="translation-container">
-                <div class="translation translation-id">
-                    <strong>5.</strong> Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami mohon pertolongan.
-                </div>
-                <div class="translation translation-en">
-                    <strong>5.</strong> It is You we worship and You we ask for help.
-                </div>
-            </div>
-            
-            <div class="word-by-word">
-                <div class="word-item">
-                    <span class="arabic-word">إِيَّاكَ</span>
-                    <span class="word-meaning">Hanya kepada Engkaulah</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">نَعْبُدُ</span>
-                    <span class="word-meaning">kami menyembah</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">وَإِيَّاكَ</span>
-                    <span class="word-meaning">dan hanya kepada Engkaulah</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">نَسْتَعِينُ</span>
-                    <span class="word-meaning">kami mohon pertolongan</span>
-                </div>
-            </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Surah Al-Fatihah dengan Tajwid dan Audio | © 2024 Quran Digital</p>
         </div>
-        
-        <!-- Ayat 6 -->
-        <div class="verse-container" data-verse="6">
-            <div class="arabic">
-                ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ
-            </div>
-            
-            <div class="translation-container">
-                <div class="translation translation-id">
-                    <strong>6.</strong> Tunjukilah kami jalan yang lurus,
-                </div>
-                <div class="translation translation-en">
-                    <strong>6.</strong> Guide us to the straight path -
-                </div>
-            </div>
-            
-            <div class="word-by-word">
-                <div class="word-item">
-                    <span class="arabic-word">ٱهْدِنَا</span>
-                    <span class="word-meaning">Tunjukilah kami</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">ٱلصِّرَٰطَ</span>
-                    <span class="word-meaning">jalan</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">ٱلْمُسْتَقِيمَ</span>
-                    <span class="word-meaning">yang lurus</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Ayat 7 -->
-        <div class="verse-container" data-verse="7">
-            <div class="arabic">
-                صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ
-            </div>
-            
-            <div class="translation-container">
-                <div class="translation translation-id">
-                    <strong>7.</strong> (yaitu) jalan orang-orang yang telah Engkau beri nikmat kepadanya; bukan (jalan) mereka yang dimurkai dan bukan (pula jalan) mereka yang sesat.
-                </div>
-                <div class="translation translation-en">
-                    <strong>7.</strong> The path of those upon whom You have bestowed favor, not of those who have evoked [Your] anger or of those who are astray.
-                </div>
-            </div>
-            
-            <div class="word-by-word">
-                <div class="word-item">
-                    <span class="arabic-word">صِرَٰطَ</span>
-                    <span class="word-meaning">jalan</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">ٱلَّذِينَ</span>
-                    <span class="word-meaning">orang-orang yang</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">أَنْعَمْتَ</span>
-                    <span class="word-meaning">Engkau beri nikmat</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">عَلَيْهِمْ</span>
-                    <span class="word-meaning">kepada mereka</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">غَيْرِ</span>
-                    <span class="word-meaning">bukan</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">ٱلْمَغْضُوبِ</span>
-                    <span class="word-meaning">mereka yang dimurkai</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">عَلَيْهِمْ</span>
-                    <span class="word-meaning">kepada mereka</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">وَلَا</span>
-                    <span class="word-meaning">dan tidak</span>
-                </div>
-                <div class="word-item">
-                    <span class="arabic-word">ٱلضَّآلِّينَ</span>
-                    <span class="word-meaning">mereka yang sesat</span>
-                </div>
-            </div>
-        </div>
-        
-        <footer>
-            <p>Surah Al-Fatihah - The Opening | &copy; 2023 Quran Digital</p>
-        </footer>
     </div>
 
     <script>
+        // Verses data with tajwid markup
+        const versesData = [
+            {
+                number: 1,
+                arabic: [
+                    { text: "بِسْمِ", tajwid: "normal" },
+                    { text: "ٱللَّٰهِ", tajwid: "lam" },
+                    { text: "ٱلرَّحْمَٰنِ", tajwid: "madd" },
+                    { text: "ٱلرَّحِيمِ", tajwid: "madd" }
+                ],
+                translationId: "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.",
+                translationEn: "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
+                wordByWord: [
+                    { arabic: "بِسْمِ", meaning: "Dengan nama" },
+                    { arabic: "ٱللَّٰهِ", meaning: "Allah" },
+                    { arabic: "ٱلرَّحْمَٰنِ", meaning: "Yang Maha Pengasih" },
+                    { arabic: "ٱلرَّحِيمِ", meaning: "Maha Penyayang" }
+                ]
+            },
+            {
+                number: 2,
+                arabic: [
+                    { text: "ٱلْحَمْدُ", tajwid: "normal" },
+                    { text: "لِلَّٰهِ", tajwid: "lam" },
+                    { text: "رَبِّ", tajwid: "normal" },
+                    { text: "ٱلْعَٰلَمِينَ", tajwid: "madd" }
+                ],
+                translationId: "Segala puji bagi Allah, Tuhan seluruh alam,",
+                translationEn: "[All] praise is [due] to Allah, Lord of the worlds -",
+                wordByWord: [
+                    { arabic: "ٱلْحَمْدُ", meaning: "Segala puji" },
+                    { arabic: "لِلَّٰهِ", meaning: "bagi Allah" },
+                    { arabic: "رَبِّ", meaning: "Tuhan" },
+                    { arabic: "ٱلْعَٰلَمِينَ", meaning: "seluruh alam" }
+                ]
+            },
+            {
+                number: 3,
+                arabic: [
+                    { text: "ٱلرَّحْمَٰنِ", tajwid: "madd" },
+                    { text: "ٱلرَّحِيمِ", tajwid: "madd" }
+                ],
+                translationId: "Yang Maha Pengasih, Maha Penyayang,",
+                translationEn: "The Entirely Merciful, the Especially Merciful,",
+                wordByWord: [
+                    { arabic: "ٱلرَّحْمَٰنِ", meaning: "Yang Maha Pengasih" },
+                    { arabic: "ٱلرَّحِيمِ", meaning: "Maha Penyayang" }
+                ]
+            },
+            {
+                number: 4,
+                arabic: [
+                    { text: "مَٰلِكِ", tajwid: "madd" },
+                    { text: "يَوْمِ", tajwid: "normal" },
+                    { text: "ٱلدِّينِ", tajwid: "ghunnah" }
+                ],
+                translationId: "Pemilik hari pembalasan.",
+                translationEn: "Sovereign of the Day of Recompense.",
+                wordByWord: [
+                    { arabic: "مَٰلِكِ", meaning: "Pemilik" },
+                    { arabic: "يَوْمِ", meaning: "hari" },
+                    { arabic: "ٱلدِّينِ", meaning: "pembalasan" }
+                ]
+            },
+            {
+                number: 5,
+                arabic: [
+                    { text: "إِيَّاكَ", tajwid: "madd" },
+                    { text: "نَعْبُدُ", tajwid: "normal" },
+                    { text: "وَإِيَّاكَ", tajwid: "madd" },
+                    { text: "نَسْتَعِينُ", tajwid: "ghunnah" }
+                ],
+                translationId: "Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami mohon pertolongan.",
+                translationEn: "It is You we worship and You we ask for help.",
+                wordByWord: [
+                    { arabic: "إِيَّاكَ", meaning: "Hanya kepada Engkaulah" },
+                    { arabic: "نَعْبُدُ", meaning: "kami menyembah" },
+                    { arabic: "وَإِيَّاكَ", meaning: "dan hanya kepada Engkaulah" },
+                    { arabic: "نَسْتَعِينُ", meaning: "kami mohon pertolongan" }
+                ]
+            },
+            {
+                number: 6,
+                arabic: [
+                    { text: "ٱهْدِنَا", tajwid: "normal" },
+                    { text: "ٱلصِّرَٰطَ", tajwid: "madd" },
+                    { text: "ٱلْمُسْتَقِيمَ", tajwid: "madd" }
+                ],
+                translationId: "Tunjukilah kami jalan yang lurus,",
+                translationEn: "Guide us to the straight path -",
+                wordByWord: [
+                    { arabic: "ٱهْدِنَا", meaning: "Tunjukilah kami" },
+                    { arabic: "ٱلصِّرَٰطَ", meaning: "jalan" },
+                    { arabic: "ٱلْمُسْتَقِيمَ", meaning: "yang lurus" }
+                ]
+            },
+            {
+                number: 7,
+                arabic: [
+                    { text: "صِرَٰطَ", tajwid: "madd" },
+                    { text: "ٱلَّذِينَ", tajwid: "ghunnah" },
+                    { text: "أَنْعَمْتَ", tajwid: "ikhfa" },
+                    { text: "عَلَيْهِمْ", tajwid: "normal" },
+                    { text: "غَيْرِ", tajwid: "ra" },
+                    { text: "ٱلْمَغْضُوبِ", tajwid: "normal" },
+                    { text: "عَلَيْهِمْ", tajwid: "normal" },
+                    { text: "وَلَا", tajwid: "normal" },
+                    { text: "ٱلضَّآلِّينَ", tajwid: "madd" }
+                ],
+                translationId: "(yaitu) jalan orang-orang yang telah Engkau beri nikmat kepadanya; bukan (jalan) mereka yang dimurkai dan bukan (pula jalan) mereka yang sesat.",
+                translationEn: "The path of those upon whom You have bestowed favor, not of those who have evoked [Your] anger or of those who are astray.",
+                wordByWord: [
+                    { arabic: "صِرَٰطَ", meaning: "jalan" },
+                    { arabic: "ٱلَّذِينَ", meaning: "orang-orang yang" },
+                    { arabic: "أَنْعَمْتَ", meaning: "Engkau beri nikmat" },
+                    { arabic: "عَلَيْهِمْ", meaning: "kepada mereka" },
+                    { arabic: "غَيْرِ", meaning: "bukan" },
+                    { arabic: "ٱلْمَغْضُوبِ", meaning: "mereka yang dimurkai" },
+                    { arabic: "عَلَيْهِمْ", meaning: "kepada mereka" },
+                    { arabic: "وَلَا", meaning: "dan tidak" },
+                    { arabic: "ٱلضَّآلِّينَ", meaning: "mereka yang sesat" }
+                ]
+            }
+        ];
+
+        // Global variables
+        let showWordByWord = false;
+        let showTajwidLegend = true;
+        let currentPlaying = null;
+        let audioElements = {};
+
+        // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
-            const toggleBtn = document.getElementById('toggleBtn');
-            const wordTranslations = document.querySelectorAll('.word-by-word');
-            const searchInput = document.getElementById('searchInput');
-            const searchResults = document.getElementById('searchResults');
-            const verseContainers = document.querySelectorAll('.verse-container');
-            const verseJump = document.getElementById('verseJump');
-            
-            let isWordByWord = false;
-            
-            // Initialize word-by-word translation toggle
-            toggleBtn.addEventListener('click', function() {
-                isWordByWord = !isWordByWord;
+            renderVerses();
+            setupEventListeners();
+            updateTime();
+            setInterval(updateTime, 1000);
+        });
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Toggle word by word
+            document.getElementById('toggleWordBtn').addEventListener('click', function() {
+                showWordByWord = !showWordByWord;
+                this.innerHTML = showWordByWord 
+                    ? '<i class="fas fa-book"></i><span>Sembunyikan Perkata</span>'
+                    : '<i class="fas fa-book"></i><span>Tampilkan Perkata</span>';
                 
-                if (isWordByWord) {
-                    toggleBtn.innerHTML = `
-                        <svg viewBox="0 0 24 24"><path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,20c-4.42,0-8-3.58-8-8s3.58-8,8-8 s8,3.58,8,8S16.42,20,12,20z"/><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7z M12,15c-1.65,0-3-1.35-3-3s1.35-3,3-3s3,1.35,3,3 S13.65,15,12,15z"/></svg>
-                        Terjemahan Lengkap
-                    `;
-                    wordTranslations.forEach(el => el.style.display = 'flex');
-                } else {
-                    toggleBtn.innerHTML = `
-                        <svg viewBox="0 0 24 24"><path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,20c-4.42,0-8-3.58-8-8s3.58-8,8-8 s8,3.58,8,8S16.42,20,12,20z"/><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7z M12,15c-1.65,0-3-1.35-3-3s1.35-3,3-3s3,1.35,3,3 S13.65,15,12,15z"/></svg>
-                        Terjemahan Perkata
-                    `;
-                    wordTranslations.forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.word-by-word').forEach(el => {
+                    el.classList.toggle('hidden', !showWordByWord);
+                });
+            });
+
+            // Toggle tajwid legend
+            document.getElementById('toggleLegendBtn').addEventListener('click', function() {
+                showTajwidLegend = !showTajwidLegend;
+                document.getElementById('tajwidLegend').classList.toggle('hidden', !showTajwidLegend);
+            });
+
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                filterVerses(searchTerm);
+            });
+            
+            // Mobile menu toggle
+            document.addEventListener('click', function(e) {
+                const mobileMenu = document.getElementById('mobileMenu');
+                const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+                
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenu.style.display = 'none';
                 }
             });
-            
-            // Initialize word-by-word translations as hidden
-            wordTranslations.forEach(el => el.style.display = 'none');
-            
-            // Create verse jump buttons
-            verseContainers.forEach(verse => {
-                const verseNum = verse.getAttribute('data-verse');
-                const jumpBtn = document.createElement('button');
-                jumpBtn.className = 'verse-jump-btn';
-                jumpBtn.textContent = verseNum;
-                jumpBtn.addEventListener('click', () => {
-                    scrollToVerse(verseNum);
-                    // Highlight the active button
-                    document.querySelectorAll('.verse-jump-btn').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    jumpBtn.classList.add('active');
-                });
-                verseJump.appendChild(jumpBtn);
+        }
+        
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+        }
+        
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('id-ID');
+            document.getElementById('currentTime').textContent = timeString;
+        }
+
+        // Render verses
+        function renderVerses() {
+            const container = document.getElementById('versesContainer');
+            container.innerHTML = '';
+
+            versesData.forEach(verse => {
+                const verseElement = createVerseElement(verse);
+                container.appendChild(verseElement);
             });
-            
-            // Search functionality
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.trim().toLowerCase();
+        }
+
+        // Create verse element
+        function createVerseElement(verse) {
+            const verseDiv = document.createElement('div');
+            verseDiv.className = 'verse-container';
+            verseDiv.setAttribute('data-verse', verse.number);
+
+            verseDiv.innerHTML = `
+                <div class="verse-header">
+                    <div class="verse-number-container">
+                        <div class="verse-number">${verse.number}</div>
+                        <div class="verse-label">Ayat ${verse.number}</div>
+                    </div>
+                    <button class="audio-btn" onclick="toggleAudio(${verse.number})">
+                        <i class="fas fa-play" id="audioIcon${verse.number}"></i>
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+
+                <div class="arabic-container">
+                    <div class="arabic-text">
+                        ${renderArabicWithTajwid(verse.arabic)}
+                    </div>
+                </div>
+
+                <div class="translations">
+                    <div class="translation translation-id">
+                        <strong>${verse.number}.</strong> ${verse.translationId}
+                    </div>
+                    <div class="translation translation-en">
+                        <strong>${verse.number}.</strong> ${verse.translationEn}
+                    </div>
+                </div>
+
+                <div class="word-by-word ${showWordByWord ? '' : 'hidden'}">
+                    <div class="word-by-word-title">Terjemahan Perkata:</div>
+                    <div class="word-grid">
+                        ${verse.wordByWord.map(word => `
+                            <div class="word-item">
+                                <div class="word-arabic">${word.arabic}</div>
+                                <div class="word-meaning">${word.meaning}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            return verseDiv;
+        }
+
+        // Render Arabic text with tajwid colors
+        function renderArabicWithTajwid(arabicWords) {
+            return arabicWords.map(word => {
+                const tajwidClass = word.tajwid !== 'normal' ? `tajwid-${word.tajwid}` : '';
+                return `<span class="arabic-word ${tajwidClass}">${word.text}</span>`;
+            }).join('');
+        }
+
+        // Toggle audio playback
+        function toggleAudio(verseNumber) {
+            const audioIcon = document.getElementById(`audioIcon${verseNumber}`);
+            const audioBtn = audioIcon.closest('.audio-btn');
+
+            // Stop any currently playing audio
+            if (currentPlaying && currentPlaying !== verseNumber) {
+                stopAudio(currentPlaying);
+            }
+
+            if (currentPlaying === verseNumber) {
+                stopAudio(verseNumber);
+                return;
+            }
+
+            // Create audio element if it doesn't exist
+            if (!audioElements[verseNumber]) {
+                const audio = new Audio();
                 
-                if (searchTerm.length === 0) {
-                    searchResults.style.display = 'none';
-                    // Show all verses
-                    verseContainers.forEach(verse => {
-                        verse.classList.remove('hidden');
-                    });
+                // Try multiple audio sources
+                const audioSources = [
+                    `https://cdn.islamic.network/quran/audio/128/ar.alafasy/1${verseNumber.toString().padStart(3, '0')}.mp3`,
+                    `https://server8.mp3quran.net/afs/001${verseNumber.toString().padStart(3, '0')}.mp3`,
+                    `https://audio.qurancdn.com/1/${verseNumber}/ar.alafasy.mp3`
+                ];
+
+                let sourceIndex = 0;
+                
+                const tryNextSource = () => {
+                    if (sourceIndex < audioSources.length) {
+                        audio.src = audioSources[sourceIndex];
+                        sourceIndex++;
+                    } else {
+                        console.log('All audio sources failed for verse', verseNumber);
+                        audioBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i><i class="fas fa-volume-up"></i>';
+                        return;
+                    }
+                };
+
+                audio.onerror = tryNextSource;
+                audio.onended = () => stopAudio(verseNumber);
+                audio.onloadstart = () => {
+                    audioIcon.className = 'fas fa-spinner fa-spin';
+                };
+                audio.oncanplay = () => {
+                    audioIcon.className = 'fas fa-pause';
+                    audioBtn.classList.add('playing');
+                };
+
+                tryNextSource();
+                audioElements[verseNumber] = audio;
+            }
+
+            const audio = audioElements[verseNumber];
+            
+            if (audio.paused) {
+                audio.play().then(() => {
+                    currentPlaying = verseNumber;
+                    audioIcon.className = 'fas fa-pause';
+                    audioBtn.classList.add('playing');
+                }).catch(error => {
+                    console.log('Audio playback failed:', error);
+                    audioIcon.className = 'fas fa-exclamation-triangle';
+                });
+            } else {
+                stopAudio(verseNumber);
+            }
+        }
+
+        // Stop audio playback
+        function stopAudio(verseNumber) {
+            const audio = audioElements[verseNumber];
+            const audioIcon = document.getElementById(`audioIcon${verseNumber}`);
+            const audioBtn = audioIcon.closest('.audio-btn');
+
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+
+            audioIcon.className = 'fas fa-play';
+            audioBtn.classList.remove('playing');
+            
+            if (currentPlaying === verseNumber) {
+                currentPlaying = null;
+            }
+        }
+
+        // Filter verses based on search
+        function filterVerses(searchTerm) {
+            const verses = document.querySelectorAll('.verse-container');
+            
+            verses.forEach(verse => {
+                const verseNumber = verse.getAttribute('data-verse');
+                const verseData = versesData.find(v => v.number.toString() === verseNumber);
+                
+                if (!searchTerm) {
+                    verse.style.display = 'block';
                     return;
                 }
+
+                const matchesSearch = 
+                    verseData.translationId.toLowerCase().includes(searchTerm) ||
+                    verseData.translationEn.toLowerCase().includes(searchTerm) ||
+                    verseData.number.toString().includes(searchTerm) ||
+                    verseData.arabic.some(word => word.text.includes(searchTerm));
+
+                verse.style.display = matchesSearch ? 'block' : 'none';
                 
-                // Search in verse number, Arabic text, and translations
-                const results = [];
-                
-                verseContainers.forEach(verse => {
-                    const verseNum = verse.getAttribute('data-verse');
-                    const arabicText = verse.querySelector('.arabic').textContent.toLowerCase();
-                    const idTranslation = verse.querySelector('.translation-id').textContent.toLowerCase();
-                    const enTranslation = verse.querySelector('.translation-en').textContent.toLowerCase();
-                    
-                    if (verseNum.includes(searchTerm) || 
-                        arabicText.includes(searchTerm) || 
-                        idTranslation.includes(searchTerm) || 
-                        enTranslation.includes(searchTerm)) {
-                        results.push({
-                            verseNum,
-                            arabic: verse.querySelector('.arabic').textContent,
-                            translation: verse.querySelector('.translation-id').textContent
-                        });
-                    }
-                });
-                
-                // Display search results
-                if (results.length > 0) {
-                    searchResults.innerHTML = '';
-                    results.forEach(result => {
-                        const resultItem = document.createElement('div');
-                        resultItem.className = 'search-result-item';
-                        resultItem.innerHTML = `
-                            <div><strong>Ayat ${result.verseNum}</strong></div>
-                            <div style="text-align: right; margin: 5px 0; font-family: 'Traditional Arabic', 'Amiri', serif; font-size: 1.2rem;">
-                                ${highlightText(result.arabic, searchTerm)}
-                            </div>
-                            <div>${highlightText(result.translation, searchTerm)}</div>
-                        `;
-                        resultItem.addEventListener('click', () => {
-                            scrollToVerse(result.verseNum);
-                            searchInput.value = '';
-                            searchResults.style.display = 'none';
-                        });
-                        searchResults.appendChild(resultItem);
-                    });
-                    searchResults.style.display = 'block';
-                } else {
-                    searchResults.innerHTML = '<div class="no-results">Tidak ditemukan ayat yang cocok</div>';
-                    searchResults.style.display = 'block';
-                }
-                
-                // Filter verses based on search
-                verseContainers.forEach(verse => {
-                    const verseNum = verse.getAttribute('data-verse');
-                    const isMatch = results.some(result => result.verseNum === verseNum);
-                    verse.classList.toggle('hidden', !isMatch && searchTerm.length > 0);
-                });
-            });
-            
-            // Close search results when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                    searchResults.style.display = 'none';
-                }
-            });
-            
-            // Helper function to highlight search terms
-            function highlightText(text, term) {
-                if (!term) return text;
-                const regex = new RegExp(term, 'gi');
-                return text.replace(regex, match => `<span class="search-highlight">${match}</span>`);
-            }
-            
-            // Function to scroll to a specific verse
-            function scrollToVerse(verseNum) {
-                const verse = document.querySelector(`.verse-container[data-verse="${verseNum}"]`);
-                if (verse) {
-                    // Highlight the verse temporarily
-                    verse.classList.add('highlight');
+                if (matchesSearch) {
+                    verse.classList.add('verse-highlight');
                     setTimeout(() => {
-                        verse.classList.remove('highlight');
+                        verse.classList.remove('verse-highlight');
                     }, 2000);
-                    
-                    // Scroll to the verse
-                    verse.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    
-                    // Update URL hash
-                    window.location.hash = `#ayat-${verseNum}`;
                 }
+            });
+        }
+
+        // Scroll to verse (for future use)
+        function scrollToVerse(verseNumber) {
+            const verse = document.querySelector(`[data-verse="${verseNumber}"]`);
+            if (verse) {
+                verse.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                verse.classList.add('verse-highlight');
+                setTimeout(() => {
+                    verse.classList.remove('verse-highlight');
+                }, 2000);
             }
-            
-            // Check for hash on page load
-            if (window.location.hash) {
-                const verseNum = window.location.hash.replace('#ayat-', '');
-                if (verseNum) {
-                    setTimeout(() => {
-                        scrollToVerse(verseNum);
-                        // Highlight the corresponding jump button
-                        document.querySelectorAll('.verse-jump-btn').forEach(btn => {
-                            btn.classList.toggle('active', btn.textContent === verseNum);
-                        });
-                    }, 300);
-                }
-            }
-        });
+        }
     </script>
 </body>
 </html>

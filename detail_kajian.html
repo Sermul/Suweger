@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Kajian - IslamicCalm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f8f5f0;
+            --cream-light: #faf7f2;
+            --cream-dark: #f0ece3;
+            --navy: #0a1f3d;
+            --navy-light: #1a3a6a;
+            --navy-medium: #2c4c7c;
+            --navy-dark: #0a1f3d;
+            --gold: #c5a245;
+            --gold-light: #e6d7b0;
+            --gold-dark: #a38535;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1e3a5f;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-item {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 18px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: #1e3a5f;
+            background: rgba(30, 58, 95, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4a5568;
+            font-size: 14px;
+            padding: 8px 15px;
+            background: rgba(30, 58, 95, 0.05);
+            border-radius: 20px;
+        }
+
+        .location img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .time-now {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e3a5f;
+            padding: 8px 15px;
+            background: rgba(30, 58, 95, 0.1);
+            border-radius: 20px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #1e3a5f;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(30, 58, 95, 0.1);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+        }
+
+        .breadcrumb a {
+            color: var(--navy-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--navy);
+        }
+
+        .breadcrumb span {
+            color: #666;
+            margin: 0 0.5rem;
+        }
+
+        /* Back Button */
+        .back-btn {
+            background: var(--navy);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .back-btn:hover {
+            background: var(--navy-light);
+            transform: translateY(-2px);
+        }
+
+        /* Detail Container */
+        .detail-container {
+            background: var(--cream-light);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--gold-light);
+        }
+
+        /* Poster Section */
+        .poster-section {
+            background: linear-gradient(135deg, var(--cream-light) 0%, var(--cream) 100%);
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .poster-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .poster-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 3px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .poster-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .poster-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 2rem;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .poster-category {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .type-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--navy);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 3rem;
+        }
+
+        .kajian-title {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .kajian-speaker {
+            font-size: 1.3rem;
+            color: var(--gold-dark);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .kajian-speaker img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid var(--gold-light);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-icon {
+            margin-bottom: 1rem;
+        }
+
+        .info-icon img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* Description */
+        .description-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--gold-light);
+            margin-bottom: 3rem;
+        }
+
+        .description-title {
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .description-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold-light);
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .contact-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .action-btn {
+            background: var(--navy);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .action-btn:hover {
+            background: var(--navy-light);
+            transform: translateY(-2px);
+        }
+
+        .action-btn.secondary {
+            background: transparent;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+        }
+
+        .action-btn.secondary:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        /* Related Kajian */
+        .related-section {
+            margin-top: 4rem;
+        }
+
+        .related-title {
+            font-size: 2rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-card {
+            background: var(--cream-light);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid var(--gold-light);
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .related-card h4 {
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .related-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .related-card a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .related-card a:hover {
+            color: var(--gold-dark);
+        }
+
+        /* Facilities */
+        .facilities-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .facility-item {
+            background: var(--gold-light);
+            color: var(--navy);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .facility-item img {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .user-info {
+                gap: 10px;
+            }
+            
+            .location,
+            .time-now {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .kajian-title {
+                font-size: 2rem;
+            }
+
+            .poster-section {
+                padding: 2rem 1rem;
+            }
+
+            .poster-image {
+                height: 300px;
+            }
+
+            .content-section {
+                padding: 2rem 1rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-buttons,
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-btn,
+            .action-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="images/icons/logo.png" alt="Logo IslamicCalm">
+                </div>
+                <div>
+                    <div class="logo-text">IslamicCalm</div>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+                <a href="kajian.html" class="nav-item active">Kajian</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
+                <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            
+            <div class="user-info">
+                <div class="location">
+                    <img src="images/icons/location.png" alt="Location">
+                    <span id="userLocation">Jakarta, Indonesia</span>
+                </div>
+                <div class="time-now" id="currentTime">12:34:56</div>
+            </div>
+        </div>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="mobile-nav">
+                <a href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+                <a href="kajian.html" class="nav-item active">Kajian</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
+                <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">Beranda</a>
+            <span>/</span>
+            <a href="kajian.html">Kajian</a>
+            <span>/</span>
+            <span id="breadcrumbTitle">Detail Kajian</span>
+        </div>
+
+        <!-- Back Button -->
+        <a href="kajian.html" class="back-btn">
+            <img src="images/icons/arrow-left.png" alt="Back">
+            Kembali ke Daftar Kajian
+        </a>
+
+        <!-- Detail Container -->
+        <div class="detail-container">
+            <!-- Poster Section -->
+            <div class="poster-section">
+                <div class="type-badge" id="typeBadge">Online</div>
+                <div class="poster-container">
+                    <img id="posterImage" src="images/kajian-1.jpg" alt="Poster Kajian" class="poster-image">
+                    <div class="poster-overlay">
+                        <div class="poster-category" id="posterCategory">Tafsir</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Section -->
+            <div class="content-section">
+                <h1 class="kajian-title" id="kajianTitle">Loading...</h1>
+                <div class="kajian-speaker" id="kajianSpeaker">
+                    <img src="images/icons/user.png" alt="Speaker">
+                    <span>Loading...</span>
+                </div>
+
+                <!-- Info Grid -->
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <img src="images/icons/calendar.png" alt="Tanggal">
+                        </div>
+                        <div class="info-label">Tanggal</div>
+                        <div class="info-value" id="kajianDate">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <img src="images/icons/clock.png" alt="Waktu">
+                        </div>
+                        <div class="info-label">Waktu</div>
+                        <div class="info-value" id="kajianTime">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <img src="images/icons/location-pin.png" alt="Tempat">
+                        </div>
+                        <div class="info-label">Tempat</div>
+                        <div class="info-value" id="kajianLocation">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <img src="images/icons/money.png" alt="Harga">
+                        </div>
+                        <div class="info-label">Harga</div>
+                        <div class="info-value" id="kajianPrice">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <img src="images/icons/people.png" alt="Kapasitas">
+                        </div>
+                        <div class="info-label">Kapasitas</div>
+                        <div class="info-value" id="kajianCapacity">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <img src="images/icons/check.png" alt="Tersedia">
+                        </div>
+                        <div class="info-label">Tersedia</div>
+                        <div class="info-value" id="kajianAvailable">Loading...</div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="description-section">
+                    <h3 class="description-title">Deskripsi Kajian</h3>
+                    <p class="description-text" id="kajianDescription">Loading...</p>
+                </div>
+
+                <!-- Address Section -->
+                <div class="description-section">
+                    <h3 class="description-title">Alamat Lengkap</h3>
+                    <p class="description-text" id="kajianAddress">Loading...</p>
+                </div>
+
+                <!-- Facilities Section -->
+                <div class="description-section">
+                    <h3 class="description-title">Fasilitas yang Didapat</h3>
+                    <div class="facilities-grid" id="facilitiesGrid">
+                        <!-- Facilities will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="contact-section">
+                    <h3 class="contact-title">Informasi Pendaftaran</h3>
+                    <p class="contact-info" id="kajianContact">Loading...</p>
+                    <div class="contact-buttons">
+                        <a href="#" class="contact-btn" id="whatsappBtn">
+                            <img src="images/icons/whatsapp.png" alt="WhatsApp">
+                            WhatsApp
+                        </a>
+                        <a href="#" class="contact-btn" id="telegramBtn">
+                            <img src="images/icons/telegram.png" alt="Telegram">
+                            Telegram
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="action-btn" onclick="shareKajian()">
+                        <img src="images/icons/share.png" alt="Share">
+                        Bagikan Kajian
+                    </button>
+                    <button class="action-btn secondary" onclick="addToCalendar()">
+                        <img src="images/icons/calendar-plus.png" alt="Calendar">
+                        Tambah ke Kalender
+                    </button>
+                    <button class="action-btn secondary" onclick="setReminder()">
+                        <img src="images/icons/bell.png" alt="Reminder">
+                        Set Pengingat
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Kajian -->
+        <div class="related-section">
+            <h2 class="related-title">Kajian Lainnya</h2>
+            <div class="related-grid" id="relatedGrid">
+                <!-- Related kajian will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample kajian data with poster images
+        const kajianData = [
+            {
+                id: 1,
+                title: "Tafsir Al-Quran: Surah Al-Baqarah",
+                speaker: "Ustadz Ahmad Zainuddin",
+                date: "2024-12-15T19:00",
+                location: "Masjid Al-Ikhlas, Jakarta Selatan",
+                fullAddress: "Jl. Kemang Raya No. 123, Kemang, Jakarta Selatan 12560",
+                type: "offline",
+                description: "Kajian mendalam tentang tafsir Surah Al-Baqarah dengan pendekatan kontemporer yang mudah dipahami. Dalam kajian ini, kita akan mempelajari makna-makna yang terkandung dalam ayat-ayat Surah Al-Baqarah, hikmah-hikmah yang dapat diambil, serta relevansinya dengan kehidupan sehari-hari. Kajian ini cocok untuk semua kalangan, dari pemula hingga yang sudah memiliki dasar ilmu agama. Materi akan disampaikan dengan metode interaktif dan tanya jawab.",
+                contact: "WhatsApp: 0812-3456-7890",
+                posterImage: "images/kajian-1.jpg",
+                category: "tafsir",
+                price: "Gratis",
+                capacity: 200,
+                registered: 150,
+                facilities: ["Parkir Gratis", "Snack & Minuman", "Materi PDF", "Sertifikat"]
+            },
+            {
+                id: 2,
+                title: "Fiqh Muamalah dalam Kehidupan Modern",
+                speaker: "Ustadzah Siti Nurhaliza",
+                date: "2024-12-16T20:00",
+                location: "Zoom Meeting",
+                fullAddress: "Platform Online - Link akan dikirim H-1",
+                type: "online",
+                description: "Membahas hukum-hukum muamalah yang relevan dengan kehidupan modern, termasuk transaksi digital, e-commerce, cryptocurrency, dan berbagai bentuk investasi syariah. Kajian ini akan memberikan pemahaman yang jelas tentang batasan halal dan haram dalam bermuamalah di era digital. Dilengkapi dengan studi kasus nyata dan solusi praktis.",
+                contact: "Telegram: @kajianfiqh",
+                posterImage: "images/kajian-2.jpg",
+                category: "fiqh",
+                price: "Rp 25.000",
+                capacity: 500,
+                registered: 320,
+                facilities: ["Rekaman Kajian", "E-Book Materi", "Grup Diskusi", "Konsultasi Pribadi"]
+            },
+            {
+                id: 3,
+                title: "Sirah Nabawiyah: Periode Makkah",
+                speaker: "Ustadz Muhammad Ridwan",
+                date: "2024-12-17T19:30",
+                location: "Islamic Center, Bandung",
+                fullAddress: "Jl. Soekarno Hatta No. 456, Bandung, Jawa Barat 40123",
+                type: "offline",
+                description: "Mempelajari perjalanan hidup Rasulullah SAW selama periode Makkah dengan hikmah yang dapat diambil. Kajian ini akan mengupas tuntas perjuangan dakwah Nabi Muhammad SAW, tantangan yang dihadapi, dan strategi dakwah yang beliau gunakan. Peserta akan mendapat insight mendalam tentang cara menghadapi cobaan dan mempertahankan iman.",
+                contact: "WhatsApp: 0813-9876-5432",
+                posterImage: "images/kajian-3.jpg",
+                category: "sirah",
+                price: "Rp 15.000",
+                capacity: 300,
+                registered: 280,
+                facilities: ["Buku Sirah", "Makan Malam", "Parkir", "Foto Bersama"]
+            },
+            {
+                id: 4,
+                title: "Akhlak Mulia dalam Keluarga",
+                speaker: "Ustadz Abdullah Gymnastiar",
+                date: "2024-12-18T19:00",
+                location: "YouTube Live",
+                fullAddress: "Streaming Live di YouTube Channel IslamicCalm",
+                type: "online",
+                description: "Membangun keluarga sakinah dengan akhlak mulia berdasarkan Al-Quran dan Sunnah. Kajian ini akan membahas cara mendidik anak, menjaga hubungan suami istri, dan menciptakan lingkungan keluarga yang Islami. Dilengkapi dengan tips praktis dan contoh nyata dari kehidupan sehari-hari.",
+                contact: "Instagram: @kajiankeluarga",
+                posterImage: "images/kajian-4.jpg",
+                category: "akhlak",
+                price: "Gratis",
+                capacity: 1000,
+                registered: 750,
+                facilities: ["Live Streaming", "Chat Interaktif", "Replay 7 Hari", "Materi PDF"]
+            },
+            {
+                id: 5,
+                title: "Manajemen Waktu dalam Islam",
+                speaker: "Ustadz Yusuf Mansur",
+                date: "2024-12-19T20:30",
+                location: "Masjid Agung, Surabaya",
+                fullAddress: "Jl. Masjid Al Akbar Timur No. 1, Surabaya, Jawa Timur 60115",
+                type: "offline",
+                description: "Belajar mengelola waktu dengan efektif berdasarkan ajaran Islam untuk kehidupan yang lebih produktif. Kajian ini akan mengajarkan cara mengatur prioritas, memanfaatkan waktu dengan optimal, dan menyeimbangkan kehidupan dunia dan akhirat. Peserta akan mendapat workbook dan template perencanaan harian.",
+                contact: "WhatsApp: 0814-5555-1234",
+                posterImage: "images/kajian-5.jpg",
+                category: "motivasi",
+                price: "Rp 30.000",
+                capacity: 400,
+                registered: 380,
+                facilities: ["Workbook", "Template Planner", "Konsultasi", "Sertifikat"]
+            },
+            {
+                id: 6,
+                title: "Kajian Hadits Arbain Nawawi",
+                speaker: "Ustadz Khalid Basalamah",
+                date: "2024-12-20T19:15",
+                location: "Facebook Live",
+                fullAddress: "Streaming Live di Facebook Page IslamicCalm",
+                type: "online",
+                description: "Membahas 40 hadits pilihan Imam Nawawi yang mencakup berbagai aspek kehidupan muslim. Setiap hadits akan dijelaskan secara detail dengan konteks sejarah, makna, dan aplikasinya dalam kehidupan modern. Kajian ini sangat cocok untuk memperdalam pemahaman hadits-hadits fundamental.",
+                contact: "Facebook: Kajian Hadits",
+                posterImage: "images/kajian-6.jpg",
+                category: "hadits",
+                price: "Rp 20.000",
+                capacity: 800,
+                registered: 650,
+                facilities: ["Kitab Hadits", "Terjemahan", "Audio MP3", "Grup Diskusi"]
+            }
+        ];
+
+        // Get kajian ID from URL
+        function getKajianIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return parseInt(urlParams.get('id')) || 1;
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            const kajianId = getKajianIdFromUrl();
+            loadKajianDetail(kajianId);
+            loadRelatedKajian(kajianId);
+            updateTime();
+            setInterval(updateTime, 1000);
+            setupEventListeners();
+        });
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            document.addEventListener('click', function(e) {
+                const mobileMenu = document.getElementById('mobileMenu');
+                const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+                
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenu.style.display = 'none';
+                }
+            });
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('id-ID');
+            document.getElementById('currentTime').textContent = timeString;
+        }
+
+        // Load kajian detail
+        function loadKajianDetail(id) {
+            const kajian = kajianData.find(k => k.id === id);
+            
+            if (!kajian) {
+                window.location.href = 'kajian.html';
+                return;
+            }
+
+            // Update page title
+            document.title = `${kajian.title} - IslamicCalm`;
+            
+            // Update breadcrumb
+            document.getElementById('breadcrumbTitle').textContent = kajian.title;
+
+            // Update poster section
+            document.getElementById('posterImage').src = kajian.posterImage;
+            document.getElementById('posterImage').alt = kajian.title;
+            document.getElementById('posterCategory').textContent = kajian.category.charAt(0).toUpperCase() + kajian.category.slice(1);
+            document.getElementById('typeBadge').textContent = kajian.type === 'online' ? 'Online' : 'Offline';
+
+            // Update content
+            document.getElementById('kajianTitle').textContent = kajian.title;
+            document.getElementById('kajianSpeaker').innerHTML = `
+                <img src="images/icons/user.png" alt="Speaker">
+                <span>${kajian.speaker}</span>
+            `;
+
+            // Format date and time
+            const date = new Date(kajian.date);
+            const formattedDate = date.toLocaleDateString('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            const formattedTime = date.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            const availableSlots = kajian.capacity - kajian.registered;
+
+            document.getElementById('kajianDate').textContent = formattedDate;
+            document.getElementById('kajianTime').textContent = formattedTime + ' WIB';
+            document.getElementById('kajianLocation').textContent = kajian.location;
+            document.getElementById('kajianPrice').textContent = kajian.price;
+            document.getElementById('kajianCapacity').textContent = `${kajian.capacity} peserta`;
+            document.getElementById('kajianAvailable').textContent = `${availableSlots} slot`;
+            document.getElementById('kajianDescription').textContent = kajian.description;
+            document.getElementById('kajianAddress').textContent = kajian.fullAddress;
+            document.getElementById('kajianContact').textContent = kajian.contact;
+
+            // Load facilities
+            loadFacilities(kajian.facilities);
+
+            // Update contact buttons
+            updateContactButtons(kajian.contact);
+        }
+
+        // Load facilities
+        function loadFacilities(facilities) {
+            const facilitiesGrid = document.getElementById('facilitiesGrid');
+            facilitiesGrid.innerHTML = '';
+
+            facilities.forEach(facility => {
+                const facilityItem = document.createElement('div');
+                facilityItem.className = 'facility-item';
+                facilityItem.innerHTML = `
+                    <img src="images/icons/check-circle.png" alt="Check">
+                    ${facility}
+                `;
+                facilitiesGrid.appendChild(facilityItem);
+            });
+        }
+
+        // Update contact buttons
+        function updateContactButtons(contact) {
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            const telegramBtn = document.getElementById('telegramBtn');
+
+            if (contact.includes('WhatsApp')) {
+                const phoneNumber = contact.match(/\d+/g)?.join('') || '';
+                whatsappBtn.href = `https://wa.me/${phoneNumber}`;
+                whatsappBtn.style.display = 'inline-flex';
+            } else {
+                whatsappBtn.style.display = 'none';
+            }
+
+            if (contact.includes('Telegram')) {
+                const telegramHandle = contact.match(/@\w+/)?.[0] || '';
+                telegramBtn.href = `https://t.me/${telegramHandle.replace('@', '')}`;
+                telegramBtn.style.display = 'inline-flex';
+            } else {
+                telegramBtn.style.display = 'none';
+            }
+        }
+
+        // Load related kajian
+        function loadRelatedKajian(currentId) {
+            const relatedKajian = kajianData.filter(k => k.id !== currentId).slice(0, 3);
+            const relatedGrid = document.getElementById('relatedGrid');
+
+            relatedGrid.innerHTML = '';
+
+            relatedKajian.forEach(kajian => {
+                const date = new Date(kajian.date);
+                const formattedDate = date.toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+
+                const card = document.createElement('div');
+                card.className = 'related-card';
+                card.innerHTML = `
+                    <h4>${kajian.title}</h4>
+                    <p>${kajian.speaker} • ${formattedDate}</p>
+                    <a href="kajian-detail.html?id=${kajian.id}">Lihat Detail →</a>
+                `;
+                relatedGrid.appendChild(card);
+            });
+        }
+
+        // Share kajian
+        function shareKajian() {
+            const kajianId = getKajianIdFromUrl();
+            const kajian = kajianData.find(k => k.id === kajianId);
+            
+            if (kajian) {
+                const shareText = `🕌 ${kajian.title}\n👨‍🏫 ${kajian.speaker}\n📅 ${new Date(kajian.date).toLocaleDateString('id-ID')}\n📍 ${kajian.location}\n\nLihat detail: ${window.location.href}`;
+                
+                if (navigator.share) {
+                    navigator.share({
+                        title: kajian.title,
+                        text: shareText,
+                        url: window.location.href
+                    });
+                } else {
+                    // Fallback: copy to clipboard
+                    navigator.clipboard.writeText(shareText).then(() => {
+                        alert('Link kajian berhasil disalin ke clipboard!');
+                    });
+                }
+            }
+        }
+
+        // Add to calendar
+        function addToCalendar() {
+            const kajianId = getKajianIdFromUrl();
+            const kajian = kajianData.find(k => k.id === kajianId);
+            
+            if (kajian) {
+                const startDate = new Date(kajian.date);
+                const endDate = new Date(startDate.getTime() + 2 * 60 * 60 * 1000); // 2 hours later
+                
+                const formatDate = (date) => {
+                    return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                };
+
+                const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(kajian.title)}&dates=${formatDate(startDate)}/${formatDate(endDate)}&details=${encodeURIComponent(kajian.description)}&location=${encodeURIComponent(kajian.location)}`;
+                
+                window.open(calendarUrl, '_blank');
+            }
+        }
+
+        // Set reminder
+        function setReminder() {
+            if ('Notification' in window) {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        const kajianId = getKajianIdFromUrl();
+                        const kajian = kajianData.find(k => k.id === kajianId);
+                        
+                        if (kajian) {
+                            const kajianDate = new Date(kajian.date);
+                            const reminderTime = kajianDate.getTime() - Date.now() - (30 * 60 * 1000); // 30 minutes before
+                            
+                            if (reminderTime > 0) {
+                                setTimeout(() => {
+                                    new Notification(`Pengingat Kajian: ${kajian.title}`, {
+                                        body: `Kajian akan dimulai dalam 30 menit di ${kajian.location}`,
+                                        icon: '/favicon.ico'
+                                    });
+                                }, reminderTime);
+                                
+                                alert('Pengingat berhasil diatur! Anda akan mendapat notifikasi 30 menit sebelum kajian dimulai.');
+                            } else {
+                                alert('Kajian sudah berlalu atau akan dimulai dalam waktu kurang dari 30 menit.');
+                            }
+                        }
+                    } else {
+                        alert('Izin notifikasi diperlukan untuk mengatur pengingat.');
+                    }
+                });
+            } else {
+                alert('Browser Anda tidak mendukung notifikasi.');
+            }
+        }
+    </script>
+</body>
+</html>

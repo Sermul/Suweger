@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Belajar Islam - IslamicCalm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f8f5f0;
+            --cream-light: #faf7f2;
+            --cream-dark: #f0ece3;
+            --navy: #0a1f3d;
+            --navy-light: #1a3a6a;
+            --navy-medium: #2c4c7c;
+            --navy-dark: #0a1f3d;
+            --gold: #c5a245;
+            --gold-light: #e6d7b0;
+            --gold-dark: #a38535;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1e3a5f;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-item {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 18px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: #1e3a5f;
+            background: rgba(30, 58, 95, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4a5568;
+            font-size: 14px;
+            padding: 8px 15px;
+            background: rgba(30, 58, 95, 0.05);
+            border-radius: 20px;
+        }
+
+        .location img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .time-now {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e3a5f;
+            padding: 8px 15px;
+            background: rgba(30, 58, 95, 0.1);
+            border-radius: 20px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #1e3a5f;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(30, 58, 95, 0.1);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .page-title p {
+            font-size: 1.1rem;
+            color: var(--navy-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold-light);
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-btn {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .cta-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Search and Filter Section */
+        .search-filter-section {
+            background: var(--cream-light);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            border: 2px solid var(--gold-light);
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--gold-light);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(197, 162, 69, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .search-icon img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 0.9rem;
+        }
+
+        .filter-select {
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--gold-light);
+            border-radius: 25px;
+            background: white;
+            font-size: 1rem;
+            min-width: 150px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        /* Tutor Grid */
+        .tutor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .tutor-card {
+            background: var(--cream-light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid var(--gold-light);
+        }
+
+        .tutor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .tutor-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .tutor-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            margin-bottom: 1rem;
+        }
+
+        .tutor-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tutor-title {
+            color: var(--gold-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .tutor-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tutor-rating img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .rating-text {
+            font-size: 0.9rem;
+        }
+
+        .tutor-content {
+            padding: 1.5rem;
+        }
+
+        .tutor-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--navy-light);
+            font-size: 0.9rem;
+        }
+
+        .info-item img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .specialization-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .specialization-tag {
+            background: var(--gold-light);
+            color: var(--navy);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tutor-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .tutor-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-btn {
+            background: var(--navy);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .contact-btn img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .contact-btn:hover {
+            background: var(--navy-light);
+            transform: translateY(-2px);
+        }
+
+        .profile-btn {
+            background: transparent;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .profile-btn img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .profile-btn:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--cream-light);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            border: 2px solid var(--gold-light);
+        }
+
+        .stats-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            border: 2px solid var(--gold-light);
+        }
+
+        .stat-icon {
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--navy-light);
+            font-size: 0.9rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--cream-light);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 2px solid var(--gold-light);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--navy);
+            padding: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--gold-light);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: var(--navy);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--navy-light);
+        }
+
+        .form-input[type="file"] {
+            padding: 0.8rem;
+            cursor: pointer;
+        }
+
+        .form-input[type="file"]::-webkit-file-upload-button {
+            background: var(--navy);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin-right: 1rem;
+            cursor: pointer;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .user-info {
+                gap: 10px;
+            }
+            
+            .location,
+            .time-now {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .tutor-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .filter-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .tutor-actions {
+                flex-direction: column;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="images/icons/logo.png" alt="Logo IslamicCalm">
+                </div>
+                <div>
+                    <div class="logo-text">IslamicCalm</div>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+                <a href="kajian.html" class="nav-item">Kajian</a>
+                <a href="tutor.html" class="nav-item active">Tutor</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
+                <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            
+            <div class="user-info">
+                <div class="location">
+                    <img src="images/icons/location.png" alt="Location">
+                    <span id="userLocation">Jakarta, Indonesia</span>
+                </div>
+                <div class="time-now" id="currentTime">12:34:56</div>
+            </div>
+        </div>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="mobile-nav">
+                <a href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+                <a href="kajian.html" class="nav-item">Kajian</a>
+                <a href="tutor.html" class="nav-item active">Tutor</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
+                <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1>Tutor Belajar Islam</h1>
+            <p>Temukan tutor terbaik untuk memperdalam ilmu agama Islam dengan bimbingan yang personal dan berkualitas</p>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3>Ingin Menjadi Tutor?</h3>
+            <p>Bergabunglah dengan komunitas tutor kami dan bantu sesama muslim memperdalam ilmu agama. Dapatkan penghasilan sambil berbagi ilmu yang bermanfaat.</p>
+            <button class="cta-btn" onclick="openTutorModal()">
+                <img src="images/icons/user-plus.png" alt="Daftar">
+                Daftar Jadi Tutor
+            </button>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <h3 class="stats-title">Statistik Platform Tutor</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <img src="images/icons/users.png" alt="Tutor">
+                    </div>
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Tutor Berpengalaman</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <img src="images/icons/graduation-cap.png" alt="Siswa">
+                    </div>
+                    <div class="stat-number">2,500+</div>
+                    <div class="stat-label">Siswa Aktif</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <img src="images/icons/book-open.png" alt="Materi">
+                    </div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Materi Pembelajaran</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <img src="images/icons/star.png" alt="Rating">
+                    </div>
+                    <div class="stat-number">4.8</div>
+                    <div class="stat-label">Rating Rata-rata</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section">
+            <div class="search-container">
+                <div class="search-icon">
+                    <img src="images/icons/search.png" alt="Search">
+                </div>
+                <input type="text" id="searchInput" class="search-input" placeholder="Cari tutor berdasarkan nama atau spesialisasi...">
+            </div>
+            
+            <div class="filter-section">
+                <div class="filter-group">
+                    <label class="filter-label">Kota</label>
+                    <select id="cityFilter" class="filter-select">
+                        <option value="">Semua Kota</option>
+                        <option value="jakarta">Jakarta</option>
+                        <option value="bandung">Bandung</option>
+                        <option value="surabaya">Surabaya</option>
+                        <option value="yogyakarta">Yogyakarta</option>
+                        <option value="medan">Medan</option>
+                        <option value="semarang">Semarang</option>
+                        <option value="makassar">Makassar</option>
+                        <option value="palembang">Palembang</option>
+                        <option value="online">Online</option>
+                    </select>
+                </div>
+                
+              
+                
+              
+        </div>
+
+        <!-- Tutor Grid -->
+        <div class="tutor-grid" id="tutorGrid">
+            <!-- Tutors will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Modal for Tutor Registration -->
+    <div id="tutorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Daftar Sebagai Tutor</h2>
+                <button class="close-btn" onclick="closeTutorModal()">&times;</button>
+            </div>
+            
+            <form id="tutorForm">
+                <div class="form-group">
+                    <label class="form-label">Nama Lengkap</label>
+                    <input type="text" class="form-input" name="fullName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Nomor WhatsApp</label>
+                    <input type="tel" class="form-input" name="whatsapp" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Kota</label>
+                    <select class="form-select" name="city" required>
+                        <option value="">Pilih Kota</option>
+                        <option value="jakarta">Jakarta</option>
+                        <option value="bandung">Bandung</option>
+                        <option value="surabaya">Surabaya</option>
+                        <option value="yogyakarta">Yogyakarta</option>
+                        <option value="medan">Medan</option>
+                        <option value="semarang">Semarang</option>
+                        <option value="makassar">Makassar</option>
+                        <option value="palembang">Palembang</option>
+                        <option value="online">Online</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Pengalaman Mengajar (tahun)</label>
+                    <select class="form-select" name="experience" required>
+                        <option value="">Pilih Pengalaman</option>
+                        <option value="0-1">0-1 tahun</option>
+                        <option value="1-3">1-3 tahun</option>
+                        <option value="3-5">3-5 tahun</option>
+                        <option value="5-10">5-10 tahun</option>
+                        <option value="10+">10+ tahun</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Pendidikan Terakhir</label>
+                    <input type="text" class="form-input" name="education" placeholder="Contoh: S1 Pendidikan Agama Islam" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Tarif per Jam (Rp)</label>
+                    <input type="number" class="form-input" name="hourlyRate" min="0" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Upload CV (Opsional)</label>
+                    <input type="file" class="form-input" name="cv" accept=".pdf,.doc,.docx">
+                    <small style="color: #666; font-size: 0.9rem; margin-top: 0.5rem; display: block;">
+                        Format yang didukung: PDF, DOC, DOCX. Maksimal 5MB. CV akan membantu proses verifikasi.
+                    </small>
+                </div>
+                
+                <button type="submit" class="submit-btn">Kirim Pendaftaran</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Sample tutor data
+        const tutorData = [
+            {
+                id: 1,
+                name: "Ustadz Ahmad Zainuddin",
+                title: "Guru Al-Quran & Tajwid",
+                photo: "images/tutor-1.jpg",
+                city: "jakarta",
+                specializations: ["Al-Quran & Tajwid", "Tahfidz"],
+                experience: "8 tahun",
+                education: "S2 Ilmu Al-Quran",
+                hourlyRate: 75000,
+                rating: 4.9,
+                totalStudents: 120,
+                description: "Berpengalaman mengajar Al-Quran dan tajwid dengan metode yang mudah dipahami. Telah membimbing ratusan santri dalam menghafal Al-Quran.",
+                whatsapp: "081234567890",
+                availability: "Senin-Jumat 19:00-21:00"
+            },
+            {
+                id: 2,
+                name: "Ustadzah Siti Nurhaliza",
+                title: "Ahli Fiqh Muamalah",
+                photo: "images/tutor-2.jpg",
+                city: "bandung",
+                specializations: ["Fiqh", "Muamalah"],
+                experience: "6 tahun",
+                education: "S1 Syariah",
+                hourlyRate: 60000,
+                rating: 4.8,
+                totalStudents: 85,
+                description: "Spesialis dalam fiqh muamalah dan hukum Islam kontemporer. Metode pengajaran interaktif dengan studi kasus nyata.",
+                whatsapp: "081234567891",
+                availability: "Selasa-Kamis 20:00-22:00"
+            },
+            {
+                id: 3,
+                name: "Ustadz Muhammad Ridwan",
+                title: "Pengajar Sirah & Hadits",
+                photo: "images/tutor-3.jpg",
+                city: "surabaya",
+                specializations: ["Sirah Nabawiyah", "Hadits"],
+                experience: "10 tahun",
+                education: "S2 Hadits",
+                hourlyRate: 80000,
+                rating: 4.9,
+                totalStudents: 150,
+                description: "Ahli dalam sirah nabawiyah dan ilmu hadits. Menggunakan pendekatan storytelling yang menarik dan mudah diingat.",
+                whatsapp: "081234567892",
+                availability: "Senin-Sabtu 19:30-21:30"
+            },
+            {
+                id: 4,
+                name: "Ustadzah Fatimah Az-Zahra",
+                title: "Guru Akhlak & Adab",
+                photo: "images/tutor-4.jpg",
+                city: "yogyakarta",
+                specializations: ["Akhlak", "Adab Islam"],
+                experience: "5 tahun",
+                education: "S1 Pendidikan Agama Islam",
+                hourlyRate: 50000,
+                rating: 4.7,
+                totalStudents: 95,
+                description: "Fokus pada pembentukan akhlak mulia dan adab Islami. Pengalaman mengajar anak-anak hingga dewasa dengan pendekatan yang lembut.",
+                whatsapp: "081234567893",
+                availability: "Rabu-Minggu 18:00-20:00"
+            },
+            {
+                id: 5,
+                name: "Ustadz Abdullah Gymnastiar",
+                title: "Motivator & Pembina Keluarga",
+                photo: "images/tutor-5.jpg",
+                city: "online",
+                specializations: ["Akhlak", "Keluarga Sakinah"],
+                experience: "15 tahun",
+                education: "S2 Psikologi Islam",
+                hourlyRate: 100000,
+                rating: 5.0,
+                totalStudents: 300,
+                description: "Pakar dalam membangun keluarga sakinah dan motivasi Islami. Tersedia untuk konsultasi online dengan pengalaman puluhan tahun.",
+                whatsapp: "081234567894",
+                availability: "Setiap hari 20:00-22:00"
+            },
+            {
+                id: 6,
+                name: "Ustadz Yusuf Mansur",
+                title: "Ahli Ekonomi Islam",
+                photo: "images/tutor-6.jpg",
+                city: "jakarta",
+                specializations: ["Fiqh", "Ekonomi Islam"],
+                experience: "12 tahun",
+                education: "S2 Ekonomi Syariah",
+                hourlyRate: 90000,
+                rating: 4.8,
+                totalStudents: 200,
+                description: "Spesialis ekonomi Islam dan manajemen keuangan syariah. Membantu memahami investasi halal dan pengelolaan harta dalam Islam.",
+                whatsapp: "081234567895",
+                availability: "Senin-Jumat 19:00-21:00"
+            },
+            {
+                id: 7,
+                name: "Ustadz Khalid Basalamah",
+                title: "Pengajar Aqidah & Tauhid",
+                photo: "images/tutor-7.jpg",
+                city: "medan",
+                specializations: ["Aqidah", "Tauhid"],
+                experience: "9 tahun",
+                education: "S1 Aqidah Filsafat",
+                hourlyRate: 70000,
+                rating: 4.9,
+                totalStudents: 110,
+                description: "Ahli dalam aqidah dan tauhid dengan pendekatan yang sistematis. Membantu memperkuat fondasi keimanan dengan dalil yang kuat.",
+                whatsapp: "081234567896",
+                availability: "Selasa-Sabtu 20:00-22:00"
+            },
+            {
+                id: 8,
+                name: "Ustadzah Oki Setiana Dewi",
+                title: "Pembina Remaja Muslimah",
+                photo: "images/tutor-8.jpg",
+                city: "online",
+                specializations: ["Akhlak", "Pendidikan Remaja"],
+                experience: "7 tahun",
+                education: "S1 Komunikasi Islam",
+                hourlyRate: 65000,
+                rating: 4.8,
+                totalStudents: 180,
+                description: "Spesialis dalam pembinaan remaja muslimah dan pendidikan karakter. Metode komunikasi yang dekat dengan generasi muda.",
+                whatsapp: "081234567897",
+                availability: "Kamis-Minggu 19:00-21:00"
+            }
+        ];
+
+        // Global variables
+        let filteredTutors = [...tutorData];
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTutors();
+            setupEventListeners();
+            updateTime();
+            setInterval(updateTime, 1000);
+        });
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', filterTutors);
+            document.getElementById('cityFilter').addEventListener('change', filterTutors);
+            document.getElementById('specializationFilter').addEventListener('change', filterTutors);
+            document.getElementById('priceFilter').addEventListener('change', filterTutors);
+
+            // Form submission
+            document.getElementById('tutorForm').addEventListener('submit', handleTutorSubmission);
+
+            // Mobile menu toggle
+            document.addEventListener('click', function(e) {
+                const mobileMenu = document.getElementById('mobileMenu');
+                const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+                
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenu.style.display = 'none';
+                }
+            });
+
+            // Modal close on outside click
+            document.getElementById('tutorModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeTutorModal();
+                }
+            });
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('id-ID');
+            document.getElementById('currentTime').textContent = timeString;
+        }
+
+        // Render tutors
+        function renderTutors() {
+            const tutorGrid = document.getElementById('tutorGrid');
+            tutorGrid.innerHTML = '';
+
+            if (filteredTutors.length === 0) {
+                tutorGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--navy-light);">
+                        <img src="images/icons/search.png" alt="No results" style="width: 64px; height: 64px; margin-bottom: 1rem; opacity: 0.5;">
+                        <h3>Tidak ada tutor yang ditemukan</h3>
+                        <p>Coba ubah filter pencarian Anda</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredTutors.forEach(tutor => {
+                const tutorCard = createTutorCard(tutor);
+                tutorGrid.appendChild(tutorCard);
+            });
+        }
+
+        // Create tutor card
+        function createTutorCard(tutor) {
+            const card = document.createElement('div');
+            card.className = 'tutor-card';
+
+            const cityName = getCityName(tutor.city);
+            const formattedPrice = formatPrice(tutor.hourlyRate);
+
+            card.innerHTML = `
+                <div class="tutor-header">
+                    <img src="${tutor.photo}" alt="${tutor.name}" class="tutor-photo">
+                    <div class="tutor-name">${tutor.name}</div>
+                    <div class="tutor-title">${tutor.title}</div>
+                    <div class="tutor-rating">
+                        <img src="images/icons/star.png" alt="Rating">
+                        <span class="rating-text">${tutor.rating} (${tutor.totalStudents} siswa)</span>
+                    </div>
+                </div>
+                
+                <div class="tutor-content">
+                    <div class="tutor-info">
+                        <div class="info-item">
+                            <img src="images/icons/location-pin.png" alt="Lokasi">
+                            <span>${cityName}</span>
+                        </div>
+                        <div class="info-item">
+                            <img src="images/icons/clock.png" alt="Pengalaman">
+                            <span>Pengalaman ${tutor.experience}</span>
+                        </div>
+                        <div class="info-item">
+                            <img src="images/icons/graduation-cap.png" alt="Pendidikan">
+                            <span>${tutor.education}</span>
+                        </div>
+                        <div class="info-item">
+                            <img src="images/icons/money.png" alt="Tarif">
+                            <span>${formattedPrice}/jam</span>
+                        </div>
+                        <div class="info-item">
+                            <img src="images/icons/calendar.png" alt="Jadwal">
+                            <span>${tutor.availability}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="specialization-tags">
+                        ${tutor.specializations.map(spec => `<span class="specialization-tag">${spec}</span>`).join('')}
+                    </div>
+                    
+                    <div class="tutor-description">
+                        ${tutor.description}
+                    </div>
+                    
+                    <div class="tutor-actions">
+                        <a href="https://wa.me/${tutor.whatsapp}" class="contact-btn" target="_blank">
+                            <img src="images/icons/whatsapp.png" alt="WhatsApp">
+                            Hubungi
+                        </a>
+                        <a href="#" class="profile-btn" onclick="viewTutorProfile(${tutor.id})">
+                            Profil
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Filter tutors
+        function filterTutors() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cityFilter = document.getElementById('cityFilter').value;
+            const specializationFilter = document.getElementById('specializationFilter').value;
+            const priceFilter = document.getElementById('priceFilter').value;
+
+            filteredTutors = tutorData.filter(tutor => {
+                // Search filter
+                const matchesSearch = !searchTerm || 
+                    tutor.name.toLowerCase().includes(searchTerm) ||
+                    tutor.specializations.some(spec => spec.toLowerCase().includes(searchTerm)) ||
+                    tutor.description.toLowerCase().includes(searchTerm);
+
+                // City filter
+                const matchesCity = !cityFilter || tutor.city === cityFilter;
+
+                // Specialization filter
+                const matchesSpecialization = !specializationFilter || 
+                    tutor.specializations.some(spec => {
+                        if (specializationFilter === 'quran') return spec.includes('Al-Quran') || spec.includes('Tajwid') || spec.includes('Tahfidz');
+                        if (specializationFilter === 'hadits') return spec.includes('Hadits');
+                        if (specializationFilter === 'fiqh') return spec.includes('Fiqh') || spec.includes('Muamalah') || spec.includes('Ekonomi Islam');
+                        if (specializationFilter === 'aqidah') return spec.includes('Aqidah') || spec.includes('Tauhid');
+                        if (specializationFilter === 'akhlak') return spec.includes('Akhlak') || spec.includes('Adab') || spec.includes('Keluarga');
+                        if (specializationFilter === 'sirah') return spec.includes('Sirah');
+                        if (specializationFilter === 'arabic') return spec.includes('Arab');
+                        return false;
+                    });
+
+                // Price filter
+                const matchesPrice = !priceFilter || (() => {
+                    const price = tutor.hourlyRate;
+                    if (priceFilter === '0-50000') return price <= 50000;
+                    if (priceFilter === '50000-100000') return price > 50000 && price <= 100000;
+                    if (priceFilter === '100000-200000') return price > 100000 && price <= 200000;
+                    if (priceFilter === '200000+') return price > 200000;
+                    return true;
+                })();
+
+                return matchesSearch && matchesCity && matchesSpecialization && matchesPrice;
+            });
+
+            renderTutors();
+        }
+
+        // Helper functions
+        function getCityName(cityCode) {
+            const cities = {
+                'jakarta': 'Jakarta',
+                'bandung': 'Bandung',
+                'surabaya': 'Surabaya',
+                'yogyakarta': 'Yogyakarta',
+                'medan': 'Medan',
+                'semarang': 'Semarang',
+                'makassar': 'Makassar',
+                'palembang': 'Palembang',
+                'online': 'Online'
+            };
+            return cities[cityCode] || cityCode;
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(price);
+        }
+
+        // Modal functions
+        function openTutorModal() {
+            document.getElementById('tutorModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTutorModal() {
+            document.getElementById('tutorModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.getElementById('tutorForm').reset();
+        }
+
+        // Handle tutor form submission
+        function handleTutorSubmission(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const tutorData = Object.fromEntries(formData.entries());
+            
+            // Simulate form submission
+            alert('Terima kasih! Pendaftaran Anda telah diterima. Tim kami akan menghubungi Anda dalam 1-2 hari kerja untuk proses verifikasi.');
+            
+            closeTutorModal();
+            
+            // In real application, you would send this data to your backend
+            console.log('Tutor registration data:', tutorData);
+        }
+
+        // View tutor profile (placeholder)
+        function viewTutorProfile(tutorId) {
+            const tutor = tutorData.find(t => t.id === tutorId);
+            if (tutor) {
+                alert(`Profil ${tutor.name}\n\nPendidikan: ${tutor.education}\nPengalaman: ${tutor.experience}\nSpesialisasi: ${tutor.specializations.join(', ')}\n\n${tutor.description}`);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Kajian Islam - IslamicCalm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f8f5f0;
+            --cream-light: #faf7f2;
+            --cream-dark: #f0ece3;
+            --navy: #0a1f3d;
+            --navy-light: #1a3a6a;
+            --navy-medium: #2c4c7c;
+            --navy-dark: #0a1f3d;
+            --gold: #c5a245;
+            --gold-light: #e6d7b0;
+            --gold-dark: #a38535;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1e3a5f;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-item {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 18px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: #1e3a5f;
+            background: rgba(30, 58, 95, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4a5568;
+            font-size: 14px;
+            padding: 8px 15px;
+            background: rgba(30, 58, 95, 0.05);
+            border-radius: 20px;
+        }
+
+        .time-now {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e3a5f;
+            padding: 8px 15px;
+            background: rgba(30, 58, 95, 0.1);
+            border-radius: 20px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #1e3a5f;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(30, 58, 95, 0.1);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .page-title p {
+            font-size: 1.1rem;
+            color: var(--navy-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Promotion Banner */
+        .promotion-banner {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .promotion-banner h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold-light);
+        }
+
+        .promotion-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .contact-btn {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Search and Filter Section */
+        .search-filter-section {
+            background: var(--cream-light);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            border: 2px solid var(--gold-light);
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--gold-light);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(197, 162, 69, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: white;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--navy);
+            color: white;
+        }
+
+        /* Kajian Grid */
+        .kajian-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .kajian-card {
+            background: var(--cream-light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid var(--gold-light);
+        }
+
+        .kajian-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .kajian-image-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .kajian-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .kajian-image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: var(--gold-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+        }
+
+        .kajian-content {
+            padding: 1.5rem;
+        }
+
+        .kajian-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .kajian-speaker {
+            color: var(--gold-dark);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .kajian-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .kajian-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--navy-light);
+            font-size: 0.9rem;
+        }
+
+        .kajian-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .kajian-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .detail-btn {
+            background: var(--navy);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-btn:hover {
+            background: var(--navy-light);
+            transform: translateY(-2px);
+        }
+
+        .share-btn {
+            background: transparent;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .share-btn:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .user-info {
+                gap: 10px;
+            }
+            
+            .location,
+            .time-now {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .kajian-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .filter-buttons {
+                justify-content: flex-start;
+            }
+
+            .kajian-actions {
+                flex-direction: column;
+            }
+
+            .upload-form {
+                gap: 1rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🕌</div>
+                <div>
+                    <div class="logo-text">IslamicCalm</div>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+                <a href="kajian.html" class="nav-item active">Kajian</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
+                <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            
+            <div class="user-info">
+                <div class="location">
+                    <span>📍</span>
+                    <span id="userLocation">Jakarta, Indonesia</span>
+                </div>
+                <div class="time-now" id="currentTime">12:34:56</div>
+            </div>
+        </div>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="mobile-nav">
+                <a href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+                <a href="kajian.html" class="nav-item active">Kajian</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
+                <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1>Info Kajian Islam</h1>
+            <p>Temukan kajian-kajian Islam terbaik di sekitar Anda. Perkaya ilmu agama dengan mengikuti berbagai kajian dari ustadz dan ustadzah terpercaya.</p>
+        </div>
+
+        <!-- Promotion Banner -->
+        <div class="promotion-banner">
+            <h3>🎯 Ingin Mempromosikan Event Kajian Anda?</h3>
+            <p>Jika Anda memiliki event kajian, seminar, atau acara keislaman yang ingin dipromosikan, silakan hubungi kami. Kami akan membantu menyebarkan informasi kajian Anda kepada jamaah yang lebih luas.</p>
+            <a href="#" class="contact-btn" onclick="contactUs()">
+                <i class="fas fa-phone"></i>
+                Hubungi Kami
+            </a>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="search-filter-section">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Cari kajian berdasarkan judul, ustadz, atau lokasi...">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Semua Kajian</button>
+                <button class="filter-btn" data-filter="online">Online</button>
+                <button class="filter-btn" data-filter="offline">Offline</button>
+                <button class="filter-btn" data-filter="today">Hari Ini</button>
+                <button class="filter-btn" data-filter="upcoming">Mendatang</button>
+            </div>
+        </div>
+
+        <!-- Kajian Grid -->
+        <div class="kajian-grid" id="kajianGrid">
+            <!-- Kajian cards will be generated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Sample kajian data
+        const kajianData = [
+    {
+        id: 1,
+        title: "Tafsir Al-Quran: Surah Al-Baqarah",
+        speaker: "Ustadz Ahmad Zainuddin",
+        date: "2024-12-15T19:00",
+        location: "Masjid Al-Ikhlas, Jakarta Selatan",
+        type: "offline",
+        description: "Kajian mendalam tentang tafsir Surah Al-Baqarah dengan pendekatan kontemporer yang mudah dipahami.",
+        contact: "WhatsApp: 0812-3456-7890",
+        image: "📖",
+        category: "tafsir",
+        price: "Gratis",
+        capacity: 200,
+        registered: 150
+    },
+    {
+        id: 2,
+        title: "Fiqh Muamalah dalam Kehidupan Modern",
+        speaker: "Ustadzah Siti Nurhaliza",
+        date: "2024-12-16T20:00",
+        location: "Zoom Meeting",
+        type: "online",
+        description: "Membahas hukum-hukum muamalah yang relevan dengan kehidupan modern, termasuk transaksi digital.",
+        contact: "Telegram: @kajianfiqh",
+        image: "💰",
+        category: "fiqh",
+        price: "Rp 25.000",
+        capacity: 500,
+        registered: 320
+    },
+    {
+        id: 3,
+        title: "Sirah Nabawiyah: Periode Makkah",
+        speaker: "Ustadz Muhammad Ridwan",
+        date: "2024-12-17T19:30",
+        location: "Islamic Center, Bandung",
+        type: "offline",
+        description: "Mempelajari perjalanan hidup Rasulullah SAW selama periode Makkah dengan hikmah yang dapat diambil.",
+        contact: "WhatsApp: 0813-9876-5432",
+        image: "🕋",
+        category: "sirah",
+        price: "Rp 15.000",
+        capacity: 300,
+        registered: 280
+    },
+    {
+        id: 4,
+        title: "Akhlak Mulia dalam Keluarga",
+        speaker: "Ustadz Abdullah Gymnastiar",
+        date: "2024-12-18T19:00",
+        location: "YouTube Live",
+        type: "online",
+        description: "Membangun keluarga sakinah dengan akhlak mulia berdasarkan Al-Quran dan Sunnah.",
+        contact: "Instagram: @kajiankeluarga",
+        image: "👨‍👩‍👧‍👦",
+        category: "akhlak",
+        price: "Gratis",
+        capacity: 1000,
+        registered: 750
+    },
+    {
+        id: 5,
+        title: "Manajemen Waktu dalam Islam",
+        speaker: "Ustadz Yusuf Mansur",
+        date: "2024-12-19T20:30",
+        location: "Masjid Agung, Surabaya",
+        type: "offline",
+        description: "Belajar mengelola waktu dengan efektif berdasarkan ajaran Islam untuk kehidupan yang lebih produktif.",
+        contact: "WhatsApp: 0814-5555-1234",
+        image: "⏰",
+        category: "motivasi",
+        price: "Rp 30.000",
+        capacity: 400,
+        registered: 380
+    },
+    {
+        id: 6,
+        title: "Kajian Hadits Arbain Nawawi",
+        speaker: "Ustadz Khalid Basalamah",
+        date: "2024-12-20T19:15",
+        location: "Facebook Live",
+        type: "online",
+        description: "Membahas 40 hadits pilihan Imam Nawawi yang mencakup berbagai aspek kehidupan muslim.",
+        contact: "Facebook: Kajian Hadits",
+        image: "📚",
+        category: "hadits",
+        price: "Rp 20.000",
+        capacity: 800,
+        registered: 650
+    }
+];
+
+        // Global variables
+        let filteredKajian = [...kajianData];
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            renderKajianGrid();
+            setupEventListeners();
+            updateTime();
+            setInterval(updateTime, 1000);
+        });
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                filterKajian(searchTerm);
+            });
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    applyFilter(filter);
+                });
+            });
+
+            // Mobile menu toggle
+            document.addEventListener('click', function(e) {
+                const mobileMenu = document.getElementById('mobileMenu');
+                const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+                
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenu.style.display = 'none';
+                }
+            });
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('id-ID');
+            document.getElementById('currentTime').textContent = timeString;
+        }
+
+        // Contact us function
+        function contactUs() {
+            alert('Hubungi kami di:\n\nWhatsApp: +62 812-3456-7890\nEmail: info@islamiccalm.com\nTelegram: @islamiccalm\n\nTerima kasih!');
+        }
+
+        // Render kajian grid
+        function renderKajianGrid() {
+            const grid = document.getElementById('kajianGrid');
+            grid.innerHTML = '';
+
+            if (filteredKajian.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--navy-light);">
+                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p style="font-size: 1.2rem;">Tidak ada kajian yang ditemukan</p>
+                        <p>Coba ubah kata kunci pencarian atau filter yang dipilih</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredKajian.forEach(kajian => {
+                const kajianCard = createKajianCard(kajian);
+                grid.appendChild(kajianCard);
+            });
+        }
+
+        // Create kajian card
+        function createKajianCard(kajian) {
+            const card = document.createElement('div');
+            card.className = 'kajian-card';
+            card.setAttribute('data-id', kajian.id);
+
+            const date = new Date(kajian.date);
+            const formattedDate = date.toLocaleDateString('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            const formattedTime = date.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            const availableSlots = kajian.capacity - kajian.registered;
+            const isAlmostFull = availableSlots <= kajian.capacity * 0.1; // 10% or less remaining
+
+            card.innerHTML = `
+                <div class="kajian-image-container">
+                    <img class="kajian-image" src="/placeholder.svg?height=200&width=350" alt="${kajian.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="kajian-image-placeholder" style="display: none;">
+                        <i class="fas fa-image" style="font-size: 3rem; color: var(--navy);"></i>
+                        <p style="color: var(--navy-light); margin-top: 0.5rem;">Poster Kajian</p>
+                    </div>
+                </div>
+                <div class="kajian-content">
+                    <h3 class="kajian-title">${kajian.title}</h3>
+                    <p class="kajian-speaker">👨‍🏫 ${kajian.speaker}</p>
+                    <div class="kajian-details">
+                        <div class="kajian-detail">
+                            <i class="fas fa-calendar"></i>
+                            <span>${formattedDate}</span>
+                        </div>
+                        <div class="kajian-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>${formattedTime} WIB</span>
+                        </div>
+                        <div class="kajian-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${kajian.location}</span>
+                        </div>
+                        <div class="kajian-detail">
+                            <i class="fas fa-${kajian.type === 'online' ? 'wifi' : 'building'}"></i>
+                            <span>${kajian.type === 'online' ? 'Online' : 'Offline'}</span>
+                        </div>
+                        <div class="kajian-detail">
+                            <i class="fas fa-tag"></i>
+                            <span style="font-weight: 600; color: var(--gold-dark);">${kajian.price}</span>
+                        </div>
+                        <div class="kajian-detail">
+                            <i class="fas fa-users"></i>
+                            <span>${availableSlots} slot tersisa ${isAlmostFull ? '⚠️' : ''}</span>
+                        </div>
+                    </div>
+                    <p class="kajian-description">${kajian.description}</p>
+                    <div class="kajian-actions">
+                        <a href="kajian-detail.html?id=${kajian.id}" class="detail-btn">
+                            <i class="fas fa-eye"></i>
+                            Lihat Detail
+                        </a>
+                        <button class="share-btn" onclick="shareKajian(${kajian.id})">
+                            <i class="fas fa-share"></i>
+                            Bagikan
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Filter kajian
+        function filterKajian(searchTerm) {
+            filteredKajian = kajianData.filter(kajian => {
+                return kajian.title.toLowerCase().includes(searchTerm) ||
+                       kajian.speaker.toLowerCase().includes(searchTerm) ||
+                       kajian.location.toLowerCase().includes(searchTerm) ||
+                       kajian.description.toLowerCase().includes(searchTerm);
+            });
+            renderKajianGrid();
+        }
+
+        // Apply filter
+        function applyFilter(filter) {
+            const now = new Date();
+            const today = now.toDateString();
+
+            switch(filter) {
+                case 'online':
+                    filteredKajian = kajianData.filter(kajian => kajian.type === 'online');
+                    break;
+                case 'offline':
+                    filteredKajian = kajianData.filter(kajian => kajian.type === 'offline');
+                    break;
+                case 'today':
+                    filteredKajian = kajianData.filter(kajian => {
+                        const kajianDate = new Date(kajian.date);
+                        return kajianDate.toDateString() === today;
+                    });
+                    break;
+                case 'upcoming':
+                    filteredKajian = kajianData.filter(kajian => {
+                        const kajianDate = new Date(kajian.date);
+                        return kajianDate > now;
+                    });
+                    break;
+                default:
+                    filteredKajian = [...kajianData];
+            }
+            renderKajianGrid();
+        }
+
+        // Share kajian
+        function shareKajian(id) {
+            const kajian = kajianData.find(k => k.id === id);
+            if (kajian) {
+                const shareText = `🕌 ${kajian.title}\n👨‍🏫 ${kajian.speaker}\n📅 ${new Date(kajian.date).toLocaleDateString('id-ID')}\n📍 ${kajian.location}\n\nLihat detail: ${window.location.origin}/kajian-detail.html?id=${id}`;
+                
+                if (navigator.share) {
+                    navigator.share({
+                        title: kajian.title,
+                        text: shareText,
+                        url: `${window.location.origin}/kajian-detail.html?id=${id}`
+                    });
+                } else {
+                    // Fallback: copy to clipboard
+                    navigator.clipboard.writeText(shareText).then(() => {
+                        alert('Link kajian berhasil disalin ke clipboard!');
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
