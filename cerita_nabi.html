@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cerita Nabi - Koleksi Kisah Para Rasul</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f6f0 0%, #e8e2d4 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Background dengan overlay */
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/islamic-pattern-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -2;
+        }
+
+        .background-overlay::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(248, 246, 240, 0.85);
+            backdrop-filter: blur(1px);
+            z-index: -1;
+        }
+
+       /* Header - Full Width */
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 15px 20px;
+      box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
+      width: 100%;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+    }
+
+    .logo-text {
+      font-size: 26px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+
+    .logo-subtitle {
+      font-size: 12px;
+      color: #4a5568;
+      font-weight: normal;
+    }
+
+    /* Navigation */
+    .nav-menu {
+      display: flex;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .nav-item {
+      color: #4a5568;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      font-size: 15px;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      color: #1e3a5f;
+      background: rgba(30, 58, 95, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #4a5568;
+      font-size: 14px;
+      padding: 8px 15px;
+      background: rgba(30, 58, 95, 0.05);
+      border-radius: 20px;
+    }
+
+    .time-now {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e3a5f;
+      padding: 8px 15px;
+      background: rgba(30, 58, 95, 0.1);
+      border-radius: 20px;
+    }
+
+        /* Search and Filter Section */
+        .search-filter-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 20px 20px 0;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(30, 58, 95, 0.1);
+        }
+
+        .search-filter-container {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 15px;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 2px solid rgba(30, 58, 95, 0.2);
+            border-radius: 25px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #1e3a5f;
+            box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1e3a5f;
+            font-size: 18px;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        /* SVG Search Icon */
+        .search-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: #1e3a5f;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .search-input:focus + .search-icon svg {
+            stroke: #2c5282;
+            transform: scale(1.1);
+        }
+
+        .filter-select {
+            padding: 12px 15px;
+            border: 2px solid rgba(30, 58, 95, 0.2);
+            border-radius: 25px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1e3a5f;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #1e3a5f;
+            box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
+        }
+
+        .clear-button {
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-button:hover {
+            background: linear-gradient(135deg, #c53030 0%, #9c2626 100%);
+            transform: translateY(-2px);
+        }
+
+        .results-info {
+            text-align: center;
+            margin-top: 15px;
+            color: #4a5568;
+            font-size: 14px;
+        }
+
+        .main-content {
+            padding: 30px 20px;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 30px rgba(30, 58, 95, 0.1),
+                0 5px 15px rgba(30, 58, 95, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(30, 58, 95, 0.1);
+        }
+
+        .story-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(30, 58, 95, 0.2),
+                0 10px 20px rgba(30, 58, 95, 0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .story-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(30, 58, 95, 0.8));
+            padding: 20px 15px 10px;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-subtitle {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e3a5f;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #4a5568;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .star {
+            color: #f6ad55;
+            font-size: 14px;
+        }
+
+        .rating-text {
+            font-size: 12px;
+            color: #718096;
+            margin-left: 5px;
+        }
+
+        .read-button {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .read-button:hover {
+            background: linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
+            transform: translateY(-2px);
+        }
+
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(30, 58, 95, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3a5f;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #4a5568;
+            margin-top: 5px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #4a5568;
+        }
+
+        .no-results h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #1e3a5f;
+        }
+
+        .no-results p {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .search-filter-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .stories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .page-title {
+                font-size: 24px;
+            }
+            
+            .main-content {
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stories-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .header {
+                padding: 15px;
+            }
+            
+            .back-button {
+                left: 15px;
+            }
+            
+            .search-filter-section {
+                margin: 15px 15px 0;
+                padding: 15px;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .story-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .story-card:nth-child(1) { animation-delay: 0.1s; }
+        .story-card:nth-child(2) { animation-delay: 0.2s; }
+        .story-card:nth-child(3) { animation-delay: 0.3s; }
+        .story-card:nth-child(4) { animation-delay: 0.4s; }
+        .story-card:nth-child(5) { animation-delay: 0.5s; }
+        .story-card:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <div class="background-overlay"></div>
+
+  <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">🕌</div>
+                    <div>
+                        <div class="logo-text">IslamicCalm</div>
+                    </div>
+                </a>
+                
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-item">Beranda</a>
+                    <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                    <a href="cerita_nabi.html" class="nav-item active">Cerita Nabi</a>
+                    <a href="artikel.html" class="nav-item">Artikel</a>
+                    <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+                </nav>
+                
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+                
+                <div class="user-info">
+                    <div class="location">
+                        <span>📍</span>
+                        <span id="userLocation">Jakarta, Indonesia</span>
+                    </div>
+                    <div class="time-now" id="currentTime">12:34:56</div>
+                </div>
+            </div>
+            
+            <div class="mobile-menu" id="mobileMenu">
+                <nav class="mobile-nav">
+                    <a href="index.html" class="nav-item">Beranda</a>
+                    <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                    <a href="cerita_nabi.html" class="nav-item active">Cerita Nabi</a>
+                    <a href="artikel.html" class="nav-item">Artikel</a>
+                    <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section">
+            <div class="search-filter-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Cari nama nabi atau cerita...">
+                    <div class="search-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </div>
+                </div>
+                <select id="filterSelect" class="filter-select">
+                    <option value="">Semua Nabi</option>
+                    <option value="adam">Nabi Adam AS</option>
+                    <option value="idris">Nabi Idris AS</option>
+                    <option value="nuh">Nabi Nuh AS</option>
+                    <option value="hud">Nabi Hud AS</option>
+                    <option value="saleh">Nabi Saleh AS</option>
+                    <option value="ibrahim">Nabi Ibrahim AS</option>
+                    <option value="luth">Nabi Luth AS</option>
+                    <option value="ismail">Nabi Ismail AS</option>
+                    <option value="ishaq">Nabi Ishaq AS</option>
+                    <option value="yaqub">Nabi Yaqub AS</option>
+                    <option value="yusuf">Nabi Yusuf AS</option>
+                    <option value="ayyub">Nabi Ayyub AS</option>
+                    <option value="syuaib">Nabi Syuaib AS</option>
+                    <option value="musa">Nabi Musa AS</option>
+                    <option value="harun">Nabi Harun AS</option>
+                    <option value="dzulkifli">Nabi Dzulkifli AS</option>
+                    <option value="daud">Nabi Daud AS</option>
+                    <option value="sulaiman">Nabi Sulaiman AS</option>
+                    <option value="ilyas">Nabi Ilyas AS</option>
+                    <option value="ilyasa">Nabi Ilyasa AS</option>
+                    <option value="yunus">Nabi Yunus AS</option>
+                    <option value="zakaria">Nabi Zakaria AS</option>
+                    <option value="yahya">Nabi Yahya AS</option>
+                    <option value="isa">Nabi Isa AS</option>
+                    <option value="muhammad">Nabi Muhammad SAW</option>
+                </select>
+                <button id="clearButton" class="clear-button">Reset</button>
+            </div>
+            <div id="resultsInfo" class="results-info"></div>
+        </div>
+
+        <main class="main-content">
+            <div class="stats-bar">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalStories">25</div>
+                        <div class="stat-label">Cerita Nabi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Pembaca</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.9</div>
+                        <div class="stat-label">Rating</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stories-grid" id="storiesGrid">
+                <!-- Nabi Adam AS -->
+                <div class="story-card" data-name="adam" data-title="Nabi Adam AS" data-subtitle="Manusia Pertama">
+                    <div class="card-image">
+                        <img src="image/adam.jpg" alt="Nabi Adam AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Adam AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Manusia Pertama</h3>
+                        <p class="card-description">
+                            Kisah penciptaan manusia pertama dan awal mula kehidupan di bumi. 
+                            Pelajaran tentang taubat dan pengampunan Allah SWT.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.9 (234 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('adam')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Idris AS -->
+                <div class="story-card" data-name="idris" data-title="Nabi Idris AS" data-subtitle="Ahli Ilmu Pengetahuan">
+                    <div class="card-image">
+                        <img src="image/idris.jpg" alt="Nabi Idris AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Idris AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Ahli Ilmu Pengetahuan</h3>
+                        <p class="card-description">
+                            Kisah nabi yang diangkat ke langit dan dikenal sebagai pelopor 
+                            ilmu pengetahuan, tulisan, dan astronomi.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.8 (156 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('idris')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Nuh AS -->
+                <div class="story-card" data-name="nuh" data-title="Nabi Nuh AS" data-subtitle="Pembuat Bahtera">
+                    <div class="card-image">
+                        <img src="image/nuh.jpg" alt="Nabi Nuh AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Nuh AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Pembuat Bahtera</h3>
+                        <p class="card-description">
+                            Kisah kesabaran Nabi Nuh dalam berdakwah dan mukjizat bahtera 
+                            yang menyelamatkan umat beriman dari banjir besar.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.8 (189 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('nuh')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Hud AS -->
+                <div class="story-card" data-name="hud" data-title="Nabi Hud AS" data-subtitle="Rasul Kaum 'Ad">
+                    <div class="card-image">
+                        <img src="image/hud.jpg" alt="Nabi Hud AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Hud AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Rasul Kaum 'Ad</h3>
+                        <p class="card-description">
+                            Kisah dakwah kepada kaum 'Ad yang sombong dan azab Allah 
+                            berupa angin topan yang menghancurkan mereka.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.7 (143 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('hud')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Saleh AS -->
+                <div class="story-card" data-name="saleh" data-title="Nabi Saleh AS" data-subtitle="Mukjizat Unta Betina">
+                    <div class="card-image">
+                        <img src="image/saleh.jpg" alt="Nabi Saleh AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Saleh AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Mukjizat Unta Betina</h3>
+                        <p class="card-description">
+                            Kisah Nabi Saleh dan mukjizat unta betina yang keluar dari batu, 
+                            serta peringatan kepada kaum Tsamud.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.6 (128 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('saleh')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Ibrahim AS -->
+                <div class="story-card" data-name="ibrahim" data-title="Nabi Ibrahim AS" data-subtitle="Khalilullah">
+                    <div class="card-image">
+                        <img src="image/ibrahim.jpg" alt="Nabi Ibrahim AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Ibrahim AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Khalilullah</h3>
+                        <p class="card-description">
+                            Kisah keimanan yang teguh dan ujian berat yang dihadapi 
+                            Nabi Ibrahim, termasuk perintah menyembelih putranya.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.9 (312 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('ibrahim')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Luth AS -->
+                <div class="story-card" data-name="luth" data-title="Nabi Luth AS" data-subtitle="Peringatan Kaum Sodom">
+                    <div class="card-image">
+                        <img src="image/luth.jpg" alt="Nabi Luth AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Luth AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Peringatan Kaum Sodom</h3>
+                        <p class="card-description">
+                            Kisah Nabi Luth yang memperingatkan kaumnya dari perbuatan keji 
+                            dan azab Allah yang menimpa mereka.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.5 (98 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('luth')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Ismail AS -->
+                <div class="story-card" data-name="ismail" data-title="Nabi Ismail AS" data-subtitle="Putra yang Taat">
+                    <div class="card-image">
+                        <img src="image/ismail.jpg" alt="Nabi Ismail AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Ismail AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Putra yang Taat</h3>
+                        <p class="card-description">
+                            Kisah ketaatan Nabi Ismail kepada ayahnya Ibrahim dan 
+                            kerelaan berkorban demi Allah SWT.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.8 (187 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('ismail')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Ishaq AS -->
+                <div class="story-card" data-name="ishaq" data-title="Nabi Ishaq AS" data-subtitle="Anak Mukjizat">
+                    <div class="card-image">
+                        <img src="image/ishaq.jpg" alt="Nabi Ishaq AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Ishaq AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Anak Mukjizat</h3>
+                        <p class="card-description">
+                            Kisah kelahiran Nabi Ishaq sebagai mukjizat Allah kepada 
+                            Ibrahim dan Sarah di usia tua mereka.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.7 (165 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('ishaq')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Yaqub AS -->
+                <div class="story-card" data-name="yaqub" data-title="Nabi Yaqub AS" data-subtitle="Bapak 12 Suku">
+                    <div class="card-image">
+                        <img src="image/yaqub.jpg" alt="Nabi Yaqub AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Yaqub AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Bapak 12 Suku</h3>
+                        <p class="card-description">
+                            Kisah kesabaran Nabi Yaqub dalam menghadapi ujian kehilangan 
+                            putra tercinta, Yusuf AS.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.8 (203 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('yaqub')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Yusuf AS -->
+                <div class="story-card" data-name="yusuf" data-title="Nabi Yusuf AS" data-subtitle="Ahsanul Qasas">
+                    <div class="card-image">
+                        <img src="image/yusuf2.jpg" alt="Nabi Yusuf AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Yusuf AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Ahsanul Qasas</h3>
+                        <p class="card-description">
+                            Kisah paling indah dalam Al-Quran tentang kesabaran, 
+                            pengampunan, dan takdir Allah yang penuh hikmah.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.9 (378 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('yusuf')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Ayyub AS -->
+                <div class="story-card" data-name="ayyub" data-title="Nabi Ayyub AS" data-subtitle="Teladan Kesabaran">
+                    <div class="card-image">
+                        <img src="image/ayyub.jpg" alt="Nabi Ayyub AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Ayyub AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Teladan Kesabaran</h3>
+                        <p class="card-description">
+                            Kisah kesabaran luar biasa Nabi Ayyub dalam menghadapi 
+                            ujian penyakit dan kemiskinan yang berkepanjangan.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.9 (289 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('ayyub')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Syuaib AS -->
+                <div class="story-card" data-name="syuaib" data-title="Nabi Syuaib AS" data-subtitle="Khatib Para Nabi">
+                    <div class="card-image">
+                        <img src="image/syuaib.jpg" alt="Nabi Syuaib AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Syuaib AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Khatib Para Nabi</h3>
+                        <p class="card-description">
+                            Kisah Nabi Syuaib yang terkenal dengan kemampuan berbicaranya 
+                            dalam menyampaikan dakwah kepada kaum Madyan.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.6 (134 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('syuaib')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Musa AS -->
+                <div class="story-card" data-name="musa" data-title="Nabi Musa AS" data-subtitle="Kalimullah">
+                    <div class="card-image">
+                        <img src="image/musa.jpg" alt="Nabi Musa AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Musa AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Kalimullah</h3>
+                        <p class="card-description">
+                            Kisah pembebasan Bani Israil dari Firaun dan mukjizat 
+                            tongkat yang berubah menjadi ular serta terbelahnya laut.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.8 (267 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('musa')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Harun AS -->
+                <div class="story-card" data-name="harun" data-title="Nabi Harun AS" data-subtitle="Pendamping Musa">
+                    <div class="card-image">
+                        <img src="image/harun.jpg" alt="Nabi Harun AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Harun AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Pendamping Musa</h3>
+                        <p class="card-description">
+                            Kisah Nabi Harun sebagai pendamping dan pembantu Nabi Musa 
+                            dalam berdakwah kepada Firaun dan Bani Israil.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.7 (198 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('harun')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Dzulkifli AS -->
+                <div class="story-card" data-name="dzulkifli" data-title="Nabi Dzulkifli AS" data-subtitle="Penjamin Keadilan">
+                    <div class="card-image">
+                        <img src="image/dzulkifli.jpg" alt="Nabi Dzulkifli AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Dzulkifli AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Penjamin Keadilan</h3>
+                        <p class="card-description">
+                            Kisah Nabi Dzulkifli yang dikenal dengan keadilannya dan 
+                            komitmennya dalam menjaga janji kepada umatnya.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.5 (112 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('dzulkifli')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Daud AS -->
+                <div class="story-card" data-name="daud" data-title="Nabi Daud AS" data-subtitle="Raja Pemazmur">
+                    <div class="card-image">
+                        <img src="image/daud.jpg" alt="Nabi Daud AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Daud AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Raja Pemazmur</h3>
+                        <p class="card-description">
+                            Kisah Nabi Daud yang mengalahkan Jalut dan menjadi raja 
+                            yang adil, serta diberikan kitab Zabur.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.8 (223 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('daud')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Sulaiman AS -->
+                <div class="story-card" data-name="sulaiman" data-title="Nabi Sulaiman AS" data-subtitle="Raja yang Bijaksana">
+                    <div class="card-image">
+                        <img src="image/sulaiman.jpg" alt="Nabi Sulaiman AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Sulaiman AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Raja yang Bijaksana</h3>
+                        <p class="card-description">
+                            Kisah raja yang dapat berbicara dengan hewan dan jin, 
+                            serta kebijaksanaannya dalam memimpin kerajaan.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.8 (245 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('sulaiman')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Ilyas AS -->
+                <div class="story-card" data-name="ilyas" data-title="Nabi Ilyas AS" data-subtitle="Penentang Penyembah Baal">
+                    <div class="card-image">
+                        <img src="image/ilyas.jpg" alt="Nabi Ilyas AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Ilyas AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Penentang Penyembah Baal</h3>
+                        <p class="card-description">
+                            Kisah perjuangan Nabi Ilyas melawan penyembahan berhala Baal 
+                            dan mukjizat api dari langit.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.6 (156 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('ilyas')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Ilyasa AS -->
+                <div class="story-card" data-name="ilyasa" data-title="Nabi Ilyasa AS" data-subtitle="Penerus Ilyas">
+                    <div class="card-image">
+                        <img src="image/ilyasa.jpg" alt="Nabi Ilyasa AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Ilyasa AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Penerus Ilyas</h3>
+                        <p class="card-description">
+                            Kisah Nabi Ilyasa yang melanjutkan misi dakwah Nabi Ilyas 
+                            dengan berbagai mukjizat penyembuhan.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.5 (134 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('ilyasa')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Yunus AS -->
+                <div class="story-card" data-name="yunus" data-title="Nabi Yunus AS" data-subtitle="Dzun Nun">
+                    <div class="card-image">
+                        <img src="image/yunus.png" alt="Nabi Yunus AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Yunus AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Dzun Nun</h3>
+                        <p class="card-description">
+                            Kisah Nabi Yunus yang ditelan ikan paus dan pelajaran 
+                            tentang kesabaran serta taubat yang tulus.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.7 (198 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('yunus')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Zakaria AS -->
+                <div class="story-card" data-name="zakaria" data-title="Nabi Zakaria AS" data-subtitle="Ayah Yahya">
+                    <div class="card-image">
+                        <img src="image/zakaria.jpg" alt="Nabi Zakaria AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Zakaria AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Ayah Yahya</h3>
+                        <p class="card-description">
+                            Kisah doa Nabi Zakaria yang dikabulkan Allah dengan 
+                            dikaruniai putra Yahya di usia tua.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.7 (167 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('zakaria')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Yahya AS -->
+                <div class="story-card" data-name="yahya" data-title="Nabi Yahya AS" data-subtitle="Pembaptis Suci">
+                    <div class="card-image">
+                        <img src="image/yahya.jpg" alt="Nabi Yahya AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Yahya AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Pembaptis Suci</h3>
+                        <p class="card-description">
+                            Kisah Nabi Yahya yang dikaruniai hikmah sejak kecil dan 
+                            menjadi pembuka jalan bagi kedatangan Nabi Isa.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.8 (189 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('yahya')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Isa AS -->
+                <div class="story-card" data-name="isa" data-title="Nabi Isa AS" data-subtitle="Ruhullah">
+                    <div class="card-image">
+                        <img src="image/isa.jpg" alt="Nabi Isa AS">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Isa AS</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Ruhullah</h3>
+                        <p class="card-description">
+                            Kisah kelahiran mukjizat dan berbagai keajaiban yang 
+                            diberikan Allah kepada Nabi Isa dalam menyembuhkan orang sakit.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">4.9 (298 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('isa')">Baca Cerita</button>
+                    </div>
+                </div>
+
+                <!-- Nabi Muhammad SAW -->
+                <div class="story-card" data-name="muhammad" data-title="Nabi Muhammad SAW" data-subtitle="Khatamul Anbiya">
+                    <div class="card-image">
+                        <img src="image/cerita.png" alt="Nabi Muhammad SAW">
+                        <div class="card-overlay">
+                            <div class="card-title">Nabi Muhammad SAW</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-subtitle">Khatamul Anbiya</h3>
+                        <p class="card-description">
+                            Kisah hidup Rasulullah SAW, dari kelahiran hingga wafat, 
+                            termasuk perjuangan dakwah dan akhlak mulia beliau.
+                        </p>
+                        <div class="card-rating">
+                            <span class="star">★★★★★</span>
+                            <span class="rating-text">5.0 (456 pembaca)</span>
+                        </div>
+                        <button class="read-button" onclick="bacaCerita('muhammad')">Baca Cerita</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <h3>Tidak ada hasil ditemukan</h3>
+                <p>Coba gunakan kata kunci yang berbeda atau reset filter</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Data untuk pencarian dan filter
+        const searchInput = document.getElementById('searchInput');
+        const filterSelect = document.getElementById('filterSelect');
+        const clearButton = document.getElementById('clearButton');
+        const resultsInfo = document.getElementById('resultsInfo');
+        const storiesGrid = document.getElementById('storiesGrid');
+        const noResults = document.getElementById('noResults');
+        const totalStoriesElement = document.getElementById('totalStories');
+
+        // Semua card cerita
+        const allCards = document.querySelectorAll('.story-card');
+        const totalCards = allCards.length;
+
+        // Update total stories
+        totalStoriesElement.textContent = totalCards;
+
+        // Fungsi untuk menampilkan hasil pencarian
+        function updateResults() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const filterValue = filterSelect.value.toLowerCase();
+            
+            let visibleCount = 0;
+            
+            allCards.forEach(card => {
+                const name = card.dataset.name.toLowerCase();
+                const title = card.dataset.title.toLowerCase();
+                const subtitle = card.dataset.subtitle.toLowerCase();
+                const description = card.querySelector('.card-description').textContent.toLowerCase();
+                
+                // Cek apakah sesuai dengan pencarian
+                const matchesSearch = !searchTerm || 
+                    name.includes(searchTerm) || 
+                    title.includes(searchTerm) || 
+                    subtitle.includes(searchTerm) || 
+                    description.includes(searchTerm);
+                
+                // Cek apakah sesuai dengan filter
+                const matchesFilter = !filterValue || name === filterValue;
+                
+                // Tampilkan card jika sesuai dengan kedua kriteria
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Update info hasil
+            updateResultsInfo(visibleCount, searchTerm, filterValue);
+            
+            // Tampilkan pesan jika tidak ada hasil
+            if (visibleCount === 0) {
+                storiesGrid.style.display = 'none';
+                noResults.style.display = 'block';
+            } else {
+                storiesGrid.style.display = 'grid';
+                noResults.style.display = 'none';
+            }
+        }
+
+        // Fungsi untuk update info hasil
+        function updateResultsInfo(count, searchTerm, filterValue) {
+            let message = `Menampilkan ${count} dari ${totalCards} cerita`;
+            
+            if (searchTerm && filterValue) {
+                const filterName = filterSelect.options[filterSelect.selectedIndex].text;
+                message += ` untuk "${searchTerm}" dalam ${filterName}`;
+            } else if (searchTerm) {
+                message += ` untuk "${searchTerm}"`;
+            } else if (filterValue) {
+                const filterName = filterSelect.options[filterSelect.selectedIndex].text;
+                message += ` untuk ${filterName}`;
+            }
+            
+            resultsInfo.textContent = message;
+        }
+
+        // Event listeners
+        searchInput.addEventListener('input', updateResults);
+        filterSelect.addEventListener('change', updateResults);
+
+        // Fungsi clear/reset
+        clearButton.addEventListener('click', () => {
+            searchInput.value = '';
+            filterSelect.value = '';
+            updateResults();
+        });
+
+        // Fungsi untuk membaca cerita
+        function bacaCerita(nabiName) {
+            console.log(`Membuka cerita Nabi ${nabiName}`);
+            alert(`Membuka cerita Nabi ${nabiName.charAt(0).toUpperCase() + nabiName.slice(1)}`);
+            // window.location.href = `cerita-${nabiName}.html`;
+        }
+
+        // Efek parallax pada scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const backgroundOverlay = document.querySelector('.background-overlay');
+            if (backgroundOverlay) {
+                backgroundOverlay.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Efek hover pada cards
+        document.querySelectorAll('.story-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
+        });
+
+        // Inisialisasi tampilan
+        updateResults();
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + K untuk fokus ke search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+            
+            // Escape untuk clear search
+            if (e.key === 'Escape') {
+                searchInput.value = '';
+                filterSelect.value = '';
+                updateResults();
+                searchInput.blur();
+            }
+        });
+    </script>
+</body>
+</html>

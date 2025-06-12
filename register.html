@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login & Register</title>
+  <title>Register</title>
   <style>
     /* Styling body untuk latar belakang dan tata letak */
     body {
@@ -11,7 +11,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       height: 100vh;
       overflow: hidden;
-      background: linear-gradient(135deg, #e6d8b3, #1b5e20);
+      background: linear-gradient(135deg, #FFFDD0, #1B263B);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -69,7 +69,7 @@
     .switch-section {
       flex: 1;
       padding: 40px;
-      background: linear-gradient(45deg, #4a7047, #1b5e20);
+      background: linear-gradient(45deg, #415A77, #1B263B);
       color: white;
       display: flex;
       flex-direction: column;
@@ -80,13 +80,13 @@
     }
 
     .switch-section:hover {
-      background: linear-gradient(45deg, #375a34, #143d17);
+      background: linear-gradient(45deg, #2C3E50, #0D1B2A);
     }
 
     /* Judul form */
     .form-section h2 {
       margin-bottom: 20px;
-      color: #1b5e20;
+      color: #1B263B;
       font-size: 28px;
     }
 
@@ -97,7 +97,7 @@
       margin: 10px auto;
       padding: 12px;
       font-size: 16px;
-      border: 1px solid #1b5e20;
+      border: 1px solid #1B263B;
       border-radius: 5px;
       box-sizing: border-box;
     }
@@ -107,7 +107,7 @@
       padding: 12px 24px;
       font-size: 16px;
       cursor: pointer;
-      background: linear-gradient(45deg, #4a7047, #1b5e20);
+      background: linear-gradient(45deg, #415A77, #1B263B);
       color: white;
       border: none;
       border-radius: 5px;
@@ -115,7 +115,7 @@
     }
 
     .form-section button:hover {
-      background: linear-gradient(45deg, #375a34, #143d17);
+      background: linear-gradient(45deg, #2C3E50, #0D1B2A);
     }
 
     /* Teks ajakan */
@@ -153,34 +153,15 @@
 </head>
 <body>
   <div class="container">
-    <!-- Panel Login (aktif secara default) -->
-    <div class="panel active" id="login-panel">
-      <div class="content">
-        <div class="form-section">
-          <h2>Login</h2>
-          <input type="text" placeholder="Username" required>
-          <input type="password" placeholder="Password" required>
-          <!-- Bagian tombol Login -->
-<button onclick="redirectToIndex()">Login</button>
-
-        </div>
-        <div class="switch-section" onclick="showRegister()">
-          <h2>Belum Punya Akun?</h2>
-          <p>Sign Up di sini!</p>
-        </div>
-      </div>
-    </div>
-    <!-- Panel Registrasi -->
-    <div class="panel" id="register-panel">
+    <!-- Panel Registrasi (aktif secara default) -->
+    <div class="panel active" id="register-panel">
       <div class="content">
         <div class="form-section">
           <h2>Sign Up</h2>
           <input type="text" placeholder="Username" required>
           <input type="email" placeholder="Email" required>
           <input type="password" placeholder="Password" required>
-         <!-- Bagian tombol Sign Up -->
-<button onclick="handleRegister()">Sign Up</button>
-
+          <button onclick="handleRegister()">Sign Up</button>
         </div>
         <div class="switch-section" onclick="showLogin()">
           <h2>Sudah Punya Akun?</h2>
@@ -188,37 +169,51 @@
         </div>
       </div>
     </div>
+    <!-- Panel Login -->
+    <div class="panel" id="login-panel">
+      <div class="content">
+        <div class="form-section">
+          <h2>Login</h2>
+          <input type="text" placeholder="Username" required>
+          <input type="password" placeholder="Password" required>
+          <button onclick="redirectToIndex()">Login</button>
+        </div>
+        <div class="switch-section" onclick="showRegister()">
+          <h2>Belum Punya Akun?</h2>
+          <p>Sign Up di sini!</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
-  const loginPanel = document.getElementById('login-panel');
-  const registerPanel = document.getElementById('register-panel');
+    const loginPanel = document.getElementById('login-panel');
+    const registerPanel = document.getElementById('register-panel');
 
-  // Fungsi untuk menampilkan panel registrasi
-  function showRegister() {
-    loginPanel.classList.remove('active');
-    registerPanel.classList.add('active');
-  }
+    // Fungsi untuk menampilkan panel registrasi
+    function showRegister() {
+      loginPanel.classList.remove('active');
+      registerPanel.classList.add('active');
+    }
 
-  // Fungsi untuk menampilkan panel login
-  function showLogin() {
-    registerPanel.classList.remove('active');
-    loginPanel.classList.add('active');
-  }
+    // Fungsi untuk menampilkan panel login
+    function showLogin() {
+      registerPanel.classList.remove('active');
+      loginPanel.classList.add('active');
+    }
 
-  // Fungsi untuk redirect ke halaman index.html setelah login
-  function redirectToIndex() {
-    // Validasi bisa ditambahkan di sini sebelum redirect
-    window.location.href = "index.html";
-  }
+    // Fungsi untuk redirect ke halaman index.html setelah login
+    function redirectToIndex() {
+      // Validasi bisa ditambahkan di sini sebelum redirect
+      window.location.href = "index.html";
+    }
 
-  // Fungsi untuk menangani registrasi dan kembali ke login panel
-  function handleRegister() {
-    // Misal: validasi berhasil, lalu kembali ke panel login
-    alert("Registrasi berhasil! Silakan login.");
-    showLogin();
-  }
-</script>
-
+    // Fungsi untuk menangani registrasi dan kembali ke login panel
+    function handleRegister() {
+      // Misal: validasi berhasil, lalu kembali ke panel login
+      alert("Registrasi berhasil! Silakan login.");
+      showLogin();
+    }
+  </script>
 </body>
 </html>

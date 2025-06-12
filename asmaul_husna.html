@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Asmaul Husna - Islamic Portal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f8f6f0 0%, #e8e2d4 100%);
+      min-height: 100vh;
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="islamic" patternUnits="userSpaceOnUse" width="40" height="40"><circle cx="20" cy="20" r="2" fill="%23f0ebe0" opacity="0.3"/><path d="M20 10 L25 15 L20 20 L15 15 Z" fill="%23f0ebe0" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23islamic)"/></svg>');
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 15px 20px;
+      box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+    }
+
+    .logo-text {
+      font-size: 26px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+
+    .logo-subtitle {
+      font-size: 12px;
+      color: #4a5568;
+      font-weight: normal;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .nav-item {
+      color: #4a5568;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-size: 15px;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      color: #1e3a5f;
+      background: rgba(30, 58, 95, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #4a5568;
+      font-size: 14px;
+      padding: 8px 15px;
+      background: rgba(30, 58, 95, 0.05);
+      border-radius: 20px;
+    }
+
+    .time-now {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e3a5f;
+      padding: 8px 15px;
+      background: rgba(30, 58, 95, 0.1);
+      border-radius: 20px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #1e3a5f;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+      padding: 20px;
+      box-shadow: 0 5px 20px rgba(30, 58, 95, 0.1);
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 50px 40px;
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+    }
+
+    .page-title {
+      font-size: 48px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-subtitle {
+      font-size: 20px;
+      color: #4a5568;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .verse-quote {
+      font-size: 24px;
+      color: #1e3a5f;
+      font-weight: 500;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+
+    .verse-reference {
+      font-size: 14px;
+      color: #718096;
+      font-weight: 600;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .control-btn {
+      padding: 15px 30px;
+      border: 2px solid rgba(30, 58, 95, 0.2);
+      background: rgba(255, 255, 255, 0.9);
+      color: #1e3a5f;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .control-btn:hover,
+    .control-btn.active {
+      background: #1e3a5f;
+      color: white;
+      border-color: #1e3a5f;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(30, 58, 95, 0.2);
+    }
+
+    .asmaul-husna-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .name-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .name-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(30, 58, 95, 0.15);
+    }
+
+    .name-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .name-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .name-number {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: rgba(30, 58, 95, 0.1);
+      color: #1e3a5f;
+      padding: 8px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .name-arabic {
+      font-size: 36px;
+      color: #1e3a5f;
+      margin-bottom: 15px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .name-latin {
+      font-size: 18px;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .name-meaning {
+      font-size: 14px;
+      color: #4a5568;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .name-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .name-card:hover .name-actions {
+      opacity: 1;
+    }
+
+    .action-btn {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .play-btn {
+      background: rgba(76, 175, 80, 0.1);
+      color: #4caf50;
+    }
+
+    .copy-btn {
+      background: rgba(30, 58, 95, 0.1);
+      color: #1e3a5f;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .audio-player {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(30, 58, 95, 0.2);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+      display: none;
+      min-width: 300px;
+      z-index: 1000;
+    }
+
+    .player-header {
+      display: flex;
+      justify-content: between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .player-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1e3a5f;
+      flex: 1;
+    }
+
+    .close-player {
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: #4a5568;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .play-pause-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .play-pause-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .progress-container {
+      flex: 1;
+      height: 6px;
+      background: rgba(30, 58, 95, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      width: 0%;
+      transition: width 0.1s ease;
+    }
+
+    .counter {
+      text-align: center;
+      margin: 40px 0;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+    }
+
+    .counter-title {
+      font-size: 20px;
+      color: #1e3a5f;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .counter-display {
+      font-size: 48px;
+      color: #1e3a5f;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .counter-controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .counter-btn {
+      padding: 12px 20px;
+      border: 2px solid #1e3a5f;
+      background: transparent;
+      color: #1e3a5f;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .counter-btn:hover {
+      background: #1e3a5f;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .page-title {
+        font-size: 36px;
+      }
+      
+      .page-subtitle {
+        font-size: 16px;
+      }
+      
+      .verse-quote {
+        font-size: 18px;
+      }
+      
+      .asmaul-husna-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      
+      .name-card {
+        padding: 25px 20px;
+      }
+      
+      .name-arabic {
+        font-size: 28px;
+      }
+      
+      .controls {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .audio-player {
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        min-width: auto;
+      }
+      
+      .counter-display {
+        font-size: 36px;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .name-card {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .name-card:nth-child(1) { animation-delay: 0.1s; }
+    .name-card:nth-child(2) { animation-delay: 0.2s; }
+    .name-card:nth-child(3) { animation-delay: 0.3s; }
+    .name-card:nth-child(4) { animation-delay: 0.4s; }
+    .name-card:nth-child(5) { animation-delay: 0.5s; }
+    .name-card:nth-child(6) { animation-delay: 0.6s; }
+  </style>
+</head>
+<body>
+  <div class="background-overlay"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🕌</div>
+        <div>
+          <div class="logo-text">IslamicCalm</div>
+        </div>
+      </a>
+      
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">Beranda</a>
+        <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+        <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+        <a href="artikel.html" class="nav-item">Artikel</a>
+        <a href="asmaul_husna.html" class="nav-item active">Asmaul Husna</a>
+        <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+      </nav>
+      
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      
+      <div class="user-info">
+        <div class="location">
+          <span>📍</span>
+          <span id="userLocation">Jakarta, Indonesia</span>
+        </div>
+        <div class="time-now" id="currentTime">12:34:56</div>
+      </div>
+    </div>
+    
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-nav">
+        <a href="index.html" class="nav-item">Beranda</a>
+        <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+        <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+        <a href="artikel.html" class="nav-item">Artikel</a>
+        <a href="asmaul_husna.html" class="nav-item active">Asmaul Husna</a>
+        <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1 class="page-title">✨ Asmaul Husna</h1>
+      <p class="page-subtitle">
+        99 Nama-nama Allah Yang Maha Indah dan Maha Agung
+      </p>
+      <div class="verse-quote">
+        "Dan Allah mempunyai nama-nama yang baik, maka bermohonlah kepada-Nya dengan menyebut nama-nama itu"
+      </div>
+      <div class="verse-reference">QS. Al-A'raf: 180</div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="control-btn" onclick="playAll()">
+        🔊 Putar Semua
+      </button>
+      <button class="control-btn" onclick="showCounter()">
+        📿 Tasbih Digital
+      </button>
+      <button class="control-btn" onclick="downloadPDF()">
+        📄 Download PDF
+      </button>
+    </div>
+
+    <!-- Counter (Hidden by default) -->
+    <div class="counter" id="counter" style="display: none;">
+      <div class="counter-title">Tasbih Digital</div>
+      <div class="counter-display" id="counterDisplay">0</div>
+      <div class="counter-controls">
+        <button class="counter-btn" onclick="incrementCounter()">+1</button>
+        <button class="counter-btn" onclick="resetCounter()">Reset</button>
+        <button class="counter-btn" onclick="hideCounter()">Tutup</button>
+      </div>
+    </div>
+
+    <!-- Asmaul Husna Grid -->
+    <div class="asmaul-husna-grid" id="asmaulHusnaGrid">
+      <!-- Names will be loaded here by JavaScript -->
+    </div>
+
+    <!-- Audio Player -->
+    <div class="audio-player" id="audioPlayer">
+      <div class="player-header">
+        <div class="player-title" id="playerTitle">Memutar Asmaul Husna</div>
+        <button class="close-player" onclick="closePlayer()">✕</button>
+      </div>
+      <div class="player-controls">
+        <button class="play-pause-btn" id="playPauseBtn" onclick="togglePlayPause()">▶</button>
+        <div class="progress-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+      <audio id="audioElement"></audio>
+    </div>
+  </div>
+
+  <script>
+    const asmaulHusnaData = [
+      { number: 1, arabic: "الرَّحْمَنُ", latin: "Ar-Rahman", meaning: "Yang Maha Pengasih" },
+      { number: 2, arabic: "الرَّحِيمُ", latin: "Ar-Rahim", meaning: "Yang Maha Penyayang" },
+      { number: 3, arabic: "الْمَلِكُ", latin: "Al-Malik", meaning: "Yang Maha Merajai" },
+      { number: 4, arabic: "الْقُدُّوسُ", latin: "Al-Quddus", meaning: "Yang Maha Suci" },
+      { number: 5, arabic: "السَّلاَمُ", latin: "As-Salam", meaning: "Yang Maha Memberi Keselamatan" },
+      { number: 6, arabic: "الْمُؤْمِنُ", latin: "Al-Mu'min", meaning: "Yang Maha Memberi Keamanan" },
+      { number: 7, arabic: "الْمُهَيْمِنُ", latin: "Al-Muhaymin", meaning: "Yang Maha Mengawasi" },
+      { number: 8, arabic: "الْعَزِيزُ", latin: "Al-Aziz", meaning: "Yang Maha Perkasa" },
+      { number: 9, arabic: "الْجَبَّارُ", latin: "Al-Jabbar", meaning: "Yang Maha Memaksa" },
+      { number: 10, arabic: "الْمُتَكَبِّرُ", latin: "Al-Mutakabbir", meaning: "Yang Maha Sombong" },
+      { number: 11, arabic: "الْخَالِقُ", latin: "Al-Khaliq", meaning: "Yang Maha Pencipta" },
+      { number: 12, arabic: "الْبَارِئُ", latin: "Al-Bari'", meaning: "Yang Maha Melepaskan" },
+      { number: 13, arabic: "الْمُصَوِّرُ", latin: "Al-Mushawwir", meaning: "Yang Maha Membentuk" },
+      { number: 14, arabic: "الْغَفَّارُ", latin: "Al-Ghaffar", meaning: "Yang Maha Pengampun" },
+      { number: 15, arabic: "الْقَهَّارُ", latin: "Al-Qahhar", meaning: "Yang Maha Mengalahkan" },
+      { number: 16, arabic: "الْوَهَّابُ", latin: "Al-Wahhab", meaning: "Yang Maha Pemberi" },
+      { number: 17, arabic: "الرَّزَّاقُ", latin: "Ar-Razzaq", meaning: "Yang Maha Pemberi Rezeki" },
+      { number: 18, arabic: "الْفَتَّاحُ", latin: "Al-Fattah", meaning: "Yang Maha Pembuka" },
+      { number: 19, arabic: "اَلْعَلِيْمُ", latin: "Al-'Alim", meaning: "Yang Maha Mengetahui" },
+      { number: 20, arabic: "الْقَابِضُ", latin: "Al-Qabidh", meaning: "Yang Maha Menyempitkan" },
+      { number: 21, arabic: "الْبَاسِطُ", latin: "Al-Basith", meaning: "Yang Maha Melapangkan" },
+      { number: 22, arabic: "الْخَافِضُ", latin: "Al-Khafidh", meaning: "Yang Maha Merendahkan" },
+      { number: 23, arabic: "الرَّافِعُ", latin: "Ar-Rafi'", meaning: "Yang Maha Meninggikan" },
+      { number: 24, arabic: "الْمُعِزُّ", latin: "Al-Mu'izz", meaning: "Yang Maha Memuliakan" },
+      { number: 25, arabic: "المُذِلُّ", latin: "Al-Muzill", meaning: "Yang Maha Menghinakan" },
+      { number: 26, arabic: "السَّمِيعُ", latin: "As-Sami'", meaning: "Yang Maha Mendengar" },
+      { number: 27, arabic: "الْبَصِيرُ", latin: "Al-Bashir", meaning: "Yang Maha Melihat" },
+      { number: 28, arabic: "الْحَكَمُ", latin: "Al-Hakam", meaning: "Yang Maha Memutuskan" },
+      { number: 29, arabic: "الْعَدْلُ", latin: "Al-'Adl", meaning: "Yang Maha Adil" },
+      { number: 30, arabic: "اللَّطِيفُ", latin: "Al-Lathif", meaning: "Yang Maha Halus" },
+      { number: 31, arabic: "الْخَبِيرُ", latin: "Al-Khabir", meaning: "Yang Maha Mengetahui" },
+      { number: 32, arabic: "الْحَلِيمُ", latin: "Al-Halim", meaning: "Yang Maha Penyantun" },
+      { number: 33, arabic: "الْعَظِيمُ", latin: "Al-'Azhim", meaning: "Yang Maha Agung" },
+      { number: 34, arabic: "الْغَفُورُ", latin: "Al-Ghafur", meaning: "Yang Maha Pengampun" },
+      { number: 35, arabic: "الشَّكُورُ", latin: "Asy-Syakur", meaning: "Yang Maha Pembalas Budi" },
+      { number: 36, arabic: "الْعَلِيُّ", latin: "Al-'Ali", meaning: "Yang Maha Tinggi" },
+      { number: 37, arabic: "الْكَبِيرُ", latin: "Al-Kabir", meaning: "Yang Maha Besar" },
+      { number: 38, arabic: "الْحَفِيظُ", latin: "Al-Hafizh", meaning: "Yang Maha Memelihara" },
+      { number: 39, arabic: "المُقيِت", latin: "Al-Muqit", meaning: "Yang Maha Memberi Kecukupan" },
+      { number: 40, arabic: "الْحسِيبُ", latin: "Al-Hasib", meaning: "Yang Maha Menghitung" },
+      { number: 41, arabic: "الْجَلِيلُ", latin: "Al-Jalil", meaning: "Yang Maha Mulia" },
+      { number: 42, arabic: "الْكَرِيمُ", latin: "Al-Karim", meaning: "Yang Maha Pemurah" },
+      { number: 43, arabic: "الرَّقِيبُ", latin: "Ar-Raqib", meaning: "Yang Maha Mengawasi" },
+      { number: 44, arabic: "الْمُجِيبُ", latin: "Al-Mujib", meaning: "Yang Maha Mengabulkan" },
+      { number: 45, arabic: "الْوَاسِعُ", latin: "Al-Wasi'", meaning: "Yang Maha Luas" },
+      { number: 46, arabic: "الْحَكِيمُ", latin: "Al-Hakim", meaning: "Yang Maha Bijaksana" },
+      { number: 47, arabic: "الْوَدُودُ", latin: "Al-Wadud", meaning: "Yang Maha Pengasih" },
+      { number: 48, arabic: "الْمَجِيدُ", latin: "Al-Majid", meaning: "Yang Maha Mulia" },
+      { number: 49, arabic: "الْبَاعِثُ", latin: "Al-Ba'its", meaning: "Yang Maha Membangkitkan" },
+      { number: 50, arabic: "الشَّهِيدُ", latin: "Asy-Syahid", meaning: "Yang Maha Menyaksikan" },
+      { number: 51, arabic: "الْحَقُّ", latin: "Al-Haqq", meaning: "Yang Maha Benar" },
+      { number: 52, arabic: "الْوَكِيلُ", latin: "Al-Wakil", meaning: "Yang Maha Memelihara" },
+      { number: 53, arabic: "الْقَوِيُّ", latin: "Al-Qawi", meaning: "Yang Maha Kuat" },
+      { number: 54, arabic: "الْمَتِينُ", latin: "Al-Matin", meaning: "Yang Maha Kokoh" },
+      { number: 55, arabic: "الْوَلِيُّ", latin: "Al-Wali", meaning: "Yang Maha Melindungi" },
+      { number: 56, arabic: "الْحَمِيدُ", latin: "Al-Hamid", meaning: "Yang Maha Terpuji" },
+      { number: 57, arabic: "الْمُحْصِي", latin: "Al-Muhshi", meaning: "Yang Maha Menghitung" },
+      { number: 58, arabic: "الْمُبْدِئُ", latin: "Al-Mubdi'", meaning: "Yang Maha Memulai" },
+      { number: 59, arabic: "الْمُعِيدُ", latin: "Al-Mu'id", meaning: "Yang Maha Mengembalikan" },
+      { number: 60, arabic: "الْمُحْيِي", latin: "Al-Muhyi", meaning: "Yang Maha Menghidupkan" },
+      { number: 61, arabic: "اَلْمُمِيتُ", latin: "Al-Mumit", meaning: "Yang Maha Mematikan" },
+      { number: 62, arabic: "الْحَيُّ", latin: "Al-Hayy", meaning: "Yang Maha Hidup" },
+      { number: 63, arabic: "الْقَيُّومُ", latin: "Al-Qayyum", meaning: "Yang Maha Berdiri Sendiri" },
+      { number: 64, arabic: "الْوَاجِدُ", latin: "Al-Wajid", meaning: "Yang Maha Penemu" },
+      { number: 65, arabic: "الْمَاجِدُ", latin: "Al-Majid", meaning: "Yang Maha Mulia" },
+      { number: 66, arabic: "الْواحِدُ", latin: "Al-Wahid", meaning: "Yang Maha Tunggal" },
+      { number: 67, arabic: "اَلاَحَدُ", latin: "Al-Ahad", meaning: "Yang Maha Esa" },
+      { number: 68, arabic: "الصَّمَدُ", latin: "Ash-Shamad", meaning: "Yang Maha Dibutuhkan" },
+      { number: 69, arabic: "الْقَادِرُ", latin: "Al-Qadir", meaning: "Yang Maha Menentukan" },
+      { number: 70, arabic: "الْمُقْتَدِرُ", latin: "Al-Muqtadir", meaning: "Yang Maha Berkuasa" },
+      { number: 71, arabic: "الْمُقَدِّمُ", latin: "Al-Muqaddim", meaning: "Yang Maha Mendahulukan" },
+      { number: 72, arabic: "الْمُؤَخِّرُ", latin: "Al-Mu'akhkhir", meaning: "Yang Maha Mengakhirkan" },
+      { number: 73, arabic: "الأوَّلُ", latin: "Al-Awwal", meaning: "Yang Maha Awal" },
+      { number: 74, arabic: "الآخِرُ", latin: "Al-Akhir", meaning: "Yang Maha Akhir" },
+      { number: 75, arabic: "الظَّاهِرُ", latin: "Azh-Zhahir", meaning: "Yang Maha Nyata" },
+      { number: 76, arabic: "الْبَاطِنُ", latin: "Al-Bathin", meaning: "Yang Maha Tersembunyi" },
+      { number: 77, arabic: "الْوَالِي", latin: "Al-Wali", meaning: "Yang Maha Memerintah" },
+      { number: 78, arabic: "الْمُتَعَالِي", latin: "Al-Muta'ali", meaning: "Yang Maha Tinggi" },
+      { number: 79, arabic: "الْبَرُّ", latin: "Al-Barr", meaning: "Yang Maha Penderma" },
+      { number: 80, arabic: "التَّوَابُ", latin: "At-Tawwab", meaning: "Yang Maha Penerima Taubat" },
+      { number: 81, arabic: "الْمُنْتَقِمُ", latin: "Al-Muntaqim", meaning: "Yang Maha Penuntut Balas" },
+      { number: 82, arabic: "العَفُوُّ", latin: "Al-'Afuww", meaning: "Yang Maha Pemaaf" },
+      { number: 83, arabic: "الرَّؤُوفُ", latin: "Ar-Ra'uf", meaning: "Yang Maha Pengasih" },
+      { number: 84, arabic: "مَالِكُ الْمُلْكِ", latin: "Malik Al-Mulk", meaning: "Yang Maha Penguasa Kerajaan" },
+      { number: 85, arabic: "ذُوالْجَلاَلِ وَالإكْرَامِ", latin: "Dzul Jalali Wal Ikram", meaning: "Yang Maha Pemilik Kebesaran dan Kemuliaan" },
+      { number: 86, arabic: "الْمُقْسِطُ", latin: "Al-Muqsith", meaning: "Yang Maha Adil" },
+      { number: 87, arabic: "الْجَامِعُ", latin: "Al-Jami'", meaning: "Yang Maha Mengumpulkan" },
+      { number: 88, arabic: "الْغَنِيُّ", latin: "Al-Ghani", meaning: "Yang Maha Berkecukupan" },
+      { number: 89, arabic: "الْمُغْنِي", latin: "Al-Mughni", meaning: "Yang Maha Memberi Kecukupan" },
+      { number: 90, arabic: "اَلْمَانِعُ", latin: "Al-Mani'", meaning: "Yang Maha Mencegah" },
+      { number: 91, arabic: "الضَّارَّ", latin: "Adh-Dharr", meaning: "Yang Maha Penimpa Kemudharatan" },
+      { number: 92, arabic: "النَّافِعُ", latin: "An-Nafi'", meaning: "Yang Maha Memberi Manfaat" },
+      { number: 93, arabic: "النُّورُ", latin: "An-Nur", meaning: "Yang Maha Bercahaya" },
+      { number: 94, arabic: "الْهَادِي", latin: "Al-Hadi", meaning: "Yang Maha Pemberi Petunjuk" },
+      { number: 95, arabic: "الْبَدِيعُ", latin: "Al-Badi'", meaning: "Yang Maha Pencipta" },
+      { number: 96, arabic: "اَلْبَاقِي", latin: "Al-Baqi", meaning: "Yang Maha Kekal" },
+      { number: 97, arabic: "الْوَارِثُ", latin: "Al-Warits", meaning: "Yang Maha Pewaris" },
+      { number: 98, arabic: "الرَّشِيدُ", latin: "Ar-Rasyid", meaning: "Yang Maha Pandai" },
+      { number: 99, arabic: "الصَّبُورُ", latin: "Ash-Shabur", meaning: "Yang Maha Sabar" }
+    ];
+
+    let currentAudio = null;
+    let isPlaying = false;
+    let currentIndex = 0;
+    let counter = 0;
+
+    function renderAsmaulHusna() {
+      const grid = document.getElementById('asmaulHusnaGrid');
+      grid.innerHTML = asmaulHusnaData.map(name => `
+        <div class="name-card" onclick="playName(${name.number})">
+          <div class="name-number">${name.number}</div>
+          <div class="name-arabic">${name.arabic}</div>
+          <div class="name-latin">${name.latin}</div>
+          <div class="name-meaning">${name.meaning}</div>
+          <div class="name-actions">
+            <button class="action-btn play-btn" onclick="event.stopPropagation(); playName(${name.number})">
+              🔊 Putar
+            </button>
+            <button class="action-btn copy-btn" onclick="event.stopPropagation(); copyName(${name.number})">
+              📋 Salin
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function playName(number) {
+      const name = asmaulHusnaData.find(n => n.number === number);
+      if (!name) return;
+
+      // Show audio player
+      const audioPlayer = document.getElementById('audioPlayer');
+      const playerTitle = document.getElementById('playerTitle');
+      
+      audioPlayer.style.display = 'block';
+      playerTitle.textContent = `${name.number}. ${name.latin}`;
+      
+      // Simulate audio playback (in real app, you would load actual audio files)
+      simulateAudioPlayback(name);
+    }
+
+    function simulateAudioPlayback(name) {
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      const progressBar = document.getElementById('progressBar');
+      
+      playPauseBtn.textContent = '⏸';
+      isPlaying = true;
+      
+      // Simulate 3-second audio
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 1;
+        progressBar.style.width = `${(progress / 30) * 100}%`;
+        
+        if (progress >= 30) {
+          clearInterval(interval);
+          playPauseBtn.textContent = '▶';
+          isPlaying = false;
+          progressBar.style.width = '0%';
+        }
+      }, 100);
+    }
+
+    function playAll() {
+      alert('Fitur putar semua akan segera tersedia!');
+    }
+
+    function togglePlayPause() {
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      
+      if (isPlaying) {
+        playPauseBtn.textContent = '▶';
+        isPlaying = false;
+      } else {
+        playPauseBtn.textContent = '⏸';
+        isPlaying = true;
+      }
+    }
+
+    function closePlayer() {
+      const audioPlayer = document.getElementById('audioPlayer');
+      audioPlayer.style.display = 'none';
+      isPlaying = false;
+    }
+
+    function copyName(number) {
+      const name = asmaulHusnaData.find(n => n.number === number);
+      const text = `${name.number}. ${name.arabic} (${name.latin}) - ${name.meaning}`;
+      
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Nama Allah berhasil disalin!');
+      });
+    }
+
+    function showCounter() {
+      document.getElementById('counter').style.display = 'block';
+    }
+
+    function hideCounter() {
+      document.getElementById('counter').style.display = 'none';
+    }
+
+    function incrementCounter() {
+      counter++;
+      document.getElementById('counterDisplay').textContent = counter;
+    }
+
+    function resetCounter() {
+      counter = 0;
+      document.getElementById('counterDisplay').textContent = counter;
+    }
+
+    function downloadPDF() {
+      alert('Fitur download PDF akan segera tersedia!');
+    }
+
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('id-ID');
+      document.getElementById('currentTime').textContent = timeString;
+    }
+
+    document.addEventListener('click', function(e) {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      
+      if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        mobileMenu.style.display = 'none';
+      }
+    });
+
+    // Initialize
+    updateTime();
+    setInterval(updateTime, 1000);
+    renderAsmaulHusna();
+  </script>
+</body>
+</html>

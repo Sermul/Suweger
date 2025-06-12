@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Portal - Website Islam Terlengkap</title>
+     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #F5F5DC; /* Cream soft */
+            color: #2C3E50; /* Navy gelap */
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .page-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #FFF9F0;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            position: relative;
+            border: 1px solid #D4B483;
+        }
+        
+        .ornament {
+            position: absolute;
+            width: 150px;
+            opacity: 0.1;
+        }
+        
+        .ornament-top-right {
+            top: 20px;
+            right: 20px;
+        }
+        
+        .ornament-bottom-left {
+            bottom: 20px;
+            left: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #1A3A6F; /* Navy */
+            padding-bottom: 15px;
+        }
+        
+        .title {
+            color: #1A3A6F; /* Navy */
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            color: #D4B483; /* Gold */
+            font-style: italic;
+        }
+        
+        .content {
+            line-height: 1.8;
+            text-align: justify;
+            font-size: 16px;
+        }
+        
+        .chapter-title {
+            color: #1A3A6F;
+            border-left: 4px solid #D4B483;
+            padding-left: 10px;
+            margin: 25px 0 15px;
+        }
+        
+        .illustration {
+            float: right;
+            margin: 0 0 20px 20px;
+            width: 200px;
+            border: 1px solid #D4B483;
+            padding: 5px;
+            background-color: white;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #7F8C8D;
+            border-top: 1px solid #D4B483;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+   <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">🕌</div>
+                    <div>
+                        <div class="logo-text">IslamicCalm</div>
+                    </div>
+                </a>
+                
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-item active">Beranda</a>
+                    <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                    <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+                    <a href="artikel.html" class="nav-item">Artikel</a>
+                    <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+                </nav>
+                
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+                
+                <div class="user-info">
+                    <div class="location">
+                        <span>📍</span>
+                        <span id="userLocation">Jakarta, Indonesia</span>
+                    </div>
+                    <div class="time-now" id="currentTime">12:34:56</div>
+                </div>
+            </div>
+            
+            <div class="mobile-menu" id="mobileMenu">
+                <nav class="mobile-nav">
+                    <a href="index.html" class="nav-item active">Beranda</a>
+                    <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                    <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+                    <a href="artikel.html" class="nav-item">Artikel</a>
+                    <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+                </nav>
+            </div>
+        </header>
+        
+        <div class="content">
+            <img src="kaaba-silhouette.png" class="illustration" alt="Ilustrasi Ka'bah">
+            
+            <h3 class="chapter-title">Kelahiran Nabi Muhammad</h3>
+            <p>Nabi Muhammad ﷺ dilahirkan di Makkah pada Tahun Gajah, sekitar tahun 570 Masehi. Beliau berasal dari keturunan Bani Hasyim, salah satu klan terhormat dalam suku Quraisy. Ayahnya bernama Abdullah bin Abdul Muthalib yang telah wafat sebelum beliau lahir, sedangkan ibunya adalah Aminah binti Wahb.</p>
+            
+            <p>Kelahiran Nabi Muhammad ﷺ disertai dengan berbagai tanda kenabian. Pada malam kelahirannya, istana Kisra di Persia berguncang dan empat belas tiangnya roboh. Api sesembahan kaum Majusi yang telah menyala selama seribu tahun tiba-tiba padam. Danau Sawah yang biasa disembah oleh sebagian orang kering airnya.</p>
+            
+            <h3 class="chapter-title">Masa Kecil</h3>
+            <p>Menurut tradisi Arab saat itu, Muhammad kecil disusui dan dibesarkan di pedesaan oleh Halimah binti Abi Dhuayb dari Bani Sa'ad. Hal ini dimaksudkan agar beliau dapat tumbuh di lingkungan yang sehat dan mempelajari bahasa Arab yang murni.</p>
+            
+            <p>Pada usia 6 tahun, ibunda beliau wafat dalam perjalanan pulang dari Yatsrib (Madinah). Muhammad kecil kemudian diasuh oleh kakeknya, Abdul Muthalib, dan setelah kakeknya wafat, beliau diasuh oleh pamannya, Abu Thalib.</p>
+            
+            <h3 class="chapter-title">Masa Dewasa</h3>
+            <p>Sebelum diangkat menjadi nabi, Muhammad ﷺ dikenal sebagai orang yang jujur dan dapat dipercaya, sehingga beliau dijuluki "Al-Amin" (yang dapat dipercaya). Beliau bekerja sebagai pedagang dan sering bepergian ke berbagai wilayah, termasuk Syam (Suriah).</p>
+            
+            <p>Pada usia 25 tahun, beliau menikah dengan Khadijah binti Khuwailid, seorang pedagang kaya yang berusia 40 tahun. Pernikahan mereka berlangsung bahagia dan dikaruniai beberapa anak.</p>
+        </div>
+        
+        <div class="footer">
+            Halaman 1 dari 5 | © Katalog Kisah Nabi
+        </div>
+    </div>
+</body>
+</html>

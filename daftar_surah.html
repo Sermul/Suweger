@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Portal - Website Islam Terlengkap</title>
+     <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdfaf4;
+      color: #001f3f;
+    }
+
+    /* Header harus di luar container */
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 15px 20px;
+      box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+    }
+
+    .logo-text {
+      font-size: 26px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+
+    .logo-subtitle {
+      font-size: 12px;
+      color: #4a5568;
+      font-weight: normal;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .nav-item {
+      color: #4a5568;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-size: 15px;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      color: #1e3a5f;
+      background: rgba(30, 58, 95, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #4a5568;
+      font-size: 14px;
+      padding: 8px 15px;
+      background: rgba(30, 58, 95, 0.05);
+      border-radius: 20px;
+    }
+
+    .time-now {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e3a5f;
+      padding: 8px 15px;
+      background: rgba(30, 58, 95, 0.1);
+      border-radius: 20px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #1e3a5f;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+      padding: 20px;
+      box-shadow: 0 5px 20px rgba(30, 58, 95, 0.1);
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Container untuk konten utama */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #001f3f;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 30px;
+      border: 2px solid #001f3f;
+      border-radius: 10px;
+      font-size: 1em;
+      background-color: #fff;
+      box-sizing: border-box;
+    }
+
+    .surah-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .surah-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .surah-card:hover {
+      transform: scale(1.02);
+    }
+
+    .surah-info {
+      z-index: 1;
+    }
+
+    .surah-name {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .surah-details {
+      font-size: 0.95em;
+      margin-top: 8px;
+    }
+
+    .hover-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      background-color: rgba(255,255,255,0.9);
+      z-index: 2;
+      padding: 10px;
+    }
+
+    .surah-card:hover .hover-image {
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .user-info {
+        gap: 10px;
+      }
+      
+      .location,
+      .time-now {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+      
+      .container {
+        padding: 20px;
+      }
+      
+      .surah-list {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header di luar container agar full layar -->
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🕌</div>
+        <div>
+          <div class="logo-text">IslamicCalm</div>
+        </div>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">Beranda</a>
+        <a href="daftar_surah.html" class="nav-item active">Al-Quran</a>
+        <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+        <a href="artikel.html" class="nav-item">Artikel</a>
+        <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+      </nav>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      
+      <div class="user-info">
+        <div class="location">
+          <span>📍</span>
+          <span id="userLocation">Jakarta, Indonesia</span>
+        </div>
+        <div class="time-now" id="currentTime">12:34:56</div>
+      </div>
+    </div>
+    
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-nav">
+        <a href="index.html" class="nav-item">Beranda</a>
+        <a href="daftar_surah.html" class="nav-item active">Al-Quran</a>
+        <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+        <a href="artikel.html" class="nav-item">Artikel</a>
+        <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Container hanya untuk konten utama -->
+  <div class="container">
+    <h1>Daftar 114 Surah Al-Qur'an</h1>
+    <input type="text" id="searchInput" class="search-box" placeholder="Cari nama surah...">
+    <div id="surahList" class="surah-list"></div>
+  </div>
+
+  <script>
+    const surahData = [
+      { urutan: 1, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+      { urutan: 2, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+      { urutan: 3, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+      { urutan: 4, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+      { urutan: 5, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+      { urutan: 6, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+      { urutan: 7, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+      { urutan: 8, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+      { urutan: 9, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+      { urutan: 10, nama: "Yunus", arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+      // ... tambahkan data surah lainnya
+    ];
+
+    const surahList = document.getElementById('surahList');
+    const searchInput = document.getElementById('searchInput');
+
+    function renderSurahList(filter = "") {
+      surahList.innerHTML = "";
+      surahData
+        .filter(surah => surah.nama.toLowerCase().includes(filter.toLowerCase()))
+        .forEach((surah, index) => {
+          const card = document.createElement('div');
+          card.className = 'surah-card';
+
+          const surahHTML = `
+            <div class="surah-info">
+              <div class="surah-name">${surah.urutan}. ${surah.nama}</div>
+              <div class="surah-details">Arti: ${surah.arti}</div>
+              <div class="surah-details">Jumlah Ayat: ${surah.jumlahAyat}</div>
+            </div>
+            <img class="hover-image" src="${surah.gambar}" alt="Gambar Surah ${surah.nama}">
+          `;
+
+          card.innerHTML = surahHTML;
+          surahList.appendChild(card);
+        });
+    }
+
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('id-ID');
+      document.getElementById('currentTime').textContent = timeString;
+    }
+
+    searchInput.addEventListener("input", () => {
+      renderSurahList(searchInput.value);
+    });
+
+    // Initialize
+    updateTime();
+    setInterval(updateTime, 1000);
+    renderSurahList();
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      
+      if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        mobileMenu.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

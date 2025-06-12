@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tentang Kami - Islamic Portal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f8f6f0 0%, #e8e2d4 100%);
+      min-height: 100vh;
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+
+    /* Background Pattern */
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="islamic" patternUnits="userSpaceOnUse" width="40" height="40"><circle cx="20" cy="20" r="2" fill="%23f0ebe0" opacity="0.3"/><path d="M20 10 L25 15 L20 20 L15 15 Z" fill="%23f0ebe0" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23islamic)"/></svg>');
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 15px 20px;
+      box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+    }
+
+    .logo-text {
+      font-size: 26px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+
+    .logo-subtitle {
+      font-size: 12px;
+      color: #4a5568;
+      font-weight: normal;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .nav-item {
+      color: #4a5568;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-size: 15px;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      color: #1e3a5f;
+      background: rgba(30, 58, 95, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #4a5568;
+      font-size: 14px;
+      padding: 8px 15px;
+      background: rgba(30, 58, 95, 0.05);
+      border-radius: 20px;
+    }
+
+    .time-now {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e3a5f;
+      padding: 8px 15px;
+      background: rgba(30, 58, 95, 0.1);
+      border-radius: 20px;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #1e3a5f;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+      padding: 20px;
+      box-shadow: 0 5px 20px rgba(30, 58, 95, 0.1);
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      padding: 80px 0;
+      background: linear-gradient(135deg, rgba(30, 58, 95, 0.05) 0%, rgba(44, 82, 130, 0.05) 100%);
+      margin: 40px 0;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 24px;
+      color: #4a5568;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    .hero-description {
+      font-size: 18px;
+      color: #4a5568;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px 30px;
+      border-radius: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(30, 58, 95, 0.15);
+    }
+
+    .stat-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      color: #4a5568;
+      font-weight: 500;
+    }
+
+    /* Mission Vision Section */
+    .mission-vision {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 40px;
+      margin: 80px 0;
+    }
+
+    .mission-card, .vision-card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 50px 40px;
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-card::before, .vision-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+    }
+
+    .card-icon {
+      font-size: 64px;
+      margin-bottom: 30px;
+      display: block;
+    }
+
+    .card-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 20px;
+    }
+
+    .card-description {
+      font-size: 16px;
+      color: #4a5568;
+      line-height: 1.8;
+    }
+
+    /* Values Section */
+    .values-section {
+      margin: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 36px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: #4a5568;
+      margin-bottom: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .value-card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px 30px;
+      border-radius: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(30, 58, 95, 0.15);
+    }
+
+    .value-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .value-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .value-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .value-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 15px;
+    }
+
+    .value-description {
+      font-size: 14px;
+      color: #4a5568;
+      line-height: 1.6;
+    }
+
+    /* Team Section */
+    .team-section {
+      margin: 80px 0;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 60px 40px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .team-card {
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: 20px;
+      background: rgba(30, 58, 95, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .team-card:hover {
+      background: rgba(30, 58, 95, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .team-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: white;
+      border: 4px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .team-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 8px;
+    }
+
+    .team-role {
+      font-size: 14px;
+      color: #4a5568;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+
+    .team-description {
+      font-size: 13px;
+      color: #4a5568;
+      line-height: 1.5;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      margin: 80px 0;
+      text-align: center;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(30, 58, 95, 0.15);
+    }
+
+    .contact-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .contact-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 10px;
+    }
+
+    .contact-info {
+      font-size: 14px;
+      color: #4a5568;
+      line-height: 1.6;
+    }
+
+    .contact-link {
+      color: #1e3a5f;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-link:hover {
+      text-decoration: underline;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      color: white;
+      padding: 60px 40px;
+      border-radius: 25px;
+      text-align: center;
+      margin: 80px 0;
+    }
+
+    .cta-title {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .cta-description {
+      font-size: 18px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: white;
+      color: #1e3a5f;
+      padding: 15px 30px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .hero-title {
+        font-size: 36px;
+      }
+      
+      .hero-subtitle {
+        font-size: 20px;
+      }
+      
+      .mission-vision {
+        grid-template-columns: 1fr;
+      }
+      
+      .mission-card, .vision-card {
+        padding: 30px 25px;
+      }
+      
+      .section-title {
+        font-size: 28px;
+      }
+      
+      .team-section {
+        padding: 40px 20px;
+      }
+      
+      .cta-section {
+        padding: 40px 20px;
+      }
+      
+      .cta-title {
+        font-size: 24px;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-section,
+    .stat-card,
+    .mission-card,
+    .vision-card,
+    .value-card,
+    .team-card,
+    .contact-card {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .value-card:nth-child(1) { animation-delay: 0.1s; }
+    .value-card:nth-child(2) { animation-delay: 0.2s; }
+    .value-card:nth-child(3) { animation-delay: 0.3s; }
+    .value-card:nth-child(4) { animation-delay: 0.4s; }
+    .value-card:nth-child(5) { animation-delay: 0.5s; }
+    .value-card:nth-child(6) { animation-delay: 0.6s; }
+  </style>
+</head>
+<body>
+  <div class="background-overlay"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🕌</div>
+        <div>
+          <div class="logo-text">IslamicCalm</div>
+        </div>
+      </a>
+      
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">Beranda</a>
+        <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+        <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+        <a href="artikel.html" class="nav-item">Artikel</a>
+        <a href="tentang_kami.html" class="nav-item active">Tentang Kami</a>
+      </nav>
+      
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      
+      <div class="user-info">
+        <div class="location">
+          <span>📍</span>
+          <span id="userLocation">Jakarta, Indonesia</span>
+        </div>
+        <div class="time-now" id="currentTime">12:34:56</div>
+      </div>
+    </div>
+    
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-nav">
+        <a href="index.html" class="nav-item">Beranda</a>
+        <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+        <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+        <a href="artikel.html" class="nav-item">Artikel</a>
+        <a href="tentang_kami.html" class="nav-item active">Tentang Kami</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <h1 class="hero-title">Tentang Islamic Portal</h1>
+      <p class="hero-subtitle">Platform Digital Islam Terpercaya</p>
+      <p class="hero-description">
+        Islamic Portal adalah platform digital yang didedikasikan untuk menyebarkan ajaran Islam yang benar dan mudah dipahami. 
+        Kami berkomitmen untuk menjadi sumber informasi Islam yang terpercaya, komprehensif, dan mudah diakses oleh seluruh umat Muslim di Indonesia dan dunia.
+      </p>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="stat-card">
+        <span class="stat-icon">👥</span>
+        <div class="stat-number">100K+</div>
+        <div class="stat-label">Pengguna Aktif</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">📚</span>
+        <div class="stat-number">1000+</div>
+        <div class="stat-label">Artikel Islam</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">🕌</span>
+        <div class="stat-number">114</div>
+        <div class="stat-label">Surah Al-Quran</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">⭐</span>
+        <div class="stat-number">25+</div>
+        <div class="stat-label">Kisah Nabi</div>
+      </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-vision">
+      <div class="mission-card">
+        <span class="card-icon">🎯</span>
+        <h2 class="card-title">Misi Kami</h2>
+        <p class="card-description">
+          Menyediakan platform digital yang komprehensif untuk pembelajaran Islam, menyebarkan ajaran yang benar berdasarkan Al-Quran dan Hadits, 
+          serta membantu umat Muslim dalam menjalankan ibadah dan kehidupan sehari-hari sesuai dengan syariat Islam. 
+          Kami berkomitmen untuk menjadi jembatan antara ilmu agama klasik dengan teknologi modern.
+        </p>
+      </div>
+      <div class="vision-card">
+        <span class="card-icon">🌟</span>
+        <h2 class="card-title">Visi Kami</h2>
+        <p class="card-description">
+          Menjadi platform digital Islam terdepan yang menginspirasi dan memberdayakan umat Muslim di seluruh dunia untuk menjalani kehidupan yang lebih Islami. 
+          Kami ingin menciptakan ekosistem digital yang mendukung pertumbuhan spiritual, peningkatan pengetahuan agama, 
+          dan penguatan komunitas Muslim global melalui teknologi yang inovatif dan konten yang berkualitas.
+        </p>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+      <h2 class="section-title">Nilai-Nilai Kami</h2>
+      <p class="section-subtitle">
+        Prinsip-prinsip yang menjadi fondasi dalam setiap langkah perjalanan Islamic Portal
+      </p>
+      <div class="values-grid">
+        <div class="value-card">
+          <span class="value-icon">📖</span>
+          <h3 class="value-title">Berdasarkan Al-Quran & Hadits</h3>
+          <p class="value-description">
+            Semua konten kami bersumber dari Al-Quran dan Hadits shahih, memastikan keaslian dan kebenaran ajaran Islam yang kami sampaikan.
+          </p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">🤝</span>
+          <h3 class="value-title">Mudah Dipahami</h3>
+          <p class="value-description">
+            Kami menyajikan ajaran Islam dengan bahasa yang sederhana dan mudah dipahami oleh semua kalangan, dari anak-anak hingga dewasa.
+          </p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">🌍</span>
+          <h3 class="value-title">Inklusif & Toleran</h3>
+          <p class="value-description">
+            Kami menghormati keberagaman dalam Islam dan menyambut semua Muslim dari berbagai mazhab dan latar belakang.
+          </p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">💡</span>
+          <h3 class="value-title">Inovatif</h3>
+          <p class="value-description">
+            Kami menggunakan teknologi terdepan untuk memberikan pengalaman belajar Islam yang modern dan menyenangkan.
+          </p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">🔒</span>
+          <h3 class="value-title">Terpercaya</h3>
+          <p class="value-description">
+            Konten kami telah direview oleh para ulama dan ahli agama untuk memastikan keakuratan dan kesesuaian dengan syariat.
+          </p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">❤️</span>
+          <h3 class="value-title">Penuh Kasih</h3>
+          <p class="value-description">
+            Kami menyebarkan Islam dengan penuh kasih sayang, mengikuti teladan Rasulullah SAW sebagai rahmatan lil alamiin.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+      <h2 class="section-title">Tim Kami</h2>
+      <p class="section-subtitle">
+        Orang-orang berdedikasi yang bekerja keras untuk mewujudkan visi Islamic Portal
+      </p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">👨‍💼</div>
+          <h3 class="team-name">Dr. Ahmad Syafii</h3>
+          <p class="team-role">Founder & CEO</p>
+          <p class="team-description">
+            Lulusan Al-Azhar dengan pengalaman 15 tahun dalam dakwah digital dan teknologi Islam.
+          </p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👩‍🏫</div>
+          <h3 class="team-name">Ustadzah Fatimah</h3>
+          <p class="team-role">Content Director</p>
+          <p class="team-description">
+            Ahli tafsir dan hadits yang bertanggung jawab atas kualitas dan keakuratan konten Islamic Portal.
+          </p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👨‍💻</div>
+          <h3 class="team-name">Muhammad Ridwan</h3>
+          <p class="team-role">Tech Lead</p>
+          <p class="team-description">
+            Engineer berpengalaman yang mengembangkan platform dengan teknologi terdepan untuk kemudahan akses.
+          </p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👩‍🎨</div>
+          <h3 class="team-name">Aisyah Rahman</h3>
+          <p class="team-role">UI/UX Designer</p>
+          <p class="team-description">
+            Desainer kreatif yang menciptakan pengalaman pengguna yang indah dan mudah digunakan.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <h2 class="section-title">Hubungi Kami</h2>
+      <p class="section-subtitle">
+        Kami selalu terbuka untuk saran, kritik, dan kolaborasi demi kemajuan Islamic Portal
+      </p>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <span class="contact-icon">📧</span>
+          <h3 class="contact-title">Email</h3>
+          <p class="contact-info">
+            <a href="mailto:info@islamicportal.id" class="contact-link">info@islamicportal.id</a><br>
+            <a href="mailto:support@islamicportal.id" class="contact-link">support@islamicportal.id</a>
+          </p>
+        </div>
+        <div class="contact-card">
+          <span class="contact-icon">📱</span>
+          <h3 class="contact-title">Media Sosial</h3>
+          <p class="contact-info">
+            <a href="#" class="contact-link">@IslamicPortalID</a><br>
+            Instagram, Twitter, Facebook
+          </p>
+        </div>
+        <div class="contact-card">
+          <span class="contact-icon">📍</span>
+          <h3 class="contact-title">Alamat</h3>
+          <p class="contact-info">
+            Jl. Dakwah Digital No. 123<br>
+            Jakarta Selatan, Indonesia<br>
+            12345
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2 class="cta-title">Bergabunglah dengan Komunitas Kami</h2>
+      <p class="cta-description">
+        Jadilah bagian dari jutaan Muslim yang telah merasakan manfaat Islamic Portal dalam perjalanan spiritual mereka
+      </p>
+      <a href="index.html" class="cta-button">Mulai Belajar Sekarang</a>
+    </section>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Update current time
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('id-ID');
+      document.getElementById('currentTime').textContent = timeString;
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      
+      if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        mobileMenu.style.display = 'none';
+      }
+    });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Initialize
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // Add scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animated elements
+    document.querySelectorAll('.stat-card, .mission-card, .vision-card, .value-card, .team-card, .contact-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

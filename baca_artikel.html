@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detail Artikel - Islamic Portal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f8f6f0 0%, #e8e2d4 100%);
+      min-height: 100vh;
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+
+    /* Background Pattern */
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="islamic" patternUnits="userSpaceOnUse" width="40" height="40"><circle cx="20" cy="20" r="2" fill="%23f0ebe0" opacity="0.3"/><path d="M20 10 L25 15 L20 20 L15 15 Z" fill="%23f0ebe0" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23islamic)"/></svg>');
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Header - Full Width */
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 15px 20px;
+      box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
+      width: 100%;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+    }
+
+    .logo-text {
+      font-size: 26px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+
+    .logo-subtitle {
+      font-size: 12px;
+      color: #4a5568;
+      font-weight: normal;
+    }
+
+    /* Navigation */
+    .nav-menu {
+      display: flex;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .nav-item {
+      color: #4a5568;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      font-size: 15px;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      color: #1e3a5f;
+      background: rgba(30, 58, 95, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #4a5568;
+      font-size: 14px;
+      padding: 8px 15px;
+      background: rgba(30, 58, 95, 0.05);
+      border-radius: 20px;
+    }
+
+    .time-now {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e3a5f;
+      padding: 8px 15px;
+      background: rgba(30, 58, 95, 0.1);
+      border-radius: 20px;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #1e3a5f;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+      padding: 20px;
+      box-shadow: 0 5px 20px rgba(30, 58, 95, 0.1);
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      margin-bottom: 30px;
+      padding: 15px 0;
+    }
+
+    .breadcrumb a {
+      color: #4a5568;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .breadcrumb a:hover {
+      color: #1e3a5f;
+    }
+
+    .breadcrumb span {
+      color: #718096;
+      margin: 0 8px;
+    }
+
+    /* Article Header */
+    .article-header {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+      text-align: center;
+    }
+
+    .article-category {
+      display: inline-block;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .article-title {
+      font-size: 36px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .article-meta {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      color: #4a5568;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .article-excerpt {
+      font-size: 18px;
+      color: #4a5568;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* Article Image */
+    .article-image {
+      width: 100%;
+      height: 300px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      border-radius: 20px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 80px;
+      overflow: hidden;
+    }
+
+    .article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    /* Article Content */
+    .article-content {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .article-content h2 {
+      font-size: 24px;
+      color: #1e3a5f;
+      margin: 30px 0 15px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(30, 58, 95, 0.1);
+    }
+
+    .article-content h3 {
+      font-size: 20px;
+      color: #1e3a5f;
+      margin: 25px 0 12px 0;
+    }
+
+    .article-content p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 1.8;
+      text-align: justify;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      margin: 20px 0;
+      padding-left: 30px;
+    }
+
+    .article-content li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .article-content blockquote {
+      background: rgba(30, 58, 95, 0.05);
+      border-left: 4px solid #1e3a5f;
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 0 10px 10px 0;
+      font-style: italic;
+    }
+
+    .quran-verse {
+      background: rgba(30, 58, 95, 0.05);
+      border: 2px solid rgba(30, 58, 95, 0.1);
+      border-radius: 15px;
+      padding: 25px;
+      margin: 30px 0;
+      text-align: center;
+    }
+
+    .arabic-text {
+      font-size: 24px;
+      color: #1e3a5f;
+      margin-bottom: 15px;
+      line-height: 1.8;
+      font-weight: 500;
+    }
+
+    .translation {
+      font-size: 16px;
+      color: #4a5568;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .verse-reference {
+      font-size: 14px;
+      color: #718096;
+      font-weight: 500;
+    }
+
+    /* Share Section */
+    .share-section {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .share-title {
+      font-size: 18px;
+      color: #1e3a5f;
+      margin-bottom: 20px;
+    }
+
+    .share-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .share-btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .share-btn.facebook {
+      background: #1877f2;
+      color: white;
+    }
+
+    .share-btn.twitter {
+      background: #1da1f2;
+      color: white;
+    }
+
+    .share-btn.whatsapp {
+      background: #25d366;
+      color: white;
+    }
+
+    .share-btn.copy {
+      background: rgba(30, 58, 95, 0.1);
+      color: #1e3a5f;
+    }
+
+    .share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Related Articles */
+    .related-articles {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(30, 58, 95, 0.1);
+    }
+
+    .related-title {
+      font-size: 24px;
+      color: #1e3a5f;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .related-card {
+      background: rgba(30, 58, 95, 0.05);
+      border-radius: 15px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .related-card:hover {
+      background: rgba(30, 58, 95, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .related-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e3a5f;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .related-card-meta {
+      font-size: 12px;
+      color: #718096;
+    }
+
+    /* Back Button */
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(30, 58, 95, 0.1);
+      color: #1e3a5f;
+      padding: 12px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    .back-button:hover {
+      background: #1e3a5f;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .container {
+        padding: 20px 15px;
+      }
+      
+      .article-header {
+        padding: 25px;
+      }
+      
+      .article-title {
+        font-size: 28px;
+      }
+      
+      .article-content {
+        padding: 25px;
+      }
+      
+      .article-meta {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .share-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .arabic-text {
+        font-size: 20px;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .article-header,
+    .article-content,
+    .share-section,
+    .related-articles {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .article-header { animation-delay: 0.1s; }
+    .article-content { animation-delay: 0.2s; }
+    .share-section { animation-delay: 0.3s; }
+    .related-articles { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+  <div class="background-overlay"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🕌</div>
+        <div>
+          <div class="logo-text">IslamicCalm</div>
+        </div>
+      </a>
+      
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">Beranda</a>
+        <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+        <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+        <a href="artikel.html" class="nav-item active">Artikel</a>
+        <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+      </nav>
+      
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      
+      <div class="user-info">
+        <div class="location">
+          <span>📍</span>
+          <span id="userLocation">Jakarta, Indonesia</span>
+        </div>
+        <div class="time-now" id="currentTime">12:34:56</div>
+      </div>
+    </div>
+    
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-nav">
+        <a href="index.html" class="nav-item">Beranda</a>
+        <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+        <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+        <a href="artikel.html" class="nav-item active">Artikel</a>
+        <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">Beranda</a>
+      <span>›</span>
+      <a href="artikel.html">Artikel</a>
+      <span>›</span>
+      <span id="currentArticleTitle">Detail Artikel</span>
+    </div>
+
+    <!-- Back Button -->
+    <a href="artikel.html" class="back-button">
+      ← Kembali ke Daftar Artikel
+    </a>
+
+    <!-- Article Header -->
+    <div class="article-header" id="articleHeader">
+      <!-- Content will be loaded by JavaScript -->
+    </div>
+
+    <!-- Article Image -->
+    <div class="article-image" id="articleImage">
+      <!-- Content will be loaded by JavaScript -->
+    </div>
+
+    <!-- Article Content -->
+    <div class="article-content" id="articleContent">
+      <!-- Content will be loaded by JavaScript -->
+    </div>
+
+    <!-- Share Section -->
+    <div class="share-section">
+      <h3 class="share-title">Bagikan Artikel Ini</h3>
+      <div class="share-buttons">
+        <a href="#" class="share-btn facebook" onclick="shareToFacebook()">
+          📘 Facebook
+        </a>
+        <a href="#" class="share-btn twitter" onclick="shareToTwitter()">
+          🐦 Twitter
+        </a>
+        <a href="#" class="share-btn whatsapp" onclick="shareToWhatsApp()">
+          💬 WhatsApp
+        </a>
+        <button class="share-btn copy" onclick="copyLink()">
+          📋 Salin Link
+        </button>
+      </div>
+    </div>
+
+    <!-- Related Articles -->
+    <div class="related-articles">
+      <h3 class="related-title">Artikel Terkait</h3>
+      <div class="related-grid" id="relatedArticles">
+        <!-- Content will be loaded by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const articlesData = {
+  1: {
+    title: "Keutamaan Membaca Al-Quran di Bulan Ramadan",
+    category: "Ibadah",
+    date: "2024-01-15",
+    readTime: "5 min",
+    author: "Dr. Ahmad Syafii",
+    image: "📚",
+    excerpt: "Pahala membaca Al-Quran di bulan Ramadan akan dilipatgandakan. Simak penjelasan lengkap tentang keutamaan dan adab membaca Al-Quran di bulan suci ini.",
+    content: `
+      <h2>Pendahuluan</h2>
+      <p>Bulan Ramadan adalah bulan yang penuh berkah dan rahmat dari Allah SWT. Di bulan ini, semua amal kebaikan akan mendapat pahala yang berlipat ganda, termasuk membaca Al-Quran. Rasulullah SAW bersabda dalam sebuah hadits yang diriwayatkan oleh Imam Tirmidzi:</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">مَن قَرَأَ حَرْفًا مِن كِتَابِ اللَّهِ فَلَهُ بِهِ حَسَنَةٌ وَالْحَسَنَةُ بِعَشْرِ أَمْثَالِهَا</div>
+        <div class="translation">"Barangsiapa membaca satu huruf dari Kitab Allah, maka baginya satu kebaikan. Dan satu kebaikan dibalas dengan sepuluh kali lipatnya."</div>
+        <div class="verse-reference">HR. Tirmidzi</div>
+      </div>
+
+      <h2>Keutamaan Membaca Al-Quran di Bulan Ramadan</h2>
+      <p>Bulan Ramadan memiliki keistimewaan tersendiri dalam hal membaca Al-Quran. Berikut adalah beberapa keutamaan yang bisa kita dapatkan:</p>
+      
+      <h3>1. Pahala Berlipat Ganda</h3>
+      <p>Di bulan Ramadan, setiap amal kebaikan akan mendapat pahala yang berlipat ganda. Jika dalam bulan biasa membaca satu huruf Al-Quran mendapat 10 kebaikan, maka di bulan Ramadan pahalanya bisa berlipat hingga 700 kali atau lebih.</p>
+      
+      <h3>2. Syafaat di Hari Kiamat</h3>
+      <p>Al-Quran akan memberikan syafaat kepada pembacanya di hari kiamat. Rasulullah SAW bersabda: "Bacalah Al-Quran, karena sesungguhnya Al-Quran akan datang pada hari kiamat sebagai pemberi syafaat bagi para pembacanya." (HR. Muslim)</p>
+      
+      <h3>3. Ketenangan Jiwa</h3>
+      <p>Membaca Al-Quran dapat memberikan ketenangan jiwa dan menghilangkan stress. Allah SWT berfirman dalam Al-Quran:</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ اللَّهِ ۗ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</div>
+        <div class="translation">"(yaitu) orang-orang yang beriman dan hati mereka menjadi tenteram dengan mengingat Allah. Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram."</div>
+        <div class="verse-reference">QS. Ar-Ra'd: 28</div>
+      </div>
+
+      <h2>Adab Membaca Al-Quran</h2>
+      <p>Untuk mendapatkan manfaat maksimal dari membaca Al-Quran, kita perlu memperhatikan adab-adab berikut:</p>
+      
+      <ul>
+        <li>Berwudhu sebelum membaca Al-Quran</li>
+        <li>Memilih tempat yang bersih dan suci</li>
+        <li>Menghadap kiblat jika memungkinkan</li>
+        <li>Membaca ta'awudz sebelum memulai</li>
+        <li>Membaca dengan tartil (perlahan dan jelas)</li>
+        <li>Merenungkan makna ayat yang dibaca</li>
+        <li>Mengamalkan isi kandungan Al-Quran</li>
+      </ul>
+
+      <h2>Tips Menghatamkan Al-Quran di Bulan Ramadan</h2>
+      <p>Berikut adalah beberapa tips praktis untuk menghatamkan Al-Quran selama bulan Ramadan:</p>
+      
+      <ol>
+        <li><strong>Buat jadwal rutin:</strong> Bagi waktu membaca Al-Quran menjadi beberapa sesi dalam sehari</li>
+        <li><strong>Mulai dari sekarang:</strong> Jangan menunda-nunda, mulai dari hari ini</li>
+        <li><strong>Gunakan mushaf yang sama:</strong> Ini akan membantu mengingat posisi ayat</li>
+        <li><strong>Baca dengan keluarga:</strong> Ajak keluarga untuk membaca bersama</li>
+        <li><strong>Manfaatkan teknologi:</strong> Gunakan aplikasi Al-Quran untuk membantu</li>
+      </ol>
+
+      <h2>Kesimpulan</h2>
+      <p>Membaca Al-Quran di bulan Ramadan memiliki keutamaan yang luar biasa. Selain mendapat pahala berlipat ganda, kita juga akan mendapat ketenangan jiwa dan syafaat di hari kiamat. Mari kita manfaatkan bulan Ramadan ini untuk memperbanyak membaca Al-Quran dengan adab yang benar.</p>
+      
+      <blockquote>
+        "Al-Quran adalah petunjuk bagi manusia dan penjelasan-penjelasan mengenai petunjuk itu dan pembeda (antara yang hak dan yang bathil)." - QS. Al-Baqarah: 185
+      </blockquote>
+    `
+  },
+  2: {
+    title: "Adab dan Tata Cara Sholat yang Benar",
+    category: "Ibadah",
+    date: "2024-01-14",
+    readTime: "8 min",
+    author: "Ustadz Muhammad Ridwan",
+    image: "🕌",
+    excerpt: "Panduan lengkap tentang adab dan tata cara sholat sesuai dengan sunnah Rasulullah SAW. Mulai dari persiapan hingga salam.",
+    content: `
+      <h2>Pendahuluan</h2>
+      <p>Sholat adalah tiang agama dan kewajiban utama bagi setiap muslim. Untuk mendapatkan manfaat spiritual yang maksimal, kita perlu memahami adab dan tata cara sholat yang benar sesuai dengan sunnah Rasulullah SAW.</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَارْكَعُوا مَعَ الرَّاكِعِينَ</div>
+        <div class="translation">"Dan dirikanlah shalat, tunaikanlah zakat dan ruku'lah beserta orang-orang yang ruku'."</div>
+        <div class="verse-reference">QS. Al-Baqarah: 43</div>
+      </div>
+      
+      <h2>Persiapan Sebelum Sholat</h2>
+      <h3>1. Bersuci (Wudhu)</h3>
+      <p>Sebelum melaksanakan sholat, pastikan dalam keadaan suci dari hadats kecil dan besar. Lakukan wudhu dengan sempurna sesuai tuntunan Rasulullah SAW. Wudhu tidak hanya membersihkan anggota tubuh secara fisik, tetapi juga menyucikan jiwa.</p>
+      
+      <h3>2. Menutup Aurat</h3>
+      <p>Pastikan aurat tertutup dengan sempurna. Bagi laki-laki minimal dari pusar hingga lutut, sedangkan bagi perempuan seluruh tubuh kecuali wajah dan telapak tangan. Gunakan pakaian yang bersih dan sopan.</p>
+      
+      <h3>3. Menghadap Kiblat</h3>
+      <p>Pastikan arah kiblat sudah benar. Gunakan kompas atau aplikasi untuk memastikan arah yang tepat. Kiblat adalah arah menuju Ka'bah di Masjidil Haram, Makkah.</p>
+      
+      <h2>Tata Cara Sholat</h2>
+      <h3>1. Takbiratul Ihram</h3>
+      <p>Angkat kedua tangan sejajar dengan telinga sambil mengucapkan "Allahu Akbar". Ini menandai dimulainya sholat dan memasuki keadaan ihram dalam sholat.</p>
+      
+      <h3>2. Membaca Al-Fatihah</h3>
+      <p>Setelah takbir, baca surat Al-Fatihah dengan tartil. Surat ini wajib dibaca di setiap rakaat. Rasulullah SAW bersabda: "Tidak sah sholat bagi orang yang tidak membaca Al-Fatihah."</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ * الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
+        <div class="translation">"Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang. Segala puji bagi Allah, Tuhan semesta alam."</div>
+        <div class="verse-reference">Al-Fatihah: 1-2</div>
+      </div>
+      
+      <h3>3. Rukuk</h3>
+      <p>Setelah membaca Al-Fatihah dan surat lain, lakukan rukuk dengan mengucapkan takbir. Posisikan punggung lurus sejajar dengan kepala, letakkan tangan di lutut, dan ucapkan tasbih rukuk minimal 3 kali.</p>
+      
+      <h3>4. Sujud</h3>
+      <p>Dari posisi berdiri setelah rukuk, turun untuk sujud. Letakkan dahi, hidung, kedua telapak tangan, lutut, dan ujung kaki di lantai. Ini adalah posisi paling dekat dengan Allah SWT.</p>
+      
+      <h2>Bacaan dalam Sholat</h2>
+      <h3>Doa Iftitah</h3>
+      <p>Setelah takbiratul ihram, dianjurkan membaca doa iftitah:</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَى جَدُّكَ وَلَا إِلَهَ غَيْرُكَ</div>
+        <div class="translation">"Maha Suci Engkau ya Allah, dan dengan memuji-Mu, dan Maha Berkah nama-Mu, dan Maha Tinggi keagungan-Mu, dan tidak ada Tuhan selain Engkau."</div>
+        <div class="verse-reference">Doa Iftitah</div>
+      </div>
+      
+      <h3>Tasbih Rukuk</h3>
+      <div class="quran-verse">
+        <div class="arabic-text">سُبْحَانَ رَبِّيَ الْعَظِيمِ</div>
+        <div class="translation">"Maha Suci Tuhanku Yang Maha Agung"</div>
+        <div class="verse-reference">Dibaca minimal 3 kali</div>
+      </div>
+      
+      <h3>Tasbih Sujud</h3>
+      <div class="quran-verse">
+        <div class="arabic-text">سُبْحَانَ رَبِّيَ الْأَعْلَى</div>
+        <div class="translation">"Maha Suci Tuhanku Yang Maha Tinggi"</div>
+        <div class="verse-reference">Dibaca minimal 3 kali</div>
+      </div>
+      
+      <h2>Adab dalam Sholat</h2>
+      <ul>
+        <li><strong>Khusyuk dan fokus:</strong> Konsentrasi penuh kepada Allah SWT</li>
+        <li><strong>Tidak menoleh:</strong> Jaga pandangan dan tidak menoleh ke kanan dan kiri</li>
+        <li><strong>Bacaan yang benar:</strong> Membaca dengan suara yang dapat didengar sendiri</li>
+        <li><strong>Gerakan tenang:</strong> Menjaga gerakan dengan tenang dan tidak terburu-buru</li>
+        <li><strong>Pakaian sopan:</strong> Berpakaian yang sopan, bersih, dan menutup aurat</li>
+        <li><strong>Tempat bersih:</strong> Sholat di tempat yang bersih dan suci</li>
+      </ul>
+      
+      <h2>Doa Setelah Sholat</h2>
+      <p>Setelah salam, dianjurkan untuk membaca dzikir dan doa. Berikut beberapa doa yang dianjurkan:</p>
+      
+      <h3>Istighfar</h3>
+      <div class="quran-verse">
+        <div class="arabic-text">أَسْتَغْفِرُ اللَّهَ أَسْتَغْفِرُ اللَّهَ أَسْتَغْفِرُ اللَّهَ</div>
+        <div class="translation">"Aku memohon ampun kepada Allah, aku memohon ampun kepada Allah, aku memohon ampun kepada Allah"</div>
+        <div class="verse-reference">Dibaca 3 kali</div>
+      </div>
+      
+      <h3>Tasbih, Tahmid, dan Takbir</h3>
+      <p>Setelah istighfar, baca:</p>
+      <ul>
+        <li>Subhanallah (33 kali)</li>
+        <li>Alhamdulillah (33 kali)</li>
+        <li>Allahu Akbar (34 kali)</li>
+      </ul>
+      
+      <h2>Kesalahan yang Sering Terjadi</h2>
+      <p>Berikut beberapa kesalahan yang sering terjadi dalam sholat dan cara menghindarinya:</p>
+      <ol>
+        <li><strong>Terburu-buru:</strong> Lakukan setiap gerakan dengan tenang dan sempurna</li>
+        <li><strong>Tidak khusyuk:</strong> Fokuskan pikiran kepada Allah dan makna bacaan</li>
+        <li><strong>Salah bacaan:</strong> Pelajari bacaan sholat dengan benar</li>
+        <li><strong>Rukun tidak sempurna:</strong> Pastikan setiap rukun dilakukan dengan sempurna</li>
+        <li><strong>Arah kiblat salah:</strong> Selalu pastikan arah kiblat sebelum sholat</li>
+      </ol>
+      
+      <h2>Hikmah Sholat</h2>
+      <p>Sholat memiliki banyak hikmah, antara lain:</p>
+      <ul>
+        <li>Mendekatkan diri kepada Allah SWT</li>
+        <li>Membersihkan jiwa dari dosa-dosa kecil</li>
+        <li>Melatih kedisiplinan dan ketaatan</li>
+        <li>Memberikan ketenangan jiwa</li>
+        <li>Mencegah perbuatan keji dan munkar</li>
+      </ul>
+      
+      <h2>Kesimpulan</h2>
+      <p>Sholat yang benar adalah sholat yang dilakukan sesuai dengan tuntunan Rasulullah SAW, baik dari segi gerakan, bacaan, maupun adabnya. Mari kita perbaiki kualitas sholat kita agar mendapat ridha Allah SWT dan merasakan manfaat spiritual yang luar biasa.</p>
+      
+      <blockquote>
+        "Sholat adalah tiang agama. Barangsiapa yang mendirikannya berarti ia telah menegakkan agama, dan barangsiapa yang meninggalkannya berarti ia telah meruntuhkan agama." - HR. Baihaqi
+      </blockquote>
+    `
+  },
+  3: {
+    title: "Akhlak Mulia dalam Kehidupan Sehari-hari",
+    category: "Akhlak",
+    date: "2024-01-13",
+    readTime: "6 min",
+    author: "Dr. Fatimah Azzahra",
+    image: "💎",
+    excerpt: "Bagaimana menerapkan akhlak mulia dalam kehidupan sehari-hari sesuai dengan ajaran Islam dan contoh dari Rasulullah SAW.",
+    content: `
+      <h2>Pendahuluan</h2>
+      <p>Akhlak mulia adalah salah satu tujuan utama diutusnya Rasulullah SAW. Beliau bersabda: "Sesungguhnya aku diutus untuk menyempurnakan akhlak yang mulia." Akhlak mulia bukan hanya tentang ibadah ritual, tetapi juga tentang bagaimana kita berinteraksi dengan sesama manusia dan makhluk Allah lainnya.</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍ</div>
+        <div class="translation">"Dan sesungguhnya kamu benar-benar berbudi pekerti yang agung."</div>
+        <div class="verse-reference">QS. Al-Qalam: 4</div>
+      </div>
+      
+      <h2>Pengertian Akhlak Mulia</h2>
+      <p>Akhlak mulia adalah sifat-sifat terpuji yang tertanam dalam jiwa seseorang dan terwujud dalam perbuatan sehari-hari tanpa memerlukan pemikiran atau pertimbangan terlebih dahulu. Akhlak mulia mencakup hubungan dengan Allah (hablum minallah), hubungan dengan sesama manusia (hablum minannas), dan hubungan dengan alam sekitar.</p>
+      
+      <h2>Akhlak kepada Allah SWT</h2>
+      <h3>1. Taqwa</h3>
+      <p>Taqwa adalah kesadaran akan kehadiran Allah dalam setiap aspek kehidupan. Orang yang bertaqwa akan selalu berusaha melakukan yang diperintahkan Allah dan menjauhi yang dilarang-Nya.</p>
+      
+      <h3>2. Ikhlas</h3>
+      <p>Ikhlas berarti melakukan segala sesuatu semata-mata karena Allah, bukan untuk mendapat pujian atau keuntungan duniawi. Rasulullah SAW bersabda: "Sesungguhnya amal perbuatan itu tergantung pada niatnya."</p>
+      
+      <h3>3. Syukur</h3>
+      <p>Syukur adalah mengakui nikmat Allah dan menggunakannya sesuai dengan kehendak-Nya. Allah berfirman:</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ</div>
+        <div class="translation">"Sesungguhnya jika kamu bersyukur, pasti Kami akan menambah (nikmat) kepadamu."</div>
+        <div class="verse-reference">QS. Ibrahim: 7</div>
+      </div>
+      
+      <h2>Akhlak kepada Sesama Manusia</h2>
+      <h3>1. Jujur (Shidq)</h3>
+      <p>Kejujuran adalah fondasi dari semua akhlak mulia. Orang yang jujur akan dipercaya dan dihormati. Rasulullah SAW dikenal dengan gelar Al-Amin (yang terpercaya) karena kejujurannya.</p>
+      
+      <h3>2. Sabar</h3>
+      <p>Sabar adalah menahan diri dari hal-hal yang tidak disukai Allah, menjalankan perintah-Nya meski berat, dan menerima takdir-Nya dengan lapang dada. Sabar memiliki tiga tingkatan:</p>
+      <ul>
+        <li>Sabar dalam ketaatan kepada Allah</li>
+        <li>Sabar dalam menjauhi kemaksiatan</li>
+        <li>Sabar dalam menghadapi musibah</li>
+      </ul>
+      
+      <h3>3. Pemaaf</h3>
+      <p>Memaafkan adalah sifat mulia yang sangat dianjurkan dalam Islam. Allah SWT berfirman:</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ ۗ وَاللَّهُ يُحِبُّ الْمُحْسِنِينَ</div>
+        <div class="translation">"Dan orang-orang yang menahan amarahnya dan memaafkan (kesalahan) orang. Allah menyukai orang-orang yang berbuat kebajikan."</div>
+        <div class="verse-reference">QS. Ali Imran: 134</div>
+      </div>
+      
+      <h3>4. Dermawan</h3>
+      <p>Kedermawanan bukan hanya tentang memberikan harta, tetapi juga waktu, tenaga, dan ilmu untuk membantu sesama. Rasulullah SAW bersabda: "Tangan yang di atas lebih baik daripada tangan yang di bawah."</p>
+      
+      <h2>Cara Menerapkan Akhlak Mulia</h2>
+      <h3>1. Dalam Keluarga</h3>
+      <ul>
+        <li><strong>Berbakti kepada orang tua:</strong> Hormati dan sayangi orang tua</li>
+        <li><strong>Kasih sayang kepada anak:</strong> Didik anak dengan penuh kasih sayang</li>
+        <li><strong>Harmonis dengan pasangan:</strong> Saling menghormati dan memahami</li>
+        <li><strong>Silaturahmi:</strong> Jaga hubungan baik dengan kerabat</li>
+      </ul>
+      
+      <h3>2. Dalam Masyarakat</h3>
+      <ul>
+        <li><strong>Tolong-menolong:</strong> Bantu tetangga dan masyarakat yang membutuhkan</li>
+        <li><strong>Adil:</strong> Berlaku adil dalam segala urusan</li>
+        <li><strong>Amanah:</strong> Jaga kepercayaan yang diberikan</li>
+        <li><strong>Sopan santun:</strong> Bertutur kata dan berperilaku yang baik</li>
+      </ul>
+      
+      <h3>3. Dalam Pekerjaan</h3>
+      <ul>
+        <li><strong>Profesional:</strong> Lakukan pekerjaan dengan sebaik-baiknya</li>
+        <li><strong>Jujur:</strong> Tidak curang atau korupsi</li>
+        <li><strong>Tepat waktu:</strong> Disiplin dalam waktu</li>
+        <li><strong>Kerjasama:</strong> Bekerja sama dengan baik</li>
+      </ul>
+      
+      <h2>Manfaat Akhlak Mulia</h2>
+      <h3>1. Manfaat Duniawi</h3>
+      <ul>
+        <li>Mendapat kepercayaan dari orang lain</li>
+        <li>Hidup tenang dan bahagia</li>
+        <li>Hubungan sosial yang harmonis</li>
+        <li>Sukses dalam karir dan bisnis</li>
+        <li>Menjadi teladan bagi orang lain</li>
+      </ul>
+      
+      <h3>2. Manfaat Ukhrawi</h3>
+      <ul>
+        <li>Mendapat ridha Allah SWT</li>
+        <li>Pahala yang berlimpah</li>
+        <li>Syafaat di hari kiamat</li>
+        <li>Tempat yang mulia di surga</li>
+        <li>Dekat dengan Rasulullah SAW</li>
+      </ul>
+      
+      <h2>Contoh Akhlak Rasulullah SAW</h2>
+      <p>Rasulullah SAW adalah contoh sempurna akhlak mulia. Beberapa sifat mulia beliau:</p>
+      
+      <h3>1. Shiddiq (Jujur)</h3>
+      <p>Rasulullah SAW tidak pernah berbohong, bahkan sebelum menjadi nabi. Beliau dikenal sebagai Al-Amin (yang terpercaya).</p>
+      
+      <h3>2. Amanah (Terpercaya)</h3>
+      <p>Bahkan musuh-musuh beliau mempercayakan harta mereka kepada Rasulullah SAW karena sifat amanah beliau.</p>
+      
+      <h3>3. Tabligh (Menyampaikan)</h3>
+      <p>Rasulullah SAW menyampaikan ajaran Islam dengan hikmah dan cara yang baik.</p>
+      
+      <h3>4. Fathonah (Cerdas)</h3>
+      <p>Rasulullah SAW memiliki kecerdasan luar biasa dalam memecahkan masalah dan memimpin umat.</p>
+      
+      <h2>Tips Membangun Akhlak Mulia</h2>
+      <ol>
+        <li><strong>Mulai dari diri sendiri:</strong> Introspeksi dan perbaiki diri</li>
+        <li><strong>Belajar dari Al-Quran dan Hadits:</strong> Pelajari ajaran Islam</li>
+        <li><strong>Bergaul dengan orang shaleh:</strong> Lingkungan yang baik mempengaruhi akhlak</li>
+        <li><strong>Istiqomah:</strong> Konsisten dalam menerapkan akhlak mulia</li>
+        <li><strong>Berdoa:</strong> Minta pertolongan Allah untuk memiliki akhlak mulia</li>
+        <li><strong>Evaluasi diri:</strong> Selalu mengevaluasi dan memperbaiki akhlak</li>
+      </ol>
+      
+      <h2>Kesimpulan</h2>
+      <p>Akhlak mulia adalah tujuan utama ajaran Islam. Dengan memiliki akhlak mulia, kita tidak hanya akan bahagia di dunia tetapi juga di akhirat. Mari kita teladani akhlak Rasulullah SAW dan terapkan dalam kehidupan sehari-hari.</p>
+      
+      <blockquote>
+        "Orang mukmin yang paling sempurna imannya adalah yang paling baik akhlaknya, dan sebaik-baik kalian adalah yang paling baik kepada istrinya." - HR. Tirmidzi
+      </blockquote>
+    `
+  },
+  4: {
+    title: "Sejarah Turunnya Al-Quran",
+    category: "Sejarah",
+    date: "2024-01-12",
+    readTime: "10 min",
+    author: "Prof. Dr. Abdullah Mahmud",
+    image: "📜",
+    excerpt: "Mengenal sejarah turunnya Al-Quran, dari wahyu pertama di Gua Hira hingga wahyu terakhir yang diterima Rasulullah SAW.",
+    content: `
+      <h2>Pendahuluan</h2>
+      <p>Al-Quran adalah kitab suci terakhir yang diturunkan Allah SWT kepada umat manusia melalui Nabi Muhammad SAW. Proses turunnya Al-Quran berlangsung selama kurang lebih 23 tahun, dimulai ketika Rasulullah berusia 40 tahun hingga beliau wafat di usia 63 tahun.</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">إِنَّا نَحْنُ نَزَّلْنَا الذِّكْرَ وَإِنَّا لَهُ لَحَافِظُونَ</div>
+        <div class="translation">"Sesungguhnya Kami-lah yang menurunkan Al Quran, dan sesungguhnya Kami benar-benar memeliharanya."</div>
+        <div class="verse-reference">QS. Al-Hijr: 9</div>
+      </div>
+      
+      <h2>Wahyu Pertama di Gua Hira</h2>
+      <p>Sejarah turunnya Al-Quran dimulai pada malam 17 Ramadan tahun 610 M, ketika Rasulullah SAW sedang berkhalwat (menyendiri) di Gua Hira. Pada malam yang kemudian dikenal sebagai Lailatul Qadr, Malaikat Jibril datang membawa wahyu pertama.</p>
+      
+      <h3>Peristiwa Wahyu Pertama</h3>
+      <p>Malaikat Jibril datang kepada Rasulullah SAW dan berkata: "Iqra!" (Bacalah!). Rasulullah menjawab: "Ma ana bi qari'" (Aku tidak bisa membaca). Malaikat Jibril memeluk beliau dengan erat, kemudian melepaskannya dan berkata lagi: "Iqra!" Hal ini terjadi tiga kali hingga turunlah ayat pertama Al-Quran:</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ * خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ * اقْرَأْ وَرَبُّكَ الْأَكْرَمُ * الَّذِي عَلَّمَ بِالْقَلَمِ * عَلَّمَ الْإِنسَانَ مَا لَمْ يَعْلَمْ</div>
+        <div class="translation">"Bacalah dengan (menyebut) nama Tuhanmu Yang menciptakan. Dia telah menciptakan manusia dari segumpal darah. Bacalah, dan Tuhanmulah Yang Maha Pemurah. Yang mengajar (manusia) dengan perantaran kalam. Dia mengajar kepada manusia apa yang tidak diketahuinya."</div>
+        <div class="verse-reference">QS. Al-Alaq: 1-5</div>
+      </div>
+      
+      <h2>Periode Turunnya Al-Quran</h2>
+      <h3>1. Periode Makkah (13 Tahun)</h3>
+      <p>Periode Makkah berlangsung selama 13 tahun, dari tahun 610-622 M. Ayat-ayat yang turun di periode ini disebut ayat Makkiyah. Karakteristik ayat Makkiyah:</p>
+      <ul>
+        <li>Fokus pada akidah dan tauhid</li>
+        <li>Mengajak kepada keimanan kepada Allah</li>
+        <li>Menceritakan kisah-kisah umat terdahulu</li>
+        <li>Menjelaskan tentang hari kiamat dan akhirat</li>
+        <li>Umumnya ayat-ayatnya pendek dan berirama</li>
+      </ul>
+      
+      <h3>2. Periode Madinah (10 Tahun)</h3>
+      <p>Periode Madinah berlangsung selama 10 tahun, dari tahun 622-632 M. Ayat-ayat yang turun di periode ini disebut ayat Madaniyah. Karakteristik ayat Madaniyah:</p>
+      <ul>
+        <li>Fokus pada syariat dan hukum Islam</li>
+        <li>Mengatur kehidupan bermasyarakat</li>
+        <li>Membahas hukum pernikahan, warisan, dan muamalah</li>
+        <li>Mengatur hubungan dengan non-Muslim</li>
+        <li>Umumnya ayat-ayatnya panjang dan detail</li>
+      </ul>
+      
+      <h2>Cara Turunnya Al-Quran</h2>
+      <h3>1. Secara Berangsur-angsur</h3>
+      <p>Al-Quran tidak diturunkan sekaligus, tetapi secara berangsur-angsur selama 23 tahun. Hikmah turunnya secara berangsur-angsur:</p>
+      <ul>
+        <li>Mempermudah Rasulullah dalam menghafal</li>
+        <li>Mempermudah umat dalam memahami dan mengamalkan</li>
+        <li>Menjawab peristiwa-peristiwa yang terjadi</li>
+        <li>Memberikan solusi bertahap untuk masalah sosial</li>
+      </ul>
+      
+      <h3>2. Sesuai dengan Peristiwa</h3>
+      <p>Banyak ayat Al-Quran yang turun sebagai respons terhadap peristiwa tertentu. Ini disebut dengan Asbabun Nuzul (sebab-sebab turunnya ayat).</p>
+      
+      <h2>Proses Pengumpulan Al-Quran</h2>
+      <h3>1. Masa Rasulullah SAW</h3>
+      <p>Pada masa Rasulullah, Al-Quran dihafal oleh para sahabat dan ditulis di berbagai media seperti:</p>
+      <ul>
+        <li>Pelepah kurma</li>
+        <li>Kulit binatang</li>
+        <li>Batu pipih</li>
+        <li>Tulang belulang</li>
+      </ul>
+      
+      <h3>2. Masa Abu Bakar</h3>
+      <p>Setelah Perang Yamamah yang menewaskan banyak penghafal Al-Quran, Umar bin Khattab mengusulkan kepada Abu Bakar untuk mengumpulkan Al-Quran dalam satu mushaf. Tugas ini diserahkan kepada Zaid bin Tsabit.</p>
+      
+      <h3>3. Masa Utsman bin Affan</h3>
+      <p>Untuk menghindari perbedaan bacaan, Utsman memerintahkan penyalinan Al-Quran dalam satu versi standar. Mushaf ini kemudian disebar ke berbagai daerah dan dikenal sebagai Mushaf Utsmani.</p>
+      
+      <h2>Keistimewaan Al-Quran</h2>
+      <h3>1. Terjaga Keasliannya</h3>
+      <p>Al-Quran adalah satu-satunya kitab suci yang terjaga keasliannya hingga hari ini. Allah telah menjamin pemeliharaannya.</p>
+      
+      <h3>2. Bahasa yang Indah</h3>
+      <p>Al-Quran memiliki keindahan bahasa yang luar biasa. Bangsa Arab yang terkenal dengan kemahiran berbahasanya mengakui keunggulan bahasa Al-Quran.</p>
+      
+      <h3>3. Mukjizat Ilmiah</h3>
+      <p>Al-Quran mengandung banyak informasi ilmiah yang baru ditemukan oleh sains modern, seperti:</p>
+      <ul>
+        <li>Proses penciptaan manusia</li>
+        <li>Struktur alam semesta</li>
+        <li>Siklus air</li>
+        <li>Gerakan matahari dan bulan</li>
+      </ul>
+      
+      <h2>Wahyu Terakhir</h2>
+      <p>Ayat terakhir yang diturunkan adalah ayat tentang riba dalam Surah Al-Baqarah:</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">وَاتَّقُوا يَوْمًا تُرْجَعُونَ فِيهِ إِلَى اللَّهِ ۖ ثُمَّ تُوَفَّىٰ كُلُّ نَفْسٍ مَّا كَسَبَتْ وَهُمْ لَا يُظْلَمُونَ</div>
+        <div class="translation">"Dan peliharalah dirimu dari (azab yang terjadi pada) hari yang pada waktu itu kamu dikembalikan kepada Allah. Kemudian masing-masing diri diberi balasan yang sempurna terhadap apa yang telah dikerjakannya, sedang mereka tidak dianiaya."</div>
+        <div class="verse-reference">QS. Al-Baqarah: 281</div>
+      </div>
+      
+      <h2>Hikmah Turunnya Al-Quran</h2>
+      <ul>
+        <li><strong>Petunjuk hidup:</strong> Al-Quran menjadi pedoman lengkap untuk kehidupan</li>
+        <li><strong>Penyembuh jiwa:</strong> Al-Quran dapat menyembuhkan penyakit hati</li>
+        <li><strong>Pembeda:</strong> Al-Quran membedakan antara yang haq dan bathil</li>
+        <li><strong>Rahmat:</strong> Al-Quran adalah rahmat bagi seluruh alam</li>
+        <li><strong>Mukjizat:</strong> Al-Quran adalah mukjizat terbesar Nabi Muhammad SAW</li>
+      </ul>
+      
+      <h2>Kewajiban Umat terhadap Al-Quran</h2>
+      <ol>
+        <li><strong>Membaca:</strong> Membaca Al-Quran dengan tartil</li>
+        <li><strong>Memahami:</strong> Mempelajari makna dan tafsirnya</li>
+        <li><strong>Menghafal:</strong> Menghafalkan ayat-ayat Al-Quran</li>
+        <li><strong>Mengamalkan:</strong> Menerapkan ajaran Al-Quran dalam kehidupan</li>
+        <li><strong>Mengajarkan:</strong> Menyebarkan ajaran Al-Quran kepada orang lain</li>
+      </ol>
+      
+      <h2>Kesimpulan</h2>
+      <p>Sejarah turunnya Al-Quran menunjukkan kasih sayang Allah kepada umat manusia. Al-Quran diturunkan secara bertahap untuk memudahkan pemahaman dan pengamalan. Sebagai umat Islam, kita berkewajiban untuk menjaga, mempelajari, dan mengamalkan ajaran Al-Quran dalam kehidupan sehari-hari.</p>
+      
+      <blockquote>
+        "Al-Quran diturunkan pada bulan Ramadan sebagai petunjuk bagi manusia dan penjelasan-penjelasan mengenai petunjuk itu dan pembeda (antara yang hak dan yang bathil)." - QS. Al-Baqarah: 185
+      </blockquote>
+    `
+  },
+  5: {
+    title: "Hukum Zakat dalam Islam",
+    category: "Fiqh",
+    date: "2024-01-11",
+    readTime: "7 min",
+    author: "Ustadz Dr. Yusuf Mansur",
+    image: "💰",
+    excerpt: "Pembahasan lengkap tentang hukum zakat, jenis-jenis zakat, nisab, dan cara perhitungannya menurut syariat Islam.",
+    content: `
+      <h2>Pendahuluan</h2>
+      <p>Zakat adalah salah satu rukun Islam yang ketiga dan merupakan kewajiban bagi setiap Muslim yang mampu. Zakat bukan hanya ibadah mahdhah, tetapi juga memiliki dimensi sosial ekonomi yang sangat penting dalam masyarakat Islam.</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَارْكَعُوا مَعَ الرَّاكِعِينَ</div>
+        <div class="translation">"Dan dirikanlah shalat, tunaikanlah zakat dan ruku'lah beserta orang-orang yang ruku'."</div>
+        <div class="verse-reference">QS. Al-Baqarah: 43</div>
+      </div>
+      
+      <h2>Pengertian Zakat</h2>
+      <p>Secara bahasa, zakat berasal dari kata "zaka" yang berarti tumbuh, berkembang, bersih, dan suci. Secara istilah, zakat adalah sejumlah harta tertentu yang wajib dikeluarkan oleh orang yang mampu dan diberikan kepada yang berhak menerimanya.</p>
+      
+      <h3>Hikmah Zakat</h3>
+      <ul>
+        <li><strong>Membersihkan harta:</strong> Zakat membersihkan harta dari hak orang lain</li>
+        <li><strong>Mensucikan jiwa:</strong> Zakat membersihkan jiwa dari sifat kikir dan tamak</li>
+        <li><strong>Menumbuhkan harta:</strong> Harta yang dizakati akan bertambah berkah</li>
+        <li><strong>Solidaritas sosial:</strong> Zakat menciptakan keseimbangan sosial</li>
+      </ul>
+      
+      <h2>Jenis-jenis Zakat</h2>
+      <h3>1. Zakat Fitrah</h3>
+      <p>Zakat fitrah adalah zakat yang wajib dikeluarkan setiap Muslim pada bulan Ramadan. Zakat ini bersifat personal dan wajib bagi setiap jiwa, baik kaya maupun miskin.</p>
+      
+      <h4>Ketentuan Zakat Fitrah:</h4>
+      <ul>
+        <li><strong>Wajib bagi:</strong> Setiap Muslim yang hidup pada malam 1 Syawal</li>
+        <li><strong>Kadar:</strong> 2,5 kg beras atau makanan pokok setempat</li>
+        <li><strong>Waktu:</strong> Mulai awal Ramadan hingga sebelum shalat Ied</li>
+        <li><strong>Hikmah:</strong> Membersihkan puasa dari kekurangan</li>
+      </ul>
+      
+      <h3>2. Zakat Mal (Harta)</h3>
+      <p>Zakat mal adalah zakat yang dikeluarkan dari harta yang telah mencapai nisab dan haul (satu tahun). Zakat mal terbagi menjadi beberapa jenis:</p>
+      
+      <h4>a. Zakat Emas dan Perak</h4>
+      <ul>
+        <li><strong>Nisab emas:</strong> 85 gram emas murni</li>
+        <li><strong>Nisab perak:</strong> 595 gram perak murni</li>
+        <li><strong>Kadar zakat:</strong> 2,5% dari total harta</li>
+        <li><strong>Haul:</strong> Satu tahun hijriah</li>
+      </ul>
+      
+      <h4>b. Zakat Uang dan Tabungan</h4>
+      <ul>
+        <li><strong>Nisab:</strong> Setara dengan 85 gram emas</li>
+        <li><strong>Kadar:</strong> 2,5% per tahun</li>
+        <li><strong>Perhitungan:</strong> Dari saldo terendah selama satu tahun</li>
+      </ul>
+      
+      <h4>c. Zakat Perdagangan</h4>
+      <ul>
+        <li><strong>Nisab:</strong> Setara dengan 85 gram emas</li>
+        <li><strong>Kadar:</strong> 2,5% dari modal + keuntungan</li>
+        <li><strong>Waktu:</strong> Setiap tahun pada tanggal yang sama</li>
+      </ul>
+      
+      <h4>d. Zakat Pertanian</h4>
+      <div class="quran-verse">
+        <div class="arabic-text">وَآتُوا حَقَّهُ يَوْمَ حَصَادِهِ</div>
+        <div class="translation">"Dan tunaikanlah haknya di hari memetik hasilnya."</div>
+        <div class="verse-reference">QS. Al-An'am: 141</div>
+      </div>
+      
+      <ul>
+        <li><strong>Nisab:</strong> 5 wasaq (sekitar 750 kg)</li>
+        <li><strong>Kadar:</strong> 10% (tadah hujan) atau 5% (irigasi)</li>
+        <li><strong>Waktu:</strong> Saat panen</li>
+      </ul>
+      
+      <h4>e. Zakat Ternak</h4>
+      <p>Zakat ternak meliputi unta, sapi, dan kambing/domba dengan ketentuan:</p>
+      <ul>
+        <li>Ternak harus mencapai nisab</li>
+        <li>Dipelihara selama satu tahun</li>
+        <li>Digembalakan di padang umum</li>
+        <li>Bukan untuk diperdagangkan</li>
+      </ul>
+      
+      <h2>Syarat Wajib Zakat</h2>
+      <ol>
+        <li><strong>Islam:</strong> Hanya Muslim yang wajib berzakat</li>
+        <li><strong>Merdeka:</strong> Bukan budak atau hamba sahaya</li>
+        <li><strong>Baligh dan berakal:</strong> Sudah dewasa dan sehat akal</li>
+        <li><strong>Memiliki harta:</strong> Harta tersebut benar-benar miliknya</li>
+        <li><strong>Mencapai nisab:</strong> Harta telah mencapai batas minimum</li>
+        <li><strong>Haul:</strong> Harta telah dimiliki selama satu tahun</li>
+        <li><strong>Lebih dari kebutuhan pokok:</strong> Setelah dikurangi kebutuhan dasar</li>
+      </ol>
+      
+      <h2>Mustahiq Zakat (Yang Berhak Menerima)</h2>
+      <p>Allah SWT telah menentukan delapan golongan yang berhak menerima zakat:</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">إِنَّمَا الصَّدَقَاتُ لِلْفُقَرَاءِ وَالْمَسَاكِينِ وَالْعَامِلِينَ عَلَيْهَا وَالْمُؤَلَّفَةِ قُلُوبُهُمْ وَفِي الرِّقَابِ وَالْغَارِمِينَ وَفِي سَبِيلِ اللَّهِ وَابْنِ السَّبِيلِ</div>
+        <div class="translation">"Sesungguhnya zakat-zakat itu, hanyalah untuk orang-orang fakir, orang-orang miskin, pengurus-pengurus zakat, para mu'allaf yang dibujuk hatinya, untuk (memerdekakan) budak, orang-orang yang berhutang, untuk jalan Allah dan untuk mereka yuang sedang dalam perjalanan."</div>
+        <div class="verse-reference">QS. At-Taubah: 60</div>
+      </div>
+      
+      <h3>Delapan Golongan Mustahiq:</h3>
+      <ol>
+        <li><strong>Fakir:</strong> Orang yang tidak memiliki harta dan pekerjaan</li>
+        <li><strong>Miskin:</strong> Orang yang memiliki harta/pekerjaan tapi tidak mencukupi</li>
+        <li><strong>Amil:</strong> Petugas yang mengumpulkan dan membagikan zakat</li>
+        <li><strong>Muallaf:</strong> Orang yang baru masuk Islam atau yang hatinya perlu dijinakkan</li>
+        <li><strong>Riqab:</strong> Untuk memerdekakan budak atau membantu orang yang terlilit hutang</li>
+        <li><strong>Gharim:</strong> Orang yang berhutang untuk kepentingan yang tidak maksiat</li>
+        <li><strong>Fi Sabilillah:</strong> Untuk kepentingan agama dan jihad</li>
+        <li><strong>Ibnu Sabil:</strong> Musafir yang kehabisan bekal dalam perjalanan</li>
+      </ol>
+      
+      <h2>Cara Menghitung Zakat</h2>
+      <h3>Contoh Perhitungan Zakat Uang:</h3>
+      <p>Misalnya harga emas 1 gram = Rp 1.000.000</p>
+      <ul>
+        <li>Nisab = 85 gram × Rp 1.000.000 = Rp 85.000.000</li>
+        <li>Jika tabungan Anda Rp 100.000.000</li>
+        <li>Zakat = 2,5% × Rp 100.000.000 = Rp 2.500.000</li>
+      </ul>
+      
+      <h3>Contoh Perhitungan Zakat Perdagangan:</h3>
+      <ul>
+        <li>Modal awal: Rp 50.000.000</li>
+        <li>Keuntungan: Rp 30.000.000</li>
+        <li>Total: Rp 80.000.000</li>
+        <li>Hutang dagang: Rp 10.000.000</li>
+        <li>Harta bersih: Rp 70.000.000</li>
+        <li>Zakat = 2,5% × Rp 70.000.000 = Rp 1.750.000</li>
+      </ul>
+      
+      <h2>Adab Membayar Zakat</h2>
+      <ul>
+        <li><strong>Niat yang ikhlas:</strong> Membayar zakat karena Allah</li>
+        <li><strong>Segera bayar:</strong> Jangan menunda-nunda pembayaran</li>
+        <li><strong>Pilih yang terbaik:</strong> Berikan harta yang baik kualitasnya</li>
+        <li><strong>Rahasiakan:</strong> Tidak perlu dipamerkan</li>
+        <li><strong>Hormati penerima:</strong> Jangan merendahkan mustahiq</li>
+        <li><strong>Doa:</strong> Doakan agar zakat diterima Allah</li>
+      </ul>
+      
+      <h2>Manfaat Zakat</h2>
+      <h3>1. Bagi Muzakki (Pembayar Zakat)</h3>
+      <ul>
+        <li>Membersihkan harta dan jiwa</li>
+        <li>Mendapat pahala dan ridha Allah</li>
+        <li>Harta menjadi berkah</li>
+        <li>Terhindar dari azab Allah</li>
+        <li>Melatih sifat dermawan</li>
+      </ul>
+      
+      <h3>2. Bagi Mustahiq (Penerima Zakat)</h3>
+      <ul>
+        <li>Memenuhi kebutuhan hidup</li>
+        <li>Mendapat modal usaha</li>
+        <li>Merasa diperhatikan masyarakat</li>
+        <li>Termotivasi untuk bangkit</li>
+      </ul>
+      
+      <h3>3. Bagi Masyarakat</h3>
+      <ul>
+        <li>Mengurangi kesenjangan sosial</li>
+        <li>Menciptakan keadilan ekonomi</li>
+        <li>Meningkatkan solidaritas</li>
+        <li>Mengurangi kriminalitas</li>
+        <li>Memperkuat ekonomi umat</li>
+      </ul>
+      
+      <h2>Zakat di Era Modern</h2>
+      <p>Di era modern, zakat dapat dibayarkan melalui:</p>
+      <ul>
+        <li><strong>Lembaga Amil Zakat:</strong> BAZNAS, LAZ, dll</li>
+        <li><strong>Transfer bank:</strong> Melalui rekening resmi</li>
+        <li><strong>Aplikasi digital:</strong> Aplikasi zakat online</li>
+        <li><strong>Payroll system:</strong> Pemotongan gaji otomatis</li>
+      </ul>
+      
+      <h2>Kesimpulan</h2>
+      <p>Zakat adalah ibadah yang memiliki dimensi spiritual dan sosial. Dengan menunaikan zakat, kita tidak hanya memenuhi kewajiban agama, tetapi juga berkontribusi dalam menciptakan masyarakat yang adil dan sejahtera. Mari kita tunaikan zakat dengan penuh kesadaran dan keikhlasan.</p>
+      
+      <blockquote>
+        "Harta tidak akan berkurang karena sedekah. Allah tidak akan menambah seorang hamba yang pemaaf kecuali kemuliaan. Dan tidaklah seseorang merendahkan diri karena Allah kecuali Allah akan meninggikannya." - HR. Muslim
+      </blockquote>
+    `
+  },
+  6: {
+    title: "Motivasi dari Kisah Para Sahabat",
+    category: "Motivasi",
+    date: "2024-01-10",
+    readTime: "5 min",
+    author: "Ustadz Ahmad Zainuddin",
+    image: "⭐",
+    excerpt: "Belajar dari perjuangan dan keteguhan iman para sahabat Rasulullah yang dapat menjadi motivasi dalam kehidupan kita.",
+    content: `
+      <h2>Pendahuluan</h2>
+      <p>Para sahabat Rasulullah SAW adalah generasi terbaik umat Islam. Mereka adalah orang-orang yang hidup bersama, belajar langsung dari, dan menyaksikan keteladanan Rasulullah SAW. Kisah-kisah mereka penuh dengan pelajaran berharga yang dapat memotivasi kita dalam menghadapi tantangan hidup.</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">وَالسَّابِقُونَ الْأَوَّلُونَ مِنَ الْمُهَاجِرِينَ وَالْأَنصَارِ وَالَّذِينَ اتَّبَعُوهُم بِإِحْسَانٍ رَّضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ</div>
+        <div class="translation">"Orang-orang yang terdahulu lagi yang pertama-tama (masuk Islam) di antara orang-orang muhajirin dan anshar dan orang-orang yang mengikuti mereka dengan baik, Allah ridha kepada mereka dan merekapun ridha kepada Allah."</div>
+        <div class="verse-reference">QS. At-Taubah: 100</div>
+      </div>
+      
+      <h2>Abu Bakar As-Shiddiq: Teladan Kesetiaan</h2>
+      <h3>Kisah Kesetiaan yang Tak Tergoyahkan</h3>
+      <p>Abu Bakar adalah sahabat terdekat Rasulullah SAW dan orang pertama yang beriman dari kalangan laki-laki dewasa. Ketika Rasulullah menceritakan peristiwa Isra Mi'raj, banyak orang yang meragukan. Namun Abu Bakar langsung berkata: "Jika Muhammad mengatakannya, maka aku membenarkannya." Karena itulah beliau mendapat gelar "As-Shiddiq" (yang membenarkan).</p>
+      
+      <h3>Pelajaran yang Dapat Diambil:</h3>
+      <ul>
+        <li><strong>Kesetiaan tanpa syarat:</strong> Setia kepada kebenaran meski ditentang banyak orang</li>
+        <li><strong>Kepercayaan penuh:</strong> Percaya kepada orang yang terpercaya</li>
+        <li><strong>Konsistensi:</strong> Teguh pada pendirian yang benar</li>
+        <li><strong>Pengorbanan:</strong> Rela mengorbankan harta untuk agama</li>
+      </ul>
+      
+      <h2>Umar bin Khattab: Dari Musuh Menjadi Pemimpin</h2>
+      <h3>Transformasi yang Menakjubkan</h3>
+      <p>Umar bin Khattab awalnya adalah musuh besar Islam. Suatu hari, ia berniat membunuh Rasulullah SAW, tetapi Allah menghidayatinya. Setelah masuk Islam, ia menjadi salah satu sahabat terkuat dan kemudian menjadi khalifah kedua yang sangat adil.</p>
+      
+      <h3>Keadilan Umar yang Legendaris</h3>
+      <p>Suatu ketika, putra Umar (Muhammad bin Umar) berkelahi dengan seorang Qibti (Mesir) dan memukulnya. Orang Qibti itu mengadu kepada Umar. Umar kemudian menyuruh orang Qibti itu membalas memukul putranya dan berkata: "Pukullah anak orang yang mulia!" Ini menunjukkan keadilan Umar yang tidak membeda-bedakan.</p>
+      
+      <h3>Pelajaran yang Dapat Diambil:</h3>
+      <ul>
+        <li><strong>Tidak ada kata terlambat untuk berubah:</strong> Hidayah Allah bisa datang kapan saja</li>
+        <li><strong>Keadilan tanpa pandang bulu:</strong> Adil kepada semua orang tanpa memandang status</li>
+        <li><strong>Kepemimpinan yang kuat:</strong> Tegas dalam menegakkan kebenaran</li>
+        <li><strong>Kerendahan hati:</strong> Meski berkuasa, tetap rendah hati</li>
+      </ul>
+      
+      <h2>Utsman bin Affan: Dermawan yang Mulia</h2>
+      <h3>Kedermawanan yang Luar Biasa</h3>
+      <p>Utsman bin Affan dikenal sebagai sahabat yang sangat dermawan. Ketika terjadi krisis air di Madinah, ia membeli sumur Raumah dari seorang Yahudi dengan harga yang sangat mahal dan kemudian mewakafkannya untuk kepentingan umum. Rasulullah SAW bersabda: "Barangsiapa yang membeli sumur Raumah, maka baginya surga."</p>
+      
+      <h3>Pengorbanan untuk Al-Quran</h3>
+      <p>Utsman juga berjasa besar dalam pengumpulan dan penyalinan Al-Quran. Atas inisiatifnya, Al-Quran disalin dalam satu mushaf standar untuk menghindari perbedaan bacaan di berbagai daerah.</p>
+      
+      <h3>Pelajaran yang Dapat Diambil:</h3>
+      <ul>
+        <li><strong>Dermawan tanpa pamrih:</strong> Memberi tanpa mengharapkan balasan duniawi</li>
+        <li><strong>Visi jangka panjang:</strong> Berpikir untuk kepentingan generasi mendatang</li>
+        <li><strong>Pelestarian ilmu:</strong> Menjaga dan melestarikan warisan ilmu</li>
+        <li><strong>Investasi akhirat:</strong> Menggunakan harta untuk bekal akhirat</li>
+      </ul>
+      
+      <h2>Ali bin Abi Thalib: Keberanian dan Kebijaksanaan</h2>
+      <h3>Keberanian di Medan Perang</h3>
+      <p>Ali bin Abi Thalib dikenal sebagai pemberani yang tak kenal takut. Dalam Perang Khaibar, ketika benteng Yahudi sulit ditembus, Rasulullah SAW bersabda: "Besok aku akan memberikan bendera kepada seseorang yang Allah dan Rasul-Nya mencintainya, dan dia mencintai Allah dan Rasul-Nya." Keesokan harinya, bendera diberikan kepada Ali.</p>
+      
+      <h3>Kebijaksanaan dalam Memutuskan</h3>
+      <p>Ali juga dikenal sangat bijaksana. Suatu ketika, dua wanita mengaku sebagai ibu dari seorang bayi. Ali memutuskan dengan cara yang bijak: "Bagilah anak ini menjadi dua!" Ibu kandung langsung berteriak: "Jangan! Berikan saja kepada dia!" Ali kemudian tahu siapa ibu kandung yang sebenarnya.</p>
+      
+      <h3>Pelajaran yang Dapat Diambil:</h3>
+      <ul>
+        <li><strong>Keberanian dalam kebenaran:</strong> Berani membela yang benar meski sulit</li>
+        <li><strong>Kebijaksanaan dalam memutuskan:</strong> Berpikir jernih sebelum bertindak</li>
+        <li><strong>Cinta kepada ilmu:</strong> Selalu haus akan pengetahuan</li>
+        <li><strong>Keadilan dalam kepemimpinan:</strong> Adil kepada semua pihak</li>
+      </ul>
+      
+      <h2>Bilal bin Rabah: Keteguhan dalam Ujian</h2>
+      <h3>Penyiksaan yang Mengerikan</h3>
+      <p>Bilal adalah budak Habsyi yang disiksa dengan kejam oleh tuannya, Umayyah bin Khalaf, karena masuk Islam. Ia diseret ke padang pasir yang panas, dadanya ditindih batu besar, tetapi ia tetap berkata: "Ahad, Ahad!" (Allah Esa, Allah Esa!).</p>
+      
+      <h3>Kemerdekaan dan Kehormatan</h3>
+      <p>Abu Bakar kemudian membebaskan Bilal dengan membayar tebusan. Bilal menjadi muadzin pertama dalam Islam dan sangat dicintai Rasulullah SAW. Ini menunjukkan bahwa Islam tidak memandang status sosial seseorang.</p>
+      
+      <h3>Pelajaran yang Dapat Diambil:</h3>
+      <ul>
+        <li><strong>Keteguhan iman:</strong> Tidak goyah meski menghadapi siksaan</li>
+        <li><strong>Kesabaran dalam ujian:</strong> Sabar menghadapi cobaan hidup</li>
+        <li><strong>Kesetaraan manusia:</strong> Tidak ada perbedaan ras atau status</li>
+        <li><strong>Kebebasan sejati:</strong> Kebebasan hakiki adalah kebebasan dari perbudakan hawa nafsu</li>
+      </ul>
+      
+      <h2>Khadijah binti Khuwailid: Dukungan Tanpa Batas</h2>
+      <h3>Istri yang Mendukung Penuh</h3>
+      <p>Khadijah adalah istri pertama Rasulullah SAW yang memberikan dukungan penuh sejak awal dakwah. Ketika Rasulullah menerima wahyu pertama dan merasa takut, Khadijah menenangkan dan meyakinkan beliau. Ia berkata: "Tidak mungkin Allah akan menghinakan engkau, karena engkau selalu menyambung silaturahmi, membantu yang lemah, dan berbuat baik kepada orang lain."</p>
+      
+      <h3>Pengorbanan Harta dan Jiwa</h3>
+      <p>Khadijah mengorbankan seluruh hartanya untuk dakwah Islam. Ia rela hidup dalam kemiskinan demi mendukung perjuangan suaminya. Rasulullah SAW sangat menghargai pengorbanannya.</p>
+      
+      <h3>Pelajaran yang Dapat Diambil:</h3>
+      <ul>
+        <li><strong>Dukungan tanpa syarat:</strong> Mendukung keluarga dalam kebaikan</li>
+        <li><strong>Pengorbanan yang tulus:</strong> Rela berkorban untuk tujuan mulia</li>
+        <li><strong>Kepercayaan penuh:</strong> Percaya pada kemampuan pasangan</li>
+        <li><strong>Kekuatan di balik kesuksesan:</strong> Peran penting dalam mendukung dakwah</li>
+      </ul>
+      
+      <h2>Aplikasi dalam Kehidupan Modern</h2>
+      <h3>1. Di Tempat Kerja</h3>
+      <ul>
+        <li><strong>Seperti Abu Bakar:</strong> Setia pada perusahaan dan atasan yang baik</li>
+        <li><strong>Seperti Umar:</strong> Adil dalam memimpin tim</li>
+        <li><strong>Seperti Utsman:</strong> Dermawan kepada rekan kerja yang membutuhkan</li>
+        <li><strong>Seperti Ali:</strong> Berani menyampaikan kebenaran</li>
+      </ul>
+      
+      <h3>2. Dalam Keluarga</h3>
+      <ul>
+        <li><strong>Seperti Khadijah:</strong> Mendukung pasangan dalam kebaikan</li>
+        <li><strong>Seperti Bilal:</strong> Sabar menghadapi masalah keluarga</li>
+        <li><strong>Seperti Abu Bakar:</strong> Konsisten dalam mendidik anak</li>
+      </ul>
+      
+      <h3>3. Dalam Masyarakat</h3>
+      <ul>
+        <li><strong>Seperti Umar:</strong> Adil kepada semua orang</li>
+        <li><strong>Seperti Utsman:</strong> Peduli pada kepentingan umum</li>
+        <li><strong>Seperti Ali:</strong> Bijaksana dalam menyelesaikan konflik</li>
+      </ul>
+      
+      <h2>Tips Menerapkan Teladan Sahabat</h2>
+      <ol>
+        <li><strong>Mulai dari hal kecil:</strong> Terapkan sifat-sifat mulia dalam kehidupan sehari-hari</li>
+        <li><strong>Konsisten:</strong> Istiqomah dalam menjalankan kebaikan</li>
+        <li><strong>Belajar terus:</strong> Pelajari lebih banyak kisah para sahabat</li>
+        <li><strong>Introspeksi:</strong> Evaluasi diri secara berkala</li>
+        <li><strong>Berdoa:</strong> Minta pertolongan Allah untuk bisa meneladani mereka</li>
+      </ol>
+      
+      <h2>Kesimpulan</h2>
+      <p>Para sahabat Rasulullah SAW adalah teladan terbaik setelah para nabi. Kisah-kisah mereka mengajarkan kita tentang kesetiaan, keberanian, keadilan, kedermawanan, dan keteguhan iman. Mari kita teladani sifat-sifat mulia mereka dalam kehidupan sehari-hari agar kita bisa menjadi Muslim yang lebih baik.</p>
+      
+      <blockquote>
+        "Sebaik-baik manusia adalah generasiku, kemudian generasi sesudahnya, kemudian generasi sesudahnya lagi." - HR. Bukhari dan Muslim
+      </blockquote>
+    `
+  },
+  7: {
+    title: "Doa-Doa Mustajab di Waktu Tertentu",
+    category: "Ibadah",
+    date: "2024-01-09",
+    readTime: "4 min",
+    author: "Ustadz Muhammad Arifin",
+    image: "🤲",
+    excerpt: "Ketahui waktu-waktu mustajab untuk berdoa dan doa-doa yang dianjurkan untuk diamalkan setiap hari.",
+    content: `
+      <h2>Pendahuluan</h2>
+      <p>Doa adalah ibadah dan merupakan komunikasi langsung antara hamba dengan Allah SWT. Ada waktu-waktu tertentu di mana doa lebih mustajab (dikabulkan) oleh Allah. Mengetahui waktu-waktu ini akan membantu kita mengoptimalkan ibadah doa.</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ</div>
+        <div class="translation">"Dan Tuhanmu berfirman: 'Berdoalah kepada-Ku, niscaya akan Kuperkenankan bagimu.'"</div>
+        <div class="verse-reference">QS. Ghafir: 60</div>
+      </div>
+      
+      <h2>Waktu-Waktu Mustajab</h2>
+      <h3>1. Sepertiga Malam Terakhir</h3>
+      <p>Rasulullah SAW bersabda: "Tuhan kita Yang Maha Berkah dan Maha Tinggi turun setiap malam ke langit dunia ketika tinggal sepertiga malam terakhir, lalu Dia berfirman: 'Siapa yang berdoa kepada-Ku akan Aku kabulkan, siapa yang meminta kepada-Ku akan Aku beri, siapa yang memohon ampun kepada-Ku akan Aku ampuni.'" (HR. Bukhari dan Muslim)</p>
+      
+      <h3>2. Antara Maghrib dan Isya</h3>
+      <p>Waktu antara maghrib dan isya adalah waktu yang mustajab untuk berdoa. Ini adalah waktu di mana langit dan bumi bertemu.</p>
+      
+      <h3>3. Hari Jumat</h3>
+      <p>Rasulullah SAW bersabda: "Sesungguhnya pada hari Jumat ada suatu waktu, tidaklah seorang hamba Muslim berdoa pada waktu itu dalam keadaan shalat, memohon sesuatu kepada Allah, melainkan Allah akan mengabulkannya." (HR. Bukhari dan Muslim)</p>
+      
+      <h3>4. Saat Turun Hujan</h3>
+      <p>Doa saat turun hujan adalah waktu yang mustajab. Rasulullah SAW menganjurkan untuk berdoa ketika hujan turun.</p>
+      
+      <h3>5. Saat Berbuka Puasa</h3>
+      <p>Doa orang yang berpuasa saat berbuka tidak akan ditolak. Ini adalah waktu yang sangat istimewa untuk berdoa.</p>
+      
+      <h2>Doa-Doa Harian yang Mustajab</h2>
+      <h3>1. Doa Bangun Tidur</h3>
+      <div class="quran-verse">
+        <div class="arabic-text">الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</div>
+        <div class="translation">"Segala puji bagi Allah yang telah menghidupkan kami setelah mematikan kami dan kepada-Nya kami akan dibangkitkan."</div>
+        <div class="verse-reference">Doa Bangun Tidur</div>
+      </div>
+      
+      <h3>2. Doa Sebelum Makan</h3>
+      <div class="quran-verse">
+        <div class="arabic-text">بِسْمِ اللَّهِ وَعَلَى بَرَكَةِ اللَّهِ</div>
+        <div class="translation">"Dengan nama Allah dan atas berkah Allah."</div>
+        <div class="verse-reference">Doa Sebelum Makan</div>
+      </div>
+      
+      <h3>3. Doa Sesudah Makan</h3>
+      <div class="quran-verse">
+        <div class="arabic-text">الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِينَ</div>
+        <div class="translation">"Segala puji bagi Allah yang telah memberi makan dan minum kepada kami serta menjadikan kami orang-orang Muslim."</div>
+        <div class="verse-reference">Doa Sesudah Makan</div>
+      </div>
+      
+      <h3>4. Doa Keluar Rumah</h3>
+      <div class="quran-verse">
+        <div class="arabic-text">بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</div>
+        <div class="translation">"Dengan nama Allah, aku bertawakal kepada Allah, tidak ada daya dan kekuatan kecuali dengan pertolongan Allah."</div>
+        <div class="verse-reference">Doa Keluar Rumah</div>
+      </div>
+      
+      <h3>5. Doa Masuk Rumah</h3>
+      <div class="quran-verse">
+        <div class="arabic-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ الْمَوْلِجِ وَخَيْرَ الْمَخْرَجِ بِسْمِ اللَّهِ وَلَجْنَا وَبِسْمِ اللَّهِ خَرَجْنَا وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا</div>
+        <div class="translation">"Ya Allah, sesungguhnya aku memohon kepada-Mu kebaikan tempat masuk dan kebaikan tempat keluar. Dengan nama Allah kami masuk, dengan nama Allah kami keluar, dan kepada Allah Tuhan kami, kami bertawakal."</div>
+        <div class="verse-reference">Doa Masuk Rumah</div>
+      </div>
+      
+      <h2>Doa-Doa Khusus</h2>
+      <h3>1. Doa Memohon Ampunan (Sayyidul Istighfar)</h3>
+      <div class="quran-verse">
+        <div class="arabic-text">اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ</div>
+        <div class="translation">"Ya Allah, Engkau adalah Tuhanku, tidak ada Tuhan selain Engkau. Engkau telah menciptakanku dan aku adalah hamba-Mu. Aku berada dalam perjanjian dan janji-Mu semampuku. Aku berlindung kepada-Mu dari kejahatan yang telah aku perbuat. Aku mengakui nikmat-Mu kepadaku dan aku mengakui dosaku, maka ampunilah aku. Sesungguhnya tidak ada yang dapat mengampuni dosa kecuali Engkau."</div>
+        <div class="verse-reference">Sayyidul Istighfar</div>
+      </div>
+      
+      <h3>2. Doa Memohon Kebaikan Dunia dan Akhirat</h3>
+      <div class="quran-verse">
+        <div class="arabic-text">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
+        <div class="translation">"Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat dan peliharalah kami dari siksa neraka."</div>
+        <div class="verse-reference">QS. Al-Baqarah: 201</div>
+      </div>
+      
+      <h3>3. Doa Memohon Ilmu</h3>
+      <div class="quran-verse">
+        <div class="arabic-text">رَبِّ زِدْنِي عِلْمًا</div>
+        <div class="translation">"Ya Tuhanku, tambahkanlah kepadaku ilmu pengetahuan."</div>
+        <div class="verse-reference">QS. Taha: 114</div>
+      </div>
+      
+      <h2>Adab Berdoa</h2>
+      <h3>1. Sebelum Berdoa</h3>
+      <ul>
+        <li>Berwudhu terlebih dahulu</li>
+        <li>Menghadap kiblat jika memungkinkan</li>
+        <li>Memulai dengan memuji Allah</li>
+        <li>Bershalawat kepada Nabi Muhammad SAW</li>
+      </ul>
+      
+      <h3>2. Saat Berdoa</h3>
+      <ul>
+        <li>Berdoa dengan khusyuk dan rendah hati</li>
+        <li>Menggunakan nama-nama Allah yang baik (Asmaul Husna)</li>
+        <li>Berdoa dengan suara yang tidak terlalu keras atau pelan</li>
+        <li>Mengangkat kedua tangan</li>
+      </ul>
+      
+      <h3>3. Setelah Berdoa</h3>
+      <ul>
+        <li>Mengakhiri dengan shalawat kepada Nabi</li>
+        <li>Mengucapkan "Amin" dengan yakin</li>
+        <li>Mengusap wajah dengan kedua telapak tangan</li>
+      </ul>
+      
+      <h2>Penghalang Terkabulnya Doa</h2>
+      <ul>
+        <li><strong>Makanan haram:</strong> Memakan makanan yang haram</li>
+        <li><strong>Dosa besar:</strong> Melakukan kemaksiatan</li>
+        <li><strong>Tidak sabar:</strong> Terburu-buru ingin dikabulkan</li>
+        <li><strong>Putus asa:</strong> Tidak yakin Allah akan mengabulkan</li>
+        <li><strong>Berdoa untuk kemaksiatan:</strong> Meminta hal yang dilarang Allah</li>
+      </ul>
+      
+      <h2>Tips Agar Doa Dikabulkan</h2>
+      <ol>
+        <li><strong>Perbanyak amal shaleh:</strong> Lakukan kebaikan sebanyak mungkin</li>
+        <li><strong>Bertaubat:</strong> Minta ampun atas dosa-dosa yang telah dilakukan</li>
+        <li><strong>Bersedekah:</strong> Sedekah dapat mempercepat terkabulnya doa</li>
+        <li><strong>Berdoa untuk orang lain:</strong> Doakan kebaikan untuk orang lain</li>
+        <li><strong>Istiqomah:</strong> Konsisten dalam berdoa</li>
+        <li><strong>Yakin dikabulkan:</strong> Berdoa dengan penuh keyakinan</li>
+      </ol>
+      
+      <h2>Kesimpulan</h2>
+      <p>Doa adalah senjata orang mukmin dan merupakan ibadah yang sangat mulia. Dengan mengetahui waktu-waktu mustajab dan mengamalkan doa-doa yang diajarkan Rasulullah SAW, kita dapat mendekatkan diri kepada Allah dan memohon pertolongan-Nya dalam segala urusan.</p>
+      
+      <blockquote>
+        "Doa adalah ibadah." - HR. Abu Dawud dan Tirmidzi
+      </blockquote>
+    `
+  },
+  8: {
+    title: "Hikmah dan Manfaat Puasa Sunnah",
+    category: "Ibadah",
+    date: "2024-01-08",
+    readTime: "6 min",
+    author: "Dr. Aisyah Abdurrahman",
+    image: "🌙",
+    excerpt: "Puasa sunnah memiliki banyak hikmah dan manfaat, baik secara spiritual maupun kesehatan. Simak penjelasan lengkapnya.",
+    content: `
+      <h2>Pendahuluan</h2>
+      <p>Selain puasa Ramadan yang wajib, Islam juga menganjurkan puasa-puasa sunnah yang memiliki keutamaan dan manfaat luar biasa. Puasa sunnah adalah ibadah tambahan yang dapat mendekatkan diri kepada Allah SWT dan memberikan manfaat bagi kesehatan jasmani dan rohani.</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">وَأَن تَصُومُوا خَيْرٌ لَّكُمْ ۖ إِن كُنتُمْ تَعْلَمُونَ</div>
+        <div class="translation">"Dan berpuasa lebih baik bagimu jika kamu mengetahui."</div>
+        <div class="verse-reference">QS. Al-Baqarah: 184</div>
+      </div>
+      
+      <h2>Jenis-Jenis Puasa Sunnah</h2>
+      <h3>1. Puasa Senin dan Kamis</h3>
+      <p>Rasulullah SAW rutin berpuasa pada hari Senin dan Kamis. Beliau bersabda: "Amal perbuatan diangkat pada hari Senin dan Kamis, maka aku suka amalku diangkat dalam keadaan berpuasa." (HR. Tirmidzi)</p>
+      
+      <h4>Keutamaan:</h4>
+      <ul>
+        <li>Amal diangkat ke hadapan Allah dalam keadaan berpuasa</li>
+        <li>Mendapat pahala yang besar</li>
+        <li>Mengikuti sunnah Rasulullah SAW</li>
+        <li>Melatih kedisiplinan diri</li>
+      </ul>
+      
+      <h3>2. Puasa Ayyamul Bidh (13, 14, 15 Hijriah)</h3>
+      <p>Puasa pada tanggal 13, 14, dan 15 setiap bulan Hijriah sangat dianjurkan. Rasulullah SAW bersabda: "Jika kamu berpuasa tiga hari dalam sebulan, maka berpuasalah pada tanggal 13, 14, dan 15." (HR. Tirmidzi)</p>
+      
+      <h4>Hikmah:</h4>
+      <ul>
+        <li>Seperti berpuasa sepanjang tahun</li>
+        <li>Waktu bulan purnama yang penuh berkah</li>
+        <li>Mudah dilakukan secara rutin</li>
+        <li>Menyeimbangkan ibadah bulanan</li>
+      </ul>
+      
+      <h3>3. Puasa Daud (Selang-seling)</h3>
+      <p>Puasa Daud adalah berpuasa sehari dan berbuka sehari secara bergantian. Rasulullah SAW bersabda: "Puasa yang paling dicintai Allah adalah puasa Daud. Dia berpuasa sehari dan berbuka sehari." (HR. Bukhari dan Muslim)</p>
+      
+      <h4>Keistimewaan:</h4>
+      <ul>
+        <li>Puasa yang paling dicintai Allah</li>
+        <li>Seimbang antara ibadah dan istirahat</li>
+        <li>Tidak memberatkan tubuh</li>
+        <li>Konsisten dalam jangka panjang</li>
+      </ul>
+      
+      <h3>4. Puasa Enam Hari di Bulan Syawal</h3>
+      <p>Rasulullah SAW bersabda: "Barangsiapa berpuasa Ramadan kemudian diikuti dengan puasa enam hari di bulan Syawal, maka seakan-akan dia berpuasa sepanjang tahun." (HR. Muslim)</p>
+      
+      <h4>Manfaat:</h4>
+      <ul>
+        <li>Pahala seperti puasa setahun penuh</li>
+        <li>Melengkapi kekurangan puasa Ramadan</li>
+        <li>Menjaga momentum spiritual setelah Ramadan</li>
+        <li>Melatih konsistensi dalam beribadah</li>
+      </ul>
+      
+      <h3>5. Puasa Hari Arafah (9 Dzulhijjah)</h3>
+      <p>Bagi yang tidak sedang haji, puasa pada hari Arafah sangat dianjurkan. Rasulullah SAW bersabda: "Puasa hari Arafah dapat menghapus dosa tahun yang lalu dan tahun yang akan datang." (HR. Muslim)</p>
+      
+      <h3>6. Puasa Asyura (10 Muharram)</h3>
+      <p>Puasa pada hari Asyura dapat menghapus dosa satu tahun. Rasulullah SAW bersabda: "Puasa hari Asyura, aku berharap Allah akan menghapus dosa tahun sebelumnya." (HR. Muslim)</p>
+      
+      <h2>Manfaat Spiritual Puasa Sunnah</h2>
+      <h3>1. Mendekatkan Diri kepada Allah</h3>
+      <p>Puasa sunnah adalah bentuk ibadah tambahan yang menunjukkan kecintaan kepada Allah. Ini adalah cara untuk mendekatkan diri dan meningkatkan kualitas spiritual.</p>
+      
+      <h3>2. Melatih Kesabaran dan Ketaqwaan</h3>
+      <p>Puasa mengajarkan kesabaran dalam menahan lapar, haus, dan hawa nafsu. Ini melatih jiwa untuk menjadi lebih taqwa dan terkendali.</p>
+      
+      <h3>3. Membersihkan Jiwa dari Dosa</h3>
+      <p>Puasa dapat menghapus dosa-dosa kecil dan membersihkan jiwa dari kotoran spiritual. Ini adalah bentuk taubat dan pembersihan diri.</p>
+      
+      <h3>4. Meningkatkan Empati kepada Sesama</h3>
+      <p>Dengan merasakan lapar dan haus, kita menjadi lebih memahami penderitaan orang-orang yang kekurangan dan termotivasi untuk membantu mereka.</p>
+      
+      <h2>Manfaat Kesehatan Puasa Sunnah</h2>
+      <h3>1. Detoksifikasi Tubuh</h3>
+      <p>Puasa memberikan kesempatan bagi sistem pencernaan untuk beristirahat dan tubuh untuk membersihkan racun-racun yang menumpuk.</p>
+      
+      <h3>2. Meningkatkan Metabolisme</h3>
+      <p>Puasa intermiten dapat meningkatkan metabolisme tubuh dan membantu pembakaran lemak yang lebih efektif.</p>
+      
+      <h3>3. Memperbaiki Sistem Imun</h3>
+      <p>Penelitian menunjukkan bahwa puasa dapat meningkatkan sistem kekebalan tubuh dan memperbaiki regenerasi sel.</p>
+      
+      <h3>4. Mengontrol Berat Badan</h3>
+      <p>Puasa sunnah yang dilakukan secara teratur dapat membantu mengontrol berat badan dan mencegah obesitas.</p>
+      
+      <h3>5. Memperbaiki Fungsi Otak</h3>
+      <p>Puasa dapat meningkatkan produksi protein BDNF (Brain-Derived Neurotrophic Factor) yang baik untuk kesehatan otak.</p>
+      
+      <h2>Adab dan Tata Cara Puasa Sunnah</h2>
+      <h3>1. Niat</h3>
+      <p>Puasa sunnah dapat diniatkan dari malam hari atau saat sahur, bahkan boleh diniatkan di siang hari selama belum makan atau minum.</p>
+      
+      <div class="quran-verse">
+        <div class="arabic-text">نَوَيْتُ صَوْمَ غَدٍ سُنَّةً لِلَّهِ تَعَالَى</div>
+        <div class="translation">"Aku berniat berpuasa besok sunnah karena Allah Ta'ala."</div>
+        <div class="verse-reference">Niat Puasa Sunnah</div>
+      </div>
+      
+      <h3>2. Sahur</h3>
+      <p>Meskipun puasa sunnah, tetap dianjurkan untuk sahur karena mengandung berkah. Rasulullah SAW bersabda: "Bersahurlah, karena dalam sahur terdapat berkah." (HR. Bukhari dan Muslim)</p>
+      
+      <h3>3. Berbuka</h3>
+      <p>Berbuka puasa sunnah sebaiknya dengan kurma dan air putih, mengikuti sunnah Rasulullah SAW.</p>
+      
+      <h3>4. Boleh Dibatalkan</h3>
+      <p>Puasa sunnah boleh dibatalkan jika ada keperluan mendesak, tetapi sebaiknya diqadha di hari lain.</p>
+      
+      <h2>Tips Menjalankan Puasa Sunnah</h2>
+      <h3>1. Mulai Bertahap</h3>
+      <ul>
+        <li>Mulai dengan puasa Senin-Kamis</li>
+        <li>Tambah dengan Ayyamul Bidh</li>
+        <li>Tingkatkan secara bertahap</li>
+      </ul>
+      
+      <h3>2. Buat Jadwal Rutin</h3>
+      <ul>
+        <li>Tentukan hari-hari puasa sunnah</li>
+        <li>Buat reminder di kalender</li>
+        <li>Konsisten dalam menjalankan</li>
+      </ul>
+      
+      <h3>3. Perhatikan Kondisi Tubuh</h3>
+      <ul>
+        <li>Jangan memaksakan jika sakit</li>
+        <li>Perhatikan asupan nutrisi saat berbuka</li>
+        <li>Istirahat yang cukup</li>
+      </ul>
+      
+      <h3>4. Kombinasikan dengan Ibadah Lain</h3>
+      <ul>
+        <li>Perbanyak dzikir dan doa</li>
+        <li>Baca Al-Quran lebih banyak</li>
+        <li>Tingkatkan sedekah</li>
+      </ul>
+      
+      <h2>Puasa Sunnah untuk Wanita</h2>
+      <h3>Ketentuan Khusus:</h3>
+      <ul>
+        <li>Tidak boleh puasa saat haid dan nifas</li>
+        <li>Perlu izin suami jika sudah menikah</li>
+        <li>Boleh dibatalkan jika ada keperluan keluarga</li>
+        <li>Qadha tidak wajib untuk puasa sunnah</li>
+      </ul>
+      
+      <h2>Puasa yang Dilarang</h2>
+      <p>Ada beberapa hari yang dilarang untuk berpuasa:</p>
+      <ul>
+        <li>Hari Raya Idul Fitri dan Idul Adha</li>
+        <li>Hari Tasyriq (11, 12, 13 Dzulhijjah)</li>
+        <li>Puasa terus-menerus tanpa berbuka (Wishal)</li>
+        <li>Puasa hanya hari Jumat saja</li>
+        <li>Puasa hanya hari Sabtu saja</li>
+      </ul>
+      
+      <h2>Kesimpulan</h2>
+      <p>Puasa sunnah adalah ibadah yang sangat bermanfaat, baik secara spiritual maupun kesehatan. Dengan menjalankan puasa sunnah secara rutin dan konsisten, kita dapat meningkatkan kualitas ibadah, kesehatan tubuh, dan kedekatan dengan Allah SWT. Mari kita jadikan puasa sunnah sebagai bagian dari rutinitas ibadah kita.</p>
+      
+      <blockquote>
+        "Barangsiapa yang mendekatkan diri kepada-Ku sejengkal, maka Aku akan mendekatkan diri kepadanya sehasta. Barangsiapa yang mendekatkan diri kepada-Ku sehasta, maka Aku akan mendekatkan diri kepadanya sedepa." - Hadits Qudsi
+      </blockquote>
+    `
+  }
+};
+
+// Juga update data relatedArticlesData dengan artikel yang lebih lengkap
+const relatedArticlesData = [
+  { id: 2, title: "Adab dan Tata Cara Sholat yang Benar", date: "2024-01-14" },
+  { id: 3, title: "Akhlak Mulia dalam Kehidupan Sehari-hari", date: "2024-01-13" },
+  { id: 4, title: "Sejarah Turunnya Al-Quran", date: "2024-01-12" },
+  { id: 5, title: "Hukum Zakat dalam Islam", date: "2024-01-11" },
+  { id: 6, title: "Motivasi dari Kisah Para Sahabat", date: "2024-01-10" },
+  { id: 7, title: "Doa-Doa Mustajab di Waktu Tertentu", date: "2024-01-09" },
+  { id: 8, title: "Hikmah dan Manfaat Puasa Sunnah", date: "2024-01-08" }
+];
+
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      const results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    function loadArticle() {
+      const articleId = getUrlParameter('id');
+      const article = articlesData[articleId];
+
+      if (!article) {
+        document.getElementById('articleHeader').innerHTML = '<h1>Artikel tidak ditemukan</h1>';
+        return;
+      }
+
+      // Update page title
+      document.title = `${article.title} - Islamic Portal`;
+      document.getElementById('currentArticleTitle').textContent = article.title;
+
+      // Load article header
+      document.getElementById('articleHeader').innerHTML = `
+        <div class="article-category">${article.category}</div>
+        <h1 class="article-title">${article.title}</h1>
+        <div class="article-meta">
+          <div class="meta-item">
+            <span>📅</span>
+            <span>${formatDate(article.date)}</span>
+          </div>
+          <div class="meta-item">
+            <span>⏱️</span>
+            <span>${article.readTime} baca</span>
+          </div>
+          <div class="meta-item">
+            <span>👤</span>
+            <span>${article.author}</span>
+          </div>
+        </div>
+        <p class="article-excerpt">${article.excerpt}</p>
+      `;
+
+      // Load article image
+      document.getElementById('articleImage').innerHTML = article.image;
+
+      // Load article content
+      document.getElementById('articleContent').innerHTML = article.content;
+
+      // Load related articles
+      loadRelatedArticles();
+    }
+
+    function loadRelatedArticles() {
+      const relatedGrid = document.getElementById('relatedArticles');
+      relatedGrid.innerHTML = '';
+
+      relatedArticlesData.forEach(article => {
+        const card = document.createElement('div');
+        card.className = 'related-card';
+        card.onclick = () => window.location.href = `artikel_detail.html?id=${article.id}`;
+
+        card.innerHTML = `
+          <div class="related-card-title">${article.title}</div>
+          <div class="related-card-meta">${formatDate(article.date)}</div>
+        `;
+
+        relatedGrid.appendChild(card);
+      });
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString('id-ID', options);
+    }
+
+    function shareToFacebook() {
+      const url = encodeURIComponent(window.location.href);
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    }
+
+    function shareToTwitter() {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent(document.querySelector('.article-title').textContent);
+      window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+    }
+
+    function shareToWhatsApp() {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent(document.querySelector('.article-title').textContent);
+      window.open(`https://wa.me/?text=${text} ${url}`, '_blank');
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert('Link berhasil disalin!');
+      });
+    }
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Update current time
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('id-ID');
+      document.getElementById('currentTime').textContent = timeString;
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      
+      if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        mobileMenu.style.display = 'none';
+      }
+    });
+
+    // Initialize
+    updateTime();
+    setInterval(updateTime, 1000);
+    loadArticle();
+  </script>
+</body>
+</html>
