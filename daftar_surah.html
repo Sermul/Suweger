@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Portal - Website Islam Terlengkap</title>
-     <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QalbuMuslim - Website Islam Terlengkap</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
       margin: 0;
@@ -257,23 +257,23 @@
   <header class="header">
     <div class="header-content">
       <a href="index.html" class="logo">
-        <div class="logo-icon">🕌</div>
+        <div class="logo-icon"></div>
         <div>
-          <div class="logo-text">IslamicCalm</div>
+          <div class="logo-text">QalbuMuslim</div>
         </div>
       </a>
       <nav class="nav-menu">
-        <a href="index.html" class="nav-item">Beranda</a>
-        <a href="daftar_surah.html" class="nav-item active">Al-Quran</a>
-        <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
-        <a href="artikel.html" class="nav-item">Artikel</a>
-        <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+        <a  href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item active">Al-Quran</a>
+                <a href="tutor.html" class="nav-item">Tutor</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
+                <a href="kajian.html" class="nav-item">Kajian</a>
       </nav>
       <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
       
       <div class="user-info">
         <div class="location">
-          <span>📍</span>
+          <span></span>
           <span id="userLocation">Jakarta, Indonesia</span>
         </div>
         <div class="time-now" id="currentTime">12:34:56</div>
@@ -282,11 +282,11 @@
     
     <div class="mobile-menu" id="mobileMenu">
       <nav class="mobile-nav">
-        <a href="index.html" class="nav-item">Beranda</a>
-        <a href="daftar_surah.html" class="nav-item active">Al-Quran</a>
-        <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
-        <a href="artikel.html" class="nav-item">Artikel</a>
-        <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+         <a href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                <a href="tutor.html" class="nav-item">Tutor</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
+                <a href="kajian.html" class="nav-item">Kajian</a>
       </nav>
     </div>
   </header>
@@ -299,74 +299,198 @@
   </div>
 
   <script>
-    const surahData = [
-      { urutan: 1, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
-      { urutan: 2, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
-      { urutan: 3, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
-      { urutan: 4, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
-      { urutan: 5, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
-      { urutan: 6, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
-      { urutan: 7, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
-      { urutan: 8, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
-      { urutan: 9, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
-      { urutan: 10, nama: "Yunus", arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
-      // ... tambahkan data surah lainnya
-    ];
+  const surahData = [
+    { urutan: 1, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 2, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 3, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 4, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+    { urutan: 5, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+    { urutan: 6, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+    { urutan: 7, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+    { urutan: 8, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+    { urutan: 9, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+    { urutan: 10, nama: "Yunus", Arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+    { urutan: 11, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 12, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 13, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 14, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+    { urutan: 15, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+    { urutan: 16, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+    { urutan: 17, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+    { urutan: 18, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+    { urutan: 19, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+    { urutan: 20, nama: "Yunus", Arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+    { urutan: 21, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 22, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 23, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 24, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+    { urutan: 25, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+    { urutan: 26, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+    { urutan: 27, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+    { urutan: 28, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+    { urutan: 29, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+    { urutan: 30, nama: "Yunus", Arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+    { urutan: 21, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 22, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 23, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 24, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+    { urutan: 25, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+    { urutan: 26, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+    { urutan: 27, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+    { urutan: 28, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+    { urutan: 29, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+    { urutan: 30, nama: "Yunus", Arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+    { urutan: 31, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 32, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 33, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 34, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+    { urutan: 35, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+    { urutan: 36, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+    { urutan: 37, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+    { urutan: 38, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+    { urutan: 39, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+    { urutan: 40, nama: "Yunus", Arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+    { urutan: 41, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 42, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 43, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 44, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+    { urutan: 45, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+    { urutan: 46, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+    { urutan: 47, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+    { urutan: 48, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+    { urutan: 49, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+    { urutan: 50, nama: "Yunus", Arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+    { urutan: 51, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 52, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 53, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 54, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+    { urutan: 55, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+    { urutan: 56, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+    { urutan: 57, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+    { urutan: 58, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+    { urutan: 59, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+    { urutan: 60, nama: "Yunus", Arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+    { urutan: 61, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 62, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 63, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 64, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+    { urutan: 65, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+    { urutan: 66, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+    { urutan: 67, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+    { urutan: 68, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+    { urutan: 69, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+    { urutan: 70, nama: "Yunus", Arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+    { urutan: 71, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 72, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 73, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 74, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+    { urutan: 75, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+    { urutan: 76, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+    { urutan: 77, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+    { urutan: 78, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+    { urutan: 79, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+    { urutan: 80, nama: "Yunus", Arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+    { urutan: 81, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 82, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 83, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 84, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+    { urutan: 85, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+    { urutan: 86, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+    { urutan: 87, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+    { urutan: 88, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+    { urutan: 89, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+    { urutan: 90, nama: "Yunus", Arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+    { urutan: 91, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 92, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 93, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 94, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+    { urutan: 95, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+    { urutan: 96, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+    { urutan: 97, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+    { urutan: 98, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+    { urutan: 99, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+    { urutan: 100, nama: "Yunus", Arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+    { urutan: 101, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 202, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 103, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 104, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+    { urutan: 105, nama: "Al-Ma'idah", arti: "Hidangan", jumlahAyat: 120, gambar: "image/hidangan.png" },
+    { urutan: 106, nama: "Al-An'am", arti: "Binatang Ternak", jumlahAyat: 165, gambar: "image/ternak.png" },
+    { urutan: 197, nama: "Al-A'raf", arti: "Tempat Tertinggi", jumlahAyat: 206, gambar: "image/gunung.png" },
+    { urutan: 108, nama: "Al-Anfal", arti: "Rampasan Perang", jumlahAyat: 75, gambar: "image/pedang.jpg" },
+    { urutan: 109, nama: "At-Taubah", arti: "Pengampunan", jumlahAyat: 129, gambar: "image/default.jpg" },
+    { urutan: 110, nama: "Yunus", Arti: "Nabi Yunus", jumlahAyat: 109, gambar: "image/default.jpg" },
+    { urutan: 111, nama: "Al-Fatihah", arti: "Pembukaan", jumlahAyat: 7, gambar: "image/pintu.jpg" },
+    { urutan: 112, nama: "Al-Baqarah", arti: "Sapi Betina", jumlahAyat: 286, gambar: "image/sapi.png" },
+    { urutan: 113, nama: "Ali 'Imran", arti: "Keluarga Imran", jumlahAyat: 200, gambar: "image/keluarga.png" },
+    { urutan: 114, nama: "An-Nisa", arti: "Wanita", jumlahAyat: 176, gambar: "image/perempuan.png" },
+   
+    // Tambahkan surah lainnya jika diperlukan
+  ];
 
-    const surahList = document.getElementById('surahList');
-    const searchInput = document.getElementById('searchInput');
+  const surahList = document.getElementById('surahList');
+  const searchInput = document.getElementById('searchInput');
 
-    function renderSurahList(filter = "") {
-      surahList.innerHTML = "";
-      surahData
-        .filter(surah => surah.nama.toLowerCase().includes(filter.toLowerCase()))
-        .forEach((surah, index) => {
-          const card = document.createElement('div');
-          card.className = 'surah-card';
-
-          const surahHTML = `
-            <div class="surah-info">
-              <div class="surah-name">${surah.urutan}. ${surah.nama}</div>
-              <div class="surah-details">Arti: ${surah.arti}</div>
-              <div class="surah-details">Jumlah Ayat: ${surah.jumlahAyat}</div>
-            </div>
-            <img class="hover-image" src="${surah.gambar}" alt="Gambar Surah ${surah.nama}">
-          `;
-
-          card.innerHTML = surahHTML;
-          surahList.appendChild(card);
+  function renderSurahList(filter = "") {
+    surahList.innerHTML = "";
+    surahData
+      .filter(surah => surah.nama.toLowerCase().includes(filter.toLowerCase()))
+      .forEach(surah => {
+        const card = document.createElement('div');
+        card.className = 'surah-card';
+        card.innerHTML = `
+          <img class="hover-image" src="${surah.gambar}" alt="${surah.nama}">
+          <div class="surah-info">
+            <div class="surah-name">${surah.urutan}. ${surah.nama}</div>
+            <div class="surah-details">Arti: ${surah.arti}</div>
+            <div class="surah-details">Jumlah Ayat: ${surah.jumlahAyat}</div>
+          </div>
+        `;
+        // Add click event to redirect to detail_surah.html with query parameters
+        card.addEventListener('click', () => {
+          window.location.href = `detail_surah.html?urutan=${surah.urutan}&nama=${encodeURIComponent(surah.nama)}&arti=${encodeURIComponent(surah.arti)}&jumlahAyat=${surah.jumlahAyat}&gambar=${encodeURIComponent(surah.gambar)}`;
         });
-    }
+        surahList.appendChild(card);
+      });
 
-    function toggleMobileMenu() {
-      const mobileMenu = document.getElementById('mobileMenu');
-      mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
-    }
+    // Add hover event listeners for images
+    const cards = document.querySelectorAll('.surah-card');
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        const img = card.querySelector('.hover-image');
+        img.style.opacity = '1';
+      });
 
-    function updateTime() {
-      const now = new Date();
-      const timeString = now.toLocaleTimeString('id-ID');
-      document.getElementById('currentTime').textContent = timeString;
-    }
-
-    searchInput.addEventListener("input", () => {
-      renderSurahList(searchInput.value);
+      card.addEventListener('mouseleave', () => {
+        const img = card.querySelector('.hover-image');
+        img.style.opacity = '0';
+      });
     });
+  }
 
-    // Initialize
-    updateTime();
-    setInterval(updateTime, 1000);
-    renderSurahList();
+  // Panggil fungsi awal
+  renderSurahList();
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
-      const mobileMenu = document.getElementById('mobileMenu');
-      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-      
-      if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-        mobileMenu.style.display = 'none';
-      }
-    });
-  </script>
+  // Tambahkan event listener untuk input pencarian
+  searchInput.addEventListener('input', () => {
+    renderSurahList(searchInput.value);
+  });
+
+  // Fungsi toggle menu mobile
+  function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+  }
+
+  // Menampilkan waktu sekarang
+  function updateTime() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('id-ID', { hour12: false });
+    document.getElementById('currentTime').textContent = timeString;
+  }
+
+  setInterval(updateTime, 1000);
+  updateTime();
+</script>
 </body>
 </html>

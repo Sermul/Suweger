@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Islamic Portal - Website Islam Terlengkap</title>
+    <title>QalbuMuslim - Website Islam Terlengkap</title>
     <style>
         * {
             margin: 0;
@@ -36,138 +36,140 @@
             padding: 0 20px;
         }
 
-       /* Header harus di luar container */
-    .header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(30, 58, 95, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 15px 20px;
-      box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
-      width: 100%;
-      box-sizing: border-box;
-    }
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
 
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
 
-    .logo-icon {
-      width: 45px;
-      height: 45px;
-      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 22px;
-    }
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-    .logo-text {
-      font-size: 26px;
-      font-weight: bold;
-      color: #1e3a5f;
-    }
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    .logo-subtitle {
-      font-size: 12px;
-      color: #4a5568;
-      font-weight: normal;
-    }
+        .logo-text {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1e3a5f;
+        }
 
-    .nav-menu {
-      display: flex;
-      gap: 35px;
-      align-items: center;
-    }
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
 
-    .nav-item {
-      color: #4a5568;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 10px 18px;
-      border-radius: 25px;
-      transition: all 0.3s ease;
-      font-size: 15px;
-    }
+        .nav-item {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 18px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
 
-    .nav-item:hover,
-    .nav-item.active {
-      color: #1e3a5f;
-      background: rgba(30, 58, 95, 0.1);
-      transform: translateY(-1px);
-    }
+        .nav-item:hover,
+        .nav-item.active {
+            color: #1e3a5f;
+            background: rgba(30, 58, 95, 0.1);
+            transform: translateY(-1px);
+        }
 
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-    .location {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #4a5568;
-      font-size: 14px;
-      padding: 8px 15px;
-      background: rgba(30, 58, 95, 0.05);
-      border-radius: 20px;
-    }
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4a5568;
+            font-size: 14px;
+            padding: 8px 15px;
+            background: rgba(30, 58, 95, 0.05);
+            border-radius: 20px;
+        }
 
-    .time-now {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1e3a5f;
-      padding: 8px 15px;
-      background: rgba(30, 58, 95, 0.1);
-      border-radius: 20px;
-    }
+        .location img {
+            width: 16px;
+            height: 16px;
+        }
 
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: #1e3a5f;
-      cursor: pointer;
-      padding: 8px;
-    }
+        .time-now {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e3a5f;
+            padding: 8px 15px;
+            background: rgba(30, 58, 95, 0.1);
+            border-radius: 20px;
+        }
 
-    .mobile-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(30, 58, 95, 0.1);
-      padding: 20px;
-      box-shadow: 0 5px 20px rgba(30, 58, 95, 0.1);
-    }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #1e3a5f;
+            cursor: pointer;
+            padding: 8px;
+        }
 
-    .mobile-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(30, 58, 95, 0.1);
+        }
 
-        /* Hero Section - Cream Theme */
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
         .welcome-section {
             text-align: center;
             padding: 4rem 0 6rem;
@@ -224,7 +226,6 @@
             font-weight: 500;
         }
 
-        /* Main Content */
         .main-content {
             padding-bottom: 4rem;
         }
@@ -249,24 +250,19 @@
         }
 
         .content-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            width: 100%;
         }
 
-        /* Card Styles - Cream Theme */
         .card {
             background: #fefcf7;
             border-radius: 1rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             overflow: hidden;
-            transition: all 0.3s ease;
             border: 1px solid #f0ebe2;
-        }
-
-        .card:hover {
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
+            width: 100%;
         }
 
         .card-header {
@@ -313,7 +309,6 @@
             color: #1e40af;
         }
 
-        /* Prayer Times Card - Navy */
         .prayer-times {
             background: linear-gradient(135deg, #1e3a8a 0%, #1e3a8a 100%);
             color: rgb(255, 255, 255);
@@ -330,7 +325,7 @@
         }
 
         .prayer-times .card-icon img {
-            filter: brightness(0) invert(1); /* Makes image white */
+            filter: brightness(0) invert(1);
         }
 
         .prayer-grid {
@@ -345,16 +340,6 @@
             padding: 1rem;
             border-radius: 0.75rem;
             background: rgb(255, 255, 255);
-            transition: all 0.3s ease;
-        }
-
-        .prayer-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .prayer-item.active {
-            background: rgb(0, 0, 0);
-            ring: 2px solid rgba(255, 255, 255, 0.5);
         }
 
         .prayer-name {
@@ -387,7 +372,6 @@
             font-family: 'Courier New', monospace;
         }
 
-        /* Qibla Compass */
         .qibla-compass {
             padding: 1.5rem;
             text-align: center;
@@ -456,12 +440,14 @@
             background: #f0ebe2;
         }
 
-        /* Lists */
         .surah-list,
         .stories-list,
         .dua-list,
         .article-list {
             padding: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .surah-item,
@@ -472,9 +458,8 @@
             align-items: center;
             padding: 1rem;
             border-radius: 0.75rem;
-            margin-bottom: 0.75rem;
-            transition: all 0.3s ease;
             cursor: pointer;
+            width: 100%;
         }
 
         .surah-item:hover,
@@ -564,7 +549,6 @@
             opacity: 1;
         }
 
-        /* Dua Styles */
         .dua-item {
             flex-direction: column;
             align-items: stretch;
@@ -586,7 +570,6 @@
             font-style: italic;
         }
 
-        /* Hadith Card */
         .hadith-content {
             padding: 1.5rem;
         }
@@ -629,11 +612,11 @@
             background: #f0ebe2;
         }
 
-        /* Articles Grid - Enhanced with Cream Theme */
         .article-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1.5rem;
         }
 
         .article-item {
@@ -643,6 +626,7 @@
             align-items: flex-start;
             padding: 1.5rem;
             border-radius: 1rem;
+            width: 100%;
         }
 
         .article-image {
@@ -690,11 +674,10 @@
             color: #94a3b8;
         }
 
-        /* Features Section - Cream Theme */
         .features-section {
             background: linear-gradient(135deg, #f0ebe2 0%, #e5d5b7 100%);
-            padding: 4rem 0;
-            margin: 4rem 0 0;
+            padding: 2rem 0;
+            margin: 2rem 0 4rem;
         }
 
         .section-title {
@@ -716,30 +699,50 @@
         }
 
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            display: inline-flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            gap: 1rem;
+            max-width: 100%;
+            padding: 0 10px;
+            scrollbar-width: thin;
+            scrollbar-color: #e5d5b7 #f0ebe2;
+        }
+
+        .features-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .features-grid::-webkit-scrollbar-track {
+            background: #f0ebe2;
+        }
+
+        .features-grid::-webkit-scrollbar-thumb {
+            background-color: #e5d5b7;
+            border-radius: 4px;
         }
 
         .feature-card {
             background: #fefcf7;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 1rem;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             cursor: pointer;
             border: 1px solid #f0ebe2;
+            min-width: 220px;
+            height: 250px;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-       
-
         .feature-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -749,30 +752,47 @@
             border: 2px solid #e5d5b7;
         }
 
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-        }
-
         .feature-image {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
         }
 
         .feature-title {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: #1e3a8a;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .feature-desc {
             color: #64748b;
-            font-size: 0.875rem;
-            line-height: 1.5;
+            font-size: 0.8rem;
+            line-height: 1.3;
         }
 
-        /* Footer - Navy */
+        .premium-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            z-index: 10;
+        }
+
+        .premium-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 0.5rem;
+        }
+
         footer {
             background: #1e3a8a;
             color: white;
@@ -801,7 +821,7 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            filter: brightness(0) invert(1); /* Makes image white */
+            filter: brightness(0) invert(1);
         }
 
         .footer-logo-text {
@@ -824,7 +844,6 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
-        /* Responsive Design */
         @media (max-width: 1024px) {
             .dashboard-grid {
                 grid-template-columns: 1fr;
@@ -832,7 +851,7 @@
             }
 
             .content-row {
-                grid-template-columns: 1fr;
+                flex-direction: column;
             }
 
             .prayer-grid {
@@ -894,12 +913,35 @@
             }
 
             .features-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 0.5rem;
+            }
+
+            .feature-card {
+                min-width: 180px;
+                height: 220px;
+                padding: 1rem;
+            }
+
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .feature-image {
+                width: 30px;
+                height: 30px;
+            }
+
+            .feature-title {
+                font-size: 1rem;
+            }
+
+            .feature-desc {
+                font-size: 0.7rem;
             }
 
             .article-list {
-                grid-template-columns: 1fr;
+                flex-direction: column;
             }
 
             .article-item {
@@ -921,7 +963,7 @@
             .surah-list,
             .stories-list,
             .dua-list {
-                padding: 1rem;
+                flex-direction: column;
             }
         }
 
@@ -943,11 +985,31 @@
             }
 
             .features-section {
-                padding: 2rem 0;
+                padding: 1.5rem 0;
             }
 
             .feature-card {
-                padding: 1.5rem;
+                min-width: 150px;
+                height: 200px;
+                padding: 0.8rem;
+            }
+
+            .feature-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .feature-image {
+                width: 25px;
+                height: 25px;
+            }
+
+            .feature-title {
+                font-size: 0.9rem;
+            }
+
+            .feature-desc {
+                font-size: 0.6rem;
             }
 
             .article-image {
@@ -964,26 +1026,25 @@
         <header class="header">
     <div class="header-content">
       <a href="index.html" class="logo">
-        <div class="logo-icon">🕌</div>
+        <div class="logo-icon"></div>
         <div>
-          <div class="logo-text">Islamic Portal</div>
-          <div class="logo-subtitle">Website Islam Terlengkap</div>
+          <div class="logo-text">QalbuMuslim</div>
         </div>
       </a>
       
       <nav class="nav-menu">
         <a href="index.html" class="nav-item active">Beranda</a>
-        <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
-        <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
-        <a href="artikel.html" class="nav-item">Artikel</a>
-        <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                <a href="tutor.html" class="nav-item">Tutor</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
+                <a href="kajian.html" class="nav-item">Kajian</a>
       </nav>
       
       <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
       
       <div class="user-info">
         <div class="location">
-          <span>📍</span>
+          <span></span>
           <span id="userLocation">Jakarta, Indonesia</span>
         </div>
         <div class="time-now" id="currentTime">12:34:56</div>
@@ -993,36 +1054,84 @@
     <div class="mobile-menu" id="mobileMenu">
       <nav class="mobile-nav">
         <a href="index.html" class="nav-item active">Beranda</a>
-        <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
-        <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
-        <a href="artikel.html" class="nav-item">Artikel</a>
-        <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
+                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                <a href="tutor.html" class="nav-item">Tutor</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
+                <a href="kajian.html" class="nav-item">Kajian</a>
       </nav>
     </div>
   </header>
 
         <!-- Welcome Section -->
         <section class="welcome-section">
-            <h1 class="welcome-title">Selamat Datang di Islamic Portal</h1>
-            <p class="welcome-subtitle">Website Islam terlengkap untuk kebutuhan spiritual Anda</p>
-            <!-- <div class="welcome-stats">
-                <div class="stat-item">
-                    <div class="stat-number">114</div>
-                    <div class="stat-label">Surah Al-Quran</div>
+            <h1 class="welcome-title">Selamat Menjelajah Portal Islam</h1>
+            <p class="welcome-subtitle">Sumber terpercaya untuk memperdalam keimanan Anda</p>
+            <button onclick="window.location.href='tentang_kami.html'" style="background: #1e3a8a; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.5rem; cursor: pointer;">Tentang Kami</button>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section" style="padding: 2rem 0; margin: 2rem 0 4rem;">
+            <h2 class="section-title">Fitur Unggulan Kami</h2>
+            <p class="section-subtitle">Jelajahi berbagai layanan untuk mendukung ibadah dan pengetahuan Anda</p>
+            
+            <div class="features-grid">
+                <div class="feature-card" onclick="window.location.href='daftar_surah.html'">
+                    <div class="feature-icon">
+                        <img src="image/buku.png" alt="Al-Quran Online" class="feature-image">
+                    </div>
+                    <div class="feature-title">Al-Quran</div>
+                    <div class="feature-desc">Baca dan pelajari Al-Quran</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">25</div>
-                    <div class="stat-label">Cerita Nabi</div>
+                <div class="feature-card" onclick="window.location.href='asmaul_husna.html'">
+                    <div class="feature-icon">
+                        <img src="image/cerita.png" alt="Asmaul Husna" class="feature-image">
+                    </div>
+                    <div class="feature-title">Asmaul Husna</div>
+                    <div class="feature-desc">Eksplorasi 99 nama Allah</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Artikel Islam</div>
+                <div class="feature-card" onclick="window.location.href='doa.html'">
+                    <div class="feature-icon">
+                        <img src="image/doa.png" alt="Koleksi Doa" class="feature-image">
+                    </div>
+                    <div class="feature-title">Doa</div>
+                    <div class="feature-desc">Kumpulan doa harian</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Doa Harian</div>
+                <div class="feature-card" onclick="window.location.href='hadits.html'">
+                    <div class="feature-icon">
+                        <img src="image/hadist.png" alt="Hadits" class="feature-image">
+                    </div>
+                    <div class="feature-title">Hadits</div>
+                    <div class="feature-desc">Hadits pilihan Rasul</div>
                 </div>
-            </div> -->
+                <div class="feature-card" onclick="window.location.href='artikel.html'">
+                    <div class="feature-icon">
+                        <img src="image/artikel.jpg" alt="Artikel" class="feature-image">
+                    </div>
+                    <div class="feature-title">Artikel</div>
+                    <div class="feature-desc">Artikel inspiratif</div>
+                </div>
+                <div class="feature-card" onclick="window.location.href='cerita_nabi.html'">
+                    <div class="feature-icon">
+                        <img src="image/cerita.png" alt="Cerita Nabi" class="feature-image">
+                    </div>
+                    <div class="feature-title">Cerita Nabi</div>
+                    <div class="feature-desc">Kisah para nabi</div>
+                </div>
+                <div class="feature-card" onclick="window.location.href='kajian.html'">
+                    <div class="feature-icon">
+                        <img src="image/kajian.png" alt="Kajian" class="feature-image">
+                    </div>
+                    <div class="feature-title">Kajian</div>
+                    <div class="feature-desc">Kajian mendalam</div>
+                </div>
+                <div class="feature-card" onclick="window.location.href='tutor.html'">
+                    <div class="feature-icon">
+                        <img src="image/tutor.png" alt="Tutor" class="feature-image">
+                    </div>
+                    <div class="feature-title">Tutor</div>
+                    <div class="feature-desc">Panduan ibadah</div>
+                </div>
+            </div>
         </section>
 
         <!-- Main Content -->
@@ -1082,7 +1191,7 @@
                                     </div>
                                     Baca Al-Quran
                                 </div>
-                                <a href="daftar_surah.html" class="view-all-link">Lihat Semua Surah</a>
+                                <a href="daftar_surah.html" class="view-all-link">Lihat Selengkapnya</a>
                             </div>
                             
                             <div class="surah-list">
@@ -1124,7 +1233,7 @@
                                     </div>
                                     Kisah Para Nabi
                                 </div>
-                                <a href="cerita_nabi.html" class="view-all-link">Lihat Semua Kisah</a>
+                                <a href="cerita_nabi.html" class="view-all-link">Lihat Selengkapnya</a>
                             </div>
                             
                             <div class="stories-list">
@@ -1173,7 +1282,7 @@
                                 </div>
                                 Artikel Terbaru
                             </div>
-                            <a href="artikel.html" class="view-all-link">Lihat Semua Artikel</a>
+                            <a href="artikel.html" class="view-all-link">Lihat Selengkapnya</a>
                         </div>
                         
                         <div class="article-list">
@@ -1266,7 +1375,7 @@
                                 </div>
                                 Doa Sehari-hari
                             </div>
-                            <a href="doa.html" class="view-all-link">Lihat Semua Doa</a>
+                            <a href="doa.html" class="view-all-link">Lihat Selengkapnya</a>
                         </div>
                         
                         <div class="dua-list">
@@ -1316,33 +1425,41 @@
             </div>
         </main>
 
-        <!-- Features Section -->
+        <!-- Premium Features Section -->
         <section class="features-section">
-            <h2 class="section-title">Fitur Lengkap Website Islam</h2>
-            <p class="section-subtitle">Temukan berbagai fitur yang membantu ibadah dan pembelajaran Islam Anda</p>
+            <h2 class="section-title">Fitur Premium</h2>
+            <p class="section-subtitle">Nikmati fitur eksklusif dengan berlangganan premium</p>
             
             <div class="features-grid">
-                <div class="feature-card" onclick="window.location.href='daftar_surah.html'">
+                <div class="feature-card" onclick="checkPremium('daftar_surah.html')">
                     <div class="feature-icon">
                         <img src="image/buku.png" alt="Al-Quran Online" class="feature-image">
                     </div>
                     <div class="feature-title">Al-Quran Online</div>
                     <div class="feature-desc">Baca dan dengarkan Al-Quran dengan terjemahan</div>
+                    <div class="premium-overlay" id="premium-overlay-1">
+                        <div class="premium-text">Fitur Premium</div>
+                    </div>
                 </div>
-                <div class="feature-card" onclick="window.location.href='asmaul_husna.html'">
+                <div class="feature-card" onclick="checkPremium('asmaul_husna.html')">
                     <div class="feature-icon">
                         <img src="image/cerita.png" alt="Asmaul Husna" class="feature-image">
                     </div>
                     <div class="feature-title">Asmaul Husna</div>
-                    <div class="feature-desc">99 nama Allah yang indah dengan makna</div>
+                    <div class="feature-desc">99 nama Allah dengan makna mendalam</div>
+                    <div class="premium-overlay" id="premium-overlay-2">
+                        <div class="premium-text">Fitur Premium</div>
+                    </div>
                 </div>
-                
-                <div class="feature-card" onclick="window.location.href='doa.html'">
+                <div class="feature-card" onclick="checkPremium('doa.html')">
                     <div class="feature-icon">
                         <img src="image/doa.png" alt="Koleksi Doa" class="feature-image">
                     </div>
                     <div class="feature-title">Koleksi Doa</div>
                     <div class="feature-desc">Doa lengkap untuk berbagai keperluan</div>
+                    <div class="premium-overlay" id="premium-overlay-3">
+                        <div class="premium-text">Fitur Premium</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1373,7 +1490,7 @@
         // Update current time
         function updateTime() {
             const now = new Date();
-            const timeString = now.toLocaleTimeString('id-ID');
+            const timeString = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
             document.getElementById('currentTime').textContent = timeString;
         }
 
@@ -1480,6 +1597,16 @@
 
         function openStory(prophet) {
             window.location.href = `cerita_detail.html?prophet=${prophet}`;
+        }
+
+        // Premium check (simulated)
+        function checkPremium(url) {
+            const isPremium = false; // Change to true for testing premium access
+            if (!isPremium) {
+                alert("Fitur ini hanya tersedia untuk pengguna premium. Silakan upgrade akun Anda!");
+            } else {
+                window.location.href = url;
+            }
         }
 
         // Navigation active state

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Artikel Islam - Islamic Portal</title>
+  <title>Artikel Islam - QalbuMuslim</title>
   <style>
     * {
       margin: 0;
@@ -31,108 +31,110 @@
       z-index: -1;
     }
 
-    /* Header - Full Width */
-    .header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(30, 58, 95, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 15px 20px;
-      box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
-      width: 100%;
-    }
+    /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
 
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
 
-    .logo-icon {
-      width: 45px;
-      height: 45px;
-      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 22px;
-    }
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-    .logo-text {
-      font-size: 26px;
-      font-weight: bold;
-      color: #1e3a5f;
-    }
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    .logo-subtitle {
-      font-size: 12px;
-      color: #4a5568;
-      font-weight: normal;
-    }
+        .logo-text {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1e3a5f;
+        }
 
-    /* Navigation */
-    .nav-menu {
-      display: flex;
-      gap: 35px;
-      align-items: center;
-    }
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
 
-    .nav-item {
-      color: #4a5568;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 10px 18px;
-      border-radius: 25px;
-      transition: all 0.3s ease;
-      position: relative;
-      font-size: 15px;
-    }
+        .nav-item {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 18px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
 
-    .nav-item:hover,
-    .nav-item.active {
-      color: #1e3a5f;
-      background: rgba(30, 58, 95, 0.1);
-      transform: translateY(-1px);
-    }
+        .nav-item:hover,
+        .nav-item.active {
+            color: #1e3a5f;
+            background: rgba(30, 58, 95, 0.1);
+            transform: translateY(-1px);
+        }
 
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-    .location {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #4a5568;
-      font-size: 14px;
-      padding: 8px 15px;
-      background: rgba(30, 58, 95, 0.05);
-      border-radius: 20px;
-    }
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4a5568;
+            font-size: 14px;
+            padding: 8px 15px;
+            background: rgba(30, 58, 95, 0.05);
+            border-radius: 20px;
+        }
 
-    .time-now {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1e3a5f;
-      padding: 8px 15px;
-      background: rgba(30, 58, 95, 0.1);
-      border-radius: 20px;
-    }
+        .location img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .time-now {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e3a5f;
+            padding: 8px 15px;
+            background: rgba(30, 58, 95, 0.1);
+            border-radius: 20px;
+        }
 
     /* Mobile Menu */
     .mobile-menu-btn {
@@ -285,14 +287,12 @@
     .article-image {
       width: 100%;
       height: 200px;
-      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: 48px;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
     }
 
     .article-image img {
@@ -348,14 +348,6 @@
       color: #718096;
     }
 
-    .read-time {
-      font-size: 12px;
-      color: #718096;
-      background: rgba(30, 58, 95, 0.05);
-      padding: 4px 8px;
-      border-radius: 10px;
-    }
-
     /* Featured Article */
     .featured-article {
       grid-column: 1 / -1;
@@ -366,16 +358,22 @@
       border-radius: 20px;
       overflow: hidden;
       margin-bottom: 20px;
+      cursor: pointer;
     }
 
     .featured-image {
       height: 300px;
-      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: 64px;
+      position: relative;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .featured-content {
@@ -442,6 +440,7 @@
       text-align: center;
       padding: 50px;
       color: #4a5568;
+      font-size: 18px;
     }
 
     /* No Results */
@@ -528,44 +527,44 @@
   <div class="background-overlay"></div>
 
   <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon">🕌</div>
-                    <div>
-                        <div class="logo-text">IslamicCalm</div>
-                    </div>
-                </a>
-                
-                <nav class="nav-menu">
-                    <a href="index.html" class="nav-item">Beranda</a>
-                    <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
-                    <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
-                    <a href="artikel.html" class="nav-item active">Artikel</a>
-                    <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
-                </nav>
-                
-                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-                
-                <div class="user-info">
-                    <div class="location">
-                        <span>📍</span>
-                        <span id="userLocation">Jakarta, Indonesia</span>
-                    </div>
-                    <div class="time-now" id="currentTime">12:34:56</div>
-                </div>
-            </div>
-            
-            <div class="mobile-menu" id="mobileMenu">
-                <nav class="mobile-nav">
-                    <a href="index.html" class="nav-item">Beranda</a>
-                    <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
-                    <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
-                    <a href="artikel.html" class="nav-item active">Artikel</a>
-                    <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
-                </nav>
-            </div>
-        </header>
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"></div>
+        <div>
+          <div class="logo-text">QalbuMuslim</div>
+        </div>
+      </a>
+      
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                <a href="tutor.html" class="nav-item">Tutor</a>
+                <a href="artikel.html" class="nav-item active">Artikel</a>
+                <a href="kajian.html" class="nav-item">Kajian</a>
+      </nav>
+      
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      
+      <div class="user-info">
+        <div class="location">
+          <span></span>
+          <span id="userLocation">Jakarta, Indonesia</span>
+        </div>
+        <div class="time-now" id="currentTime">12:34:56</div>
+      </div>
+    </div>
+    
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-nav">
+        <a href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
+                <a href="tutor.html" class="nav-item">Tutor</a>
+                <a href="artikel.html" class="nav-item active">Artikel</a>
+                <a href="kajian.html" class="nav-item">Kajian</a>
+      </nav>
+    </div>
+  </header>
 
   <!-- Main Content -->
   <div class="container">
@@ -577,7 +576,7 @@
     <!-- Filter Section -->
     <div class="filter-section">
       <div class="filter-row">
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Cari artikel...">
+        <input type="text" id="searchInput" class="search-box" placeholder=" Cari artikel...">
         <div class="category-filter">
           <button class="category-btn active" data-category="semua">Semua</button>
           <button class="category-btn" data-category="ibadah">Ibadah</button>
@@ -591,13 +590,11 @@
 
     <!-- Articles Grid -->
     <div id="articlesGrid" class="articles-grid">
-      <!-- Articles will be loaded here by JavaScript -->
+      <div id="loading" class="loading">Memuat artikel...</div>
     </div>
 
     <!-- Pagination -->
-    <div class="pagination" id="pagination">
-      <!-- Pagination will be loaded here by JavaScript -->
-    </div>
+    <div class="pagination" id="pagination"></div>
   </div>
 
   <script>
@@ -605,10 +602,10 @@
       {
         id: 1,
         title: "Keutamaan Membaca Al-Quran di Bulan Ramadan",
-        excerpt: "Pahala membaca Al-Quran di bulan Ramadan akan dilipatgandakan. Simak penjelasan lengkap tentang keutamaan dan adab membaca Al-Quran di bulan suci ini.",
+        excerpt: "Pahala membaca Al-Quran di bulan Ramadan akan dilipatgandakan. Simak penjelasan tentang keutamaan dan adab membaca.",
         category: "ibadah",
         date: "2024-01-15",
-        image: "image/atikelb1.jpg",
+        image: "image/artikelb1.jpg",
         featured: true
       },
       {
@@ -617,7 +614,7 @@
         excerpt: "Panduan lengkap tentang adab dan tata cara sholat sesuai dengan sunnah Rasulullah SAW. Mulai dari persiapan hingga salam.",
         category: "ibadah",
         date: "2024-01-14",
-        image: "🕌"
+        image: "image/artikelb3.jpg"
       },
       {
         id: 3,
@@ -625,7 +622,7 @@
         excerpt: "Bagaimana menerapkan akhlak mulia dalam kehidupan sehari-hari sesuai dengan ajaran Islam dan contoh dari Rasulullah SAW.",
         category: "akhlak",
         date: "2024-01-13",
-        image: "💎"
+        image: "image/artiklb2.jpg"
       },
       {
         id: 4,
@@ -633,7 +630,7 @@
         excerpt: "Mengenal sejarah turunnya Al-Quran, dari wahyu pertama di Gua Hira hingga wahyu terakhir yang diterima Rasulullah SAW.",
         category: "sejarah",
         date: "2024-01-12",
-        image: "📜"
+        image: "image/artikelb3.jpg"
       },
       {
         id: 5,
@@ -641,7 +638,7 @@
         excerpt: "Pembahasan lengkap tentang hukum zakat, jenis-jenis zakat, nisab, dan cara perhitungannya menurut syariat Islam.",
         category: "fiqh",
         date: "2024-01-11",
-        image: "💰"
+        image: "image/artiklb2.jpg"
       },
       {
         id: 6,
@@ -649,7 +646,7 @@
         excerpt: "Belajar dari perjuangan dan keteguhan iman para sahabat Rasulullah yang dapat menjadi motivasi dalam kehidupan kita.",
         category: "motivasi",
         date: "2024-01-10",
-        image: "⭐"
+        image: "image/artikelb3.jpg"
       },
       {
         id: 7,
@@ -657,7 +654,7 @@
         excerpt: "Ketahui waktu-waktu mustajab untuk berdoa dan doa-doa yang dianjurkan untuk diamalkan setiap hari.",
         category: "ibadah",
         date: "2024-01-09",
-        image: "🤲"
+        image: "image/artiklb2.jpg"
       },
       {
         id: 8,
@@ -665,8 +662,18 @@
         excerpt: "Puasa sunnah memiliki banyak hikmah dan manfaat, baik secara spiritual maupun kesehatan. Simak penjelasan lengkapnya.",
         category: "ibadah",
         date: "2024-01-08",
-        image: "🌙"
-      }
+        image: "image/artikelb3.jpg"
+      },
+      {
+        id: 7,
+        title: "Doa-Doa Mustajab di Waktu Tertentu",
+        excerpt: "Ketahui waktu-waktu mustajab untuk berdoa dan doa-doa yang dianjurkan untuk diamalkan setiap hari.",
+        category: "ibadah",
+        date: "2024-01-09",
+        image: "image/artiklb2.jpg"
+      },
+      
+      
     ];
 
     let currentPage = 1;
@@ -675,13 +682,21 @@
 
     function renderArticles() {
       const articlesGrid = document.getElementById('articlesGrid');
+      const pagination = document.getElementById('pagination');
+      const loading = document.getElementById('loading');
+
+      if (!articlesGrid || !pagination || !loading) {
+        console.error('Required elements not found!');
+        return;
+      }
+
+      loading.style.display = 'block';
+      articlesGrid.innerHTML = '';
+
       const startIndex = (currentPage - 1) * articlesPerPage;
       const endIndex = startIndex + articlesPerPage;
       const articlesToShow = filteredArticles.slice(startIndex, endIndex);
 
-      articlesGrid.innerHTML = '';
-
-      // Add featured article on first page
       if (currentPage === 1) {
         const featuredArticle = articlesData.find(article => article.featured);
         if (featuredArticle) {
@@ -690,7 +705,6 @@
         }
       }
 
-      // Add regular articles
       articlesToShow.forEach(article => {
         if (!article.featured || currentPage !== 1) {
           const articleCard = createArticleCard(article);
@@ -699,6 +713,7 @@
       });
 
       renderPagination();
+      loading.style.display = 'none';
     }
 
     function createFeaturedArticleCard(article) {
@@ -708,18 +723,17 @@
 
       card.innerHTML = `
         <div class="featured-image">
-          ${article.image}
+          <img src="${article.image}" alt="${article.title}" onerror="this.src='image/fallback.jpg';">
         </div>
         <div class="featured-content">
           <div class="featured-badge">Artikel Pilihan</div>
           <h2 class="featured-title">${article.title}</h2>
           <p class="featured-excerpt">${article.excerpt}</p>
           <div class="article-meta">
-            <span class="article-date">${formatDate(article.date)}</span>
+            <span class="article-date">${formatDate(article)}</span>
           </div>
         </div>
       `;
-
       return card;
     }
 
@@ -730,49 +744,41 @@
 
       card.innerHTML = `
         <div class="article-image">
-          ${article.image}
+          <img src="${article.image}" alt="${article.title}" onerror="this.src='image/fallback.jpg';">
         </div>
         <div class="article-content">
           <div class="article-category">${getCategoryName(article.category)}</div>
           <h3 class="article-title">${article.title}</h3>
           <p class="article-excerpt">${article.excerpt}</p>
           <div class="article-meta">
-            <span class="article-date">${formatDate(article.date)}</span>
+            <span class="article-date">${formatDate(article)}</span>
           </div>
         </div>
       `;
-
       return card;
     }
 
     function renderPagination() {
       const pagination = document.getElementById('pagination');
+      if (!pagination) return;
+
       const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+      pagination.innerHTML = '';
 
-      if (totalPages <= 1) {
-        pagination.innerHTML = '';
-        return;
-      }
+      if (totalPages <= 1) return;
 
-      let paginationHTML = '';
-
-      // Previous button
       if (currentPage > 1) {
-        paginationHTML += `<a href="#" class="page-btn" onclick="changePage(${currentPage - 1})">‹ Sebelumnya</a>`;
+        pagination.innerHTML += `<a href="#" class="page-btn" onclick="changePage(${currentPage - 1});return false;">Sebelumnya</a>`;
       }
 
-      // Page numbers
       for (let i = 1; i <= totalPages; i++) {
         const activeClass = i === currentPage ? 'active' : '';
-        paginationHTML += `<a href="#" class="page-btn ${activeClass}" onclick="changePage(${i})">${i}</a>`;
+        pagination.innerHTML += `<a href="#" class="page-btn ${activeClass}" onclick="changePage(${i});return false;">${i}</a>`;
       }
 
-      // Next button
       if (currentPage < totalPages) {
-        paginationHTML += `<a href="#" class="page-btn" onclick="changePage(${currentPage + 1})">Selanjutnya ›</a>`;
+        pagination.innerHTML += `<a href="#" class="page-btn" onclick="changePage(${currentPage + 1});return false;">Selanjutnya</a>`;
       }
-
-      pagination.innerHTML = paginationHTML;
     }
 
     function changePage(page) {
@@ -782,14 +788,18 @@
     }
 
     function filterArticles() {
-      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-      const activeCategory = document.querySelector('.category-btn.active').dataset.category;
+      const searchInput = document.getElementById('searchInput');
+      if (!searchInput) {
+        console.error('Search input not found!');
+        return;
+      }
+      const searchTerm = searchInput.value.toLowerCase();
+      const activeCategory = document.querySelector('.category-btn.active')?.dataset.category || 'semua';
 
       filteredArticles = articlesData.filter(article => {
         const matchesSearch = article.title.toLowerCase().includes(searchTerm) ||
                             article.excerpt.toLowerCase().includes(searchTerm);
         const matchesCategory = activeCategory === 'semua' || article.category === activeCategory;
-        
         return matchesSearch && matchesCategory;
       });
 
@@ -799,63 +809,91 @@
 
     function getCategoryName(category) {
       const categories = {
-        'ibadah': 'Ibadah',
-        'akhlak': 'Akhlak',
-        'sejarah': 'Sejarah',
-        'fiqh': 'Fiqh',
-        'motivasi': 'Motivasi'
+        ibadah: 'Ibadah',
+        akhlak: 'Akhlak',
+        sejarah: 'Sejarah',
+        fiqh: 'Fiqh',
+        motivasi: 'Motivasi'
       };
       return categories[category] || category;
     }
 
-    function formatDate(dateString) {
-      const date = new Date(dateString);
+    function formatDate(article) {
+      const date = new Date(article.date);
+      if (isNaN(date.getTime())) {
+        console.error(`Invalid date for article: ${article.title}`);
+        return 'Unknown Date';
+      }
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return date.toLocaleDateString('id-ID', options);
     }
 
     function openArticle(id) {
-      window.location.href = `artikel_detail.html?id=${id}`;
+      console.log(`Navigating to baca_artikel.html with ID: ${id}`);
+      window.location.href = `baca_artikel.html?id=${id}`;
     }
 
-    // Mobile menu toggle
     function toggleMobileMenu() {
       const mobileMenu = document.getElementById('mobileMenu');
+      if (!mobileMenu) {
+        console.error('Mobile menu not found!');
+        return;
+      }
       mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
     }
 
-    // Update current time
     function updateTime() {
       const now = new Date();
-      const timeString = now.toLocaleTimeString('id-ID');
-      document.getElementById('currentTime').textContent = timeString;
+      const timeElement = document.getElementById('currentTime');
+      if (timeElement) {
+        timeElement.textContent = now.toLocaleTimeString('id-ID');
+      } else {
+        console.error('Time element not found!');
+      }
     }
 
-    // Event listeners
-    document.getElementById('searchInput').addEventListener('input', filterArticles);
-
-    document.querySelectorAll('.category-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        filterArticles();
-      });
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
-      const mobileMenu = document.getElementById('mobileMenu');
-      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-      
-      if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-        mobileMenu.style.display = 'none';
+    function initializeEventListeners() {
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', filterArticles);
+      } else {
+        console.error('Search input not found!');
       }
-    });
 
-    // Initialize
-    updateTime();
-    setInterval(updateTime, 1000);
-    renderArticles();
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      if (categoryButtons.length > 0) {
+        categoryButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            filterArticles();
+          });
+        });
+      } else {
+        console.error('No category buttons found!');
+      }
+
+      document.addEventListener('click', function(e) {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        if (mobileMenu && mobileMenuBtn && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+          mobileMenu.style.display = 'none';
+        }
+      });
+    }
+
+    try {
+      updateTime();
+      setInterval(updateTime, 1000);
+      initializeEventListeners();
+      renderArticles();
+    } catch (error) {
+      console.error('Error initializing page:', error);
+      const loading = document.getElementById('loading');
+      if (loading) {
+        loading.textContent = 'Gagal memuat artikel. Silakan periksa konsol untuk kesalahan.';
+      }
+    }
   </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutor Belajar Islam - IslamicCalm</title>
+    <title>Tutor Belajar Islam - QalbuMuslim</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -712,49 +712,45 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <img src="images/icons/logo.png" alt="Logo IslamicCalm">
-                </div>
-                <div>
-                    <div class="logo-text">IslamicCalm</div>
-                </div>
-            </a>
-            <nav class="nav-menu">
-                <a href="index.html" class="nav-item">Beranda</a>
+    <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"></div>
+        <div>
+          <div class="logo-text">QalbuMuslim</div>
+        </div>
+      </a>
+      
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">Beranda</a>
                 <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
-                <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
+                <a href="tutor.html" class="nav-item accept">Tutor</a>
+                <a href="artikel.html" class="nav-item">Artikel</a>
                 <a href="kajian.html" class="nav-item">Kajian</a>
+      </nav>
+      
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      
+      <div class="user-info">
+        <div class="location">
+          <span></span>
+          <span id="userLocation">Jakarta, Indonesia</span>
+        </div>
+        <div class="time-now" id="currentTime">12:34:56</div>
+      </div>
+    </div>
+    
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-nav">
+        <a href="index.html" class="nav-item">Beranda</a>
+                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
                 <a href="tutor.html" class="nav-item active">Tutor</a>
                 <a href="artikel.html" class="nav-item">Artikel</a>
-                <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
-            </nav>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-            
-            <div class="user-info">
-                <div class="location">
-                    <img src="images/icons/location.png" alt="Location">
-                    <span id="userLocation">Jakarta, Indonesia</span>
-                </div>
-                <div class="time-now" id="currentTime">12:34:56</div>
-            </div>
-        </div>
-        
-        <div class="mobile-menu" id="mobileMenu">
-            <nav class="mobile-nav">
-                <a href="index.html" class="nav-item">Beranda</a>
-                <a href="daftar_surah.html" class="nav-item">Al-Quran</a>
-                <a href="cerita_nabi.html" class="nav-item">Cerita Nabi</a>
                 <a href="kajian.html" class="nav-item">Kajian</a>
-                <a href="tutor.html" class="nav-item active">Tutor</a>
-                <a href="artikel.html" class="nav-item">Artikel</a>
-                <a href="tentang_kami.html" class="nav-item">Tentang Kami</a>
-            </nav>
-        </div>
-    </header>
-
+      </nav>
+    </div>
+  </header>
     <div class="container">
         <!-- Page Title -->
         <div class="page-title">
