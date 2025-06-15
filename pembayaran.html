@@ -9,6 +9,34 @@
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Styling untuk Back to Top Button */
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 80px; /* Di atas tombol chatbot */
+      right: 20px;
+      background-color: #000000; /* Warna default netral */
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.3s;
+      z-index: 1001;
+    }
+
+    #backToTop:hover {
+      background-color: #333333; /* Warna hover netral */
+    }
+
+    #backToTop.show {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 <header>
@@ -115,7 +143,7 @@
               <p>OVO</p>
             </div>
             <div class="payment-option-box" onclick="selectPaymentOption(this, 'ewallet')">
-              <img src="image/wallet2.jpeg" alt="Dana" />
+              <img src="image/dana.jpg" alt="Dana" />
               <p>Dana</p>
             </div>
             <div class="payment-option-box" onclick="selectPaymentOption(this, 'ewallet')">
@@ -154,33 +182,48 @@
 
 <!-- Toggle Chat Button -->
 <button id="chat-toggle" onclick="toggleChat()">💬</button>
+
+<!-- Back to Top Button -->
+<button id="backToTop" title="Kembali ke Atas"><i class="fas fa-arrow-up"></i></button>
+
   <!-- Footer -->
   <footer class="footer-wave">
+   
     <div class="footer-container">
       <div class="footer-col">
-        <img src="https://yourdomain.com/logo.png" alt="Logo" class="footer-logo" />
-        <p>Minuman Boba lezat yang dibuat dari bahan alami dan segar. Kami berkomitmen memberikan pengalaman terbaik bagi pelanggan.</p>
+        <h4>Layanan Konsumen</h4>
+        <p><i class="fas fa-building"></i> Direktorat Jenderal PKTN - Kementerian Perdagangan RI</p>
+        <p><i class="fab fa-whatsapp"></i> 0822-5864-5697</p>
+        <p><i class="fas fa-envelope"></i> customercare@Suweger.com</p>
       </div>
+
       <div class="footer-col">
-        <h4>Hubungi Kami</h4>
-        <p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
-        <p><i class="fas fa-envelope"></i> support@boba.com</p>
-        <p><i class="fas fa-map-marker-alt"></i> Jl. Melati No. 10, Jakarta</p>
+        <h4>Kontak Kami</h4>
+        <p><i class="fas fa-map-marker-alt"></i> Gedung Graha Ganesha<br>Lantai 1 Suite 120 & 130</p>
+        <p>Jl. srikana No. 43A, Gubeng, Surabaya</p>
+        <p><i class="fas fa-phone"></i> 0822-5864-5697</p>
       </div>
+
       <div class="footer-col">
-        <h4>Sosial Media</h4>
+        <h4>Ikuti Kami</h4>
+        <p>Dapatkan update terbaru dan promo menarik</p>
         <div class="social-icons">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
     </div>
     <hr class="footer-line" />
     <div class="footer-bottom">
-      © 2025 Minuman Boba. All rights reserved. <br />
-      Developed by <a href="https://github.com/yourgithub" target="_blank" rel="noopener noreferrer">Seri Muliani</a>
+      <img src="image/logo2.png" alt="Footer Logo" class="footer-logo">
+      <p>© 2025 MinumanKita. All Rights Reserved.</p>
+      <p>
+        <a href="#">Kebijakan Privasi</a> |
+        <a href="#">Syarat & Ketentuan</a>
+      </p>
     </div>
   </footer>
 
@@ -266,6 +309,38 @@
       });
     });
 
+    // Back to Top functionality
+    const backToTopButton = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+      } else {
+        backToTopButton.classList.remove('show');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Chatbot toggle functionality
+    function toggleChat() {
+      const chatbot = document.getElementById('chatbot');
+      if (chatbot.style.display === 'block' || chatbot.style.display === '') {
+        chatbot.style.display = 'none';
+      } else {
+        chatbot.style.display = 'block';
+      }
+    }
+
+    function respond(message) {
+      const chatBody = document.getElementById('chat-body');
+      chatBody.innerHTML += `<div class="bot-message">Sedang memproses: ${message}...</div>`;
+      // Add your response logic here
+    }
   </script>
 </body>
 </html>

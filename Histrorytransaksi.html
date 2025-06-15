@@ -8,6 +8,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css"> <!-- Ganti dengan hamburger.css -->
   <script src="script.js"></script>
+  <style>
+    /* Styling untuk Back to Top Button */
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 80px; /* Di atas tombol chatbot */
+      right: 20px;
+      background-color: #000000; /* Warna default netral */
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.3s;
+      z-index: 1001;
+    }
+
+    #backToTop:hover {
+      background-color: #333333; /* Warna hover netral */
+    }
+
+    #backToTop.show {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 <header>
@@ -243,19 +271,23 @@
 
 <!-- Toggle Chat Button -->
 <button id="chat-toggle" onclick="toggleChat()">💬</button>
+
+<!-- Back to Top Button -->
+<button id="backToTop" title="Kembali ke Atas"><i class="fas fa-arrow-up"></i></button>
+
 <footer class="footer-wave">
   <div class="footer-container">
     <div class="footer-col">
       <h4>Layanan Konsumen</h4>
       <p><i class="fas fa-building"></i> Direktorat Jenderal PKTN - Kementerian Perdagangan RI</p>
-      <p><i class="fab fa-whatsapp"></i> 0853-1111-1010</p>
-      <p><i class="fas fa-envelope"></i> customercare@zupazips.com</p>
+      <p><i class="fab fa-whatsapp"></i> 0822-5864-5697</p>
+      <p><i class="fas fa-envelope"></i> customercare@Suweger.com</p>
     </div>
     <div class="footer-col">
       <h4>Kontak Kami</h4>
       <p><i class="fas fa-map-marker-alt"></i> Gedung Graha Ganesha<br>Lantai 1 Suite 120 & 130</p>
-      <p>Jl. Hayam Wuruk No. 28, Gambir, Jakarta Pusat</p>
-      <p><i class="fas fa-phone"></i> (021) 1234567</p>
+      <p>Jl. Srikana No. 43A, Gubeng, Surabaya</p>
+      <p><i class="fas fa-phone"></i> 0822-5864-5697</p>
     </div>
     <div class="footer-col">
       <h4>Ikuti Kami</h4>
@@ -281,9 +313,6 @@
 </footer>
 
 <script>
-
-
-
   // Filter functionality
   document.addEventListener('DOMContentLoaded', function () {
     const filterButton = document.getElementById('filterButton');
@@ -402,9 +431,40 @@ document.addEventListener('DOMContentLoaded', function() {
       link.classList.add('active');
     }
   });
-
 });
 
+  // Back to Top functionality
+  const backToTopButton = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopButton.classList.add('show');
+    } else {
+      backToTopButton.classList.remove('show');
+    }
+  });
+
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  // Chatbot toggle functionality
+  function toggleChat() {
+    const chatbot = document.getElementById('chatbot');
+    if (chatbot.style.display === 'block' || chatbot.style.display === '') {
+      chatbot.style.display = 'none';
+    } else {
+      chatbot.style.display = 'block';
+    }
+  }
+
+  function respond(message) {
+    const chatBody = document.getElementById('chat-body');
+    chatBody.innerHTML += `<div class="bot-message">Sedang memproses: ${message}...</div>`;
+    // Add your response logic here
+  }
 </script>
 </body>
 </html>

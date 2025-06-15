@@ -9,6 +9,34 @@
   <link rel="stylesheet" href="style.css">
    <script src="script.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Styling untuk Back to Top Button */
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 80px; /* Di atas tombol chatbot */
+      right: 20px;
+      background-color: #000000; /* Warna default netral */
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.3s;
+      z-index: 1001;
+    }
+
+    #backToTop:hover {
+      background-color: #333333; /* Warna hover netral */
+    }
+
+    #backToTop.show {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 <header>
@@ -130,54 +158,91 @@
 
 <!-- Toggle Chat Button -->
 <button id="chat-toggle" onclick="toggleChat()">💬</button>
+
+<!-- Back to Top Button -->
+<button id="backToTop" title="Kembali ke Atas"><i class="fas fa-arrow-up"></i></button>
+
   <!-- Footer -->
   <footer class="bg-gray-100 py-6 text-center text-sm text-gray-500">
-    &copy; 2025 ZupaZips. Semua Hak Dilindungi.
+    © 2025 ZupaZips. Semua Hak Dilindungi.
   </footer>
 <script src="hamburger.js"></script> <!-- Tambahkan ini -->
    <script>
-// Hamburger Menu
-document.addEventListener('DOMContentLoaded', function () {
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
+    // Hamburger Menu
+    document.addEventListener('DOMContentLoaded', function () {
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('nav-menu');
 
-  if (hamburger && navMenu) {
-    hamburger.addEventListener('click', function () {
-      navMenu.classList.toggle('hidden');
+      if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function () {
+          navMenu.classList.toggle('hidden');
+        });
+
+        // Tutup menu saat link diklik
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+          link.addEventListener('click', function () {
+            navMenu.classList.add('hidden');
+          });
+        });
+
+        // Tutup menu saat klik di luar
+        document.addEventListener('click', function (event) {
+          if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+            navMenu.classList.add('hidden');
+          }
+        });
+      }
+
+      // Dropdown Profile
+      const profileBtn = document.getElementById('profileBtn');
+      const dropdownMenu = document.getElementById('dropdownMenu');
+
+      if (profileBtn && dropdownMenu) {
+        profileBtn.addEventListener('click', function () {
+          dropdownMenu.classList.toggle('hidden');
+        });
+
+        // Tutup dropdown saat klik di luar
+        document.addEventListener('click', function (event) {
+          if (!dropdownMenu.contains(event.target) && !profileBtn.contains(event.target)) {
+            dropdownMenu.classList.add('hidden');
+          }
+        });
+      }
     });
 
-    // Tutup menu saat link diklik
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', function () {
-        navMenu.classList.add('hidden');
+    // Back to Top functionality
+    const backToTopButton = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+      } else {
+        backToTopButton.classList.remove('show');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
       });
     });
 
-    // Tutup menu saat klik di luar
-    document.addEventListener('click', function (event) {
-      if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
-        navMenu.classList.add('hidden');
+    // Chatbot toggle functionality
+    function toggleChat() {
+      const chatbot = document.getElementById('chatbot');
+      if (chatbot.style.display === 'block' || chatbot.style.display === '') {
+        chatbot.style.display = 'none';
+      } else {
+        chatbot.style.display = 'block';
       }
-    });
-  }
+    }
 
-  // Dropdown Profile
-  const profileBtn = document.getElementById('profileBtn');
-  const dropdownMenu = document.getElementById('dropdownMenu');
-
-  if (profileBtn && dropdownMenu) {
-    profileBtn.addEventListener('click', function () {
-      dropdownMenu.classList.toggle('hidden');
-    });
-
-    // Tutup dropdown saat klik di luar
-    document.addEventListener('click', function (event) {
-      if (!dropdownMenu.contains(event.target) && !profileBtn.contains(event.target)) {
-        dropdownMenu.classList.add('hidden');
-      }
-    });
-  }
-});
+    function respond(message) {
+      const chatBody = document.getElementById('chat-body');
+      chatBody.innerHTML += `<div class="bot-message">Sedang memproses: ${message}...</div>`;
+      // Add your response logic here
+    }
   </script>
 </body>
 </html>

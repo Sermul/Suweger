@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
- <head>
+<head>
   <meta charset="UTF-8">
   <title>ZupaZips - Minuman Unik</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -8,7 +8,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../style.css">
   <script src="../script.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Styling untuk Back to Top Button */
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 80px; /* Di atas tombol chatbot */
+      right: 20px;
+      background-color: #2a5c45; /* Sesuaikan dengan tema Anda */
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.3s;
+      z-index: 1001;
+    }
+
+    #backToTop:hover {
+      background-color: #1e4635; /* Warna saat hover */
+    }
+
+    #backToTop.show {
+      display: block;
+    }
+
+    /* Pastikan header sticky */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body>
 <header>
@@ -42,65 +79,65 @@
   </div>
 </header>
 
-  <!-- Header Artikel -->
-  <section class="article-hero py-12 px-6">
-    <div class="article-content mx-auto text-center">
-      <div class="text-sm uppercase tracking-wider text-gray-500 mb-2">Minuman</div>
-      <h1 class="text-3xl md:text-4xl font-serif font-normal text-gray-900 mb-4">Rahasia Rasa Boba Favoritmu</h1>
-      <div class="text-sm text-gray-500">
-        <span class="mr-4">25 April 2025</span>
-        <span>5 menit baca</span>
-      </div>
+<!-- Header Artikel -->
+<section class="article-hero py-12 px-6">
+  <div class="article-content mx-auto text-center">
+    <div class="text-sm uppercase tracking-wider text-gray-500 mb-2">Minuman</div>
+    <h1 class="text-3xl md:text-4xl font-serif font-normal text-gray-900 mb-4">Rahasia Rasa Boba Favoritmu</h1>
+    <div class="text-sm text-gray-500">
+      <span class="mr-4">25 April 2025</span>
+      <span>5 menit baca</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Konten Artikel -->
-  <div class="max-w-4xl mx-auto px-4 py-12">
-    <div class="mb-12">
-      <img src="../image/artikel1.jpg" alt="Boba Favorit" class="article-image">
-      <p class="text-center text-gray-500 text-sm mt-2">Boba premium dengan tekstur kenyal sempurna</p>
-    </div>
+<!-- Konten Artikel -->
+<div class="max-w-4xl mx-auto px-4 py-12">
+  <div class="mb-12">
+    <img src="../image/artikel1.jpg" alt="Boba Favorit" class="article-image">
+    <p class="text-center text-gray-500 text-sm mt-2">Boba premium dengan tekstur kenyal sempurna</p>
+  </div>
+  
+  <div class="article-content mx-auto">
+    <p class="text-lg leading-relaxed mb-6">Boba — si bola kenyal yang bikin banyak orang jatuh cinta. Tapi, tahukah kamu kenapa rasanya bisa begitu khas dan bikin ketagihan? Mari kita kupas rahasia di balik kenikmatan boba yang sempurna.</p>
     
-    <div class="article-content mx-auto">
-      <p class="text-lg leading-relaxed mb-6">Boba — si bola kenyal yang bikin banyak orang jatuh cinta. Tapi, tahukah kamu kenapa rasanya bisa begitu khas dan bikin ketagihan? Mari kita kupas rahasia di balik kenikmatan boba yang sempurna.</p>
-      
-      <h2>Bahan Dasar yang Berkualitas</h2>
-      <p class="mb-6">Boba terbaik terbuat dari tapioka murni yang diimpor langsung dari Thailand, dicampur dengan gula aren pilihan dari Jawa Barat. Proses seleksi bahan yang ketat ini menghasilkan tekstur kenyal yang sempurna dan rasa yang alami.</p>
+    <h2>Bahan Dasar yang Berkualitas</h2>
+    <p class="mb-6">Boba terbaik terbuat dari tapioka murni yang diimpor langsung dari Thailand, dicampur dengan gula aren pilihan dari Jawa Barat. Proses seleksi bahan yang ketat ini menghasilkan tekstur kenyal yang sempurna dan rasa yang alami.</p>
 
-      <h2>Teknik Memasak yang Presisi</h2>
-      <p class="mb-6">Di ZupaZips, kami menggunakan teknik memasak dengan suhu terkontrol 85°C selama tepat 25 menit, diikuti proses perendaman dalam larutan gula selama 30 menit. Waktu yang terlalu lama akan membuat boba lembek, sementara terlalu cepat akan menghasilkan tekstur yang keras.</p>
+    <h2>Teknik Memasak yang Presisi</h2>
+    <p class="mb-6">Di ZupaZips, kami menggunakan teknik memasak dengan suhu terkontrol 85°C selama tepat 25 menit, diikuti proses perendaman dalam larutan gula selama 30 menit. Waktu yang terlalu lama akan membuat boba lembek, sementara terlalu cepat akan menghasilkan tekstur yang keras.</p>
 
-      <h2>Sirup Rahasia</h2>
-      <p class="mb-6">Kami menggunakan sirup karamel spesial dengan campuran rempah-rempah rahasia yang dikembangkan oleh ahli mixologist kami selama 2 tahun. Sirup ini tidak hanya memberikan rasa manis, tapi juga kedalaman rasa yang membuat boba kami berbeda.</p>
+    <h2>Sirup Rahasia</h2>
+    <p class="mb-6">Kami menggunakan sirup karamel spesial dengan campuran rempah-rempah rahasia yang dikembangkan oleh ahli mixologist kami selama 2 tahun. Sirup ini tidak hanya memberikan rasa manis, tapi juga kedalaman rasa yang membuat boba kami berbeda.</p>
 
-      <blockquote>
-        "Kombinasi sempurna antara kenyal dan manis — itulah yang membuat boba kita spesial. Setiap butir boba mewakili dedikasi kami terhadap kualitas."
-        <div class="mt-2 text-sm">- Chef Andi, Head of Beverage Development</div>
-      </blockquote>
+    <blockquote>
+      "Kombinasi sempurna antara kenyal dan manis — itulah yang membuat boba kita spesial. Setiap butir boba mewakili dedikasi kami terhadap kualitas."
+      <div class="mt-2 text-sm">- Chef Andi, Head of Beverage Development</div>
+    </blockquote>
 
-      <h2>Penutup</h2>
-      <p class="mb-8">Kalau kamu penasaran dengan keistimewaan boba kami, langsung kunjungi outlet terdekat atau pesan melalui aplikasi ZupaZips. Karena pengalaman rasa yang autentik tidak bisa digantikan dengan kata-kata!</p>
-      
-      <div class="promo-box mb-12">
-        <h3 class="font-medium text-gray-900 mb-3">Ingin mencoba boba spesial kami?</h3>
-        <p class="mb-4">Dapatkan promo 20% untuk pembelian pertama melalui aplikasi dengan kode: <span class="promo-code font-mono">BOBAISTIMEWA</span></p>
-        <a href="../produk/katalog_produk.html" class="inline-block px-4 py-2 bg-[#2a5c45] text-white hover:bg-[#1e4635] transition">
-          Lihat Menu <i class="fas fa-chevron-right ml-2"></i>
-        </a>
-      </div>
-    </div>
-
-    <!-- Tombol Kembali -->
-    <div class="mt-16 text-center">
-      <a href="artike.html" class="back-button inline-flex items-center">
-        <i class="fas fa-arrow-left mr-2"></i> Kembali ke Daftar Artikel
+    <h2>Penutup</h2>
+    <p class="mb-8">Kalau kamu penasaran dengan keistimewaan boba kami, langsung kunjungi outlet terdekat atau pesan melalui aplikasi ZupaZips. Karena pengalaman rasa yang autentik tidak bisa digantikan dengan kata-kata!</p>
+    
+    <div class="promo-box mb-12">
+      <h3 class="font-medium text-gray-900 mb-3">Ingin mencoba boba spesial kami?</h3>
+      <p class="mb-4">Dapatkan promo 20% untuk pembelian pertama melalui aplikasi dengan kode: <span class="promo-code font-mono">BOBAISTIMEWA</span></p>
+      <a href="../produk/katalog_produk.html" class="inline-block px-4 py-2 bg-[#2a5c45] text-white hover:bg-[#1e4635] transition">
+        Lihat Menu <i class="fas fa-chevron-right ml-2"></i>
       </a>
     </div>
   </div>
+
+  <!-- Tombol Kembali -->
+  <div class="mt-16 text-center">
+    <a href="artike.html" class="back-button inline-flex items-center">
+      <i class="fas fa-arrow-left mr-2"></i> Kembali ke Daftar Artikel
+    </a>
+  </div>
+</div>
+
 <!-- Chatbot Widget -->
 <div id="chatbot" class="chatbot">
   <div class="chat-header">🤖 Tanya Produk (Chatbot)</div>
-
   <div class="chat-body" id="chat-body">
     <div class="bot-message">Halo! Ada yang bisa kami bantu?</div>
   </div>
@@ -113,73 +150,89 @@
 
 <!-- Toggle Chat Button -->
 <button id="chat-toggle" onclick="toggleChat()">💬</button>
-  <footer class="footer-wave">
-    <div class="footer-container">
-      <div class="footer-col">
-        <h4>Layanan Konsumen</h4>
-        <p>Direktorat Jenderal PKTN - Kementerian Perdagangan RI</p>
-        <p><i class="fab fa-whatsapp"></i> 0853-1111-1010</p>
-      </div>
-  
-      <div class="footer-col">
-        <h4>Kontak Kami</h4>
-        <p>Gedung Graha Ganesha<br>Lantai 1 Suite 120 & 130</p>
-        <p>Jl. Hayam Wuruk No. 28, Gambir, Jakarta Pusat</p>
-        <p><i class="fab fa-whatsapp"></i> 0812-1111-8456</p>
-      </div>
-  
-      <div class="footer-col">
-        <h4>Ikuti Kami</h4>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-    </div>
-  
-    <hr class="footer-line">
-  
-    <div class="footer-bottom">
-      <img src="../image/logo.png" alt="ZupaZips Logo" class="footer-logo">
-      <p>© 2025 ZupaZips. Segarkan Harimu Setiap Saat</p>
-      <p>
-        <a href="#">Syarat & Ketentuan</a> |
-        <a href="#">Kebijakan Privasi</a>
-      </p>
-    </div>
-  </footer>
-  <script src="../hamburger.js"></script> <!-- Tambahkan ini -->
-  <script>
-  // Profile dropdown functionality
-  document.getElementById('profileBtn').addEventListener('click', function() {
-    document.getElementById('dropdownMenu').style.display = 
-      document.getElementById('dropdownMenu').style.display === 'block' ? 'none' : 'block';
-  });
-  
-  // Close dropdown when clicking outside
-  window.addEventListener('click', function(e) {
-    if (!e.target.matches('#profileBtn') && !e.target.matches('.dropdown-content a')) {
-      document.getElementById('dropdownMenu').style.display = 'none';
-    }
-  });
 
-  
+<!-- Back to Top Button -->
+<button id="backToTop" title="Kembali ke Atas"><i class="fas fa-arrow-up"></i></button>
+
+<footer class="footer-wave">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h4>Layanan Konsumen</h4>
+      <p>Direktorat Jenderal PKTN - Kementerian Perdagangan RI</p>
+      <p><i class="fab fa-whatsapp"></i> 0822-5864-5697</p>
+    </div>
+    <div class="footer-col">
+      <h4>Kontak Kami</h4>
+      <p>Gedung Graha Ganesha<br>Lantai 1 Suite 120 & 130</p>
+      <p>Jl. srikana No. 43A, Gubeng, Surabaya</p>
+      <p><i class="fab fa-whatsapp"></i> 0822-5864-5697</p>
+    </div>
+    <div class="footer-col">
+      <h4>Ikuti Kami</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+  <hr class="footer-line">
+  <div class="footer-bottom">
+    <img src="../image/logo.png" alt="ZupaZips Logo" class="footer-logo">
+    <p>© 2025 Suweger. Segarkan Harimu Setiap Saat</p>
+    <p>
+      <a href="#">Syarat & Ketentuan</a> |
+      <a href="#">Kebijakan Privasi</a>
+    </p>
+  </footer>
+  <script src="../hamburger.js"></script>
+  <script>
+    // Profile dropdown functionality
+    document.getElementById('profileBtn').addEventListener('click', function() {
+      document.getElementById('dropdownMenu').style.display = 
+        document.getElementById('dropdownMenu').style.display === 'block' ? 'none' : 'block';
+    });
+    
+    // Close dropdown when clicking outside
+    window.addEventListener('click', function(e) {
+      if (!e.target.matches('#profileBtn') && !e.target.matches('.dropdown-content a')) {
+        document.getElementById('dropdownMenu').style.display = 'none';
+      }
+    });
+
     // JavaScript untuk menandai menu aktif
-document.addEventListener('DOMContentLoaded', function() {
-  const currentPage = window.location.pathname.split('/').pop();
-  const navLinks = document.querySelectorAll('nav a');
-  
-  navLinks.forEach(link => {
-    const linkPage = link.getAttribute('href').split('/').pop();
-    if (currentPage === linkPage || 
-        (currentPage === '' && linkPage === 'index.html')) {
-      link.classList.add('active');
-    }
-  });
-});
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPage = window.location.pathname.split('/').pop();
+      const navLinks = document.querySelectorAll('nav a');
+      
+      navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href').split('/').pop();
+        if (currentPage === linkPage || 
+            (currentPage === '' && linkPage === 'index.html')) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Back to Top functionality
+    const backToTopButton = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+      } else {
+        backToTopButton.classList.remove('show');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
   </script>
 </body>
 </html>
